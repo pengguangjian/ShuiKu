@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(CGSize)countTextSize:(CGSize)size andtextfont:(UIFont *)font andtext:(NSString *)str;
 
 
-
++(void)showNotifyHUDwithtext:(NSString *)notify_str inView:(UIView *)view;
 
 
 @end

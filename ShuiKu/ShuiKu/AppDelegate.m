@@ -7,9 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "LoginViewController.h"
+#import "PGGTabBarViewControllerConfig.h"
 
 
+@class PGGBaseNavigationController;
 @interface AppDelegate ()
 
 @end
@@ -31,8 +33,11 @@
     }
     
     ///
-    ViewController *config = [[ViewController alloc] init];
-    [self.window setRootViewController:config.tabBarController];
+    LoginViewController *config = [[LoginViewController alloc] init];
+    _nav = [[UINavigationController alloc] initWithRootViewController:config];
+    [self.window setRootViewController:_nav];
+    
+    
     
     [[UITabBar appearance] setTranslucent:NO];
     [self.window setBackgroundColor:[UIColor whiteColor]];

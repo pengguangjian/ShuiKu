@@ -7,6 +7,7 @@
 //
 
 #import "WYTools.h"
+#import "BDKNotifyHUD.h"
 
 @implementation WYTools
 
@@ -18,6 +19,17 @@
     //ios7方法，获取文本需要的size
     CGSize  msize =[str boundingRectWithSize:detailsLabSize options:NSStringDrawingUsesLineFragmentOrigin  attributes:detailsLabAttribute context:nil].size;
     return msize;
+}
+
++(void)showNotifyHUDwithtext:(NSString *)notify_str inView:(UIView *)view{
+    if (notify_str) {
+        BDKNotifyHUD *noti=[BDKNotifyHUD notifyHUDWithImage:nil text:notify_str];
+        noti.center = CGPointMake(view.center.x, view.center.y );
+        [view addSubview:noti];
+        [noti presentWithDuration:1.0 speed:0.5 inView:view completion:^{
+            [noti removeFromSuperview];
+        }];
+    }
 }
 
 @end

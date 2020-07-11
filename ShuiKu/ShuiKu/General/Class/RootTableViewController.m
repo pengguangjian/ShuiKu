@@ -21,8 +21,13 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],
-                                                                      NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#666666"]}] ;
+    
+    [self.navigationController.navigationBar setBarTintColor:MenuColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}] ;
+    
+    if (self.navigationController.viewControllers.count>1) {
+        [self setNavBarBackBtn];
+    }
     if (self.navigationController.viewControllers.count>1) {
         [self setNavBarBackBtn];
     }
@@ -49,7 +54,6 @@
     UIButton* btnLeft = [UIButton buttonWithType:UIButtonTypeCustom];
     btnLeft.frame = CGRectMake(0,0,44,44);
     [btnLeft setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [btnLeft setImage:[UIImage imageNamed:@"back_click"] forState:UIControlStateHighlighted];
     [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [btnLeft addTarget:self action:@selector(doClickBackAction) forControlEvents:UIControlEventTouchUpInside];
     [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];

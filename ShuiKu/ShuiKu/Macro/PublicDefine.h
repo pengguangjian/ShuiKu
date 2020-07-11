@@ -16,6 +16,6 @@
 
 #define DateFormatter @"yyyy-MM-dd HH:mm:ss"
 
-#define MenuColor [UIColor colorWithRed:118/255.0 green:163/255.0 blue:93/255.0 alpha:1.0]
+#define MenuColor [UIColor colorWithRed:34/255.0 green:81/255.0 blue:152/255.0 alpha:1.0]
 
 

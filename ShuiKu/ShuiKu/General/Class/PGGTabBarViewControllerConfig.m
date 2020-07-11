@@ -64,8 +64,10 @@
 
 @end
 
-//#import "HomeViewController.h"
-//#import "MyViewController.h"
+#import "MainHomeViewController.h"
+#import "MainShiShiJianCeViewController.h"
+#import "MainTongJiFenXiViewController.h"
+#import "MainMyViewController.h"
 
 @interface PGGTabBarViewControllerConfig ()
 
@@ -95,49 +97,59 @@
 //数组数据和颜色
 -(void)writeData
 {
-//    self.arrVC = [self PGGviewControllers];
-    self.arrbttitle = [[NSMutableArray alloc]initWithObjects:@"首页",@"我的", nil];
+    self.arrVC = [self PGGviewControllers];
+    self.arrbttitle = [[NSMutableArray alloc]initWithObjects:@"首页",@"实时监测",@"统计分析",@"我的", nil];
     self.colornomo = RGB(91, 91, 91);
-    self.colorSelect = RGB(10, 10, 10);
-    self.arrSelectimg = [[NSMutableArray alloc]initWithObjects:@"首页1",@"首页2", nil];
-    self.arrnomimg = [[NSMutableArray alloc]initWithObjects:@"首页11",@"首页22", nil];
+    self.colorSelect = MenuColor;
+    self.arrnomimg = [[NSMutableArray alloc]initWithObjects:@"tabBarHome",@"tabBarPerson",@"ic_bottom_1_normal",@"tabBarSet", nil];
+    self.arrSelectimg = [[NSMutableArray alloc]initWithObjects:@"tabBarHomeSelect",@"tabBarPersonSelect",@"ic_bottom_1_selected",@"tabBarSetSelect", nil];
     
     
 }
 
-//- (NSArray *)PGGviewControllers {
-//    
-//    HomeViewController *vc = [[HomeViewController alloc] init];
-//    MyViewController *vc1 = [[MyViewController alloc] init];
-//    ///这里占用了部分cup20%
-//    PGGBaseNavigationController *firstNavigationController = [[PGGBaseNavigationController alloc]
-//                                                   initWithRootViewController:vc];
-//
-//    PGGBaseNavigationController *secondNavigationController = [[PGGBaseNavigationController alloc]
-//                                                    initWithRootViewController:vc1];
-//
-//    
-//    /**
-//     * 以下两行代码目的在于手动设置让TabBarItem只显示图标，不显示文字，并让图标垂直居中。
-//     * 等效于在 `-tabBarItemsAttributesForController` 方法中不传 `CYLTabBarItemTitle` 字段。
-//     * 更推荐后一种做法。
-//     */
-//    //tabBarController.imageInsets = UIEdgeInsetsMake(4.5, 0, -4.5, 0);
-//    //tabBarController.titlePositionAdjustment = UIOffsetMake(0, MAXFLOAT);
-////    NSArray *viewControllers = @[
-////                                 homeViewController,
-////                                 findCouponViewController,
-////                                 daigouViewController,
-////                                 ShareViewController,
-////                                 UserViewController
-////                                 ];
+- (NSArray *)PGGviewControllers {
+    
+    MainHomeViewController *vc = [[MainHomeViewController alloc] init];
+    MainShiShiJianCeViewController *vc1 = [[MainShiShiJianCeViewController alloc] init];
+    MainTongJiFenXiViewController *vc2 = [[MainTongJiFenXiViewController alloc] init];
+    MainMyViewController *vc3 = [[MainMyViewController alloc] init];
+    ///这里占用了部分cup20%
+    PGGBaseNavigationController *firstNavigationController = [[PGGBaseNavigationController alloc]
+                                                   initWithRootViewController:vc];
+
+    PGGBaseNavigationController *secondNavigationController = [[PGGBaseNavigationController alloc]
+                                                    initWithRootViewController:vc1];
+    
+    PGGBaseNavigationController *thredNavigationController = [[PGGBaseNavigationController alloc]
+    initWithRootViewController:vc2];
+    
+    PGGBaseNavigationController *forthNavigationController = [[PGGBaseNavigationController alloc]
+    initWithRootViewController:vc3];
+
+    
+    /**
+     * 以下两行代码目的在于手动设置让TabBarItem只显示图标，不显示文字，并让图标垂直居中。
+     * 等效于在 `-tabBarItemsAttributesForController` 方法中不传 `CYLTabBarItemTitle` 字段。
+     * 更推荐后一种做法。
+     */
+    //tabBarController.imageInsets = UIEdgeInsetsMake(4.5, 0, -4.5, 0);
+    //tabBarController.titlePositionAdjustment = UIOffsetMake(0, MAXFLOAT);
 //    NSArray *viewControllers = @[
-//                                 firstNavigationController,
-//                                 secondNavigationController
+//                                 homeViewController,
+//                                 findCouponViewController,
+//                                 daigouViewController,
+//                                 ShareViewController,
+//                                 UserViewController
 //                                 ];
-//    
-//    return viewControllers;
-//}
+    NSArray *viewControllers = @[
+                                 firstNavigationController,
+                                 secondNavigationController,
+                                 thredNavigationController,
+                                 forthNavigationController
+                                 ];
+    
+    return viewControllers;
+}
 
 -(NSMutableDictionary *)dictiaozhuanitem:(NSArray *)arr andident:(NSString *)strident
 {
