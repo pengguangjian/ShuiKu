@@ -32,4 +32,47 @@
     }
 }
 
++(UILabel *)drawitemView:(UIView *)view andtitle:(NSString *)title
+{
+    UILabel *lbname = [[UILabel alloc] init];
+    [lbname setTextColor:RGB(30, 30, 30)];
+    [lbname setTextAlignment:NSTextAlignmentRight];
+    [lbname setFont:[UIFont systemFontOfSize:13]];
+    [lbname setText:title];
+    [view addSubview:lbname];
+    [lbname mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(5);
+        make.top.bottom.equalTo(view);
+        make.width.offset(120);
+    }];
+    
+    UIView *viewbck = [[UIView alloc] init];
+    [viewbck.layer setMasksToBounds:YES];
+    [viewbck.layer setCornerRadius:9];
+    [viewbck setBackgroundColor:RGB(245, 245, 245)];
+    [view addSubview:viewbck];
+    [viewbck mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(lbname.mas_right).offset(20);
+        make.centerY.equalTo(view);
+        make.right.equalTo(view).offset(-20);
+        make.height.offset(18);
+    }];
+    
+    
+    UILabel *lbvalue = [[UILabel alloc] init];
+    [lbvalue setTextColor:RGB(30, 30, 30)];
+    [lbvalue setTextAlignment:NSTextAlignmentLeft];
+    [lbvalue setFont:[UIFont systemFontOfSize:13]];
+    [lbvalue setText:title];
+    [viewbck addSubview:lbvalue];
+    [lbvalue mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(25);
+        make.top.bottom.equalTo(viewbck);
+        make.right.equalTo(viewbck).offset(-15);
+    }];
+    
+    
+    return lbvalue;
+}
+
 @end

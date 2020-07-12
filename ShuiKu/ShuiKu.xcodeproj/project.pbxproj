@@ -86,6 +86,8 @@
 		049F27E324BB0E5000D06C52 /* CeZhanJianCeTongJiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049F27E224BB0E5000D06C52 /* CeZhanJianCeTongJiViewController.m */; };
 		049F27E624BB0F0300D06C52 /* CeZhanJianCeTJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049F27E524BB0F0300D06C52 /* CeZhanJianCeTJViewController.m */; };
 		049F27EA24BB0F8300D06C52 /* CeZhanJianCeTJView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049F27E924BB0F8300D06C52 /* CeZhanJianCeTJView.m */; };
+		049F27EE24BB334D00D06C52 /* ZhuoDuJianCeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049F27ED24BB334D00D06C52 /* ZhuoDuJianCeViewController.m */; };
+		049F27F224BB368600D06C52 /* ZhuoDuJianCeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049F27F124BB368600D06C52 /* ZhuoDuJianCeTableViewCell.m */; };
 		6DFF105506D9328256308EC4 /* libPods-ShuiKu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F2B12DD225C9B127948DFC /* libPods-ShuiKu.a */; };
 /* End PBXBuildFile section */
 
@@ -253,6 +255,10 @@
 		049F27E524BB0F0300D06C52 /* CeZhanJianCeTJViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CeZhanJianCeTJViewController.m; sourceTree = "<group>"; };
 		049F27E824BB0F8300D06C52 /* CeZhanJianCeTJView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CeZhanJianCeTJView.h; sourceTree = "<group>"; };
 		049F27E924BB0F8300D06C52 /* CeZhanJianCeTJView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CeZhanJianCeTJView.m; sourceTree = "<group>"; };
+		049F27EC24BB334D00D06C52 /* ZhuoDuJianCeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhuoDuJianCeViewController.h; sourceTree = "<group>"; };
+		049F27ED24BB334D00D06C52 /* ZhuoDuJianCeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhuoDuJianCeViewController.m; sourceTree = "<group>"; };
+		049F27F024BB368600D06C52 /* ZhuoDuJianCeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhuoDuJianCeTableViewCell.h; sourceTree = "<group>"; };
+		049F27F124BB368600D06C52 /* ZhuoDuJianCeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhuoDuJianCeTableViewCell.m; sourceTree = "<group>"; };
 		28F2B12DD225C9B127948DFC /* libPods-ShuiKu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShuiKu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7CCC865DE2C84B21906C49 /* Pods-ShuiKu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShuiKu.debug.xcconfig"; path = "Target Support Files/Pods-ShuiKu/Pods-ShuiKu.debug.xcconfig"; sourceTree = "<group>"; };
 		EB15E1DAE170CE71E8CC7F90 /* Pods-ShuiKu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShuiKu.release.xcconfig"; path = "Target Support Files/Pods-ShuiKu/Pods-ShuiKu.release.xcconfig"; sourceTree = "<group>"; };
@@ -411,6 +417,7 @@
 		046049B324B980740079B78B /* 实时监测 */ = {
 			isa = PBXGroup;
 			children = (
+				049F27EB24BB332A00D06C52 /* 浊度监测 */,
 				046049B824B980A30079B78B /* MainShiShiJianCeViewController.h */,
 				046049B924B980A30079B78B /* MainShiShiJianCeViewController.m */,
 			);
@@ -737,6 +744,25 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		049F27EB24BB332A00D06C52 /* 浊度监测 */ = {
+			isa = PBXGroup;
+			children = (
+				049F27EF24BB367100D06C52 /* cell */,
+				049F27EC24BB334D00D06C52 /* ZhuoDuJianCeViewController.h */,
+				049F27ED24BB334D00D06C52 /* ZhuoDuJianCeViewController.m */,
+			);
+			path = "浊度监测";
+			sourceTree = "<group>";
+		};
+		049F27EF24BB367100D06C52 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				049F27F024BB368600D06C52 /* ZhuoDuJianCeTableViewCell.h */,
+				049F27F124BB368600D06C52 /* ZhuoDuJianCeTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		2AE9697BD81D6CC42E174841 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -898,6 +924,7 @@
 				04613E5D24B89C37009CD89D /* GMDCircleLoader.m in Sources */,
 				04613E1324B89A3F009CD89D /* UIViewController+VTMagic.m in Sources */,
 				046049EB24B9B27E0079B78B /* MainMyTableViewCell.m in Sources */,
+				049F27F224BB368600D06C52 /* ZhuoDuJianCeTableViewCell.m in Sources */,
 				046049EF24B9B7060079B78B /* ZiDingYiPeiZhiViewController.m in Sources */,
 				04613E4D24B89A5E009CD89D /* TabBarControllerConfig.m in Sources */,
 				045E40F824BAB0AD00FA0B97 /* CommonUtility.m in Sources */,
@@ -932,6 +959,7 @@
 				045E416A24BAECBB00FA0B97 /* ZheXianTuItemView.m in Sources */,
 				046049B024B970160079B78B /* PeiZhiViewController.m in Sources */,
 				045E415724BAE62800FA0B97 /* GBLineChart.m in Sources */,
+				049F27EE24BB334D00D06C52 /* ZhuoDuJianCeViewController.m in Sources */,
 				04613E3F24B89A5E009CD89D /* UIColor+Hex.m in Sources */,
 				046049C424B986290079B78B /* MainHomeView.m in Sources */,
 				045E40FE24BAC02A00FA0B97 /* MapShaiXuanView.m in Sources */,

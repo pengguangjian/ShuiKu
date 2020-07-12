@@ -8,7 +8,7 @@
 
 #import "MainShiShiJianCeViewController.h"
 #import "HomeCollectionViewCell.h"
-
+#import "ZhuoDuJianCeViewController.h"
 
 @interface MainShiShiJianCeViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -73,7 +73,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+    ZhuoDuJianCeViewController *vc = [[ZhuoDuJianCeViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

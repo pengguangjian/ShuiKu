@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(void)showNotifyHUDwithtext:(NSString *)notify_str inView:(UIView *)view;
 
+///列表公共cell
++(UILabel *)drawitemView:(UIView *)view andtitle:(NSString *)title;
 
 @end
 
