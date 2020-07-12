@@ -13,6 +13,7 @@
 #import "HomeJinRiYuJinView.h"
 #import "HomeZhiBanTongJiView.h"
 #import "ZiDingYiPeiZhiViewController.h"
+#import "MainMapViewController.h"
 
 @interface MainHomeView () <UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -201,7 +202,13 @@
     }
     else
     {
-        
+        if([_arrTopTitle[indexPath.row] isEqualToString:@"一张图"])
+        {
+            UIViewController *vc = [NSClassFromString(@"MainMapViewController") new];
+            
+//            MainMapViewController *vc = [[MainMapViewController alloc] init];
+            [self.viewController.navigationController pushViewController:vc animated:YES];
+        }
     }
     
 }

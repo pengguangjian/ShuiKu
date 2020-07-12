@@ -14,12 +14,23 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - AMap3DMap-NO-IDFA (7.0.0):
+    - AMapFoundation-NO-IDFA (~> 1.5)
+  - AMapFoundation-NO-IDFA (1.6.3)
+  - AMapLocation-NO-IDFA (2.6.5):
+    - AMapFoundation-NO-IDFA (~> 1.6.3)
+  - AMapNavi-NO-IDFA (7.0.0):
+    - AMap3DMap-NO-IDFA (~> 7.0)
+    - AMapFoundation-NO-IDFA (~> 1.5)
+  - AMapSearch-NO-IDFA (6.9.0):
+    - AMapFoundation-NO-IDFA (~> 1.4)
   - CYLTabBarController (1.17.23)
   - IQKeyboardManager (6.5.5)
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
   - MJExtension (3.0.17)
   - MJRefresh (3.4.3)
+  - PGBarChart (1.0.1)
   - SDWebImage (4.4.8):
     - SDWebImage/Core (= 4.4.8)
   - SDWebImage/Core (4.4.8)
@@ -31,12 +42,17 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - AMap3DMap-NO-IDFA (~> 7.0.0)
+  - AMapLocation-NO-IDFA (~> 2.6.3)
+  - AMapNavi-NO-IDFA (~> 7.0.0)
+  - AMapSearch-NO-IDFA (~> 6.9.0)
   - CYLTabBarController (~> 1.17.4)
   - IQKeyboardManager
   - Masonry (~> 1.1.0)
   - MBProgressHUD (~> 1.0.0)
   - MJExtension (~> 3.0.13)
   - MJRefresh
+  - PGBarChart
   - SDWebImage (~> 4.0)
   - TZImagePickerController
   - YLGIFImage
@@ -45,12 +61,18 @@ DEPENDENCIES:
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - AFNetworking
+    - AMap3DMap-NO-IDFA
+    - AMapFoundation-NO-IDFA
+    - AMapLocation-NO-IDFA
+    - AMapNavi-NO-IDFA
+    - AMapSearch-NO-IDFA
     - CYLTabBarController
     - IQKeyboardManager
     - Masonry
     - MBProgressHUD
     - MJExtension
     - MJRefresh
+    - PGBarChart
     - SDWebImage
     - TZImagePickerController
     - YLGIFImage
@@ -58,17 +80,23 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AMap3DMap-NO-IDFA: e8a2bd7759f04c9650c3cfc9c4731ad23f14b2e3
+  AMapFoundation-NO-IDFA: cf241b2f4832fe6c9e121af381e34791be49ad0d
+  AMapLocation-NO-IDFA: 681a55b09638a0a5838c7c260f8825a1dbc7d98d
+  AMapNavi-NO-IDFA: ca5e12484c6c3284a9e4161c2ff771efcfcf5741
+  AMapSearch-NO-IDFA: 264999e6c149383a8f164c2fe49b51513e93d674
   CYLTabBarController: 73889c1ccc7685221d85ac2dbf188900543f17d0
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  PGBarChart: 807c42cdc73e16be14dad0885c40d63b1ed1bff0
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
   TZImagePickerController: 36ca728ec681228918aa82e993aaab1962281b72
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 13b00a9b2b7fb59532360ec2c649480390090568
+PODFILE CHECKSUM: f1dd31a5e8e41e2f8faa429045cd71e5a75b96b8
 
 COCOAPODS: 1.9.3

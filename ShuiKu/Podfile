@@ -17,5 +17,11 @@ pod 'TZImagePickerController'
 pod 'IQKeyboardManager'
 pod 'YLGIFImage'
 pod 'MBProgressHUD', '~> 1.0.0'
+pod 'AMapNavi-NO-IDFA', '~> 7.0.0'
+pod 'AMapSearch-NO-IDFA', '~> 6.9.0'
+pod 'AMapLocation-NO-IDFA', '~> 2.6.3'
+pod 'AMap3DMap-NO-IDFA', '~> 7.0.0'
+
+pod 'PGBarChart'
 
 end

@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "AppDelegate.h"
 
 @interface RootViewController ()
 
@@ -57,6 +58,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    delegate.allowRotate = 0;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

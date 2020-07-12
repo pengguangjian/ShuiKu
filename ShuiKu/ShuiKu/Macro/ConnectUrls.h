@@ -11,7 +11,8 @@ static UIEdgeInsets kPaddingNav = {64,0,0,0};
 ///api
 #define URL_HR @"https://a.meidebi.com/new.php/"
 
-
+///高德AppKey
+#define GaoDeAppKey @"5af0f5ad910917c7d2ab98a8e917992c"
 
 
 
