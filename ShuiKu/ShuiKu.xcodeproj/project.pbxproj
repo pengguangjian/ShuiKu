@@ -83,6 +83,18 @@
 		04613E5524B89BD5009CD89D /* MDB_ShareExstensionUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 04613E5424B89BD5009CD89D /* MDB_ShareExstensionUserDefault.m */; };
 		04613E5924B89C10009CD89D /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04613E5824B89C10009CD89D /* BDKNotifyHUD.m */; };
 		04613E5D24B89C37009CD89D /* GMDCircleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04613E5C24B89C37009CD89D /* GMDCircleLoader.m */; };
+		046DB9AA24BC95470086142B /* LiuLiangJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9A924BC95470086142B /* LiuLiangJCViewController.m */; };
+		046DB9AE24BC95820086142B /* YuLvJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9AD24BC95820086142B /* YuLvJCViewController.m */; };
+		046DB9B224BC95A10086142B /* WenDuJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9B124BC95A10086142B /* WenDuJCViewController.m */; };
+		046DB9B824BC95DE0086142B /* PHZhiJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9B724BC95DE0086142B /* PHZhiJCViewController.m */; };
+		046DB9BB24BC95E90086142B /* ShuiZhiJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9BA24BC95E90086142B /* ShuiZhiJCViewController.m */; };
+		046DB9BE24BC95F40086142B /* ZhongHeJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9BD24BC95F40086142B /* ZhongHeJCViewController.m */; };
+		046DB9C724BC97070086142B /* LiuLiangJCVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9C624BC97070086142B /* LiuLiangJCVTableViewCell.m */; };
+		046DB9CA24BC97170086142B /* YuLvJCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9C924BC97170086142B /* YuLvJCTableViewCell.m */; };
+		046DB9CD24BC97230086142B /* WenDuJCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9CC24BC97230086142B /* WenDuJCTableViewCell.m */; };
+		046DB9D024BC972E0086142B /* PHZhiJCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9CF24BC972E0086142B /* PHZhiJCTableViewCell.m */; };
+		046DB9D324BC97390086142B /* ShuiZhiJCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9D224BC97390086142B /* ShuiZhiJCTableViewCell.m */; };
+		046DB9D624BC97440086142B /* ZhongHeJCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9D524BC97440086142B /* ZhongHeJCTableViewCell.m */; };
 		049F27E324BB0E5000D06C52 /* CeZhanJianCeTongJiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049F27E224BB0E5000D06C52 /* CeZhanJianCeTongJiViewController.m */; };
 		049F27E624BB0F0300D06C52 /* CeZhanJianCeTJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049F27E524BB0F0300D06C52 /* CeZhanJianCeTJViewController.m */; };
 		049F27EA24BB0F8300D06C52 /* CeZhanJianCeTJView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049F27E924BB0F8300D06C52 /* CeZhanJianCeTJView.m */; };
@@ -249,6 +261,30 @@
 		04613E5824B89C10009CD89D /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKNotifyHUD.m; sourceTree = "<group>"; };
 		04613E5B24B89C37009CD89D /* GMDCircleLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDCircleLoader.h; sourceTree = "<group>"; };
 		04613E5C24B89C37009CD89D /* GMDCircleLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDCircleLoader.m; sourceTree = "<group>"; };
+		046DB9A824BC95470086142B /* LiuLiangJCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangJCViewController.h; sourceTree = "<group>"; };
+		046DB9A924BC95470086142B /* LiuLiangJCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuLiangJCViewController.m; sourceTree = "<group>"; };
+		046DB9AC24BC95820086142B /* YuLvJCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YuLvJCViewController.h; sourceTree = "<group>"; };
+		046DB9AD24BC95820086142B /* YuLvJCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuLvJCViewController.m; sourceTree = "<group>"; };
+		046DB9B024BC95A10086142B /* WenDuJCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WenDuJCViewController.h; sourceTree = "<group>"; };
+		046DB9B124BC95A10086142B /* WenDuJCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WenDuJCViewController.m; sourceTree = "<group>"; };
+		046DB9B624BC95DE0086142B /* PHZhiJCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHZhiJCViewController.h; sourceTree = "<group>"; };
+		046DB9B724BC95DE0086142B /* PHZhiJCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHZhiJCViewController.m; sourceTree = "<group>"; };
+		046DB9B924BC95E90086142B /* ShuiZhiJCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShuiZhiJCViewController.h; sourceTree = "<group>"; };
+		046DB9BA24BC95E90086142B /* ShuiZhiJCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShuiZhiJCViewController.m; sourceTree = "<group>"; };
+		046DB9BC24BC95F40086142B /* ZhongHeJCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhongHeJCViewController.h; sourceTree = "<group>"; };
+		046DB9BD24BC95F40086142B /* ZhongHeJCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhongHeJCViewController.m; sourceTree = "<group>"; };
+		046DB9C524BC97070086142B /* LiuLiangJCVTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangJCVTableViewCell.h; sourceTree = "<group>"; };
+		046DB9C624BC97070086142B /* LiuLiangJCVTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuLiangJCVTableViewCell.m; sourceTree = "<group>"; };
+		046DB9C824BC97170086142B /* YuLvJCTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YuLvJCTableViewCell.h; sourceTree = "<group>"; };
+		046DB9C924BC97170086142B /* YuLvJCTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuLvJCTableViewCell.m; sourceTree = "<group>"; };
+		046DB9CB24BC97230086142B /* WenDuJCTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WenDuJCTableViewCell.h; sourceTree = "<group>"; };
+		046DB9CC24BC97230086142B /* WenDuJCTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WenDuJCTableViewCell.m; sourceTree = "<group>"; };
+		046DB9CE24BC972E0086142B /* PHZhiJCTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHZhiJCTableViewCell.h; sourceTree = "<group>"; };
+		046DB9CF24BC972E0086142B /* PHZhiJCTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHZhiJCTableViewCell.m; sourceTree = "<group>"; };
+		046DB9D124BC97390086142B /* ShuiZhiJCTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShuiZhiJCTableViewCell.h; sourceTree = "<group>"; };
+		046DB9D224BC97390086142B /* ShuiZhiJCTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShuiZhiJCTableViewCell.m; sourceTree = "<group>"; };
+		046DB9D424BC97440086142B /* ZhongHeJCTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhongHeJCTableViewCell.h; sourceTree = "<group>"; };
+		046DB9D524BC97440086142B /* ZhongHeJCTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhongHeJCTableViewCell.m; sourceTree = "<group>"; };
 		049F27E124BB0E5000D06C52 /* CeZhanJianCeTongJiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CeZhanJianCeTongJiViewController.h; sourceTree = "<group>"; };
 		049F27E224BB0E5000D06C52 /* CeZhanJianCeTongJiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CeZhanJianCeTongJiViewController.m; sourceTree = "<group>"; };
 		049F27E424BB0F0300D06C52 /* CeZhanJianCeTJViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CeZhanJianCeTJViewController.h; sourceTree = "<group>"; };
@@ -405,6 +441,13 @@
 		046049B224B9806E0079B78B /* 统计分析 */ = {
 			isa = PBXGroup;
 			children = (
+				046DB9DD24BC9DBD0086142B /* 用户统计 */,
+				046DB9DC24BC9DB60086142B /* 用水收费记录 */,
+				046DB9DB24BC9DAC0086142B /* 监测预警统计 */,
+				046DB9DA24BC9DA10086142B /* 温度统计 */,
+				046DB9D924BC9D9A0086142B /* PH值统计 */,
+				046DB9D824BC9D900086142B /* 余氯统计 */,
+				046DB9D724BC9D890086142B /* 浊度统计 */,
 				049F27E024BB0E2400D06C52 /* 测站监测统计 */,
 				045E416024BAE6C400FA0B97 /* 流量监测统计 */,
 				045E414524BAE61700FA0B97 /* 折线图 */,
@@ -417,6 +460,12 @@
 		046049B324B980740079B78B /* 实时监测 */ = {
 			isa = PBXGroup;
 			children = (
+				046DB9B524BC95C50086142B /* 综合监测 */,
+				046DB9B424BC95BF0086142B /* 水质监测 */,
+				046DB9B324BC95B00086142B /* PH值监测 */,
+				046DB9AF24BC958A0086142B /* 温度监测 */,
+				046DB9AB24BC954C0086142B /* 余氯监测 */,
+				046DB9A724BC94A60086142B /* 流量监测 */,
 				049F27EB24BB332A00D06C52 /* 浊度监测 */,
 				046049B824B980A30079B78B /* MainShiShiJianCeViewController.h */,
 				046049B924B980A30079B78B /* MainShiShiJianCeViewController.m */,
@@ -723,6 +772,169 @@
 			path = GMDCircleLoader;
 			sourceTree = "<group>";
 		};
+		046DB9A724BC94A60086142B /* 流量监测 */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9BF24BC96B10086142B /* cell */,
+				046DB9A824BC95470086142B /* LiuLiangJCViewController.h */,
+				046DB9A924BC95470086142B /* LiuLiangJCViewController.m */,
+			);
+			path = "流量监测";
+			sourceTree = "<group>";
+		};
+		046DB9AB24BC954C0086142B /* 余氯监测 */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9C024BC96B60086142B /* cell */,
+				046DB9AC24BC95820086142B /* YuLvJCViewController.h */,
+				046DB9AD24BC95820086142B /* YuLvJCViewController.m */,
+			);
+			path = "余氯监测";
+			sourceTree = "<group>";
+		};
+		046DB9AF24BC958A0086142B /* 温度监测 */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9C124BC96BC0086142B /* cell */,
+				046DB9B024BC95A10086142B /* WenDuJCViewController.h */,
+				046DB9B124BC95A10086142B /* WenDuJCViewController.m */,
+			);
+			path = "温度监测";
+			sourceTree = "<group>";
+		};
+		046DB9B324BC95B00086142B /* PH值监测 */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9C224BC96C00086142B /* cell */,
+				046DB9B624BC95DE0086142B /* PHZhiJCViewController.h */,
+				046DB9B724BC95DE0086142B /* PHZhiJCViewController.m */,
+			);
+			path = "PH值监测";
+			sourceTree = "<group>";
+		};
+		046DB9B424BC95BF0086142B /* 水质监测 */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9C324BC96C50086142B /* cell */,
+				046DB9B924BC95E90086142B /* ShuiZhiJCViewController.h */,
+				046DB9BA24BC95E90086142B /* ShuiZhiJCViewController.m */,
+			);
+			path = "水质监测";
+			sourceTree = "<group>";
+		};
+		046DB9B524BC95C50086142B /* 综合监测 */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9C424BC96C90086142B /* cell */,
+				046DB9BC24BC95F40086142B /* ZhongHeJCViewController.h */,
+				046DB9BD24BC95F40086142B /* ZhongHeJCViewController.m */,
+			);
+			path = "综合监测";
+			sourceTree = "<group>";
+		};
+		046DB9BF24BC96B10086142B /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9C524BC97070086142B /* LiuLiangJCVTableViewCell.h */,
+				046DB9C624BC97070086142B /* LiuLiangJCVTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		046DB9C024BC96B60086142B /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9C824BC97170086142B /* YuLvJCTableViewCell.h */,
+				046DB9C924BC97170086142B /* YuLvJCTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		046DB9C124BC96BC0086142B /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9CB24BC97230086142B /* WenDuJCTableViewCell.h */,
+				046DB9CC24BC97230086142B /* WenDuJCTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		046DB9C224BC96C00086142B /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9CE24BC972E0086142B /* PHZhiJCTableViewCell.h */,
+				046DB9CF24BC972E0086142B /* PHZhiJCTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		046DB9C324BC96C50086142B /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9D124BC97390086142B /* ShuiZhiJCTableViewCell.h */,
+				046DB9D224BC97390086142B /* ShuiZhiJCTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		046DB9C424BC96C90086142B /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				046DB9D424BC97440086142B /* ZhongHeJCTableViewCell.h */,
+				046DB9D524BC97440086142B /* ZhongHeJCTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		046DB9D724BC9D890086142B /* 浊度统计 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "浊度统计";
+			sourceTree = "<group>";
+		};
+		046DB9D824BC9D900086142B /* 余氯统计 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "余氯统计";
+			sourceTree = "<group>";
+		};
+		046DB9D924BC9D9A0086142B /* PH值统计 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "PH值统计";
+			sourceTree = "<group>";
+		};
+		046DB9DA24BC9DA10086142B /* 温度统计 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "温度统计";
+			sourceTree = "<group>";
+		};
+		046DB9DB24BC9DAC0086142B /* 监测预警统计 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "监测预警统计";
+			sourceTree = "<group>";
+		};
+		046DB9DC24BC9DB60086142B /* 用水收费记录 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "用水收费记录";
+			sourceTree = "<group>";
+		};
+		046DB9DD24BC9DBD0086142B /* 用户统计 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "用户统计";
+			sourceTree = "<group>";
+		};
 		049F27E024BB0E2400D06C52 /* 测站监测统计 */ = {
 			isa = PBXGroup;
 			children = (
@@ -897,6 +1109,7 @@
 			files = (
 				046049D824B990ED0079B78B /* CCPActionSheetCell.m in Sources */,
 				049F27EA24BB0F8300D06C52 /* CeZhanJianCeTJView.m in Sources */,
+				046DB9B824BC95DE0086142B /* PHZhiJCViewController.m in Sources */,
 				04613E4124B89A5E009CD89D /* UIView+Additions.m in Sources */,
 				04613E4324B89A5E009CD89D /* UIView+UIViewExt.m in Sources */,
 				046049D424B990ED0079B78B /* CCPScrollView.m in Sources */,
@@ -912,6 +1125,7 @@
 				04613E5524B89BD5009CD89D /* MDB_ShareExstensionUserDefault.m in Sources */,
 				046049BD24B980AF0079B78B /* MainTongJiFenXiViewController.m in Sources */,
 				04613E3E24B89A5E009CD89D /* UITextView+Placeholder.m in Sources */,
+				046DB9CD24BC97230086142B /* WenDuJCTableViewCell.m in Sources */,
 				046049F324B9B8560079B78B /* ZiDingYiPeiZhiHeaderView.m in Sources */,
 				046049E724B99ABC0079B78B /* RiLiZhouCollectionViewCell.m in Sources */,
 				046049B724B980940079B78B /* MainHomeViewController.m in Sources */,
@@ -928,28 +1142,36 @@
 				046049EF24B9B7060079B78B /* ZiDingYiPeiZhiViewController.m in Sources */,
 				04613E4D24B89A5E009CD89D /* TabBarControllerConfig.m in Sources */,
 				045E40F824BAB0AD00FA0B97 /* CommonUtility.m in Sources */,
+				046DB9BB24BC95E90086142B /* ShuiZhiJCViewController.m in Sources */,
+				046DB9BE24BC95F40086142B /* ZhongHeJCViewController.m in Sources */,
 				046049FD24B9BD730079B78B /* ZiDingYiPeiZhiCollectionViewCell.m in Sources */,
 				045E416D24BAEDF300FA0B97 /* LiuLiangJCTJViewController.m in Sources */,
 				04613E4C24B89A5E009CD89D /* WYCamaImageTools.m in Sources */,
 				045E40F124BAB06F00FA0B97 /* GaoDeMapView.m in Sources */,
+				046DB9CA24BC97170086142B /* YuLvJCTableViewCell.m in Sources */,
 				04613DDE24B8964D009CD89D /* AppDelegate.m in Sources */,
 				046049C024B980BB0079B78B /* MainMyViewController.m in Sources */,
 				04613E4424B89A5E009CD89D /* NSString+extend.m in Sources */,
 				04613E0C24B89A3F009CD89D /* VTContentView.m in Sources */,
 				046049A724B964FD0079B78B /* LoginViewController.m in Sources */,
+				046DB9D324BC97390086142B /* ShuiZhiJCTableViewCell.m in Sources */,
 				045E415F24BAE62F00FA0B97 /* LineZuoBiaoView.m in Sources */,
 				045E415624BAE62800FA0B97 /* GBRadarChart.m in Sources */,
 				045E40FA24BAB0AD00FA0B97 /* CustomCalloutView.m in Sources */,
+				046DB9C724BC97070086142B /* LiuLiangJCVTableViewCell.m in Sources */,
 				046049E124B99A2A0079B78B /* HomeZhiBanTongJiView.m in Sources */,
 				046049BA24B980A30079B78B /* MainShiShiJianCeViewController.m in Sources */,
 				045E415B24BAE62800FA0B97 /* GBRadarChartDataItem.m in Sources */,
 				04613E4A24B89A5E009CD89D /* RootTableViewController.m in Sources */,
+				046DB9B224BC95A10086142B /* WenDuJCViewController.m in Sources */,
 				04613E0E24B89A3F009CD89D /* VTMenuBar.m in Sources */,
+				046DB9AE24BC95820086142B /* YuLvJCViewController.m in Sources */,
 				04613E3D24B89A5E009CD89D /* NSDate+compare.m in Sources */,
 				046049DE24B996430079B78B /* HomeJinRiYuJinView.m in Sources */,
 				046049C824B9869E0079B78B /* HomeCollectionViewCell.m in Sources */,
 				046049D524B990ED0079B78B /* UIView+CCPExtension.m in Sources */,
 				045E415C24BAE62800FA0B97 /* GBLineChartData.m in Sources */,
+				046DB9D624BC97440086142B /* ZhongHeJCTableViewCell.m in Sources */,
 				046049AC24B965E70079B78B /* LoginView.m in Sources */,
 				04613E4024B89A5E009CD89D /* UINavigationBar+FixMargin.m in Sources */,
 				045E40ED24BAAE4A00FA0B97 /* MainMapViewController.m in Sources */,
@@ -969,6 +1191,8 @@
 				04613E4924B89A5E009CD89D /* WYTools.m in Sources */,
 				045E40F924BAB0AD00FA0B97 /* CustomAnnotationView.m in Sources */,
 				04613E5224B89B9F009CD89D /* HTTPManager.m in Sources */,
+				046DB9AA24BC95470086142B /* LiuLiangJCViewController.m in Sources */,
+				046DB9D024BC972E0086142B /* PHZhiJCTableViewCell.m in Sources */,
 				04613E4524B89A5E009CD89D /* UIImage+ExtensionScal.m in Sources */,
 				04613E1024B89A3F009CD89D /* UIScrollView+VTMagic.m in Sources */,
 				046049FA24B9BCEF0079B78B /* ZiDingYiPeiZhiModel.m in Sources */,

@@ -53,7 +53,7 @@
     [collect registerClass:[HomeCollectionViewCell class] forCellWithReuseIdentifier:@"HomeCollectionViewCell"];
     _collect = collect;
     
-    _arrTopTitle = [[NSMutableArray alloc] initWithObjects:@"流量监测统计",@"生态流量监测统计",@"雨量监测统计",@"水位监测统计",@"测站监测统计",@"用户统计",@"用水收费记录",@"监测预警统计",@"浊度统计",@"余氯统计",@"PH值统计",@"温度统计", nil];
+    _arrTopTitle = [[NSMutableArray alloc] initWithObjects:@"流量监测统计",@"浊度统计",@"余氯统计",@"PH值统计",@"温度统计",@"监测预警统计",@"测站监测统计",@"用水收费记录",@"用户统计", nil];
     
     
 }

@@ -51,7 +51,7 @@
     [collect registerClass:[HomeCollectionViewCell class] forCellWithReuseIdentifier:@"HomeCollectionViewCell"];
     _collect = collect;
     
-    _arrTopTitle = [[NSMutableArray alloc] initWithObjects:@"流量监测",@"浊度监测",@"余氯监测",@"温度监测",@"PH值监测",@"视频监控",@"水质监测",@"综合监测",@"生态流量监测",@"雨量监测",@"水位监测", nil];
+    _arrTopTitle = [[NSMutableArray alloc] initWithObjects:@"流量监测",@"浊度监测",@"余氯监测",@"温度监测",@"PH值监测",@"水质监测",@"综合监测", nil];
     
     
 }
@@ -72,8 +72,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    ZhuoDuJianCeViewController *vc = [[ZhuoDuJianCeViewController alloc] init];
+//    @"流量监测",@"浊度监测",@"余氯监测",@"温度监测",@"PH值监测",@"水质监测",@"综合监测",
+    NSArray *arrVC = @[@"LiuLiangJCViewController",@"ZhuoDuJianCeViewController",@"YuLvJCViewController",@"WenDuJCViewController",@"PHZhiJCViewController",@"ShuiZhiJCViewController",@"ZhongHeJCViewController"];
+    UIViewController *vc = [NSClassFromString(arrVC[indexPath.row]) new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
