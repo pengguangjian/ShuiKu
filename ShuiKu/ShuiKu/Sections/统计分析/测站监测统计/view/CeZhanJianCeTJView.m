@@ -67,7 +67,7 @@
             make.top.equalTo(self);
         }];
         [viewtop setClipsToBounds:YES];
-        [self drawtopView:viewtop andarrline:@[@"最大进水流量",@"最小进水流量",@"最大出水流量",@"最小出水流量",]];
+        [self drawtopView:viewtop andarrline:@[@"流量在线率",@"流量畅通率",@"流量异常率",@"水质在线率",@"水质畅通率",@"水质异常率"]];
         
         
         UIButton *btquanping = [[UIButton alloc] init];
@@ -218,7 +218,7 @@
         make.top.equalTo(view.mas_bottom).offset(10);
     }];
     [viewtop setClipsToBounds:YES];
-    [self drawtopView:viewtop andarrline:@[@"最大进水流量",@"最小进水流量",@"最大出水流量",@"最小出水流量",]];
+    [self drawtopView:viewtop andarrline:@[@"流量在线率",@"流量畅通率",@"流量异常率",@"水质在线率",@"水质畅通率",@"水质异常率"]];
     
     
     UIButton *btquanping = [[UIButton alloc] init];

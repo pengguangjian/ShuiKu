@@ -1,15 +1,15 @@
 //
-//  ZheXianTuItemView.m
+//  PHZhiTJSonView.m
 //  ShuiKu
 //
-//  Created by Mac on 2020/7/12.
+//  Created by Mac on 2020/7/14.
 //  Copyright © 2020 Mac. All rights reserved.
 //
 
-#import "ZheXianTuItemView.h"
+#import "PHZhiTJSonView.h"
 #import "AppDelegate.h"
 
-@interface ZheXianTuItemView ()
+@interface PHZhiTJSonView ()
 
 @property (nonatomic , strong) UIView *viewquanping;
 
@@ -18,8 +18,7 @@
 @property (nonatomic , strong) UILabel *lbX;
 
 @end
-
-@implementation ZheXianTuItemView
+@implementation PHZhiTJSonView
 
 -(id)initWithFrame:(CGRect)frame
 {
@@ -46,7 +45,7 @@
             make.top.equalTo(self);
         }];
         [viewtop setClipsToBounds:YES];
-        [self drawtopView:viewtop andarrline:@[@"最大进水流量",@"最小进水流量",@"最大出水流量",@"最小出水流量"]];
+        [self drawtopView:viewtop andarrline:@[@"最大进水PH值",@"最小进水PH值",@"最大出水PH值",@"最小出水PH值"]];
         
         
         UIButton *btquanping = [[UIButton alloc] init];
@@ -186,7 +185,7 @@
         make.top.equalTo(view.mas_bottom).offset(10);
     }];
     [viewtop setClipsToBounds:YES];
-    [self drawtopView:viewtop andarrline:@[@"最大进水流量",@"最小进水流量",@"最大出水流量",@"最小出水流量",]];
+    [self drawtopView:viewtop andarrline:@[@"最大进水PH值",@"最小进水PH值",@"最大出水PH值",@"最小出水PH值"]];
     
     
     UIButton *btquanping = [[UIButton alloc] init];
@@ -297,6 +296,5 @@
     }
     
 }
-
 
 @end
