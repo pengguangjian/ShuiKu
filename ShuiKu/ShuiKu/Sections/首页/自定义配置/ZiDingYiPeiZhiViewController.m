@@ -380,8 +380,22 @@
         
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
+    if(indexPath.section==4)
+    {
+        
+        NSArray *arrvc = @[@"ShuiChangXinXiTableViewController",@"CeZhanXinXiViewController",@"RenYuanXinXiViewController"];
+        
+        UIViewController *vc = [NSClassFromString(arrvc[indexPath.row]) new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if(indexPath.section==5)
+    {
+        NSArray *arrvc = @[@"ZhiBanXinXiViewController",@"ZhiBanXinXiViewController"];
+        
+        UIViewController *vc = [NSClassFromString(arrvc[indexPath.row]) new];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
 }
 
 
