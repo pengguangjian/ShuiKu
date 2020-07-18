@@ -154,7 +154,7 @@
     NSArray *arrnomo = [[NSUserDefaults standardUserDefaults] objectForKey:@"hometopItemArr"];
     if(arrnomo == nil)
     {///默认数据
-        _arrTopTitle = [[NSMutableArray alloc] initWithObjects:@"运行状况",@"视频监控",@"一张图",@"测站信息",@"值班统计",@"流量预警",@"实时监测", nil];
+        _arrTopTitle = [[NSMutableArray alloc] initWithObjects:@"视频监测",@"一张图",@"测站信息",@"流量预警", nil];
         [[NSUserDefaults standardUserDefaults] setObject:_arrTopTitle forKey:@"hometopItemArr"];
         [_arrTopTitle addObject:@"更多"];
         
@@ -195,21 +195,35 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row==_arrTopTitle.count-1)
-    {///更多
-        ZiDingYiPeiZhiViewController *vc = [[ZiDingYiPeiZhiViewController alloc] init];
-        [self.viewController.navigationController pushViewController:vc animated:YES];
-    }
-    else
+    NSArray *arr1 = @[@"流量监测",@"浊度监测",@"余氯监测",@"温度监测",@"PH值监测",@"视频监测",@"水质监测",@"综合监测",@"一张图"];
+    NSArray *arr2 = @[@"水质分析",@"流量分析",@"测点分析",@"预警分析",@"水费统计",@"用水户统计"];
+    NSArray *arr3 = @[@"流量预警",@"浊度预警",@"余氯预警",@"PH值预警",@"温度预警"];
+    NSArray *arr4 = @[@"水厂信息",@"测站信息",@"人员信息"];
+    NSArray *arr5 = @[@"值班信息",@"知识库"];
+    NSArray *arrvc1 = @[@"LiuLiangJCViewController",@"ZhuoDuJianCeViewController",@"YuLvJCViewController",@"WenDuJCViewController",@"PHZhiJCViewController",@"ShiPinJCViewController",@"ShuiZhiJCViewController",@"ZhongHeJCViewController",@"MainMapViewController"];
+    NSArray *arrvc2 = @[@"ZhuoDuTJViewController",@"LiuLiangJianCeTongJiViewController",@"CeZhanJianCeTongJiViewController",@"JianCeYuJinTJViewController",@"YongShuiShouFeiTJViewController",@"YongHuTJViewController"];
+    NSArray *arrvc3 = @[@"LiuLiangYJViewController",@"ZhuoDuYJViewController",@"YuLvYJViewController",@"PHZhiYJViewController",@"WenDuYJViewController"];
+    NSArray *arrvc4 = @[@"ShuiChangXinXiTableViewController",@"CeZhanXinXiViewController",@"RenYuanXinXiViewController"];
+    NSArray *arrvc5 = @[@"ZhiBanXinXiViewController",@"ZhiShiKuViewController"];
+    
+    NSArray *arr0 = [[NSUserDefaults standardUserDefaults] objectForKey:@"hometopItemArr"];
+    NSMutableDictionary *dictemp = [NSMutableDictionary new];
+    NSArray *arrallname = @[arr1,arr2,arr3,arr4,arr5];
+    NSArray *arrallvc = @[arrvc1,arrvc2,arrvc3,arrvc4,arrvc5];
+    for(int i = 0 ; i < arrallvc.count; i++)
     {
-        if([_arrTopTitle[indexPath.row] isEqualToString:@"一张图"])
+        NSArray *arrvctemp = arrallvc[i];
+        NSArray *arrnametemp = arrallname[i];
+        for(int j = 0 ; j < arrvctemp.count; j++)
         {
-            UIViewController *vc = [NSClassFromString(@"MainMapViewController") new];
-            
-//            MainMapViewController *vc = [[MainMapViewController alloc] init];
-            [self.viewController.navigationController pushViewController:vc animated:YES];
+            [dictemp setObject:arrvctemp[j] forKey:arrnametemp[j]];
         }
+        
     }
+    
+    NSString *strname = [dictemp objectForKey:arr0[indexPath.row]];
+    UIViewController *vc = [NSClassFromString(strname) new];
+    [self.viewController.navigationController pushViewController:vc animated:YES];
     
 }
 

@@ -9,9 +9,12 @@
 
 #import "CeZhanXinXiViewController.h"
 #import "CeZhanXinXiViewTableViewCell.h"
-@interface CeZhanXinXiViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "RightBtnSXView.h"
+@interface CeZhanXinXiViewController ()<UITableViewDelegate,UITableViewDataSource,RightBtnSXViewDelegate>
 
 @property (nonatomic , strong) UITableView *tabview;
+
+@property (nonatomic , strong) RightBtnSXView *rightview;
 
 @end
 
@@ -47,9 +50,45 @@
     [btnright setImage:[UIImage imageNamed:@"地图筛选"] forState:UIControlStateNormal];
     UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnright];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-//    [btnright addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
+    [btnright addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
     
 }
+-(void)rightAction
+{
+    if(_rightview)
+    {
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.rightview setLeft:kMainScreenW];
+        } completion:^(BOOL finished) {
+            [self.rightview removeFromSuperview];
+            self.rightview = nil;
+        }];
+        
+    }
+    else
+    {
+        RightBtnSXView *view = [[RightBtnSXView alloc] init];
+        [view setDelegate:self];
+        [self.view addSubview:view];
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+        _rightview = view;
+    }
+    
+}
+#pragma mark - RightBtnSXViewDelegate
+///搜索
+-(void)serachValueText:(NSString *)strzi andaddress:(NSString *)address
+{
+    
+}
+///页面消失
+-(void)dismisView
+{
+    self.rightview = nil;
+}
+
 
 -(void)drawHeaderView
 {

@@ -380,18 +380,84 @@
         
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==4)
+    if(indexPath.section==0)
+    {
+        NSArray *arr1 = @[@"流量监测",@"浊度监测",@"余氯监测",@"温度监测",@"PH值监测",@"视频监测",@"水质监测",@"综合监测",@"一张图"];
+        NSArray *arr2 = @[@"水质分析",@"流量分析",@"测点分析",@"预警分析",@"水费统计",@"用水户统计"];
+        NSArray *arr3 = @[@"流量预警",@"浊度预警",@"余氯预警",@"PH值预警",@"温度预警"];
+        NSArray *arr4 = @[@"水厂信息",@"测站信息",@"人员信息"];
+        NSArray *arr5 = @[@"值班信息",@"知识库"];
+        NSArray *arrvc1 = @[@"LiuLiangJCViewController",@"ZhuoDuJianCeViewController",@"YuLvJCViewController",@"WenDuJCViewController",@"PHZhiJCViewController",@"ShiPinJCViewController",@"ShuiZhiJCViewController",@"ZhongHeJCViewController",@"MainMapViewController"];
+        NSArray *arrvc2 = @[@"ZhuoDuTJViewController",@"LiuLiangJianCeTongJiViewController",@"CeZhanJianCeTongJiViewController",@"JianCeYuJinTJViewController",@"YongShuiShouFeiTJViewController",@"YongHuTJViewController"];
+        NSArray *arrvc3 = @[@"LiuLiangYJViewController",@"ZhuoDuYJViewController",@"YuLvYJViewController",@"PHZhiYJViewController",@"WenDuYJViewController"];
+        NSArray *arrvc4 = @[@"ShuiChangXinXiTableViewController",@"CeZhanXinXiViewController",@"RenYuanXinXiViewController"];
+        NSArray *arrvc5 = @[@"ZhiBanXinXiViewController",@"ZhiShiKuViewController"];
+        
+        NSArray *arr0 = [[NSUserDefaults standardUserDefaults] objectForKey:@"hometopItemArr"];
+        NSMutableDictionary *dictemp = [NSMutableDictionary new];
+        NSArray *arrallname = @[arr1,arr2,arr3,arr4,arr5];
+        NSArray *arrallvc = @[arrvc1,arrvc2,arrvc3,arrvc4,arrvc5];
+        for(int i = 0 ; i < arrallvc.count; i++)
+        {
+            NSArray *arrvctemp = arrallvc[i];
+            NSArray *arrnametemp = arrallname[i];
+            for(int j = 0 ; j < arrvctemp.count; j++)
+            {
+                [dictemp setObject:arrvctemp[j] forKey:arrnametemp[j]];
+            }
+            
+        }
+        
+        NSString *strname = [dictemp objectForKey:arr0[indexPath.row]];
+        UIViewController *vc = [NSClassFromString(strname) new];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    else if(indexPath.section==1)
+    {
+        
+        NSArray *arrvc = @[@"LiuLiangJCViewController",@"ZhuoDuJianCeViewController",@"YuLvJCViewController",@"WenDuJCViewController",@"PHZhiJCViewController",@"ShiPinJCViewController",@"ShuiZhiJCViewController",@"ZhongHeJCViewController",@"MainMapViewController"];
+        if([arrvc[indexPath.row] isEqualToString:@""])
+        {
+            [WYTools showNotifyHUDwithtext:@"建设中" inView:self.view];
+            return;
+        }
+        UIViewController *vc = [NSClassFromString(arrvc[indexPath.row]) new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if(indexPath.section==2)
+    {
+        NSArray *arrvc = @[@"ZhuoDuTJViewController",@"LiuLiangJianCeTongJiViewController",@"CeZhanJianCeTongJiViewController",@"JianCeYuJinTJViewController",@"YongShuiShouFeiTJViewController",@"YongHuTJViewController"];
+        UIViewController *vc = [NSClassFromString(arrvc[indexPath.row]) new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if(indexPath.section==3)
+    {
+        NSArray *arrvc = @[@"LiuLiangYJViewController",@"ZhuoDuYJViewController",@"YuLvYJViewController",@"PHZhiYJViewController",@"WenDuYJViewController"];
+        UIViewController *vc = [NSClassFromString(arrvc[indexPath.row]) new];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    else if(indexPath.section==4)
     {
         
         NSArray *arrvc = @[@"ShuiChangXinXiTableViewController",@"CeZhanXinXiViewController",@"RenYuanXinXiViewController"];
-        
+        if([arrvc[indexPath.row] isEqualToString:@""])
+        {
+            [WYTools showNotifyHUDwithtext:@"建设中" inView:self.view];
+            return;
+        }
         UIViewController *vc = [NSClassFromString(arrvc[indexPath.row]) new];
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if(indexPath.section==5)
     {
-        NSArray *arrvc = @[@"ZhiBanXinXiViewController",@"ZhiBanXinXiViewController"];
-        
+        NSArray *arrvc = @[@"ZhiBanXinXiViewController",@"ZhiShiKuViewController"];
+        if([arrvc[indexPath.row] isEqualToString:@""])
+        {
+            [WYTools showNotifyHUDwithtext:@"建设中" inView:self.view];
+            return;
+        }
         UIViewController *vc = [NSClassFromString(arrvc[indexPath.row]) new];
         [self.navigationController pushViewController:vc animated:YES];
         
