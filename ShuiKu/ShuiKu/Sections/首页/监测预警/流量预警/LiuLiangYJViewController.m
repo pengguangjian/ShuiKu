@@ -8,6 +8,7 @@
 
 #import "LiuLiangYJViewController.h"
 #import "LiuLiangYJTableViewCell.h"
+#import "LiuLiangYJDetailViewController.h"
 @interface LiuLiangYJViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
@@ -19,8 +20,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"流量预警";
+    [self setnavRight];
     
     [self drawUI];
+}
+
+-(void)setnavRight
+{
+    UIButton* btnright = [[UIButton alloc] init];//btnLeft.backgroundColor=[UIColor redColor]
+    [btnright setTitle:@"预警处置" forState:UIControlStateNormal];
+    [btnright setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnright.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnright];
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+//    [btnright addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)drawUI
@@ -121,7 +134,8 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    LiuLiangYJDetailViewController *vc = [[LiuLiangYJDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

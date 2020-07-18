@@ -8,6 +8,8 @@
 
 #import "WenDuJCViewController.h"
 #import "WenDuJCTableViewCell.h"
+#import "WenDuJCDetailViewController.h"
+
 @interface WenDuJCViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
@@ -122,7 +124,8 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    WenDuJCDetailViewController *vc = [[WenDuJCDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

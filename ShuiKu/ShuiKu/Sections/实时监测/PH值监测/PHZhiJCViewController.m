@@ -8,6 +8,7 @@
 
 #import "PHZhiJCViewController.h"
 #import "PHZhiJCTableViewCell.h"
+#import "PHZhiJCDetailViewController.h"
 @interface PHZhiJCViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
@@ -122,7 +123,8 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    PHZhiJCDetailViewController *vc = [[PHZhiJCDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

@@ -10,6 +10,7 @@
 #import "CeZhanXinXiViewController.h"
 #import "CeZhanXinXiViewTableViewCell.h"
 #import "RightBtnSXView.h"
+#import "CeZhanXinXiDetailViewController.h"
 @interface CeZhanXinXiViewController ()<UITableViewDelegate,UITableViewDataSource,RightBtnSXViewDelegate>
 
 @property (nonatomic , strong) UITableView *tabview;
@@ -131,7 +132,8 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    CeZhanXinXiDetailViewController *vc = [[CeZhanXinXiDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

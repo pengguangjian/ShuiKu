@@ -71,7 +71,7 @@
         _lbaddress = lbaddress;
         
         _arrallLB = [NSMutableArray new];
-        NSArray *arrzhuang = @[@"状态",@"进水浊度",@"出水浊度",@"浊度温度",@"出水温度",@"进水PH值",@"出水PH值",@"出水余氯",@"进水瞬时流量",@"出水瞬时流量"];
+        NSArray *arrzhuang = @[@"状态",@"进水浊度",@"出水浊度",@"进水温度",@"出水温度",@"进水PH值",@"出水PH值",@"出水余氯",@"进水瞬时流量",@"出水瞬时流量"];
         for(int i = 0; i < arrzhuang.count; i++)
         {
             UIView *viewitem = [[UIView alloc] init];

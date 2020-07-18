@@ -168,6 +168,23 @@
 		04FECF0D24C31933007DC478 /* ZhuoDuJianCeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF0C24C31933007DC478 /* ZhuoDuJianCeDetailViewController.m */; };
 		04FECF1024C31988007DC478 /* LiuLiangJCDetailDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF0F24C31988007DC478 /* LiuLiangJCDetailDetailViewController.m */; };
 		04FECF1524C319F0007DC478 /* LiuLiangJCDetailDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF1424C319F0007DC478 /* LiuLiangJCDetailDetailTableViewCell.m */; };
+		04FECF1924C32DBA007DC478 /* YuLvJCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF1824C32DBA007DC478 /* YuLvJCDetailViewController.m */; };
+		04FECF1C24C32DD1007DC478 /* YuLvJCDetailDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF1B24C32DD1007DC478 /* YuLvJCDetailDetailViewController.m */; };
+		04FECF2024C32DE4007DC478 /* YuLvJCDetailDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF1F24C32DE4007DC478 /* YuLvJCDetailDetailTableViewCell.m */; };
+		04FECF2424C32F9D007DC478 /* WenDuJCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF2324C32F9D007DC478 /* WenDuJCDetailViewController.m */; };
+		04FECF2724C32FCB007DC478 /* WenDuJCDetailDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF2624C32FCB007DC478 /* WenDuJCDetailDetailViewController.m */; };
+		04FECF2B24C33038007DC478 /* WenDuJCDetailDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF2A24C33038007DC478 /* WenDuJCDetailDetailTableViewCell.m */; };
+		04FECF2F24C330CD007DC478 /* PHZhiJCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF2E24C330CD007DC478 /* PHZhiJCDetailViewController.m */; };
+		04FECF3224C330E4007DC478 /* PHZhiJCDetailDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF3124C330E4007DC478 /* PHZhiJCDetailDetailViewController.m */; };
+		04FECF3624C330F4007DC478 /* PHZhiJCDetailDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF3524C330F4007DC478 /* PHZhiJCDetailDetailTableViewCell.m */; };
+		04FECF3A24C332D5007DC478 /* ShuiZhiJCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF3924C332D5007DC478 /* ShuiZhiJCDetailViewController.m */; };
+		04FECF3D24C332F4007DC478 /* ShuiZhiJCDetailDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF3C24C332F4007DC478 /* ShuiZhiJCDetailDetailViewController.m */; };
+		04FECF4124C33306007DC478 /* ShuiZhiJCDetailDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF4024C33306007DC478 /* ShuiZhiJCDetailDetailTableViewCell.m */; };
+		04FECF4524C3353A007DC478 /* ZhongHeJCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF4424C3353A007DC478 /* ZhongHeJCDetailViewController.m */; };
+		04FECF4824C33549007DC478 /* ZhongHeJCDetailDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF4724C33549007DC478 /* ZhongHeJCDetailDetailViewController.m */; };
+		04FECF4C24C33900007DC478 /* CeZhanXinXiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF4B24C33900007DC478 /* CeZhanXinXiDetailViewController.m */; };
+		04FECF5024C33A6B007DC478 /* LiuLiangYJDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF4F24C33A6B007DC478 /* LiuLiangYJDetailViewController.m */; };
+		04FECF5424C33A98007DC478 /* LiuLiangYJDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FECF5324C33A98007DC478 /* LiuLiangYJDetailView.m */; };
 		6DFF105506D9328256308EC4 /* libPods-ShuiKu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F2B12DD225C9B127948DFC /* libPods-ShuiKu.a */; };
 /* End PBXBuildFile section */
 
@@ -499,6 +516,40 @@
 		04FECF0F24C31988007DC478 /* LiuLiangJCDetailDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuLiangJCDetailDetailViewController.m; sourceTree = "<group>"; };
 		04FECF1324C319F0007DC478 /* LiuLiangJCDetailDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangJCDetailDetailTableViewCell.h; sourceTree = "<group>"; };
 		04FECF1424C319F0007DC478 /* LiuLiangJCDetailDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuLiangJCDetailDetailTableViewCell.m; sourceTree = "<group>"; };
+		04FECF1724C32DBA007DC478 /* YuLvJCDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YuLvJCDetailViewController.h; sourceTree = "<group>"; };
+		04FECF1824C32DBA007DC478 /* YuLvJCDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuLvJCDetailViewController.m; sourceTree = "<group>"; };
+		04FECF1A24C32DD1007DC478 /* YuLvJCDetailDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YuLvJCDetailDetailViewController.h; sourceTree = "<group>"; };
+		04FECF1B24C32DD1007DC478 /* YuLvJCDetailDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuLvJCDetailDetailViewController.m; sourceTree = "<group>"; };
+		04FECF1E24C32DE4007DC478 /* YuLvJCDetailDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YuLvJCDetailDetailTableViewCell.h; sourceTree = "<group>"; };
+		04FECF1F24C32DE4007DC478 /* YuLvJCDetailDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuLvJCDetailDetailTableViewCell.m; sourceTree = "<group>"; };
+		04FECF2224C32F9D007DC478 /* WenDuJCDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WenDuJCDetailViewController.h; sourceTree = "<group>"; };
+		04FECF2324C32F9D007DC478 /* WenDuJCDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WenDuJCDetailViewController.m; sourceTree = "<group>"; };
+		04FECF2524C32FCB007DC478 /* WenDuJCDetailDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WenDuJCDetailDetailViewController.h; sourceTree = "<group>"; };
+		04FECF2624C32FCB007DC478 /* WenDuJCDetailDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WenDuJCDetailDetailViewController.m; sourceTree = "<group>"; };
+		04FECF2924C33038007DC478 /* WenDuJCDetailDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WenDuJCDetailDetailTableViewCell.h; sourceTree = "<group>"; };
+		04FECF2A24C33038007DC478 /* WenDuJCDetailDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WenDuJCDetailDetailTableViewCell.m; sourceTree = "<group>"; };
+		04FECF2D24C330CD007DC478 /* PHZhiJCDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHZhiJCDetailViewController.h; sourceTree = "<group>"; };
+		04FECF2E24C330CD007DC478 /* PHZhiJCDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHZhiJCDetailViewController.m; sourceTree = "<group>"; };
+		04FECF3024C330E4007DC478 /* PHZhiJCDetailDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHZhiJCDetailDetailViewController.h; sourceTree = "<group>"; };
+		04FECF3124C330E4007DC478 /* PHZhiJCDetailDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHZhiJCDetailDetailViewController.m; sourceTree = "<group>"; };
+		04FECF3424C330F4007DC478 /* PHZhiJCDetailDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHZhiJCDetailDetailTableViewCell.h; sourceTree = "<group>"; };
+		04FECF3524C330F4007DC478 /* PHZhiJCDetailDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHZhiJCDetailDetailTableViewCell.m; sourceTree = "<group>"; };
+		04FECF3824C332D5007DC478 /* ShuiZhiJCDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShuiZhiJCDetailViewController.h; sourceTree = "<group>"; };
+		04FECF3924C332D5007DC478 /* ShuiZhiJCDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShuiZhiJCDetailViewController.m; sourceTree = "<group>"; };
+		04FECF3B24C332F4007DC478 /* ShuiZhiJCDetailDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShuiZhiJCDetailDetailViewController.h; sourceTree = "<group>"; };
+		04FECF3C24C332F4007DC478 /* ShuiZhiJCDetailDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShuiZhiJCDetailDetailViewController.m; sourceTree = "<group>"; };
+		04FECF3F24C33306007DC478 /* ShuiZhiJCDetailDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShuiZhiJCDetailDetailTableViewCell.h; sourceTree = "<group>"; };
+		04FECF4024C33306007DC478 /* ShuiZhiJCDetailDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShuiZhiJCDetailDetailTableViewCell.m; sourceTree = "<group>"; };
+		04FECF4324C3353A007DC478 /* ZhongHeJCDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhongHeJCDetailViewController.h; sourceTree = "<group>"; };
+		04FECF4424C3353A007DC478 /* ZhongHeJCDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhongHeJCDetailViewController.m; sourceTree = "<group>"; };
+		04FECF4624C33549007DC478 /* ZhongHeJCDetailDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhongHeJCDetailDetailViewController.h; sourceTree = "<group>"; };
+		04FECF4724C33549007DC478 /* ZhongHeJCDetailDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhongHeJCDetailDetailViewController.m; sourceTree = "<group>"; };
+		04FECF4A24C33900007DC478 /* CeZhanXinXiDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CeZhanXinXiDetailViewController.h; sourceTree = "<group>"; };
+		04FECF4B24C33900007DC478 /* CeZhanXinXiDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CeZhanXinXiDetailViewController.m; sourceTree = "<group>"; };
+		04FECF4E24C33A6B007DC478 /* LiuLiangYJDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangYJDetailViewController.h; sourceTree = "<group>"; };
+		04FECF4F24C33A6B007DC478 /* LiuLiangYJDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuLiangYJDetailViewController.m; sourceTree = "<group>"; };
+		04FECF5224C33A98007DC478 /* LiuLiangYJDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangYJDetailView.h; sourceTree = "<group>"; };
+		04FECF5324C33A98007DC478 /* LiuLiangYJDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuLiangYJDetailView.m; sourceTree = "<group>"; };
 		28F2B12DD225C9B127948DFC /* libPods-ShuiKu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShuiKu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7CCC865DE2C84B21906C49 /* Pods-ShuiKu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShuiKu.debug.xcconfig"; path = "Target Support Files/Pods-ShuiKu/Pods-ShuiKu.debug.xcconfig"; sourceTree = "<group>"; };
 		EB15E1DAE170CE71E8CC7F90 /* Pods-ShuiKu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShuiKu.release.xcconfig"; path = "Target Support Files/Pods-ShuiKu/Pods-ShuiKu.release.xcconfig"; sourceTree = "<group>"; };
@@ -1003,6 +1054,7 @@
 		046DB9AB24BC954C0086142B /* 余氯监测 */ = {
 			isa = PBXGroup;
 			children = (
+				04FECF1624C32D9E007DC478 /* 余氯详情 */,
 				046DB9C024BC96B60086142B /* cell */,
 				046DB9AC24BC95820086142B /* YuLvJCViewController.h */,
 				046DB9AD24BC95820086142B /* YuLvJCViewController.m */,
@@ -1013,6 +1065,7 @@
 		046DB9AF24BC958A0086142B /* 温度监测 */ = {
 			isa = PBXGroup;
 			children = (
+				04FECF2124C32F7D007DC478 /* 温度详情 */,
 				046DB9C124BC96BC0086142B /* cell */,
 				046DB9B024BC95A10086142B /* WenDuJCViewController.h */,
 				046DB9B124BC95A10086142B /* WenDuJCViewController.m */,
@@ -1023,6 +1076,7 @@
 		046DB9B324BC95B00086142B /* PH值监测 */ = {
 			isa = PBXGroup;
 			children = (
+				04FECF2C24C330AB007DC478 /* PH值详情 */,
 				046DB9C224BC96C00086142B /* cell */,
 				046DB9B624BC95DE0086142B /* PHZhiJCViewController.h */,
 				046DB9B724BC95DE0086142B /* PHZhiJCViewController.m */,
@@ -1033,6 +1087,7 @@
 		046DB9B424BC95BF0086142B /* 水质监测 */ = {
 			isa = PBXGroup;
 			children = (
+				04FECF3724C332B2007DC478 /* 水质详情 */,
 				046DB9C324BC96C50086142B /* cell */,
 				046DB9B924BC95E90086142B /* ShuiZhiJCViewController.h */,
 				046DB9BA24BC95E90086142B /* ShuiZhiJCViewController.m */,
@@ -1043,6 +1098,7 @@
 		046DB9B524BC95C50086142B /* 综合监测 */ = {
 			isa = PBXGroup;
 			children = (
+				04FECF4224C3350B007DC478 /* 综合详情 */,
 				046DB9C424BC96C90086142B /* cell */,
 				046DB9BC24BC95F40086142B /* ZhongHeJCViewController.h */,
 				046DB9BD24BC95F40086142B /* ZhongHeJCViewController.m */,
@@ -1219,6 +1275,7 @@
 		0493936424C090DC006BB5B4 /* 测站信息 */ = {
 			isa = PBXGroup;
 			children = (
+				04FECF4924C338E7007DC478 /* 测站详情 */,
 				0493936824C09145006BB5B4 /* cell */,
 				0493936524C090F1006BB5B4 /* CeZhanXinXiViewController.h */,
 				0493936624C090F1006BB5B4 /* CeZhanXinXiViewController.m */,
@@ -1376,6 +1433,7 @@
 		04FECE7224C28429007DC478 /* 流量预警 */ = {
 			isa = PBXGroup;
 			children = (
+				04FECF4D24C33A50007DC478 /* 详情 */,
 				04FECE8624C28592007DC478 /* cell */,
 				04FECE7724C28477007DC478 /* LiuLiangYJViewController.h */,
 				04FECE7824C28477007DC478 /* LiuLiangYJViewController.m */,
@@ -1755,6 +1813,129 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		04FECF1624C32D9E007DC478 /* 余氯详情 */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF1D24C32DD4007DC478 /* cell */,
+				04FECF1724C32DBA007DC478 /* YuLvJCDetailViewController.h */,
+				04FECF1824C32DBA007DC478 /* YuLvJCDetailViewController.m */,
+				04FECF1A24C32DD1007DC478 /* YuLvJCDetailDetailViewController.h */,
+				04FECF1B24C32DD1007DC478 /* YuLvJCDetailDetailViewController.m */,
+			);
+			path = "余氯详情";
+			sourceTree = "<group>";
+		};
+		04FECF1D24C32DD4007DC478 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF1E24C32DE4007DC478 /* YuLvJCDetailDetailTableViewCell.h */,
+				04FECF1F24C32DE4007DC478 /* YuLvJCDetailDetailTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		04FECF2124C32F7D007DC478 /* 温度详情 */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF2824C3302D007DC478 /* cell */,
+				04FECF2224C32F9D007DC478 /* WenDuJCDetailViewController.h */,
+				04FECF2324C32F9D007DC478 /* WenDuJCDetailViewController.m */,
+				04FECF2524C32FCB007DC478 /* WenDuJCDetailDetailViewController.h */,
+				04FECF2624C32FCB007DC478 /* WenDuJCDetailDetailViewController.m */,
+			);
+			path = "温度详情";
+			sourceTree = "<group>";
+		};
+		04FECF2824C3302D007DC478 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF2924C33038007DC478 /* WenDuJCDetailDetailTableViewCell.h */,
+				04FECF2A24C33038007DC478 /* WenDuJCDetailDetailTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		04FECF2C24C330AB007DC478 /* PH值详情 */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF3324C330E7007DC478 /* cell */,
+				04FECF2D24C330CD007DC478 /* PHZhiJCDetailViewController.h */,
+				04FECF2E24C330CD007DC478 /* PHZhiJCDetailViewController.m */,
+				04FECF3024C330E4007DC478 /* PHZhiJCDetailDetailViewController.h */,
+				04FECF3124C330E4007DC478 /* PHZhiJCDetailDetailViewController.m */,
+			);
+			path = "PH值详情";
+			sourceTree = "<group>";
+		};
+		04FECF3324C330E7007DC478 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF3424C330F4007DC478 /* PHZhiJCDetailDetailTableViewCell.h */,
+				04FECF3524C330F4007DC478 /* PHZhiJCDetailDetailTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		04FECF3724C332B2007DC478 /* 水质详情 */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF3E24C332F7007DC478 /* cell */,
+				04FECF3824C332D5007DC478 /* ShuiZhiJCDetailViewController.h */,
+				04FECF3924C332D5007DC478 /* ShuiZhiJCDetailViewController.m */,
+				04FECF3B24C332F4007DC478 /* ShuiZhiJCDetailDetailViewController.h */,
+				04FECF3C24C332F4007DC478 /* ShuiZhiJCDetailDetailViewController.m */,
+			);
+			path = "水质详情";
+			sourceTree = "<group>";
+		};
+		04FECF3E24C332F7007DC478 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF3F24C33306007DC478 /* ShuiZhiJCDetailDetailTableViewCell.h */,
+				04FECF4024C33306007DC478 /* ShuiZhiJCDetailDetailTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		04FECF4224C3350B007DC478 /* 综合详情 */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF4324C3353A007DC478 /* ZhongHeJCDetailViewController.h */,
+				04FECF4424C3353A007DC478 /* ZhongHeJCDetailViewController.m */,
+				04FECF4624C33549007DC478 /* ZhongHeJCDetailDetailViewController.h */,
+				04FECF4724C33549007DC478 /* ZhongHeJCDetailDetailViewController.m */,
+			);
+			path = "综合详情";
+			sourceTree = "<group>";
+		};
+		04FECF4924C338E7007DC478 /* 测站详情 */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF4A24C33900007DC478 /* CeZhanXinXiDetailViewController.h */,
+				04FECF4B24C33900007DC478 /* CeZhanXinXiDetailViewController.m */,
+			);
+			path = "测站详情";
+			sourceTree = "<group>";
+		};
+		04FECF4D24C33A50007DC478 /* 详情 */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF5124C33A86007DC478 /* view */,
+				04FECF4E24C33A6B007DC478 /* LiuLiangYJDetailViewController.h */,
+				04FECF4F24C33A6B007DC478 /* LiuLiangYJDetailViewController.m */,
+			);
+			path = "详情";
+			sourceTree = "<group>";
+		};
+		04FECF5124C33A86007DC478 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				04FECF5224C33A98007DC478 /* LiuLiangYJDetailView.h */,
+				04FECF5324C33A98007DC478 /* LiuLiangYJDetailView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		2AE9697BD81D6CC42E174841 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1893,6 +2074,7 @@
 				04FECEC024C2EC71007DC478 /* LiuLiangShuiChangJCDetailViewController.m in Sources */,
 				046049D824B990ED0079B78B /* CCPActionSheetCell.m in Sources */,
 				049F27EA24BB0F8300D06C52 /* CeZhanJianCeTJView.m in Sources */,
+				04FECF2024C32DE4007DC478 /* YuLvJCDetailDetailTableViewCell.m in Sources */,
 				04FECEF124C313CA007DC478 /* YuLvTJListViewController.m in Sources */,
 				04FECE9624C285DF007DC478 /* PHZhiYJTableViewCell.m in Sources */,
 				0493935F24C08D8B006BB5B4 /* ShuiChangXinXiTableViewController.m in Sources */,
@@ -1949,14 +2131,17 @@
 				046049EB24B9B27E0079B78B /* MainMyTableViewCell.m in Sources */,
 				049F27F224BB368600D06C52 /* ZhuoDuJianCeTableViewCell.m in Sources */,
 				04B47CE324BDE98D00CAAECF /* YuLvTJViewController.m in Sources */,
+				04FECF2424C32F9D007DC478 /* WenDuJCDetailViewController.m in Sources */,
 				046049EF24B9B7060079B78B /* ZiDingYiPeiZhiViewController.m in Sources */,
 				04FECF0524C316D5007DC478 /* JianCeYuJinTJListViewController.m in Sources */,
 				04FECEC824C2F713007DC478 /* RenYuanXinXiModel.m in Sources */,
 				04613E4D24B89A5E009CD89D /* TabBarControllerConfig.m in Sources */,
+				04FECF1924C32DBA007DC478 /* YuLvJCDetailViewController.m in Sources */,
 				04FECF0D24C31933007DC478 /* ZhuoDuJianCeDetailViewController.m in Sources */,
 				045E40F824BAB0AD00FA0B97 /* CommonUtility.m in Sources */,
 				046DB9BB24BC95E90086142B /* ShuiZhiJCViewController.m in Sources */,
 				046DB9BE24BC95F40086142B /* ZhongHeJCViewController.m in Sources */,
+				04FECF1C24C32DD1007DC478 /* YuLvJCDetailDetailViewController.m in Sources */,
 				046049FD24B9BD730079B78B /* ZiDingYiPeiZhiCollectionViewCell.m in Sources */,
 				045E416D24BAEDF300FA0B97 /* LiuLiangJCTJViewController.m in Sources */,
 				04613E4C24B89A5E009CD89D /* WYCamaImageTools.m in Sources */,
@@ -1977,17 +2162,22 @@
 				046049A724B964FD0079B78B /* LoginViewController.m in Sources */,
 				0493936724C090F1006BB5B4 /* CeZhanXinXiViewController.m in Sources */,
 				046DB9D324BC97390086142B /* ShuiZhiJCTableViewCell.m in Sources */,
+				04FECF3624C330F4007DC478 /* PHZhiJCDetailDetailTableViewCell.m in Sources */,
 				04FECE6C24C27E2B007DC478 /* ShuiChangDetailViewController.m in Sources */,
 				045E415F24BAE62F00FA0B97 /* LineZuoBiaoView.m in Sources */,
 				04FECED524C30B13007DC478 /* SetViewController.m in Sources */,
 				04FECE7F24C28491007DC478 /* YuLvYJViewController.m in Sources */,
 				045E415624BAE62800FA0B97 /* GBRadarChart.m in Sources */,
 				045E40FA24BAB0AD00FA0B97 /* CustomCalloutView.m in Sources */,
+				04FECF3A24C332D5007DC478 /* ShuiZhiJCDetailViewController.m in Sources */,
 				046DB9C724BC97070086142B /* LiuLiangJCVTableViewCell.m in Sources */,
 				046049E124B99A2A0079B78B /* HomeZhiBanTongJiView.m in Sources */,
 				046049BA24B980A30079B78B /* MainShiShiJianCeViewController.m in Sources */,
+				04FECF3224C330E4007DC478 /* PHZhiJCDetailDetailViewController.m in Sources */,
+				04FECF2724C32FCB007DC478 /* WenDuJCDetailDetailViewController.m in Sources */,
 				04FECEBD24C2EACF007DC478 /* LiuLiangJCDetailViewController.m in Sources */,
 				045E415B24BAE62800FA0B97 /* GBRadarChartDataItem.m in Sources */,
+				04FECF2F24C330CD007DC478 /* PHZhiJCDetailViewController.m in Sources */,
 				04613E4A24B89A5E009CD89D /* RootTableViewController.m in Sources */,
 				046DB9B224BC95A10086142B /* WenDuJCViewController.m in Sources */,
 				04613E0E24B89A3F009CD89D /* VTMenuBar.m in Sources */,
@@ -1995,6 +2185,7 @@
 				04613E3D24B89A5E009CD89D /* NSDate+compare.m in Sources */,
 				046049DE24B996430079B78B /* HomeJinRiYuJinView.m in Sources */,
 				046049C824B9869E0079B78B /* HomeCollectionViewCell.m in Sources */,
+				04FECF4C24C33900007DC478 /* CeZhanXinXiDetailViewController.m in Sources */,
 				04FECED224C2FB12007DC478 /* ChongSheMiMaView.m in Sources */,
 				04FECF1524C319F0007DC478 /* LiuLiangJCDetailDetailTableViewCell.m in Sources */,
 				046049D524B990ED0079B78B /* UIView+CCPExtension.m in Sources */,
@@ -2002,6 +2193,7 @@
 				04FECE9D24C289E2007DC478 /* ShiPinJCViewController.m in Sources */,
 				045E415C24BAE62800FA0B97 /* GBLineChartData.m in Sources */,
 				046DB9D624BC97440086142B /* ZhongHeJCTableViewCell.m in Sources */,
+				04FECF4124C33306007DC478 /* ShuiZhiJCDetailDetailTableViewCell.m in Sources */,
 				046049AC24B965E70079B78B /* LoginView.m in Sources */,
 				04613E4024B89A5E009CD89D /* UINavigationBar+FixMargin.m in Sources */,
 				045E40ED24BAAE4A00FA0B97 /* MainMapViewController.m in Sources */,
@@ -2012,10 +2204,13 @@
 				04613E5924B89C10009CD89D /* BDKNotifyHUD.m in Sources */,
 				04613DEF24B89650009CD89D /* main.m in Sources */,
 				04FECE8D24C285BF007DC478 /* LiuLiangYJTableViewCell.m in Sources */,
+				04FECF3D24C332F4007DC478 /* ShuiZhiJCDetailDetailViewController.m in Sources */,
 				045E416A24BAECBB00FA0B97 /* ZheXianTuItemView.m in Sources */,
+				04FECF5024C33A6B007DC478 /* LiuLiangYJDetailViewController.m in Sources */,
 				0493936F24C09274006BB5B4 /* RenYuanXinXiViewController.m in Sources */,
 				04B47CF824BDEB5800CAAECF /* YuLvTJVSonViewController.m in Sources */,
 				046049B024B970160079B78B /* PeiZhiViewController.m in Sources */,
+				04FECF4524C3353A007DC478 /* ZhongHeJCDetailViewController.m in Sources */,
 				045E415724BAE62800FA0B97 /* GBLineChart.m in Sources */,
 				049F27EE24BB334D00D06C52 /* ZhuoDuJianCeViewController.m in Sources */,
 				04B47D0C24BDED9000CAAECF /* YuLvTJVSonView.m in Sources */,
@@ -2024,9 +2219,11 @@
 				04B47CF524BDEB3600CAAECF /* ZhuoDuTJSonViewController.m in Sources */,
 				046049C424B986290079B78B /* MainHomeView.m in Sources */,
 				045E40FE24BAC02A00FA0B97 /* MapShaiXuanView.m in Sources */,
+				04FECF5424C33A98007DC478 /* LiuLiangYJDetailView.m in Sources */,
 				045E415924BAE62800FA0B97 /* UICountingLabel.m in Sources */,
 				0493937324C09454006BB5B4 /* RenYuanXinXiTableViewCell.m in Sources */,
 				045E416324BAE6FB00FA0B97 /* LiuLiangJianCeTongJiViewController.m in Sources */,
+				04FECF2B24C33038007DC478 /* WenDuJCDetailDetailTableViewCell.m in Sources */,
 				04613E0F24B89A3F009CD89D /* UIButton+VTMagic.m in Sources */,
 				04B47CE924BDE9A600CAAECF /* WenDuTJViewController.m in Sources */,
 				04613E4924B89A5E009CD89D /* WYTools.m in Sources */,
@@ -2036,6 +2233,7 @@
 				046DB9AA24BC95470086142B /* LiuLiangJCViewController.m in Sources */,
 				04FECEE524C31226007DC478 /* ZhuoDuTJListViewController.m in Sources */,
 				04FECEF624C31492007DC478 /* PHZhiTJListViewController.m in Sources */,
+				04FECF4824C33549007DC478 /* ZhongHeJCDetailDetailViewController.m in Sources */,
 				0493936324C08E4D006BB5B4 /* ShuiChangXinXiTableViewCell.m in Sources */,
 				046DB9D024BC972E0086142B /* PHZhiJCTableViewCell.m in Sources */,
 				04613E4524B89A5E009CD89D /* UIImage+ExtensionScal.m in Sources */,

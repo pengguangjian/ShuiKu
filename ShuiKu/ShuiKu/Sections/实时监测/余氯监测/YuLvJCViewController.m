@@ -8,6 +8,8 @@
 
 #import "YuLvJCViewController.h"
 #import "YuLvJCTableViewCell.h"
+#import "YuLvJCDetailViewController.h"
+
 @interface YuLvJCViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
@@ -121,7 +123,8 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    YuLvJCDetailViewController *vc = [[YuLvJCDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

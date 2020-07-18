@@ -1,14 +1,15 @@
 //
-//  ShuiChangDetailViewController.m
+//  CeZhanXinXiDetailViewController.m
 //  ShuiKu
 //
 //  Created by Mac on 2020/7/18.
 //  Copyright © 2020 Mac. All rights reserved.
 //
 
-#import "ShuiChangDetailViewController.h"
+#import "CeZhanXinXiDetailViewController.h"
 #import "ShuiChangDetailTableViewCell.h"
-@interface ShuiChangDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@interface CeZhanXinXiDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
 
@@ -17,7 +18,7 @@
 
 @end
 
-@implementation ShuiChangDetailViewController
+@implementation CeZhanXinXiDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +31,7 @@
 -(void)gettitleData
 {
     NSMutableArray *arrtitle = [NSMutableArray new];
-    NSArray *arritem0 = @[@"水厂名称",@"水厂编码"];
+    NSArray *arritem0 = @[@"测站名称",@"测站编码",@"测站类型",@"测站地址"];
     NSDictionary *dicitem0 = @{@"基本信息":arritem0};
     [arrtitle addObject:dicitem0];
     
@@ -39,13 +40,9 @@
     NSDictionary *dicitem1 = @{@"位置信息":arritem1};
     [arrtitle addObject:dicitem1];
     
-    NSArray *arritem2 = @[@"负责人",@"联系人",@"联系电话",@"邮政编码"];
-    NSDictionary *dicitem2 = @{@"相关人员":arritem2};
+    NSArray *arritem2 = @[@"自动/人工",@"原水出水",@"建站年月",@"始报年月",@"数据来源",@"所属对象",@"状态",@"备注信息"];
+    NSDictionary *dicitem2 = @{@"测站信息":arritem2};
     [arrtitle addObject:dicitem2];
-    
-    NSArray *arritem3 = @[@"水厂地址",@"供水能力",@"水源地",@"服务片区",@"水源地类型",@"水源地所属流域",@"应急水源名称",@"应急水源净水措施",@"供水站总投资",@"设计生产能力",@"实际生产能力",@"年供水总量",@"平均日生产水量",@"水厂设计压力",@"出厂水压类型",@"取水口地址",@"取水管道总长度",@"建成区面积",@"供水面积",@"用水户数",@"状态",@"备注信息"];
-    NSDictionary *dicitem3 = @{@"水厂信息":arritem3};
-    [arrtitle addObject:dicitem3];
     
     self.arrTitles = arrtitle;
 }
@@ -143,6 +140,5 @@
 {
     
 }
-
 
 @end
