@@ -14,6 +14,9 @@
 @property (nonatomic , strong) UILabel *lbname;
 
 @property (nonatomic , strong) UILabel *lbphone;
+
+@property (nonatomic , strong) UIImageView *imgvselect;
+
 @end
 
 @implementation RenYuanXinXiTableViewCell
@@ -30,6 +33,15 @@
             make.edges.equalTo(self);
         }];
         
+        UIImageView *imgvselect = [[UIImageView alloc] init];
+        [imgvselect setImage:[UIImage imageNamed:@"选择框"]];
+        [viewback addSubview:imgvselect];
+        [imgvselect mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.offset(15);
+            make.width.height.offset(18);
+            make.centerY.equalTo(viewback);
+        }];
+        _imgvselect = imgvselect;
         
         
         UILabel *lbname = [[UILabel alloc] init];
@@ -38,7 +50,7 @@
         [lbname setFont:[UIFont systemFontOfSize:13]];
         [viewback addSubview:lbname];
         [lbname mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.offset(10);
+            make.left.equalTo(imgvselect.mas_right).offset(15);
             make.top.bottom.equalTo(viewback);
         }];
         _lbname = lbname;
@@ -69,6 +81,25 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    if(self.isedit)
+    {
+        [_imgvselect setHidden:NO];
+        
+    }
+    else
+    {
+        [_imgvselect setHidden:YES];
+        [_lbname mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.imgvselect);
+        }];
+        
+    }
+    [_imgvselect setImage:[UIImage imageNamed:@"选择框"]];
+    if(self.model.isselect)
+    {
+        [_imgvselect setImage:[UIImage imageNamed:@"选择"]];
+    }
     [_lbname setText:@"系统管理员"];
     
     [_lbphone setText:@"18733742384"];

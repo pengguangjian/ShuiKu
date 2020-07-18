@@ -8,6 +8,8 @@
 
 #import "WenDuTJSonViewController.h"
 #import "WenDuTJSonView.h"
+#import "WenDuTJListViewController.h"
+
 @interface WenDuTJSonViewController ()
 
 @end
@@ -80,7 +82,27 @@
 -(void)itemAction:(UIButton *)sender
 {
     
-    
+    switch (sender.tag) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            WenDuTJListViewController *vc = [[WenDuTJListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 /*
 #pragma mark - Navigation

@@ -8,6 +8,8 @@
 
 #import "LiuLiangJCViewController.h"
 #import "LiuLiangJCVTableViewCell.h"
+#import "LiuLiangJCDetailViewController.h"
+
 @interface LiuLiangJCViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
@@ -122,7 +124,9 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    LiuLiangJCDetailViewController *vc = [[LiuLiangJCDetailViewController alloc] init];
+    vc.strtitle = @"许明寺水厂";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

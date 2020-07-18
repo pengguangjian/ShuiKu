@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RenYuanXinXiViewController : RootViewController
 
+@property (nonatomic , assign) BOOL isedit;
+
 @end
 
 NS_ASSUME_NONNULL_END

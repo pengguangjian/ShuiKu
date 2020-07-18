@@ -220,8 +220,11 @@
         }
         
     }
+    [dictemp setObject:@"ZiDingYiPeiZhiViewController" forKey:@"更多"];
+    NSMutableArray *arrallvcname = [[NSMutableArray alloc] initWithArray:arr0];
+    [arrallvcname addObject:@"更多"];
     
-    NSString *strname = [dictemp objectForKey:arr0[indexPath.row]];
+    NSString *strname = [dictemp objectForKey:arrallvcname[indexPath.row]];
     UIViewController *vc = [NSClassFromString(strname) new];
     [self.viewController.navigationController pushViewController:vc animated:YES];
     

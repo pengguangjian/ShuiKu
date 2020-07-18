@@ -8,6 +8,8 @@
 
 #import "MainMyViewController.h"
 #import "MainMyTableViewCell.h"
+#import "ChongSheMiMaViewController.h"
+#import "SetViewController.h"
 @interface MainMyViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic ,strong) NSArray *arrtitle;
 @end
@@ -62,7 +64,7 @@
     
     
     UIImageView *imgvhd = [[UIImageView alloc] init];
-    [imgvhd setBackgroundColor:[UIColor grayColor]];
+    [imgvhd setImage:[UIImage imageNamed:@"ic_icon"]];
     [imgvhd.layer setMasksToBounds:YES];
     [imgvhd.layer setCornerRadius:35];
     [viewback addSubview:imgvhd];
@@ -73,7 +75,7 @@
     }];
     
     UILabel *lbname = [[UILabel alloc] init];
-    [lbname setText:@"张三"];
+    [lbname setText:@"系统管理员"];
     [lbname setTextColor:[UIColor whiteColor]];
     [lbname setTextAlignment:NSTextAlignmentCenter];
     [lbname setFont:[UIFont systemFontOfSize:15]];
@@ -127,6 +129,25 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.row == 0)
+    {///重设密码
+        ChongSheMiMaViewController *vc = [[ChongSheMiMaViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.row == 1)
+    {///关于我们
+        [WYTools showNotifyHUDwithtext:@"建设中" inView:self.view];
+    }
+    else if (indexPath.row == 2)
+    {///意见反馈
+        [WYTools showNotifyHUDwithtext:@"建设中" inView:self.view];
+    }
+    else if (indexPath.row == 3)
+    {///设置
+        SetViewController *vc = [[SetViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
     
     
 }

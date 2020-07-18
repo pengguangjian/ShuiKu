@@ -8,7 +8,7 @@
 
 #import "ZhuoDuJianCeViewController.h"
 #import "ZhuoDuJianCeTableViewCell.h"
-
+#import "ZhuoDuJianCeDetailViewController.h"
 
 @interface ZhuoDuJianCeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -124,7 +124,9 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZhuoDuJianCeDetailViewController *vc = [[ZhuoDuJianCeDetailViewController alloc] init];
     
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

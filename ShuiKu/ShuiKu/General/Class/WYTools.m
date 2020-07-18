@@ -74,5 +74,25 @@
     
     return lbvalue;
 }
+///获取当前时间字符串
++(NSString *)dateChangeStringWith:(NSDate *)date andformat:(NSString *)strformat
+{
+    // 初始化时间格式控制器
+    NSDateFormatter *matter = [[NSDateFormatter alloc] init];
+
+    // 设置设计格式    [matter setDateFormat:@"yyyy-MM-dd hh:mm:ss zzz"];
+    
+    if(strformat==nil)
+    {
+        [matter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    }
+    else
+    {
+        [matter setDateFormat:strformat];
+    }
+    // 进行转换
+    NSString *dateStr = [matter stringFromDate:date];
+    return dateStr;
+}
 
 @end

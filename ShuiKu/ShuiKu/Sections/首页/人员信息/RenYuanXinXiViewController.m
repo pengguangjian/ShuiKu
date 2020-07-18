@@ -13,7 +13,7 @@
 @interface RenYuanXinXiViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
-
+@property (nonatomic , strong) NSMutableArray *arrdata;
 @end
 
 @implementation RenYuanXinXiViewController
@@ -22,8 +22,40 @@
     [super viewDidLoad];
     self.title = @"预警处置";
     
+    ///测试
+//    self.isedit = NO;
+    
+    if(self.isedit)
+    {
+        [self setnavRight];
+    }
+    
     [self drawUI];
 }
+
+-(void)setnavRight
+{
+    UIButton* btnright = [[UIButton alloc] init];//btnLeft.backgroundColor=[UIColor redColor]
+    [btnright setTitle:@"确定" forState:UIControlStateNormal];
+    [btnright setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnright.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnright];
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+    [btnright addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)rightAction
+{
+    NSMutableArray *arrtemp = [NSMutableArray new];
+    for(RenYuanXinXiModel *model in  self.arrdata)
+    {
+        if(model.isselect)
+        {
+            [arrtemp addObject:model];
+        }
+    }
+}
+
 
 -(void)drawUI
 {
@@ -46,6 +78,15 @@
     _tabview = tabview;
     [self drawHeaderView];
     
+    
+    self.arrdata = [NSMutableArray new];
+    for(int i = 0 ; i < 10 ;i++)
+    {
+        RenYuanXinXiModel *model = [RenYuanXinXiModel new];
+        [self.arrdata addObject:model];
+    }
+    
+    
 }
 -(void)drawHeaderView
 {
@@ -65,7 +106,7 @@
 #pragma mark -
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrdata.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,7 +118,8 @@
         cell = [[RenYuanXinXiTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
+    cell.isedit = self.isedit;
+    cell.model = self.arrdata[indexPath.row];
     
     return cell;
 }
@@ -88,6 +130,16 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(self.isedit)
+    {
+        RenYuanXinXiModel *model = self.arrdata[indexPath.row];
+        model.isselect = !model.isselect;
+        [tableView reloadData];
+    }
+    else
+    {
+        
+    }
     
 }
 

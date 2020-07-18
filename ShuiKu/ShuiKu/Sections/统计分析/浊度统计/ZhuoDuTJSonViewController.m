@@ -8,6 +8,8 @@
 
 #import "ZhuoDuTJSonViewController.h"
 #import "ZhuoDuTJSonView.h"
+#import "ZhuoDuTJListViewController.h"
+
 @interface ZhuoDuTJSonViewController ()
 
 @end
@@ -79,7 +81,27 @@
 
 -(void)itemAction:(UIButton *)sender
 {
-    
+    switch (sender.tag) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            ZhuoDuTJListViewController *vc = [[ZhuoDuTJListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
 }
 /*

@@ -8,7 +8,7 @@
 
 #import "LiuLiangJCTJViewController.h"
 #import "ZheXianTuItemView.h"
-
+#import "LiuLiangTongJiListViewController.h"
 @interface LiuLiangJCTJViewController ()
 
 @end
@@ -80,7 +80,27 @@
 
 -(void)itemAction:(UIButton *)sender
 {
-    
+    switch (sender.tag) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            LiuLiangTongJiListViewController *vc = [[LiuLiangTongJiListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
 }
 

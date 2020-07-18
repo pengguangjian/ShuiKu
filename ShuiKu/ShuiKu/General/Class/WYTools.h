@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///列表公共cell
 +(UILabel *)drawitemView:(UIView *)view andtitle:(NSString *)title;
 
+///获取当前时间字符串
++(NSString *)dateChangeStringWith:(NSDate *)date andformat:(NSString *)strformat;
+
 @end
 
 NS_ASSUME_NONNULL_END

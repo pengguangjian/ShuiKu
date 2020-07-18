@@ -8,6 +8,7 @@
 
 #import "JianCeYuJinTJSonViewController.h"
 #import "JianCeYuJinTJSonView.h"
+#import "JianCeYuJinTJListViewController.h"
 @interface JianCeYuJinTJSonViewController ()
 
 @end
@@ -80,7 +81,27 @@
 -(void)itemAction:(UIButton *)sender
 {
     
-    
+    switch (sender.tag) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            JianCeYuJinTJListViewController *vc = [[JianCeYuJinTJListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 /*

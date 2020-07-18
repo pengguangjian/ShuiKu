@@ -8,6 +8,8 @@
 
 #import "YuLvTJVSonViewController.h"
 #import "YuLvTJVSonView.h"
+#import "YuLvTJListViewController.h"
+
 @interface YuLvTJVSonViewController ()
 
 @end
@@ -80,7 +82,27 @@
 -(void)itemAction:(UIButton *)sender
 {
     
-    
+    switch (sender.tag) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            YuLvTJListViewController *vc = [[YuLvTJListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 /*

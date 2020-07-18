@@ -8,6 +8,9 @@
 
 #import "CeZhanJianCeTJViewController.h"
 #import "CeZhanJianCeTJView.h"
+#import "CeZhanJianCeTongJiListViewController.h"
+
+
 @interface CeZhanJianCeTJViewController ()
 
 @end
@@ -80,7 +83,27 @@
 -(void)itemAction:(UIButton *)sender
 {
     
-    
+    switch (sender.tag) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            CeZhanJianCeTongJiListViewController *vc = [[CeZhanJianCeTongJiListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 

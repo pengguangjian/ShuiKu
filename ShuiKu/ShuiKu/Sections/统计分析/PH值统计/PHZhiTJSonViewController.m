@@ -8,6 +8,8 @@
 
 #import "PHZhiTJSonViewController.h"
 #import "PHZhiTJSonView.h"
+#import "PHZhiTJListViewController.h"
+
 @interface PHZhiTJSonViewController ()
 
 @end
@@ -80,7 +82,27 @@
 -(void)itemAction:(UIButton *)sender
 {
     
-    
+    switch (sender.tag) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            PHZhiTJListViewController *vc = [[PHZhiTJListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 /*
