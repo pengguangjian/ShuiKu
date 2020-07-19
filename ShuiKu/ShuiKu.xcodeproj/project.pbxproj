@@ -31,6 +31,9 @@
 		0447AE7524C3F58D00E93DBE /* shijianxuanzhealterheader.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0447AE6E24C3F58C00E93DBE /* shijianxuanzhealterheader.jpg */; };
 		0447AE7624C3F58D00E93DBE /* TimeClectAlterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447AE7024C3F58D00E93DBE /* TimeClectAlterView.m */; };
 		0447AE7724C3F58D00E93DBE /* AlterListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447AE7124C3F58D00E93DBE /* AlterListView.m */; };
+		0447AE7B24C474D600E93DBE /* LiShiYuJingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447AE7A24C474D600E93DBE /* LiShiYuJingViewController.m */; };
+		0447AE7F24C4760800E93DBE /* LiShiYuJingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447AE7E24C4760800E93DBE /* LiShiYuJingTableViewCell.m */; };
+		0447AE8224C47BD900E93DBE /* MapPointShowAlterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447AE8124C47BD900E93DBE /* MapPointShowAlterView.m */; };
 		045E40ED24BAAE4A00FA0B97 /* MainMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E40EC24BAAE4A00FA0B97 /* MainMapViewController.m */; };
 		045E40F124BAB06F00FA0B97 /* GaoDeMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E40EF24BAB06E00FA0B97 /* GaoDeMapView.m */; };
 		045E40F824BAB0AD00FA0B97 /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E40F324BAB0AA00FA0B97 /* CommonUtility.m */; };
@@ -257,6 +260,12 @@
 		0447AE6F24C3F58C00E93DBE /* TimeClectAlterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeClectAlterView.h; sourceTree = "<group>"; };
 		0447AE7024C3F58D00E93DBE /* TimeClectAlterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeClectAlterView.m; sourceTree = "<group>"; };
 		0447AE7124C3F58D00E93DBE /* AlterListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlterListView.m; sourceTree = "<group>"; };
+		0447AE7924C474D600E93DBE /* LiShiYuJingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiShiYuJingViewController.h; sourceTree = "<group>"; };
+		0447AE7A24C474D600E93DBE /* LiShiYuJingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiShiYuJingViewController.m; sourceTree = "<group>"; };
+		0447AE7D24C4760800E93DBE /* LiShiYuJingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiShiYuJingTableViewCell.h; sourceTree = "<group>"; };
+		0447AE7E24C4760800E93DBE /* LiShiYuJingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiShiYuJingTableViewCell.m; sourceTree = "<group>"; };
+		0447AE8024C47BD900E93DBE /* MapPointShowAlterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapPointShowAlterView.h; sourceTree = "<group>"; };
+		0447AE8124C47BD900E93DBE /* MapPointShowAlterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapPointShowAlterView.m; sourceTree = "<group>"; };
 		045E40EB24BAAE4A00FA0B97 /* MainMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMapViewController.h; sourceTree = "<group>"; };
 		045E40EC24BAAE4A00FA0B97 /* MainMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMapViewController.m; sourceTree = "<group>"; };
 		045E40EF24BAB06E00FA0B97 /* GaoDeMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GaoDeMapView.m; sourceTree = "<group>"; };
@@ -757,6 +766,25 @@
 			path = "视频播放器";
 			sourceTree = "<group>";
 		};
+		0447AE7824C474AC00E93DBE /* 历史预警 */ = {
+			isa = PBXGroup;
+			children = (
+				0447AE7C24C475F300E93DBE /* cell */,
+				0447AE7924C474D600E93DBE /* LiShiYuJingViewController.h */,
+				0447AE7A24C474D600E93DBE /* LiShiYuJingViewController.m */,
+			);
+			path = "历史预警";
+			sourceTree = "<group>";
+		};
+		0447AE7C24C475F300E93DBE /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				0447AE7D24C4760800E93DBE /* LiShiYuJingTableViewCell.h */,
+				0447AE7E24C4760800E93DBE /* LiShiYuJingTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		045E40EA24BAAE3100FA0B97 /* 地图 */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +803,8 @@
 				045E40EF24BAB06E00FA0B97 /* GaoDeMapView.m */,
 				045E40FC24BAC02A00FA0B97 /* MapShaiXuanView.h */,
 				045E40FD24BAC02A00FA0B97 /* MapShaiXuanView.m */,
+				0447AE8024C47BD900E93DBE /* MapPointShowAlterView.h */,
+				0447AE8124C47BD900E93DBE /* MapPointShowAlterView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1638,6 +1668,7 @@
 		04FECE7224C28429007DC478 /* 流量预警 */ = {
 			isa = PBXGroup;
 			children = (
+				0447AE7824C474AC00E93DBE /* 历史预警 */,
 				0447AE2824C3C76700E93DBE /* 预警处置 */,
 				04FECF4D24C33A50007DC478 /* 详情 */,
 				04FECE8624C28592007DC478 /* cell */,
@@ -2391,6 +2422,7 @@
 				04FECE7F24C28491007DC478 /* YuLvYJViewController.m in Sources */,
 				045E415624BAE62800FA0B97 /* GBRadarChart.m in Sources */,
 				045E40FA24BAB0AD00FA0B97 /* CustomCalloutView.m in Sources */,
+				0447AE7F24C4760800E93DBE /* LiShiYuJingTableViewCell.m in Sources */,
 				04FECF3A24C332D5007DC478 /* ShuiZhiJCDetailViewController.m in Sources */,
 				046DB9C724BC97070086142B /* LiuLiangJCVTableViewCell.m in Sources */,
 				046049E124B99A2A0079B78B /* HomeZhiBanTongJiView.m in Sources */,
@@ -2459,6 +2491,7 @@
 				04B47CE924BDE9A600CAAECF /* WenDuTJViewController.m in Sources */,
 				04613E4924B89A5E009CD89D /* WYTools.m in Sources */,
 				04FECEC424C2EF14007DC478 /* LiuLiangShuiChangJCDetailTableViewCell.m in Sources */,
+				0447AE7B24C474D600E93DBE /* LiShiYuJingViewController.m in Sources */,
 				045E40F924BAB0AD00FA0B97 /* CustomAnnotationView.m in Sources */,
 				04613E5224B89B9F009CD89D /* HTTPManager.m in Sources */,
 				046DB9AA24BC95470086142B /* LiuLiangJCViewController.m in Sources */,
@@ -2473,6 +2506,7 @@
 				04613E1024B89A3F009CD89D /* UIScrollView+VTMagic.m in Sources */,
 				046049FA24B9BCEF0079B78B /* ZiDingYiPeiZhiModel.m in Sources */,
 				0447AE4D24C3D83500E93DBE /* WkWebviewViewController.m in Sources */,
+				0447AE8224C47BD900E93DBE /* MapPointShowAlterView.m in Sources */,
 				04FECEA524C2E155007DC478 /* ShiPinJCTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

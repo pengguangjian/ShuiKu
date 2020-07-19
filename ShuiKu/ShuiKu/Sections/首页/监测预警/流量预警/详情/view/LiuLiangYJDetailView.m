@@ -8,7 +8,7 @@
 
 #import "LiuLiangYJDetailView.h"
 #import "LiuLiangYJChuZhiDetailCZViewController.h"
-
+#import "LiShiYuJingViewController.h"
 @interface LiuLiangYJDetailView ()
 @property (nonatomic , strong) UILabel *lbname;
 @property (nonatomic , strong) UILabel *lbaddress;
@@ -92,6 +92,7 @@
         
         UIButton *btlishi = [[UIButton alloc] init];
         [btlishi setBackgroundColor:RGB(133, 174, 226)];
+        [btlishi addTarget:self action:@selector(lishiAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btlishi];
         [btlishi mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self);
@@ -187,6 +188,13 @@
 -(void)guanbiAction
 {
     
+}
+
+///历史
+-(void)lishiAction
+{
+    LiShiYuJingViewController *vc = [[LiShiYuJingViewController alloc] init];
+    [self.viewController.navigationController pushViewController:vc animated:YES];
 }
 
 @end

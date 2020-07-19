@@ -17,6 +17,8 @@
 @property (nonatomic, strong) UILabel *subTitleLabel;
 @property (nonatomic, strong) UILabel *stateTitleLabel;
 
+@property (nonatomic, strong) UIImageView *imgvitem;
+
 @end
 
 @implementation CustomCalloutView
@@ -24,8 +26,8 @@
 - (void)drawRect:(CGRect)rect
 {
     
-    self.layer.borderColor = [UIColor blueColor].CGColor;
-    self.layer.borderWidth = 2.0f;
+//    self.layer.borderColor = [UIColor blueColor].CGColor;
+//    self.layer.borderWidth = 2.0f;
     
 }
 
@@ -34,7 +36,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
         [self initSubViews];
     }
     return self;
@@ -44,19 +46,23 @@
 {
     
     // 添加标题
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.width-20, kTitleHeight)];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    self.titleLabel.textColor = RGB(100, 100, 100) ;
-    self.titleLabel.text = @"titletitletitletitle";
-    [self addSubview:self.titleLabel];
+//    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.width-20, kTitleHeight)];
+//    self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+//    self.titleLabel.textColor = RGB(100, 100, 100) ;
+//    self.titleLabel.text = @"titletitletitletitle";
+//    [self addSubview:self.titleLabel];
+//
+//    // 添加副标题
+//    self.subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.titleLabel.bottom, self.width-20, self.height-self.titleLabel.bottom)];
+//    self.subTitleLabel.font = [UIFont systemFontOfSize:14];
+//    self.subTitleLabel.textColor = RGB(100, 100, 100) ;
+//    self.subTitleLabel.numberOfLines = 0;
+//    self.subTitleLabel.text = @"subtitleLabelsubtitleLabelsubtitleLabel";
+//    [self addSubview:self.subTitleLabel];
+    self.imgvitem = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
+    [self.imgvitem setBackgroundColor:[UIColor grayColor]];
+    [self addSubview:self.imgvitem];
     
-    // 添加副标题
-    self.subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.titleLabel.bottom, self.width-20, self.height-self.titleLabel.bottom)];
-    self.subTitleLabel.font = [UIFont systemFontOfSize:14];
-    self.subTitleLabel.textColor = RGB(100, 100, 100) ;
-    self.subTitleLabel.numberOfLines = 0;
-    self.subTitleLabel.text = @"subtitleLabelsubtitleLabelsubtitleLabel";
-    [self addSubview:self.subTitleLabel];
     
 }
 

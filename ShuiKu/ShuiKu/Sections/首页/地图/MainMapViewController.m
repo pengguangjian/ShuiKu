@@ -21,47 +21,71 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setnavbt];
+//    [self setnavbt];
     
-    self.title = @"地图信息";
+//    self.title = @"地图信息";
+    [self drawtitleview];
+    
     [self drawUI];
     
 }
 
--(void)setnavbt
+-(void)drawtitleview
 {
-    UIButton* btnright = [[UIButton alloc] init];//btnLeft.backgroundColor=[UIColor redColor]
-    [btnright setImage:[UIImage imageNamed:@"地图筛选"] forState:UIControlStateNormal];
-    UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnright];
-    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-    [btnright addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
+    UIView *viewtitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
+    self.navigationItem.titleView = viewtitle;
+    UILabel *lbtitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+    [lbtitle setTextColor:[UIColor whiteColor]];
+    [lbtitle setText:@"地图信息"];
+    [lbtitle setTextAlignment:NSTextAlignmentCenter];
+    [lbtitle setFont:[UIFont systemFontOfSize:16]];
+    [viewtitle addSubview:lbtitle];
+    
+    UILabel *lbsubtitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 200, 20)];
+    [lbsubtitle setTextColor:[UIColor whiteColor]];
+    [lbsubtitle setText:@"水厂总数：33座"];
+    [lbsubtitle setTextAlignment:NSTextAlignmentCenter];
+    [lbsubtitle setFont:[UIFont systemFontOfSize:13]];
+    [viewtitle addSubview:lbsubtitle];
+    
+    
     
 }
 
--(void)rightAction
-{
-    if(_shaixuanView==nil)
-    {
-        MapShaiXuanView *view = [[MapShaiXuanView alloc] init];
-        [self.view addSubview:view];
-        [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            if (@available(iOS 11.0, *)) {
-                make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
-                make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
-                make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
-                make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-            }else{
-                make.edges.equalTo(self.view).insets(kPaddingNav);
-            }
-        }];
-        _shaixuanView  = view;
-    }
-    
-    [_shaixuanView setHidden:NO];
-    
-    [_shaixuanView showView];
-    
-}
+//-(void)setnavbt
+//{
+//    UIButton* btnright = [[UIButton alloc] init];//btnLeft.backgroundColor=[UIColor redColor]
+//    [btnright setImage:[UIImage imageNamed:@"地图筛选"] forState:UIControlStateNormal];
+//    UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnright];
+//    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+//    [btnright addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
+//
+//}
+//
+//-(void)rightAction
+//{
+//    if(_shaixuanView==nil)
+//    {
+//        MapShaiXuanView *view = [[MapShaiXuanView alloc] init];
+//        [self.view addSubview:view];
+//        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+//            if (@available(iOS 11.0, *)) {
+//                make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+//                make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+//                make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+//                make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+//            }else{
+//                make.edges.equalTo(self.view).insets(kPaddingNav);
+//            }
+//        }];
+//        _shaixuanView  = view;
+//    }
+//
+//    [_shaixuanView setHidden:NO];
+//
+//    [_shaixuanView showView];
+//
+//}
 
 
 -(void)drawUI

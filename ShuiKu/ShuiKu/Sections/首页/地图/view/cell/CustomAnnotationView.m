@@ -37,9 +37,15 @@
     {
         if (self.calloutView == nil)
         {
-            self.calloutView = [[CustomCalloutView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenW/3*2, 120)];
-            self.calloutView.center = CGPointMake(CGRectGetWidth(self.bounds) / 2.f + self.calloutOffset.x,
-                                                  -CGRectGetHeight(self.calloutView.bounds) / 2.f + self.calloutOffset.y);
+//            self.calloutView = [[CustomCalloutView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenW/3*2, 120)];
+            self.calloutView  = [[CustomCalloutView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+            
+            
+//            self.calloutView.center = CGPointMake(CGRectGetWidth(self.bounds) / 2.f + self.calloutOffset.x,
+//                                                  -CGRectGetHeight(self.calloutView.bounds) / 2.f + self.calloutOffset.y);
+            
+            self.calloutView.center = CGPointMake(CGRectGetWidth(self.bounds) / 2.f + self.calloutOffset.x+3,
+            self.calloutOffset.y+10);
         }
         
         self.calloutView.title = self.annotation.title;

@@ -16,12 +16,16 @@
 #import "CustomAnnotationView.h"
 #import "CommonUtility.h"
 
+#import "MapPointShowAlterView.h"
+
 @interface GaoDeMapView ()<MAMapViewDelegate,AMapSearchDelegate>
 
 @property (nonatomic ,strong) MAMapView *mapView;
 @property (nonatomic ,strong) AMapSearchAPI *search;
 ///移动的点
 @property (nonatomic ,strong) MAAnnotationView *pointMove;
+///点点击后的提示页面
+@property (nonatomic ,strong) MapPointShowAlterView *pointAlterview;
 
 @end
 
@@ -63,7 +67,10 @@
 //        mapView.showsUserLocation = YES;
 //        mapView.userTrackingMode = MAUserTrackingModeFollow;
     
-//        [self addMapPoint];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self addMapPoint];
+        });
+        
         
 //    self.mapView.showsIndoorMap = YES; //YES：显示室内地图；NO：不显示；
 //    [self.mapView setMapType:MAMapTypeSatellite];///地图类型
@@ -340,33 +347,27 @@
             poiAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
         }
         
-        
-//        if (![self.redArr containsObject:annotation.title]) {
-//             poiAnnotationView.image = [UIImage imageNamed:@"ic_loc_blue"];
-//        }else {
-//             poiAnnotationView.image = [UIImage imageNamed:@"ic_loc_red"];
-//        }
         poiAnnotationView.image = [UIImage imageNamed:@"ic_loc_red"];
         
         return poiAnnotationView;
         
-        
-        ///自定义点
-        /*
-         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-         MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-         if (annotationView == nil) {
-             annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
-          }
-         annotationView.image = [UIImage imageNamed:@"restaurant"];
-         //设置中心点偏移，使得标注底部中间点成为经纬度对应点
-         annotationView.centerOffset = CGPointMake(0, -18);
-         return annotationView;
-         */
-        
-    
     }
     return nil;
+    
+}
+- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
+{
+    if(self.pointAlterview)
+    {
+        [self.pointAlterview removeFromSuperview];
+    }
+    
+    self.pointAlterview = [[MapPointShowAlterView alloc] init];
+    [self addSubview:self.pointAlterview];
+    [self.pointAlterview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self);
+        make.height.offset(200);
+    }];
     
 }
 
