@@ -54,6 +54,11 @@
             [arrtemp addObject:model];
         }
     }
+    if(self.delegate)
+    {
+        [self.delegate backSelecePeopleArr:arrtemp];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

@@ -11,8 +11,8 @@
 #import "CeZhanJianCeTongJiListViewController.h"
 
 
-@interface CeZhanJianCeTJViewController ()
-
+@interface CeZhanJianCeTJViewController ()<AlterListViewDelegate,AddressListAlterViewDelegate>
+@property (nonatomic , strong) UIButton *btselecttopitem;
 @end
 
 @implementation CeZhanJianCeTJViewController
@@ -82,16 +82,33 @@
 
 -(void)itemAction:(UIButton *)sender
 {
-    
     switch (sender.tag) {
         case 0:
-        {
-            
+        {///日统计
+            _btselecttopitem = sender;
+            AlterListView *view = [[AlterListView alloc] init];
+            view.strtitle = @"统计选择";
+            view.arrdata = @[@"日统计",@"月统计",@"年统计"];
+            [view setDelegate:self];
+            [self.view.window addSubview:view];
+            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.top.offset(0);
+                make.width.offset(kMainScreenW);
+                make.height.offset(kMainScreenH);
+            }];
         }
             break;
         case 1:
-        {
-            
+        {///所有水厂
+            _btselecttopitem = sender;
+            AddressListAlterView *view = [[AddressListAlterView alloc] init];
+            [view setDelegate:self];
+            [self.view.window addSubview:view];
+            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.top.offset(0);
+                make.width.offset(kMainScreenW);
+                make.height.offset(kMainScreenH);
+            }];
         }
             break;
         case 2:
@@ -104,18 +121,20 @@
         default:
             break;
     }
+    
+}
+///日统计数据返回
+-(void)ListAlterViewItemSelect:(id)value andviewtag:(NSInteger)tag
+{
+    [_btselecttopitem setTitle:value forState:UIControlStateNormal];
+}
+
+///水厂地址返回选中的数组
+-(void)backAddressListAlterViewArr:(NSMutableArray *)arrvalue
+{
+    [_btselecttopitem setTitle:arrvalue.lastObject forState:UIControlStateNormal];
 }
 
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

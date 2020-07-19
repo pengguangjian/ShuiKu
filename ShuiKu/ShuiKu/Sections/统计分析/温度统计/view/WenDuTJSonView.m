@@ -217,7 +217,7 @@
     [lbX setFont:[UIFont systemFontOfSize:12]];
     [viewback addSubview:lbX];
     [lbX mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(-10);
+        make.right.equalTo(viewback).offset(-10);
         make.bottom.equalTo(view.mas_bottom).offset(-10);
     }];
     [lbX setText:_strXValue];

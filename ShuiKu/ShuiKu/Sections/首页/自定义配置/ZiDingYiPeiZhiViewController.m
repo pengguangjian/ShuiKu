@@ -389,7 +389,7 @@
         NSArray *arr5 = @[@"值班信息",@"知识库"];
         NSArray *arrvc1 = @[@"LiuLiangJCViewController",@"ZhuoDuJianCeViewController",@"YuLvJCViewController",@"WenDuJCViewController",@"PHZhiJCViewController",@"ShiPinJCViewController",@"ShuiZhiJCViewController",@"ZhongHeJCViewController",@"MainMapViewController"];
         NSArray *arrvc2 = @[@"ZhuoDuTJViewController",@"LiuLiangJianCeTongJiViewController",@"CeZhanJianCeTongJiViewController",@"JianCeYuJinTJViewController",@"YongShuiShouFeiTJViewController",@"YongHuTJViewController"];
-        NSArray *arrvc3 = @[@"LiuLiangYJViewController",@"ZhuoDuYJViewController",@"YuLvYJViewController",@"PHZhiYJViewController",@"WenDuYJViewController"];
+        NSArray *arrvc3 = @[@"LiuLiangYJViewController",@"LiuLiangYJViewController",@"LiuLiangYJViewController",@"LiuLiangYJViewController",@"LiuLiangYJViewController"];
         NSArray *arrvc4 = @[@"ShuiChangXinXiTableViewController",@"CeZhanXinXiViewController",@"RenYuanXinXiViewController"];
         NSArray *arrvc5 = @[@"ZhiBanXinXiViewController",@"ZhiShiKuViewController"];
         
@@ -433,7 +433,8 @@
     }
     else if(indexPath.section==3)
     {
-        NSArray *arrvc = @[@"LiuLiangYJViewController",@"ZhuoDuYJViewController",@"YuLvYJViewController",@"PHZhiYJViewController",@"WenDuYJViewController"];
+        NSArray *arrvc = @[@"LiuLiangYJViewController",@"LiuLiangYJViewController",@"LiuLiangYJViewController",@"LiuLiangYJViewController",@"LiuLiangYJViewController"];
+        ////@[@"LiuLiangYJViewController",@"ZhuoDuYJViewController",@"YuLvYJViewController",@"PHZhiYJViewController",@"WenDuYJViewController"];
         UIViewController *vc = [NSClassFromString(arrvc[indexPath.row]) new];
         [self.navigationController pushViewController:vc animated:YES];
         

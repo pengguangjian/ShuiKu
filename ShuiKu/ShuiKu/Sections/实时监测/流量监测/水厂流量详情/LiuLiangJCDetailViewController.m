@@ -10,10 +10,13 @@
 #import "LiuLiangJCDetailViewController.h"
 #import "VTMagic.h"
 #import "LiuLiangShuiChangJCDetailViewController.h"
+#import "JianCeAllZheXianTuTuViewController.h"
 @interface LiuLiangJCDetailViewController ()<VTMagicViewDataSource,VTMagicViewDelegate>
 {
     VTMagicController *magicController;
     NSArray *menuList;
+    
+    NSMutableArray *arrallvc;
 }
 
 
@@ -30,6 +33,29 @@
 }
 -(void)drawUI
 {
+    arrallvc = [NSMutableArray new];
+    LiuLiangShuiChangJCDetailViewController *vc0 = [[LiuLiangShuiChangJCDetailViewController alloc] init];
+    [arrallvc addObject:vc0];
+    
+    JianCeAllZheXianTuTuViewController *vc1 = [[JianCeAllZheXianTuTuViewController alloc] init];
+    vc1.strYValue = @"流量";
+    vc1.strXValue = @"时间";
+    vc1.strtitle = @"时统计";
+    vc1.strtitle1 = @"流量统计";
+    vc1.arrX = @[@"1日",@"2日",@"3日",@"4日"];
+    vc1.arrinfo = @[@"最大进水温度",@"最小进水温度",@"最大出水温度",@"最小出水温度"];
+    [arrallvc addObject:vc1];
+    
+    JianCeAllZheXianTuTuViewController *vc2 = [[JianCeAllZheXianTuTuViewController alloc] init];
+    vc2.strYValue = @"流量";
+    vc2.strXValue = @"时间";
+    vc2.strtitle = @"日统计";
+    vc2.strtitle1 = @"流量统计";
+    vc2.arrX = @[@"1日",@"2日",@"3日",@"4日"];
+    vc2.arrinfo = @[@"最大进水温度",@"最小进水温度",@"最大出水温度",@"最小出水温度"];
+    [arrallvc addObject:vc2];
+    
+    
     
     menuList = @[@{@"name":@"数据详情",
                    @"type":@"0"},
@@ -93,13 +119,8 @@
 }
 
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
-    static NSString *gridId = @"LiuLiangShuiChangJCDetailViewController";
-    LiuLiangShuiChangJCDetailViewController *viewController = [magicView dequeueReusablePageWithIdentifier:gridId];
-    if (!viewController) {
-        viewController = [[LiuLiangShuiChangJCDetailViewController alloc] init];
-    }
 
-    return viewController;
+    return arrallvc[pageIndex];
 }
 
 

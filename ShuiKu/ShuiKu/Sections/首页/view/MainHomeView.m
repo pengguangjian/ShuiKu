@@ -14,7 +14,7 @@
 #import "HomeZhiBanTongJiView.h"
 #import "ZiDingYiPeiZhiViewController.h"
 #import "MainMapViewController.h"
-
+#import "XiaoXiGongGaoViewController.h"
 @interface MainHomeView () <UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic , strong) UICollectionView *collect;
@@ -127,6 +127,8 @@
     [ccpHotPointView clickTitleLabel:^(NSInteger index,NSString *titleString) {
         ///点击
 //        [self selectNewMessageIndex:index];
+        XiaoXiGongGaoViewController *vc = [[XiaoXiGongGaoViewController alloc] init];
+        [self.viewController.navigationController pushViewController:vc animated:YES];
     }];
     
     [ccpHotPointView setTitleArray:@[@"运行状况",@"视频监控",@"一张图",@"测站信息"]];
@@ -202,7 +204,8 @@
     NSArray *arr5 = @[@"值班信息",@"知识库"];
     NSArray *arrvc1 = @[@"LiuLiangJCViewController",@"ZhuoDuJianCeViewController",@"YuLvJCViewController",@"WenDuJCViewController",@"PHZhiJCViewController",@"ShiPinJCViewController",@"ShuiZhiJCViewController",@"ZhongHeJCViewController",@"MainMapViewController"];
     NSArray *arrvc2 = @[@"ZhuoDuTJViewController",@"LiuLiangJianCeTongJiViewController",@"CeZhanJianCeTongJiViewController",@"JianCeYuJinTJViewController",@"YongShuiShouFeiTJViewController",@"YongHuTJViewController"];
-    NSArray *arrvc3 = @[@"LiuLiangYJViewController",@"ZhuoDuYJViewController",@"YuLvYJViewController",@"PHZhiYJViewController",@"WenDuYJViewController"];
+    NSArray *arrvc3 = @[@"LiuLiangYJViewController",@"LiuLiangYJViewController",@"LiuLiangYJViewController",@"LiuLiangYJViewController",@"LiuLiangYJViewController"];
+    ////@[@"LiuLiangYJViewController",@"ZhuoDuYJViewController",@"YuLvYJViewController",@"PHZhiYJViewController",@"WenDuYJViewController"];
     NSArray *arrvc4 = @[@"ShuiChangXinXiTableViewController",@"CeZhanXinXiViewController",@"RenYuanXinXiViewController"];
     NSArray *arrvc5 = @[@"ZhiBanXinXiViewController",@"ZhiShiKuViewController"];
     

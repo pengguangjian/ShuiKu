@@ -9,6 +9,9 @@
 #import "LiuLiangYJViewController.h"
 #import "LiuLiangYJTableViewCell.h"
 #import "LiuLiangYJDetailViewController.h"
+#import "LiuLiangYJChuZhiViewController.h"
+
+
 @interface LiuLiangYJViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
@@ -19,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"流量预警";
+    self.title = @"最新预警";
     [self setnavRight];
     
     [self drawUI];
@@ -33,7 +36,14 @@
     [btnright.titleLabel setFont:[UIFont systemFontOfSize:14]];
     UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnright];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-//    [btnright addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
+    [btnright addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)rightAction
+{
+    
+    LiuLiangYJChuZhiViewController *vc = [[LiuLiangYJChuZhiViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)drawUI

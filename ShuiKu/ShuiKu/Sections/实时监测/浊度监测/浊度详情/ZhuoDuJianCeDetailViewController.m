@@ -9,10 +9,12 @@
 #import "ZhuoDuJianCeDetailViewController.h"
 #import "LiuLiangJCDetailDetailViewController.h"
 #import "VTMagic.h"
+#import "JianCeAllZheXianTuTuViewController.h"
 @interface ZhuoDuJianCeDetailViewController ()<VTMagicViewDataSource,VTMagicViewDelegate>
 {
     VTMagicController *magicController;
     NSArray *menuList;
+    NSMutableArray *arrallvc;
 }
 
 @end
@@ -28,6 +30,18 @@
 }
 -(void)drawUI
 {
+    arrallvc = [NSMutableArray new];
+    LiuLiangJCDetailDetailViewController *vc0 = [[LiuLiangJCDetailDetailViewController alloc] init];
+    [arrallvc addObject:vc0];
+    
+    JianCeAllZheXianTuTuViewController *vc1 = [[JianCeAllZheXianTuTuViewController alloc] init];
+    vc1.strYValue = @"浊度";
+    vc1.strXValue = @"时间";
+    vc1.strtitle = @"时统计";
+    vc1.strtitle1 = @"浊度统计";
+    vc1.arrX = @[@"1日",@"2日",@"3日",@"4日"];
+    vc1.arrinfo = @[@"最大进水浊度",@"最小进水浊度",@"最大出水浊度",@"最小出水浊度"];
+    [arrallvc addObject:vc1];
     
     menuList = @[@{@"name":@"数据详情",
                    @"type":@"0"},
@@ -89,13 +103,8 @@
 }
 
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
-    static NSString *gridId = @"LiuLiangJCDetailDetailViewController";
-    LiuLiangJCDetailDetailViewController *viewController = [magicView dequeueReusablePageWithIdentifier:gridId];
-    if (!viewController) {
-        viewController = [[LiuLiangJCDetailDetailViewController alloc] init];
-    }
 
-    return viewController;
+    return arrallvc[pageIndex];
 }
 
 

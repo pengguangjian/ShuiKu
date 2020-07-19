@@ -8,10 +8,10 @@
 
 #import "LiuLiangShuiChangJCDetailViewController.h"
 #import "LiuLiangShuiChangJCDetailTableViewCell.h"
-@interface LiuLiangShuiChangJCDetailViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface LiuLiangShuiChangJCDetailViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,TimeClectAlterViewDelegate>
 
 @property (nonatomic , strong) UITableView *tabview;
-
+@property (nonatomic , strong) UIButton *bttime;
 @end
 
 @implementation LiuLiangShuiChangJCDetailViewController
@@ -71,6 +71,8 @@
         make.height.offset(35);
         make.width.offset(kMainScreenW-100);
     }];
+    [bttime addTarget:self action:@selector(timeAction) forControlEvents:UIControlEventTouchUpInside];
+    _bttime = bttime;
     
     UIButton *btsearch = [[UIButton alloc] init];
     [btsearch setTitle:@"查询" forState:UIControlStateNormal];
@@ -83,10 +85,44 @@
         make.left.equalTo(bttime.mas_right).offset(10);
         make.right.equalTo(view).offset(-15);
     }];
+    [btsearch addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
+}
+///选择时间
+-(void)timeAction
+{
+    TimeClectAlterView *view = [[TimeClectAlterView alloc] init];
+    [view setDeletate:self];
+    [self.view.window addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.offset(0);
+        make.width.offset(kMainScreenW);
+        make.height.offset(kMainScreenH);
+    }];
+}
+///开始时间-结束时间
+-(void)changetimeValue:(NSString *)strvalue
+{
+    @try {
+        NSArray *arrtime = [strvalue componentsSeparatedByString:@"-"];
+        NSString *strtemp = [NSString stringWithFormat:@"%@至%@",arrtime[0],arrtime[1]];
+        strtemp = [strtemp stringByReplacingOccurrencesOfString:@"." withString:@"-"];
+        [_bttime setTitle:strtemp forState:UIControlStateNormal];
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
     
 }
 
-#pragma mark -
+///搜索
+-(void)searchAction
+{
+    
+    
+}
+
+#pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 10;

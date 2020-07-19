@@ -9,11 +9,15 @@
 #import "WenDuJCDetailViewController.h"
 #import "WenDuJCDetailDetailViewController.h"
 #import "VTMagic.h"
+#import "JianCeAllZheXianTuTuViewController.h"
 
 @interface WenDuJCDetailViewController ()<VTMagicViewDataSource,VTMagicViewDelegate>
 {
     VTMagicController *magicController;
     NSArray *menuList;
+    
+    NSMutableArray *arrallvc;
+    
 }
 
 
@@ -30,6 +34,19 @@
 }
 -(void)drawUI
 {
+    
+    arrallvc = [NSMutableArray new];
+    WenDuJCDetailDetailViewController *vc0 = [[WenDuJCDetailDetailViewController alloc] init];
+    [arrallvc addObject:vc0];
+    
+    JianCeAllZheXianTuTuViewController *vc1 = [[JianCeAllZheXianTuTuViewController alloc] init];
+    vc1.strYValue = @"余氯";
+    vc1.strXValue = @"时间";
+    vc1.strtitle = @"时统计";
+    vc1.strtitle1 = @"流量统计";
+    vc1.arrX = @[@"1日",@"2日",@"3日",@"4日"];
+    vc1.arrinfo = @[@"最大进水余氯",@"最小进水余氯",@"最大出水余氯",@"最小出水余氯"];
+    [arrallvc addObject:vc1];
     
     menuList = @[@{@"name":@"数据详情",
                    @"type":@"0"},
@@ -91,12 +108,8 @@
 }
 
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
-    static NSString *gridId = @"WenDuJCDetailDetailViewController";
-    WenDuJCDetailDetailViewController *viewController = [magicView dequeueReusablePageWithIdentifier:gridId];
-    if (!viewController) {
-        viewController = [[WenDuJCDetailDetailViewController alloc] init];
-    }
 
-    return viewController;
+
+    return arrallvc[pageIndex];
 }
 @end

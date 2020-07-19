@@ -9,6 +9,8 @@
 #import "MainHomeViewController.h"
 
 #import "MainHomeView.h"
+#import "ErWeiMaViewController.h"
+
 
 @interface MainHomeViewController ()
 
@@ -46,7 +48,8 @@
 
 -(void)rightAction
 {
-    
+    ErWeiMaViewController *vc = [[ErWeiMaViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

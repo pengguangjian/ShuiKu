@@ -7,7 +7,7 @@
 //
 
 #import "HomeJinRiYuJinView.h"
-
+#import "LiuLiangYJViewController.h"
 @interface HomeJinRiYuJinView  ()
 
 @property (nonatomic , strong) NSMutableArray *arrnumberLB;
@@ -46,6 +46,7 @@
             make.right.equalTo(self).offset(-15);
             make.centerY.equalTo(lbtitle);
         }];
+        [btmore addTarget:self action:@selector(moreAction) forControlEvents:UIControlEventTouchUpInside];
         
         _arrnumberLB = [NSMutableArray new];
         NSArray *arrtille = @[@"流量超标",@"浊度超标",@"超标余氯",@"PH值超标",@"温度超标",];
@@ -119,6 +120,12 @@
     
     
     
+}
+///查看更多
+-(void)moreAction
+{
+    LiuLiangYJViewController *vc = [[LiuLiangYJViewController alloc] init];
+    [self.viewController.navigationController pushViewController:vc animated:YES];
 }
 
 

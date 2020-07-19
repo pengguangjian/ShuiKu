@@ -7,12 +7,13 @@
 //
 
 #import "LiuLiangYJDetailView.h"
+#import "LiuLiangYJChuZhiDetailCZViewController.h"
 
 @interface LiuLiangYJDetailView ()
 @property (nonatomic , strong) UILabel *lbname;
 @property (nonatomic , strong) UILabel *lbaddress;
 @property (nonatomic , strong) NSMutableArray *arrallLB;
-
+@property (nonatomic , strong) UIView *viewbottom;
 @end
 
 @implementation LiuLiangYJDetailView
@@ -117,25 +118,75 @@
             make.right.equalTo(btlishi).offset(-20);
         }];
         
-        
-        
-        UIButton *btguanbi = [[UIButton alloc] init];
-        [btguanbi setTitle:@"关闭预警" forState:UIControlStateNormal];
-        [btguanbi setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btguanbi.titleLabel setFont:[UIFont systemFontOfSize:14]];
-        [btguanbi setBackgroundColor:RGB(255, 30, 30)];
-        [self addSubview:btguanbi];
-        [btguanbi mas_makeConstraints:^(MASConstraintMaker *make) {
+        UIView *viewbottom = [[UIView alloc] init];
+        [self addSubview:viewbottom];
+        [viewbottom mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.offset(15);
             make.right.equalTo(self).offset(-15);
             make.top.equalTo(btlishi.mas_bottom).offset(20);
             make.height.offset(45);
         }];
+        _viewbottom = viewbottom;
+        [self drawbottom];
         
         
         
     }
     return self;
+}
+
+-(void)drawbottom
+{
+    ///处置中
+//    UIButton *btguanbi = [[UIButton alloc] init];
+//    [btguanbi setTitle:@"关闭预警" forState:UIControlStateNormal];
+//    [btguanbi setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [btguanbi.titleLabel setFont:[UIFont systemFontOfSize:14]];
+//    [btguanbi setBackgroundColor:RGB(255, 30, 30)];
+//    [_viewbottom addSubview:btguanbi];
+//    [btguanbi mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(self.viewbottom);
+//    }];
+//    [btguanbi addTarget:self action:@selector(guanbiAction) forControlEvents:UIControlEventTouchUpInside];
+    ///新增
+    NSArray *arrtitle = @[@"预警处置",@"短信通知"];
+    for(int i = 0; i < 2; i++)
+    {
+        UIButton *btitem = [[UIButton alloc] init];
+        [btitem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btitem setTitle:arrtitle[i] forState:UIControlStateNormal];
+        [btitem.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [btitem setBackgroundColor:MenuColor];
+        if (i==1) {
+            [btitem setBackgroundColor:RGB(35, 190, 255)];
+        }
+        [self.viewbottom addSubview:btitem];
+        [btitem mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.equalTo(self.viewbottom);
+            make.width.equalTo(self.viewbottom).multipliedBy(0.5);
+            make.left.offset((kMainScreenW-30)/2*i);
+        }];
+        [btitem setTag:i];
+        [btitem addTarget:self action:@selector(bottomAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+///@"预警处置",@"短信通知"
+-(void)bottomAction:(UIButton *)sender
+{
+    if(sender.tag==0)
+    {
+        LiuLiangYJChuZhiDetailCZViewController *vc = [[LiuLiangYJChuZhiDetailCZViewController alloc] init];
+        [self.viewController.navigationController pushViewController:vc animated:YES];
+    }
+    else
+    {
+        
+    }
+}
+///关闭预警
+-(void)guanbiAction
+{
+    
 }
 
 @end

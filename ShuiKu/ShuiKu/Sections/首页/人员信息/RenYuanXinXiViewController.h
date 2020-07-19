@@ -10,8 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RenYuanXinXiViewController : RootViewController
+@protocol RenYuanXinXiViewControllerDelegate <NSObject>
+///编辑时选中的人员
+-(void)backSelecePeopleArr:(NSMutableArray *)arrvalue;
 
+@end
+
+@interface RenYuanXinXiViewController : RootViewController
+@property (nonatomic , weak) id<RenYuanXinXiViewControllerDelegate>delegate;
 @property (nonatomic , assign) BOOL isedit;
 
 @end

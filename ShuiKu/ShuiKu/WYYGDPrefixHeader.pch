@@ -20,7 +20,8 @@
 #import "NSString+extend.h"
 #import "UIView+UIViewExt.h"
 #import "UIView+Additions.h"
-
-
+#import "TimeClectAlterView.h"
+#import "AlterListView.h"
+#import "AddressListAlterView.h"
 
 #endif /* WYYGDPrefixHeader_pch */
