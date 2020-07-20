@@ -9,6 +9,7 @@
 #import "XiaoXiGongGaoViewController.h"
 #import "VTMagic.h"
 #import "XiaoXiGongGaoTableViewController.h"
+#import "XiaoXiGongGaoDataController.h"
 
 @interface XiaoXiGongGaoViewController ()<VTMagicViewDataSource,VTMagicViewDelegate>
 {
@@ -25,20 +26,27 @@
     [super viewDidLoad];
     self.title = @"通知公告";
     
-    [self drawUI];
     
+    [self getdata];
 }
+
+-(void)getdata
+{
+    [XiaoXiGongGaoDataController requestTongZhiGongFenLeiData:self.view Callback:^(NSError *error, BOOL state, NSString *describle, NSArray *value) {
+        if(state)
+        {
+            menuList = value;
+            [self drawUI];
+        }
+        else
+        {
+            [WYTools showNotifyHUDwithtext:describle inView:self.view];
+        }
+    }];
+}
+
 -(void)drawUI
 {
-    
-    menuList = @[@{@"name":@"新闻",
-                   @"type":@"0"},
-                @{@"name":@"河长动态",
-                  @"type":@"1"},
-                @{@"name":@"通知公告",
-                  @"type":@"2"},
-                @{@"name":@"工作安排",
-                  @"type":@"3"}];
         
         
     magicController = [[VTMagicController alloc] init];
@@ -47,7 +55,7 @@
     magicController.magicView.itemScale = 1;
     magicController.magicView.itemSpacing = 40;
     magicController.magicView.navigationColor = [UIColor whiteColor];
-    magicController.magicView.layoutStyle = VTLayoutStyleDivide;
+    magicController.magicView.layoutStyle = VTLayoutStyleDefault;
     magicController.magicView.switchStyle = VTSwitchStyleStiff;
     magicController.magicView.navigationHeight = 50.f;
     magicController.magicView.dataSource = self;
@@ -75,8 +83,8 @@
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
     NSMutableArray *titles = [NSMutableArray array];
     for (NSDictionary *dict in menuList) {
-        if (dict[@"name"]) {
-            [titles addObject:dict[@"name"]];
+        if (dict[@"NAME"]) {
+            [titles addObject:dict[@"NAME"]];
         }
     }
     return titles.mutableCopy;
@@ -101,6 +109,8 @@
         viewController = [[XiaoXiGongGaoTableViewController alloc] init];
     }
     
+    viewController.newtype = [NSString nullToString:[menuList[pageIndex] objectForKey:@"ID"]];
+    [viewController getData];
     return viewController;
 }
 

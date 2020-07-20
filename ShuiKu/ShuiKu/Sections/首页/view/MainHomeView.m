@@ -15,11 +15,21 @@
 #import "ZiDingYiPeiZhiViewController.h"
 #import "MainMapViewController.h"
 #import "XiaoXiGongGaoViewController.h"
+
+#import "MainHomeDataController.h"
+
+
 @interface MainHomeView () <UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic , strong) UICollectionView *collect;
 @property (nonatomic , strong) NSMutableArray *arrTopTitle;
 @property (nonatomic , strong) ImagePlayerView *imgvheader;
+
+
+///通知公告
+@property (nonatomic , strong) CCPScrollView *ccpHotPointView;
+@property (nonatomic , strong) NSMutableArray *arrtongzhigonggao;
+
 
 
 @end
@@ -101,6 +111,7 @@
             make.bottom.equalTo(tongjiview.mas_bottom).offset(10);
         }];
         
+        [self getData];
     }
     return self;
 }
@@ -126,12 +137,12 @@
     ccpHotPointView.BGColor = [UIColor whiteColor];
     [ccpHotPointView clickTitleLabel:^(NSInteger index,NSString *titleString) {
         ///点击
-//        [self selectNewMessageIndex:index];
+        NSDictionary *dicitem = self.arrtongzhigonggao[index];
+        
         XiaoXiGongGaoViewController *vc = [[XiaoXiGongGaoViewController alloc] init];
         [self.viewController.navigationController pushViewController:vc animated:YES];
     }];
-    
-    [ccpHotPointView setTitleArray:@[@"运行状况",@"视频监控",@"一张图",@"测站信息"]];
+    _ccpHotPointView = ccpHotPointView;
     
     UIImageView *imgvnext = [[UIImageView alloc] init];
     [imgvnext setImage:[UIImage imageNamed:@"下一步"]];
@@ -179,6 +190,22 @@
         make.height.offset(fheight*ilint+10*(ilint-1));
     }];
     
+    
+    
+}
+
+-(void)getData
+{
+    [MainHomeDataController requestTongZhiGongGGData:self Callback:^(NSError *error, BOOL state, NSString *describle, NSDictionary *value) {
+        
+        self.arrtongzhigonggao = (NSMutableArray *)[value objectForKey:@"rows"];
+        NSMutableArray *arrtitlegg = [NSMutableArray new];
+        for(NSDictionary *dicitem in self.arrtongzhigonggao)
+        {
+            [arrtitlegg addObject:[NSString nullToString:[dicitem objectForKey:@"NISUMMARY"]]];
+        }
+        [_ccpHotPointView setTitleArray:arrtitlegg];
+    }];
 }
 
 #pragma mark - UICollectionView

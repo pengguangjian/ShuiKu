@@ -6,10 +6,10 @@
 //  Copyright © 2020 Mac. All rights reserved.
 //
 
-typedef void(^completeCallback)(NSError *error, BOOL state, NSString *describle);
+typedef void(^completeCallback)(NSError *error, BOOL state, NSString *describle,id value);
 static UIEdgeInsets kPaddingNav = {64,0,0,0};
 ///api
-#define URL_HR @"https://a.meidebi.com/new.php/"
+#define URL_HR @"http://222.180.173.75:7118/"
 
 ///高德AppKey
 #define GaoDeAppKey @"5af0f5ad910917c7d2ab98a8e917992c"

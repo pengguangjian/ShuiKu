@@ -152,15 +152,26 @@ static BOOL kIsRightInit = NO;
         [GMDCircleLoader setOnView:showView withTitle:nil animated:YES];
     }
     _manager.requestSerializer.timeoutInterval=40.0;
-    NSMutableDictionary *dic=[NSMutableDictionary dictionaryWithDictionary:parameters];
-    [dic setObject:@"1" forKey:@"devicetype"];
-    [dic setObject:[NSString nullToString:[[MDB_ShareExstensionUserDefault defaultInstance] applicationVersion]] forKey:@"version"];
     
+    NSArray *arrallkey = [parameters allKeys];
+    NSString *strurlkey = @"";
+    for(NSString *strtemp in arrallkey)
+    {
+        if(strtemp.length == 0)
+        {
+            strurlkey = [NSString stringWithFormat:@"%@=%@",strtemp,[parameters objectForKey:strtemp]];
+        }
+        else
+        {
+            strurlkey = [NSString stringWithFormat:@"%@&%@=%@",strurlkey,strtemp,[parameters objectForKey:strtemp]];
+        }
+    }
     
-    [dic setObject:[[HTTPManager shardInstance] iphoneType] forKey:@"devicename"];
+//    NSMutableDictionary *dic=[NSMutableDictionary dictionaryWithDictionary:parameters];
+
+    url = [NSString stringWithFormat:@"%@%@",url,strurlkey];
     
-    NSDictionary *dicsss=[NSDictionary dictionaryWithDictionary:dic];
-    NSURLSessionTask * op = [_manager POST:url parameters:dicsss headers:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+    NSURLSessionTask * op = [_manager POST:url parameters:nil headers:nil progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [GMDCircleLoader hideFromView:showView animated:YES];
@@ -168,8 +179,9 @@ static BOOL kIsRightInit = NO;
             responseObject = [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
             NSDictionary *dicAll;
             NSString *str=[[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSLog(@"%@",str);
             dicAll=[str JSONValue];
-            if ([[dicAll objectForKey:@"status"]intValue] == -1) {
+            if ([[dicAll objectForKey:@"errcode"]intValue] == -1) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"kNetworkWairningOnload" object:nil];
             }else{
                 complete(task,responseObject,nil);
@@ -181,31 +193,6 @@ static BOOL kIsRightInit = NO;
             complete(task,nil,error);
         }
     }];
-//    NSURLSessionTask * op = [_manager POST:url parameters:dicsss success:^(NSURLSessionTask *operation, id responseObject) {
-//        [GMDCircleLoader hideFromView:showView animated:YES];
-//        if (complete && responseObject) {
-//            responseObject = [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
-//            NSDictionary *dicAll;
-//            NSString *str=[[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-//            dicAll=[str JSONValue];
-//            if ([[dicAll objectForKey:@"status"]intValue] == -1) {
-//                [[NSNotificationCenter defaultCenter] postNotificationName:@"kNetworkWairningOnload" object:nil];
-//            }else{
-//                complete(operation,responseObject,nil);
-//            }
-//        }
-//
-//    }
-//    failure:^(NSURLSessionTask *operation, NSError *error) {
-//        [GMDCircleLoader hideFromView:showView animated:YES];
-//        if (complete) {
-//            complete(operation,nil,error);
-//        }
-//    }];
-    
-    
-//    [op setResponseSerializer:[AFCompoundResponseSerializer serializer]];
-//    [op start];
     [op resume];
     return op;
 }

@@ -33,37 +33,37 @@
                                           completeHandle:
 (void(^)(NSURLSessionTask * opration, id responceObjct, NSError * error))complete;
 
-+ (NSURLSessionTask *)sendGETRequestUrlToService:(NSString *)url
-                            withParametersDictionry:(NSDictionary *)parameters
-                                               view:(UIView *)showView
-                                     completeHandle:
-(void(^)(NSURLSessionTask * opration, id responceObjct, NSError * error))complete;
-
-////无默认参数
-+ (NSURLSessionTask *)sendGETRequestNotNomoUrlToService:(NSString *)url
-                         withParametersDictionry:(NSDictionary *)parameters
-                                            view:(UIView *)showView
-                                  completeHandle:
-(void(^)(NSURLSessionTask * opration, id responceObjct, NSError * error))complete;
-
-
-+ (void)sendRequestUrlToService:(NSString *)url
-        withParametersDictionry:(NSDictionary *)parameters
-                       fileDate:(NSData *)data
-                           name:(NSString *)name
-                       filename:(NSString *)filename
-                       mimeType:(NSString *)mimeType
-                 completeHandle:(void (^)(NSURLSessionTask *, id, NSError *))complete;
-
-+ (void)sendRequestUrlToService:(NSString *)url
-        withParametersDictionry:(NSDictionary *)parameters
-                      fileDates:(NSArray *)datas
-                       mimeType:(NSString *)mimeType
-                     showInView:(UIView *)showView
-                 completeHandle:(void (^)(NSURLSessionTask *, id, NSError *))complete;
-
-+ (NSURLSessionTask *)sendHtmlRequestUrlToService:(NSString *)url
-                                        completeHandler:(void(^)(NSURLSessionTask * opration, id responceObjct, NSError * error))complete;
+//+ (NSURLSessionTask *)sendGETRequestUrlToService:(NSString *)url
+//                            withParametersDictionry:(NSDictionary *)parameters
+//                                               view:(UIView *)showView
+//                                     completeHandle:
+//(void(^)(NSURLSessionTask * opration, id responceObjct, NSError * error))complete;
+//
+//////无默认参数
+//+ (NSURLSessionTask *)sendGETRequestNotNomoUrlToService:(NSString *)url
+//                         withParametersDictionry:(NSDictionary *)parameters
+//                                            view:(UIView *)showView
+//                                  completeHandle:
+//(void(^)(NSURLSessionTask * opration, id responceObjct, NSError * error))complete;
+//
+//
+//+ (void)sendRequestUrlToService:(NSString *)url
+//        withParametersDictionry:(NSDictionary *)parameters
+//                       fileDate:(NSData *)data
+//                           name:(NSString *)name
+//                       filename:(NSString *)filename
+//                       mimeType:(NSString *)mimeType
+//                 completeHandle:(void (^)(NSURLSessionTask *, id, NSError *))complete;
+//
+//+ (void)sendRequestUrlToService:(NSString *)url
+//        withParametersDictionry:(NSDictionary *)parameters
+//                      fileDates:(NSArray *)datas
+//                       mimeType:(NSString *)mimeType
+//                     showInView:(UIView *)showView
+//                 completeHandle:(void (^)(NSURLSessionTask *, id, NSError *))complete;
+//
+//+ (NSURLSessionTask *)sendHtmlRequestUrlToService:(NSString *)url
+//                                        completeHandler:(void(^)(NSURLSessionTask * opration, id responceObjct, NSError * error))complete;
 
 
 

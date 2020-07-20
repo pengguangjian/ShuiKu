@@ -10,6 +10,8 @@
 
 #import "TabBarControllerConfig.h"
 
+#import "LoginDataController.h"
+
 @interface LoginView ()
 
 @property (nonatomic , strong) UIButton *btselect;
@@ -104,7 +106,7 @@
             make.height.offset(40);
         }];
         _fieldphone = [self drawitemView:viewphone andplatch:@"手机号码"];
-        
+        [_fieldphone setText:@"admin"];
         
         UIView *viewcode = [[UIView alloc] init];
         [self addSubview:viewcode];
@@ -113,7 +115,8 @@
             make.left.right.height.equalTo(viewphone);
         }];
         _fieldcode =  [self drawitemView:viewcode andplatch:@"密码"];
-        
+        [_fieldcode setText:@"8678"];
+        [_fieldcode setSecureTextEntry:YES];
         
         UIButton *btcode = [[UIButton alloc] init];
         [btcode setTitleColor:MenuColor forState:UIControlStateNormal];
@@ -231,9 +234,37 @@
 
 -(void)loginAction
 {
-    TabBarControllerConfig *vc  = [[TabBarControllerConfig alloc] init];
+    if(self.btselect.tag == 0)
+    {
+        if(self.fieldphone.text.length<1)
+        {
+            [WYTools showNotifyHUDwithtext:@"请输入账号" inView:self];
+            return;
+        }
+        if(self.fieldcode.text.length<1)
+        {
+            [WYTools showNotifyHUDwithtext:@"请输入密码" inView:self];
+            return;
+        }
+        
+        [LoginDataController requestLoginData:self.fieldphone.text password:_fieldcode.text showview:self Callback:^(NSError *error, BOOL state, NSString *describle, NSDictionary *value) {
+            if(state)
+            {
+                [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"userislogin"];
+                [[UserInfoModel sharedUserInfo] setuserinfo:value];
+                
+                TabBarControllerConfig *vc  = [[TabBarControllerConfig alloc] init];
+                [self.viewController.view.window setRootViewController:vc.tabBarController];
+            }
+            else
+            {
+                [WYTools showNotifyHUDwithtext:describle inView:self];
+            }
+        }];
+    }
     
-    [self.viewController.view.window setRootViewController:vc.tabBarController];
+    
+    
     
 }
 

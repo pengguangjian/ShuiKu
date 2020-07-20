@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XiaoXiGongGaoTableViewController : UITableViewController
+///
+@property (nonatomic , strong) NSString *newtype;
+
+-(void)getData;
 
 @end
 

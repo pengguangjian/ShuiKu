@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XiaoXiGongGaoTableViewCell : UITableViewCell
 
+@property (nonatomic , strong) NSDictionary *dicvalue;
+
 @end
 
 NS_ASSUME_NONNULL_END

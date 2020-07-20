@@ -97,11 +97,11 @@
 {
     [super layoutSubviews];
     
-    [_lbname setText:@"测试"];
+    [_lbname setText:[NSString nullToString:[self.dicvalue objectForKey:@"NITITLE"]]];
     
-    [_lbcontent setText:@"测试内容测试内容测试内容测试内容测试内容"];
+    [_lbcontent setText:[NSString nullToString:[self.dicvalue objectForKey:@"NISUMMARY"]]];
     
-    [_lbtime setText:@"47天前"];
+    [_lbtime setText:[NSString nullToString:[self.dicvalue objectForKey:@"CREATEDTIME"]]];
     
 }
 

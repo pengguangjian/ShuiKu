@@ -23,6 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///获取当前时间字符串
 +(NSString *)dateChangeStringWith:(NSDate *)date andformat:(NSString *)strformat;
 
+///对string进行sha1编码：
++(NSString *)stringWithSha1Encode:(NSString *)strvalue;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

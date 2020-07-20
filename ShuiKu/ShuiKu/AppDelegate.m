@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "PGGTabBarViewControllerConfig.h"
-
+#import "TabBarControllerConfig.h"
 
 @class PGGBaseNavigationController;
 @interface AppDelegate ()
@@ -31,19 +31,35 @@
     } else {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     }
-    
-    ///
-    LoginViewController *config = [[LoginViewController alloc] init];
-    _nav = [[UINavigationController alloc] initWithRootViewController:config];
-    [self.window setRootViewController:_nav];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginOutNotif) name:@"kNetworkWairningOnload" object:nil];///退出登录
     
     
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"userislogin"] intValue] ==1)
+    {
+        TabBarControllerConfig *vc  = [[TabBarControllerConfig alloc] init];
+        [self.window setRootViewController:vc.tabBarController];
+    }
+    else
+    {
+        ///
+        LoginViewController *config = [[LoginViewController alloc] init];
+        _nav = [[UINavigationController alloc] initWithRootViewController:config];
+        [self.window setRootViewController:_nav];
+    }
     
     [[UITabBar appearance] setTranslucent:NO];
     [self.window setBackgroundColor:[UIColor whiteColor]];
     return YES;
 }
 
+-(void)loginOutNotif
+{
+    [[UserInfoModel sharedUserInfo] loginOut];
+    LoginViewController *config = [[LoginViewController alloc] init];
+    _nav = [[UINavigationController alloc] initWithRootViewController:config];
+    [self.window setRootViewController:_nav];
+    
+}
 
 //此方法会在设备横竖屏变化的时候调用
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043A44CD24C5C1EA00063F1B /* LoginDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043A44CC24C5C1EA00063F1B /* LoginDataController.m */; };
+		043A44D024C5C88500063F1B /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043A44CF24C5C88400063F1B /* UserInfoModel.m */; };
+		043A44D424C5CC6C00063F1B /* MainHomeDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043A44D324C5CC6C00063F1B /* MainHomeDataController.m */; };
+		043A44D824C5CF7B00063F1B /* XiaoXiGongGaoDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043A44D724C5CF7B00063F1B /* XiaoXiGongGaoDataController.m */; };
 		0447AE2B24C3C78800E93DBE /* LiuLiangYJChuZhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447AE2A24C3C78800E93DBE /* LiuLiangYJChuZhiViewController.m */; };
 		0447AE2F24C3C7A400E93DBE /* LiuLiangYJChuZhiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447AE2E24C3C7A400E93DBE /* LiuLiangYJChuZhiTableViewCell.m */; };
 		0447AE3324C3C92D00E93DBE /* LiuLiangYJChuZhiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447AE3224C3C92D00E93DBE /* LiuLiangYJChuZhiDetailViewController.m */; };
@@ -216,6 +220,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		043A44CB24C5C1EA00063F1B /* LoginDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginDataController.h; sourceTree = "<group>"; };
+		043A44CC24C5C1EA00063F1B /* LoginDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginDataController.m; sourceTree = "<group>"; };
+		043A44CE24C5C88400063F1B /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
+		043A44CF24C5C88400063F1B /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		043A44D224C5CC6C00063F1B /* MainHomeDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainHomeDataController.h; sourceTree = "<group>"; };
+		043A44D324C5CC6C00063F1B /* MainHomeDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainHomeDataController.m; sourceTree = "<group>"; };
+		043A44D624C5CF7B00063F1B /* XiaoXiGongGaoDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XiaoXiGongGaoDataController.h; sourceTree = "<group>"; };
+		043A44D724C5CF7B00063F1B /* XiaoXiGongGaoDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XiaoXiGongGaoDataController.m; sourceTree = "<group>"; };
 		0447AE2924C3C78800E93DBE /* LiuLiangYJChuZhiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangYJChuZhiViewController.h; sourceTree = "<group>"; };
 		0447AE2A24C3C78800E93DBE /* LiuLiangYJChuZhiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuLiangYJChuZhiViewController.m; sourceTree = "<group>"; };
 		0447AE2D24C3C7A400E93DBE /* LiuLiangYJChuZhiTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangYJChuZhiTableViewCell.h; sourceTree = "<group>"; };
@@ -644,6 +656,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043A44CA24C5C1CF00063F1B /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				043A44CE24C5C88400063F1B /* UserInfoModel.h */,
+				043A44CF24C5C88400063F1B /* UserInfoModel.m */,
+				043A44CB24C5C1EA00063F1B /* LoginDataController.h */,
+				043A44CC24C5C1EA00063F1B /* LoginDataController.m */,
+			);
+			path = DataController;
+			sourceTree = "<group>";
+		};
+		043A44D124C5CC5B00063F1B /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				043A44D224C5CC6C00063F1B /* MainHomeDataController.h */,
+				043A44D324C5CC6C00063F1B /* MainHomeDataController.m */,
+			);
+			path = DataController;
+			sourceTree = "<group>";
+		};
+		043A44D524C5CF6600063F1B /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				043A44D624C5CF7B00063F1B /* XiaoXiGongGaoDataController.h */,
+				043A44D724C5CF7B00063F1B /* XiaoXiGongGaoDataController.m */,
+			);
+			path = DataController;
+			sourceTree = "<group>";
+		};
 		0447AE2824C3C76700E93DBE /* 预警处置 */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +739,7 @@
 		0447AE3F24C3D3D800E93DBE /* 消息公告 */ = {
 			isa = PBXGroup;
 			children = (
+				043A44D524C5CF6600063F1B /* DataController */,
 				0447AE4624C3D5A500E93DBE /* cell */,
 				0447AE4024C3D40500E93DBE /* XiaoXiGongGaoViewController.h */,
 				0447AE4124C3D40500E93DBE /* XiaoXiGongGaoViewController.m */,
@@ -878,6 +920,7 @@
 		0460499E24B95D9F0079B78B /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
+				043A44CA24C5C1CF00063F1B /* DataController */,
 				046049AD24B96F9F0079B78B /* 配置 */,
 				046049A924B965D50079B78B /* view */,
 				046049A424B964FD0079B78B /* LoginViewController.h */,
@@ -957,6 +1000,7 @@
 		046049B424B9807F0079B78B /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				043A44D124C5CC5B00063F1B /* DataController */,
 				0447AE4E24C3D87A00E93DBE /* 扫码 */,
 				0447AE3F24C3D3D800E93DBE /* 消息公告 */,
 				04FECE9E24C28A44007DC478 /* 知识库 */,
@@ -2324,8 +2368,10 @@
 				04FECE9624C285DF007DC478 /* PHZhiYJTableViewCell.m in Sources */,
 				0493935F24C08D8B006BB5B4 /* ShuiChangXinXiTableViewController.m in Sources */,
 				04FECECE24C2FAAF007DC478 /* ChongSheMiMaViewController.m in Sources */,
+				043A44D824C5CF7B00063F1B /* XiaoXiGongGaoDataController.m in Sources */,
 				04FECF0924C3171E007DC478 /* JianCeYuJinTJListTableViewCell.m in Sources */,
 				046DB9B824BC95DE0086142B /* PHZhiJCViewController.m in Sources */,
+				043A44D424C5CC6C00063F1B /* MainHomeDataController.m in Sources */,
 				04613E4124B89A5E009CD89D /* UIView+Additions.m in Sources */,
 				04613E4324B89A5E009CD89D /* UIView+UIViewExt.m in Sources */,
 				0447AE6524C3ED5900E93DBE /* PGGMovieLineSetView.m in Sources */,
@@ -2373,6 +2419,7 @@
 				04FECE9924C285EA007DC478 /* WenDuYJTableViewCell.m in Sources */,
 				04FECE7924C28477007DC478 /* LiuLiangYJViewController.m in Sources */,
 				049F27E624BB0F0300D06C52 /* CeZhanJianCeTJViewController.m in Sources */,
+				043A44D024C5C88500063F1B /* UserInfoModel.m in Sources */,
 				04613DE424B8964D009CD89D /* ViewController.m in Sources */,
 				04613E5D24B89C37009CD89D /* GMDCircleLoader.m in Sources */,
 				04613E1324B89A3F009CD89D /* UIViewController+VTMagic.m in Sources */,
@@ -2398,6 +2445,7 @@
 				045E416D24BAEDF300FA0B97 /* LiuLiangJCTJViewController.m in Sources */,
 				04613E4C24B89A5E009CD89D /* WYCamaImageTools.m in Sources */,
 				0493936B24C09152006BB5B4 /* CeZhanXinXiViewTableViewCell.m in Sources */,
+				043A44CD24C5C1EA00063F1B /* LoginDataController.m in Sources */,
 				04FECEF924C314EE007DC478 /* PHZhiTJListTableViewCell.m in Sources */,
 				045E40F124BAB06F00FA0B97 /* GaoDeMapView.m in Sources */,
 				046DB9CA24BC97170086142B /* YuLvJCTableViewCell.m in Sources */,
