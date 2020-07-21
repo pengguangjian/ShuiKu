@@ -114,4 +114,25 @@
     return output;
 }
 
++(id)initDicValue:(NSDictionary *)value andclassname:(NSString *)classname
+{
+    id model = [NSClassFromString(classname) new];
+    [model mj_setKeyValues:value];
+    
+    return model;
+}
+///数组形数据
++(NSMutableArray *)initArrValue:(NSArray *)value andclassname:(NSString *)classname
+{
+    NSMutableArray *arrtemp = [NSMutableArray new];
+    for(NSDictionary *dic in value)
+    {
+        id model = [NSClassFromString(classname) new];
+        [model mj_setKeyValues:dic];
+        [arrtemp addObject:model];
+    }
+    
+    return arrtemp;
+}
+
 @end

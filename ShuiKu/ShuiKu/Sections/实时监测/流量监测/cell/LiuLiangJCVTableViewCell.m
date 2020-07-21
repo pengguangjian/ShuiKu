@@ -81,9 +81,27 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(LiuLiangJCListRowModel *)model
 {
-    [_lbname setText:@"标题标题标题标题标题标题"];
+    
+    [_lbname setText:model.NAME];
+    UILabel *lb0 = self.arrallLB[0];
+    if([model.STATUS intValue] == 1)
+    {/// 0：离线；1:在线
+        [lb0 setText:@"在线"];
+    }
+    else
+    {
+        [lb0 setText:@"离线"];
+    }
+    
+    NSArray *arrvalue = @[model.Q0,model.W0,model.Q1,model.W1,model.TM];
+    for(int i = 1; i < self.arrallLB.count; i++)
+    {
+        UILabel *lb = self.arrallLB[i];
+        [lb setText:[NSString stringWithFormat:@"%@",arrvalue[i-1]]];
+    }
+    
 }
 
 

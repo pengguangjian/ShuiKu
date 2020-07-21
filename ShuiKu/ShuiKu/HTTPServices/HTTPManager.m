@@ -170,6 +170,7 @@ static BOOL kIsRightInit = NO;
 //    NSMutableDictionary *dic=[NSMutableDictionary dictionaryWithDictionary:parameters];
 
     url = [NSString stringWithFormat:@"%@%@",url,strurlkey];
+    NSLog(@"url=%@",url);
     
     NSURLSessionTask * op = [_manager POST:url parameters:nil headers:nil progress:^(NSProgress * _Nonnull uploadProgress) {
         

@@ -26,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///对string进行sha1编码：
 +(NSString *)stringWithSha1Encode:(NSString *)strvalue;
 
+///model
++(id)initDicValue:(NSDictionary *)value andclassname:(NSString *)classname;
+///数组形数据model
++(NSMutableArray *)initArrValue:(NSArray *)value andclassname:(NSString *)classname;
 
 @end
 

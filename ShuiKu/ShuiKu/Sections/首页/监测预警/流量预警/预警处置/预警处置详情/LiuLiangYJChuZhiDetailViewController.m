@@ -10,6 +10,7 @@
 #import "LiuLiangYJChuZhiDetailViewController.h"
 #import "LiuLiangYJChuZhiDetailTableViewCell.h"
 #import "LiuLiangYJChuZhiDetailCZViewController.h"
+
 @interface LiuLiangYJChuZhiDetailViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
@@ -112,7 +113,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LiuLiangYJChuZhiDetailViewController *vc = [[LiuLiangYJChuZhiDetailViewController alloc] init];
+    LiuLiangYJChuZhiDetailCZViewController *vc = [[LiuLiangYJChuZhiDetailCZViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
