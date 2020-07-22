@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LiuLiangJCXiangQingModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LiuLiangShuiChangJCDetailTableViewCell : UITableViewCell
-@property (nonatomic , strong) NSString *strvalue;
+@property (nonatomic , strong) LiuLiangJCXiangQingModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

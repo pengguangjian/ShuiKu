@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , strong) NSString *strtitle;
 
+@property (nonatomic , strong) NSString *stcd;
+
 @end
 
 NS_ASSUME_NONNULL_END

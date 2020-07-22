@@ -161,9 +161,18 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(LiuLiangJCXiangQingModel *)model
 {
-    [_lbtime setText:@"2020-07-18 21:16:00"];
+    [_lbtime setText:model.TM];
+    NSArray *arrvalue = @[model.Q0,model.W0,model.Q1,model.W1];
+    for(int i = 0; i < self.arrallLB.count; i++)
+    {
+        UILabel *lb = self.arrallLB[i];
+        [lb setText:[NSString stringWithFormat:@"%@",arrvalue[i]]];
+    }
+    
+    
+    
 }
 
 

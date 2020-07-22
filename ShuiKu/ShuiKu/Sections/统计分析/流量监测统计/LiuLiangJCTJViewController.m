@@ -9,10 +9,12 @@
 #import "LiuLiangJCTJViewController.h"
 #import "ZheXianTuItemView.h"
 #import "LiuLiangTongJiListViewController.h"
+#import "TongJiFenXiDataController.h"
+#import "LiuLiangFenXiModel.h"
 @interface LiuLiangJCTJViewController ()<AlterListViewDelegate,AddressListAlterViewDelegate>
 
 @property (nonatomic , strong) UIButton *btselecttopitem;
-
+@property (nonatomic , strong) ZheXianTuItemView *zview;
 @end
 
 @implementation LiuLiangJCTJViewController
@@ -22,6 +24,9 @@
     
     
     [self drawUI];
+    
+    [self getdata];
+    
 }
 
 -(void)drawUI
@@ -46,7 +51,8 @@
     view.strXValue = @"时间";
     view.strtitle = @"日统计 所有水厂";
     view.strtitle1 = @"瞬时流量统计";
-    
+    view.arrXArr = (NSMutableArray *)@[@"1日",@"2日",@"3日",@"4日"];
+    self.zview = view;
     
 }
 
@@ -133,6 +139,43 @@
 -(void)backAddressListAlterViewArr:(NSMutableArray *)arrvalue
 {
     [_btselecttopitem setTitle:arrvalue.lastObject forState:UIControlStateNormal];
+}
+
+-(void)getdata
+{
+    [TongJiFenXiDataController requestLiuLiangFenXiData:self.view date:@"2020-07" type:0 Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            NSMutableArray *arrlinedata = [NSMutableArray new];
+            NSMutableArray *arrtemp0 = [NSMutableArray new];
+            NSMutableArray *arrtemp1 = [NSMutableArray new];
+            
+            NSMutableArray *arrxArr = [NSMutableArray new];
+            int i = 0;
+            for(LiuLiangFenXiModel *model in value)
+            {
+                if(i==0 || i==value.count/2 || i==value.count-1)
+                {
+                    [arrxArr addObject:model.s_time];
+                }
+                else
+                {
+                    [arrxArr addObject:@""];
+                }
+                [arrtemp0 addObject:[NSString nullToString:model.max_Q]];
+                [arrtemp1 addObject:[NSString nullToString:model.min_Q]];
+                i++;
+            }
+            [arrlinedata addObject:arrtemp0];
+            [arrlinedata addObject:arrtemp1];
+            
+            NSMutableArray *arrlinecolor = [[NSMutableArray alloc] initWithObjects:[UIColor redColor],[UIColor blueColor], nil];
+            self.zview.arrXArr = arrxArr;
+            self.zview.arrLineData = arrlinedata;
+            self.zview.arrLineColor = arrlinecolor;
+            [self.zview addLine];
+        }
+    }];
 }
 
 @end

@@ -80,7 +80,7 @@
     ///圆点填充色
     data.inflexionPointFillColor = [UIColor clearColor];
     
-    data.inflexionPointWidth = 5;
+    data.inflexionPointWidth = 1;
     ///是否是虚线
     data.showDash = NO;
     
@@ -101,6 +101,12 @@
     };
     
     return data;
+    
+}
+///更新横坐标值
+-(void)uploadxArr:(NSArray *)xArr
+{
+    _arrxArr = xArr;
     
 }
 

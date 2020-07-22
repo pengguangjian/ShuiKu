@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///先绘制线然后才调用该方法 展示 arrdatas[<GBLineChartData>];
 -(void)showValue:(NSArray *)arrdatas;
 
+///更新横坐标值
+-(void)uploadxArr:(NSArray *)xArr;
+
 @end
 
 NS_ASSUME_NONNULL_END

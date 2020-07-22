@@ -157,7 +157,7 @@ static BOOL kIsRightInit = NO;
     NSString *strurlkey = @"";
     for(NSString *strtemp in arrallkey)
     {
-        if(strtemp.length == 0)
+        if(strurlkey.length == 0)
         {
             strurlkey = [NSString stringWithFormat:@"%@=%@",strtemp,[parameters objectForKey:strtemp]];
         }

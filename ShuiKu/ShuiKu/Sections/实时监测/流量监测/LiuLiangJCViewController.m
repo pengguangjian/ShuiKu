@@ -150,8 +150,10 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    LiuLiangJCListRowModel *model = self.arrData[indexPath.row];
     LiuLiangJCDetailViewController *vc = [[LiuLiangJCDetailViewController alloc] init];
     vc.strtitle = @"许明寺水厂";
+    vc.stcd = model.STCD;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

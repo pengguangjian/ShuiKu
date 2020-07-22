@@ -114,6 +114,9 @@
 		04613E5524B89BD5009CD89D /* MDB_ShareExstensionUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 04613E5424B89BD5009CD89D /* MDB_ShareExstensionUserDefault.m */; };
 		04613E5924B89C10009CD89D /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04613E5824B89C10009CD89D /* BDKNotifyHUD.m */; };
 		04613E5D24B89C37009CD89D /* GMDCircleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04613E5C24B89C37009CD89D /* GMDCircleLoader.m */; };
+		04665AA924C860E500C496BE /* LiuLiangJCXiangQingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04665AA824C860E500C496BE /* LiuLiangJCXiangQingModel.m */; };
+		04665AAE24C8759100C496BE /* TongJiFenXiDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04665AAD24C8759100C496BE /* TongJiFenXiDataController.m */; };
+		04665AB124C8769300C496BE /* LiuLiangFenXiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04665AB024C8769300C496BE /* LiuLiangFenXiModel.m */; };
 		046DB9AA24BC95470086142B /* LiuLiangJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9A924BC95470086142B /* LiuLiangJCViewController.m */; };
 		046DB9AE24BC95820086142B /* YuLvJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9AD24BC95820086142B /* YuLvJCViewController.m */; };
 		046DB9B224BC95A10086142B /* WenDuJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9B124BC95A10086142B /* WenDuJCViewController.m */; };
@@ -438,6 +441,12 @@
 		04613E5824B89C10009CD89D /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKNotifyHUD.m; sourceTree = "<group>"; };
 		04613E5B24B89C37009CD89D /* GMDCircleLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDCircleLoader.h; sourceTree = "<group>"; };
 		04613E5C24B89C37009CD89D /* GMDCircleLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDCircleLoader.m; sourceTree = "<group>"; };
+		04665AA724C860E500C496BE /* LiuLiangJCXiangQingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangJCXiangQingModel.h; sourceTree = "<group>"; };
+		04665AA824C860E500C496BE /* LiuLiangJCXiangQingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuLiangJCXiangQingModel.m; sourceTree = "<group>"; };
+		04665AAC24C8759100C496BE /* TongJiFenXiDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TongJiFenXiDataController.h; sourceTree = "<group>"; };
+		04665AAD24C8759100C496BE /* TongJiFenXiDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TongJiFenXiDataController.m; sourceTree = "<group>"; };
+		04665AAF24C8769300C496BE /* LiuLiangFenXiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangFenXiModel.h; sourceTree = "<group>"; };
+		04665AB024C8769300C496BE /* LiuLiangFenXiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuLiangFenXiModel.m; sourceTree = "<group>"; };
 		046DB9A824BC95470086142B /* LiuLiangJCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangJCViewController.h; sourceTree = "<group>"; };
 		046DB9A924BC95470086142B /* LiuLiangJCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuLiangJCViewController.m; sourceTree = "<group>"; };
 		046DB9AC24BC95820086142B /* YuLvJCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YuLvJCViewController.h; sourceTree = "<group>"; };
@@ -972,6 +981,8 @@
 		046049B224B9806E0079B78B /* 统计分析 */ = {
 			isa = PBXGroup;
 			children = (
+				04665AAB24C8757D00C496BE /* Model */,
+				04665AAA24C8757100C496BE /* DataController */,
 				046DB9DD24BC9DBD0086142B /* 用户统计 */,
 				046DB9DC24BC9DB60086142B /* 用水收费记录 */,
 				046DB9DB24BC9DAC0086142B /* 监测预警统计 */,
@@ -991,6 +1002,8 @@
 		046049B324B980740079B78B /* 实时监测 */ = {
 			isa = PBXGroup;
 			children = (
+				04D625EB24C720E000B900E8 /* models */,
+				04D625E724C71FF600B900E8 /* DataController */,
 				04FECE9A24C289C7007DC478 /* 视频监测 */,
 				046DB9B524BC95C50086142B /* 综合监测 */,
 				046DB9B424BC95BF0086142B /* 水质监测 */,
@@ -1328,11 +1341,27 @@
 			path = GMDCircleLoader;
 			sourceTree = "<group>";
 		};
+		04665AAA24C8757100C496BE /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				04665AAC24C8759100C496BE /* TongJiFenXiDataController.h */,
+				04665AAD24C8759100C496BE /* TongJiFenXiDataController.m */,
+			);
+			path = DataController;
+			sourceTree = "<group>";
+		};
+		04665AAB24C8757D00C496BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04665AAF24C8769300C496BE /* LiuLiangFenXiModel.h */,
+				04665AB024C8769300C496BE /* LiuLiangFenXiModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		046DB9A724BC94A60086142B /* 流量监测 */ = {
 			isa = PBXGroup;
 			children = (
-				04D625EB24C720E000B900E8 /* models */,
-				04D625E724C71FF600B900E8 /* DataController */,
 				04FECEBA24C2EAA1007DC478 /* 水厂流量详情 */,
 				046DB9BF24BC96B10086142B /* cell */,
 				046DB9A824BC95470086142B /* LiuLiangJCViewController.h */,
@@ -1712,6 +1741,8 @@
 			children = (
 				04D625EF24C7284C00B900E8 /* LiuLiangJCListModel.h */,
 				04D625F024C7284C00B900E8 /* LiuLiangJCListModel.m */,
+				04665AA724C860E500C496BE /* LiuLiangJCXiangQingModel.h */,
+				04665AA824C860E500C496BE /* LiuLiangJCXiangQingModel.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -2446,12 +2477,14 @@
 				046049F324B9B8560079B78B /* ZiDingYiPeiZhiHeaderView.m in Sources */,
 				046049E724B99ABC0079B78B /* RiLiZhouCollectionViewCell.m in Sources */,
 				046049B724B980940079B78B /* MainHomeViewController.m in Sources */,
+				04665AA924C860E500C496BE /* LiuLiangJCXiangQingModel.m in Sources */,
 				04613E4724B89A5E009CD89D /* UITabBar+badge.m in Sources */,
 				04613E0D24B89A3F009CD89D /* VTMagicController.m in Sources */,
 				04613E1224B89A3F009CD89D /* VTMagicView.m in Sources */,
 				04613E4224B89A5E009CD89D /* UIButton+HQCustomIcon.m in Sources */,
 				04FECEDD24C310E5007DC478 /* CeZhanJianCeTongJiListViewController.m in Sources */,
 				04B47CFE24BDEB7400CAAECF /* WenDuTJSonViewController.m in Sources */,
+				04665AB124C8769300C496BE /* LiuLiangFenXiModel.m in Sources */,
 				04B47D0924BDED8000CAAECF /* ZhuoDuTJSonView.m in Sources */,
 				04FECEB124C2E381007DC478 /* ShiPinShowViewController.m in Sources */,
 				04FECEA924C2E27E007DC478 /* ShiPinShuiChangJCViewController.m in Sources */,
@@ -2592,6 +2625,7 @@
 				046DB9D024BC972E0086142B /* PHZhiJCTableViewCell.m in Sources */,
 				04613E4524B89A5E009CD89D /* UIImage+ExtensionScal.m in Sources */,
 				04FECE8524C284AA007DC478 /* WenDuYJViewController.m in Sources */,
+				04665AAE24C8759100C496BE /* TongJiFenXiDataController.m in Sources */,
 				0493935B24C08ACA006BB5B4 /* ZhiBanXinXiViewController.m in Sources */,
 				04613E1024B89A3F009CD89D /* UIScrollView+VTMagic.m in Sources */,
 				046049FA24B9BCEF0079B78B /* ZiDingYiPeiZhiModel.m in Sources */,

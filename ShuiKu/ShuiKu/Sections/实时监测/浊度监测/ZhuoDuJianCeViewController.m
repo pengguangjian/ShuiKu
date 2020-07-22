@@ -9,10 +9,17 @@
 #import "ZhuoDuJianCeViewController.h"
 #import "ZhuoDuJianCeTableViewCell.h"
 #import "ZhuoDuJianCeDetailViewController.h"
+#import "LiuLiangJCDataController.h"
 
 @interface ZhuoDuJianCeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
-
+{
+    int ipage;
+}
 @property (nonatomic , strong) UITableView *tabview;
+
+@property (nonatomic , strong) NSMutableArray *arrData;
+
+@property (nonatomic , strong) UITextField *fieldSearch;
 
 @end
 
@@ -22,8 +29,11 @@
     [super viewDidLoad];
     self.title = @"浊度监测";
     
+    self.arrData = [NSMutableArray new];
+    ipage = 1;
     
     [self drawUI];
+    [self getdata];
 }
 
 -(void)drawUI
@@ -68,7 +78,7 @@
     [fieldSearch setReturnKeyType:UIReturnKeySearch];
     [fieldSearch setDelegate:self];
     [viewsearch addSubview:fieldSearch];
-    
+    _fieldSearch = fieldSearch;
     
     UIButton *btsearch = [[UIButton alloc] initWithFrame:CGRectMake(viewsearch.width-viewsearch.height, 0, viewsearch.height, viewsearch.height)];
     [btsearch setImage:[UIImage imageNamed:@"ic_query_blue"] forState:UIControlStateNormal];
@@ -92,13 +102,31 @@
     {
         //搜索
         [textField resignFirstResponder];
-        
+        [self getdata];
         return NO;
     }
     return YES;
 }
 
-#pragma mark -
+-(void)getdata
+{
+    
+    [LiuLiangJCDataController requestLiuLiangJianCheListData:self.view key:_fieldSearch.text pageNumber:ipage Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
+        if(state)
+        {
+            if(self->ipage == 1)
+            {
+                [self.arrData removeAllObjects];
+            }
+//            [self.arrData addObjectsFromArray:value.rows];
+        }
+        
+        [self.tabview reloadData];
+    }];
+}
+
+
+#pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 10;

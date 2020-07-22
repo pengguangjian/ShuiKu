@@ -217,7 +217,12 @@
                 label.text = [NSString stringWithFormat:chartData.pointLabelFormat, chartData.dataGetter(item).y];
                 CGPoint position = value.CGPointValue;
                 CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName : label.font}];
-                label.frame = CGRectMake(position.x - size.width/2, position.y - size.height-chartData.inflexionPointWidth, size.width, size.height);
+//                label.frame = CGRectMake(position.x - size.width/2, position.y - size.height-chartData.inflexionPointWidth, size.width, size.height);
+                if(position.x>0)
+                {
+                    label.frame = CGRectMake(position.x- size.width/2, position.y - size.height-chartData.inflexionPointWidth, size.width, size.height);
+                }
+                
                 [self addSubview:label];
                 [pointLabelArray addObject:label];
                 

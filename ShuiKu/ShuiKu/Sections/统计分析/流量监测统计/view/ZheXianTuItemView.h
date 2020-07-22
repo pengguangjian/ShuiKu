@@ -22,6 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 ///PH值统计
 @property (nonatomic , strong) NSString *strtitle1;
 
+@property (nonatomic , strong) NSMutableArray *arrXArr;
+///线的数据
+@property (nonatomic , strong) NSMutableArray *arrLineData;
+@property (nonatomic , strong) NSMutableArray *arrLineColor;
+-(void)addLine;
+
 @end
 
 NS_ASSUME_NONNULL_END

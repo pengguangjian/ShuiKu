@@ -29,11 +29,9 @@ http://222.180.173.75:7118/ccbt_zhgs/api/flow/GetEchartsData?sTime=2020-06-15&eT
  */
 + (void)requestLiuLiangJianCheXiangQingData:(UIView *)view
                                 sTime:(NSString *)sTime
-                                eTime:(int)eTime
+                                eTime:(NSString *)eTime
                                 stcd:(NSString *)stcd
                        Callback:(completeCallback)callback;
-
-
 
 
 @end

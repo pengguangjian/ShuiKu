@@ -16,7 +16,7 @@
 @property (nonatomic , strong) UILabel *lbY;
 
 @property (nonatomic , strong) UILabel *lbX;
-
+@property (nonatomic , strong) NSMutableArray *arrallline;
 @end
 
 @implementation ZheXianTuItemView
@@ -25,17 +25,11 @@
 {
     if(self = [super initWithFrame:frame])
     {
-        LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) andXArr:@[@"1日",@"2日",@"3日",@"4日"]];
+        LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) andXArr:self.arrXArr];
         [view setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:view];
         _xianview  = view;
         
-        NSMutableArray *arrallline = [NSMutableArray new];
-        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor greenColor]]];
-        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor brownColor]]];
-        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor blueColor]]];
-
-        [view showValue:arrallline];
         
         
         UIView *viewtop = [[UIView alloc] init];
@@ -85,6 +79,19 @@
         
     }
     return self;
+}
+
+-(void)addLine;
+{
+    NSMutableArray *arrallline = [NSMutableArray new];
+    int i = 0;
+    for(NSMutableArray *arritem in self.arrLineData)
+    {
+        [arrallline addObject:[_xianview addLine:arritem andlinecolor:self.arrLineColor[i]]];
+        i++;
+    }
+    _arrallline = arrallline;
+    [_xianview showValue:arrallline];
 }
 
 -(void)setStrYValue:(NSString *)strYValue
@@ -166,16 +173,11 @@
     [self.viewController.view.window addSubview:viewback];
     _viewquanping = viewback;
     
-    LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60) andXArr:@[@"1日",@"2日",@"3日",@"4日"]];
+    LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60) andXArr:self.arrXArr];
     [view setBackgroundColor:[UIColor whiteColor]];
     [viewback addSubview:view];
     
-    NSMutableArray *arrallline = [NSMutableArray new];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor greenColor]]];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor brownColor]]];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor blueColor]]];
-
-    [view showValue:arrallline];
+    [view showValue:_arrallline];
     
     
     UIView *viewtop = [[UIView alloc] init];

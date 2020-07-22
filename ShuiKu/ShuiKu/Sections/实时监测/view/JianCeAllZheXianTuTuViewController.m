@@ -11,6 +11,9 @@
 #import "LineZuoBiaoView.h"
 
 #import "AppDelegate.h"
+#import "LiuLiangJCDataController.h"
+
+#import "LiuLiangJCXiangQingModel.h"
 
 @interface JianCeAllZheXianTuTuViewController ()<TimeClectAlterViewDelegate>
 @property (nonatomic , strong) UIButton *bttime;
@@ -23,6 +26,10 @@
 
 @property (nonatomic , strong) UILabel *lbX;
 
+@property (nonatomic , strong) NSString *strstarttime;
+@property (nonatomic , strong) NSString *strendtime;
+@property (nonatomic , strong) NSMutableArray *arrdata;
+@property (nonatomic , strong) NSMutableArray *arrallline;
 @end
 
 @implementation JianCeAllZheXianTuTuViewController
@@ -30,7 +37,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.strstarttime = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM-dd"];
+    self.strendtime = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM-dd"];
     
     UIView *viewheader = [[UIView alloc] init];
     [viewheader setBackgroundColor:RGB(245, 245, 245)];
@@ -57,6 +65,8 @@
         make.top.equalTo(viewheader.mas_bottom);
     }];
     [self drawTuView:viewtu];
+    
+    [self getdata];
     
 }
 
@@ -108,6 +118,8 @@
 {
     @try {
         NSArray *arrtime = [strvalue componentsSeparatedByString:@"-"];
+        self.strstarttime = arrtime[0];
+        self.strendtime = arrtime[1];
         NSString *strtemp = [NSString stringWithFormat:@"%@至%@",arrtime[0],arrtime[1]];
         strtemp = [strtemp stringByReplacingOccurrencesOfString:@"." withString:@"-"];
         [_bttime setTitle:strtemp forState:UIControlStateNormal];
@@ -123,7 +135,51 @@
 -(void)searchAction
 {
     
+    [self getdata];
+}
+
+-(void)drawLine
+{
+    NSMutableArray *arrxArr = [NSMutableArray new];
+    NSInteger ifirst = self.arrinfo.count/2;
+    NSMutableArray *arrtemp = [NSMutableArray new];
+    NSMutableArray *arrtemp1 = [NSMutableArray new];
+    NSMutableArray *arrtemp2 = [NSMutableArray new];
+    NSMutableArray *arrtemp3 = [NSMutableArray new];
     
+    
+    
+    int i = 0;
+    for(LiuLiangJCXiangQingModel *model in self.arrdata)
+    {
+        if(i==0 || i==self.arrdata.count/2 || i==self.arrdata.count-1)
+        {
+            [arrxArr addObject:model.TM];
+        }
+        [arrtemp addObject:model.Q0];
+        [arrtemp1 addObject:model.W0];
+        [arrtemp2 addObject:model.Q1];
+        [arrtemp3 addObject:model.W1];
+        i++;
+    }
+    [_xianview uploadxArr:arrxArr];
+    ///添加线的信息
+    NSMutableArray *arrallline = [NSMutableArray new];
+    NSArray *arrvalue = @[arrtemp,arrtemp1,arrtemp2,arrtemp3];
+    for(int i = 0 ; i < arrvalue.count; i++)
+    {
+        if(i<ifirst)
+        {
+            [arrallline addObject:[self.xianview addLine:arrvalue[i] andlinecolor:RGB(254, 106, 55)]];
+        }
+        else
+        {
+            [arrallline addObject:[self.xianview addLine:arrvalue[i] andlinecolor:RGB(35, 78, 152)]];
+        }
+        
+    }
+    self.arrallline = arrallline;
+    [self.xianview showValue:arrallline];
 }
 
 -(void)drawTuView:(UIView *)viewself
@@ -132,15 +188,6 @@
     [view setBackgroundColor:[UIColor whiteColor]];
     [viewself addSubview:view];
     _xianview  = view;
-    
-    ///添加线的信息
-    NSMutableArray *arrallline = [NSMutableArray new];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor greenColor]]];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor brownColor]]];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor blueColor]]];
-
-    [view showValue:arrallline];
-    
     
     UIView *viewtop = [[UIView alloc] init];
     [viewself addSubview:viewtop];
@@ -189,14 +236,6 @@
     [_lbX setText:_strXValue];
 }
 
--(NSMutableArray *)backSuiJiShu
-{
-    NSMutableArray *array = [NSMutableArray array];
-    for (int i = 0; i < 4; i++) {
-        [array addObject:[NSNumber numberWithInteger:arc4random() % 100]];
-    }
-    return array;
-}
 
 -(void)drawtopView:(UIView *)view andarrline:(NSArray *)arrtitle
 {
@@ -256,13 +295,8 @@
     LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60) andXArr:self.arrX];
     [view setBackgroundColor:[UIColor whiteColor]];
     [viewback addSubview:view];
-    
-    NSMutableArray *arrallline = [NSMutableArray new];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor greenColor]]];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor brownColor]]];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor blueColor]]];
 
-    [view showValue:arrallline];
+    [view showValue:self.arrallline];
     
     
     UIView *viewtop = [[UIView alloc] init];
@@ -385,5 +419,17 @@
     
 }
 
+
+-(void)getdata
+{
+    
+    [LiuLiangJCDataController requestLiuLiangJianCheXiangQingData:self.view sTime:self.strstarttime eTime:self.strendtime stcd:self.stcd Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            self.arrdata = value;
+        }
+//        [self drawLine];
+    }];
+}
 
 @end

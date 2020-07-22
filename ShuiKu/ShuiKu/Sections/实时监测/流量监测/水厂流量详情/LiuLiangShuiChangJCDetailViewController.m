@@ -8,19 +8,26 @@
 
 #import "LiuLiangShuiChangJCDetailViewController.h"
 #import "LiuLiangShuiChangJCDetailTableViewCell.h"
+#import "LiuLiangJCDataController.h"
 @interface LiuLiangShuiChangJCDetailViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,TimeClectAlterViewDelegate>
 
 @property (nonatomic , strong) UITableView *tabview;
 @property (nonatomic , strong) UIButton *bttime;
+@property (nonatomic , strong) NSString *strstarttime;
+@property (nonatomic , strong) NSString *strendtime;
+@property (nonatomic , strong) NSMutableArray *arrdata;
+
 @end
 
 @implementation LiuLiangShuiChangJCDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.strstarttime = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM-dd"];
+    self.strendtime = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM-dd"];
     
     [self drawUI];
+    [self getdata];
     
 }
 
@@ -104,6 +111,8 @@
 {
     @try {
         NSArray *arrtime = [strvalue componentsSeparatedByString:@"-"];
+        self.strstarttime = arrtime[0];
+        self.strendtime = arrtime[1];
         NSString *strtemp = [NSString stringWithFormat:@"%@至%@",arrtime[0],arrtime[1]];
         strtemp = [strtemp stringByReplacingOccurrencesOfString:@"." withString:@"-"];
         [_bttime setTitle:strtemp forState:UIControlStateNormal];
@@ -118,8 +127,20 @@
 ///搜索
 -(void)searchAction
 {
+    [self getdata];
     
+}
+
+-(void)getdata
+{
     
+    [LiuLiangJCDataController requestLiuLiangJianCheXiangQingData:self.view sTime:self.strstarttime eTime:self.strendtime stcd:self.stcd Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            self.arrdata = value;
+        }
+        [self.tabview reloadData];
+    }];
 }
 
 #pragma mark - UITableView
@@ -138,7 +159,7 @@
         [cell setBackgroundColor:[UIColor clearColor]];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setStrvalue:@""];
+    cell.model = self.arrdata[indexPath.row];
     
     return cell;
 }
