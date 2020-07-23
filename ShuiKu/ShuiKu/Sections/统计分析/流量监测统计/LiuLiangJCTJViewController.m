@@ -51,7 +51,7 @@
     view.strXValue = @"时间";
     view.strtitle = @"日统计 所有水厂";
     view.strtitle1 = @"瞬时流量统计";
-    view.arrXArr = (NSMutableArray *)@[@"1日",@"2日",@"3日",@"4日"];
+//    view.arrXArr = (NSMutableArray *)@[@"1日",@"2日",@"3日",@"4日"];
     self.zview = view;
     
 }

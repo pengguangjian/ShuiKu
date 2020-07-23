@@ -1,130 +1,194 @@
 //
 //  LineZuoBiaoView.m
-//  zhexiantuDemo
+//  ceshiTu
 //
-//  Created by Mac on 2020/7/12.
+//  Created by Mac on 2020/7/23.
 //  Copyright © 2020 Mac. All rights reserved.
 //
 
 #import "LineZuoBiaoView.h"
 
-@interface LineZuoBiaoView ()
+#import "SymbolsValueFormatter.h"
+#import "DateValueFormatter.h"
+#import "SetValueFormatter.h"
 
-@property (nonatomic , strong) GBLineChart *lineChart;//折线图
+@import Charts;
 
-@property (nonatomic , strong) NSArray *arrxArr;
+@interface LineZuoBiaoView ()<ChartViewDelegate>
+@property (nonatomic,strong) LineChartView * lineView;
+@property (nonatomic,strong) UILabel * markY;
 
 @end
 
-
 @implementation LineZuoBiaoView
-///更新页面大小
--(void)setRefLinView:(CGRect)rect
-{
-    if(_lineChart)
-    {
-        [_lineChart setFrame:rect];
+
+- (UILabel *)markY{
+    if (!_markY) {
+        _markY = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 35, 25)];
+        _markY.font = [UIFont systemFontOfSize:15.0];
+        _markY.textAlignment = NSTextAlignmentCenter;
+        _markY.text =@"";
+        _markY.textColor = [UIColor whiteColor];
+        _markY.backgroundColor = [UIColor grayColor];
     }
+    return _markY;
 }
 
-/// xArr：横坐标
--(id)initWithFrame:(CGRect)frame andXArr:(NSArray *)xArr
+- (LineChartView *)lineViewtem:(CGRect)rect {
+    if (!_lineView) {
+        _lineView = [[LineChartView alloc] initWithFrame:rect];
+        _lineView.delegate = self;//设置代理
+        _lineView.backgroundColor =  [UIColor whiteColor];
+        _lineView.noDataText = @"暂无数据";
+        _lineView.chartDescription.enabled = YES;
+        _lineView.scaleYEnabled = NO;//取消Y轴缩放
+        _lineView.doubleTapToZoomEnabled = NO;//取消双击缩放
+        _lineView.dragEnabled = YES;//启用拖拽图标
+        _lineView.dragDecelerationEnabled = YES;//拖拽后是否有惯性效果
+        _lineView.dragDecelerationFrictionCoef = 0.9;//拖拽后惯性效果的摩擦系数(0~1)，数值越小，惯性越不明显
+        //设置滑动时候标签
+        ChartMarkerView *markerY = [[ChartMarkerView alloc] init];
+        markerY.offset = CGPointMake(-999, -8);
+        markerY.chartView = _lineView;
+        _lineView.marker = markerY;
+        [markerY addSubview:self.markY];
+        
+        _lineView.rightAxis.enabled = NO;//不绘制右边轴
+        ChartYAxis *leftAxis = _lineView.leftAxis;//获取左边Y轴
+        leftAxis.labelCount = 5;//Y轴label数量，数值不一定，如果forceLabelsEnabled等于YES, 则强制绘制制定数量的label, 但是可能不平均
+        leftAxis.forceLabelsEnabled = NO;//不强制绘制指定数量的label
+        // leftAxis.axisMinValue = 0;//设置Y轴的最小值
+        //leftAxis.axisMaxValue = 105;//设置Y轴的最大值
+        leftAxis.inverted = NO;//是否将Y轴进行上下翻转
+        leftAxis.axisLineColor = [UIColor blackColor];//Y轴颜色
+        leftAxis.valueFormatter = [[SymbolsValueFormatter alloc]init];
+        leftAxis.labelPosition = YAxisLabelPositionOutsideChart;//label位置
+        leftAxis.labelTextColor = [UIColor blackColor];//文字颜色
+        leftAxis.labelFont = [UIFont systemFontOfSize:10.0f];//文字字体
+        leftAxis.gridColor = [UIColor grayColor];//网格线颜色
+        leftAxis.gridAntialiasEnabled = NO;//开启抗锯齿
+        
+        ChartXAxis *xAxis = _lineView.xAxis;
+        xAxis.granularityEnabled = YES;//设置重复的值不显示
+        xAxis.labelPosition= XAxisLabelPositionBottom;//设置x轴数据在底部
+        xAxis.gridColor = [UIColor clearColor];
+        xAxis.labelTextColor = [UIColor blackColor];//文字颜色
+        xAxis.axisLineColor = [UIColor blackColor];
+        _lineView.maxVisibleCount = 999;//
+        //描述及图例样式
+        _lineView.legend.enabled = NO;
+        
+        [_lineView animateWithXAxisDuration:1.0f];
+    }
+    return _lineView;
+}
+-(id)initWithFrame:(CGRect)frame
 {
     if(self = [super initWithFrame:frame])
     {
-        _arrxArr = xArr;
+        [self lineViewtem:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        [self addSubview:self.lineView];
         
-        GBLineChart *chart = [[GBLineChart alloc] initWithFrame:frame];///WithFrame:CGRectMake(0, 100, CGRectGetWidth(self.bounds), 220)
-        [self addSubview:chart];
-//        [chart mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.edges.equalTo(self);
-//        }];
-        [chart setPointSelect:^(UILabel *lbselect) {
-            NSLog(@"你点击了某个点");
-        }];
+        ///未设置值
+        _lineView.xAxis.valueFormatter = [[DateValueFormatter alloc]initWithArr:[self arrxnomoData]];
+
+        ///x和y的数量要一样
+        self.lineView.data = [self addline];
         
-        chart.xLabelTitles = xArr;
-        
-        chart.xLabelRotationAngle = M_PI/6;
-        chart.showCoordinateAxis = YES;
-        chart.xLabelAlignmentStyle = GBXLabelAlignmentStyleFitXAxis;
-        
-        chart.showVerticalLine = NO;
-        chart.verticalLineColor = [UIColor cyanColor];
-        chart.verticalLineWidth = 1;
-        chart.verticalLineXValue = 8.8;
-        ///网格是否是虚线
-        chart.showYGridsLineDash = YES;
-        ///是否动画
-        chart.displayAnimated = NO;
-        ///是否圆滑曲线
-        chart.showSmoothLines = NO;
-        _lineChart = chart;
-        
-        
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            self.lineView.data = nil;
+//        });
     }
     return self;
 }
-///添加折现
--(GBLineChartData *)addLine:(NSArray *)array andlinecolor:(UIColor *)color
+
+///x轴默认数据
+-(NSMutableArray *)arrxnomoData
 {
-    GBLineChartData *data = [GBLineChartData new];
-    data.lineAlpha = 0.7;
-    data.lineColor = color;
-    data.lineWidth = 1;
-    data.startIndex = 0;
-    data.itemCount = array.count; //index+1
-    data.lineChartPointStyle = GBLineChartPointStyleCircle;
+    NSInteger xVals_count = 10;//X轴上要显示多少条数据
+    //X轴上面需要显示的数据
+    NSMutableArray *xVals = [[NSMutableArray alloc] init];
     
-    data.inflexionPointStrokeColor = [UIColor redColor];
-    ///圆点填充色
-    data.inflexionPointFillColor = [UIColor clearColor];
+    for (int i = 1; i <= xVals_count; i++) {
+        if (i<30) {
+        [xVals addObject: [NSString stringWithFormat:@"02-%d",i]];
+        }else{
+        [xVals addObject: [NSString stringWithFormat:@"03-%d",i-29]];
+        }
+    }
+    return xVals;
+}
+///y轴默认数据
+-(NSMutableArray *)arrYvalueDemo
+{
+    NSInteger xVals_count = 10;//X轴上要显示多少条数据
+    //对应Y轴上面需要显示的数据
+    NSMutableArray *yVals = [[NSMutableArray alloc] init];
+    for (int i = 0; i < xVals_count; i++) {
+        int a = arc4random() % 100;
+        ChartDataEntry *entry = [[ChartDataEntry alloc] initWithX:i y:a];
+        [yVals addObject:entry];
+    }
+    return yVals;
+}
+
+///
+-(LineChartData *)addline
+{
+    NSMutableArray *arrtemp = [NSMutableArray new];
     
-    data.inflexionPointWidth = 1;
-    ///是否是虚线
-    data.showDash = NO;
+    [arrtemp addObject:[self setLineValue:[self arrYvalueDemo] andlinecolor:[UIColor redColor]]];
+    [arrtemp addObject:[self setLineValue:[self arrYvalueDemo] andlinecolor:[UIColor brownColor]]];
+    [arrtemp addObject:[self setLineValue:[self arrYvalueDemo] andlinecolor:[UIColor yellowColor]]];
+    [arrtemp addObject:[self setLineValue:[self arrYvalueDemo] andlinecolor:[UIColor blueColor]]];
+
     
-    ///渐变
-    data.showGradientArea = YES;
-    data.startGradientColor = [color colorWithAlphaComponent:0.4];
-    data.endGradientColor = [UIColor clearColor];
-    data.lineDashPattern = @[@1,@1];
+    //创建 LineChartData 对象, 此对象就是lineChartView需要最终数据对象
+    LineChartData *data = [[LineChartData alloc]initWithDataSets:arrtemp];
     
-    data.showPointLabel = YES;
-    data.pointLabelFont = [UIFont systemFontOfSize:10];
-    data.pointLabelColor = [UIColor colorWithRed:153/255.0 green:153/255.0  blue:153/255.0  alpha:0.6];;
-    data.pointLabelFormat = @"%0.1f";
-    
-    data.dataGetter = ^GBLineChartDataItem *(NSInteger item) {
-      
-        return [GBLineChartDataItem dataItemWithY:[array[item] floatValue] X:[self->_arrxArr[item] floatValue]];
-    };
-    
+    [data setValueFont:[UIFont systemFontOfSize:10]];//文字字体
+    [data setValueTextColor:[UIColor blackColor]];//文字颜色
     return data;
-    
 }
-///更新横坐标值
--(void)uploadxArr:(NSArray *)xArr
+
+
+-(LineChartDataSet *)setLineValue:(NSMutableArray *)yVals andlinecolor:(UIColor *)color
 {
-    _arrxArr = xArr;
+    LineChartDataSet *set1 = nil;
     
+    //创建LineChartDataSet对象
+    set1 = [[LineChartDataSet alloc]initWithEntries:yVals label:nil];
+    //设置折线的样式
+    set1.lineWidth = 2.0/[UIScreen mainScreen].scale;//折线宽度
+    
+    set1.drawValuesEnabled = YES;//是否在拐点处显示数据
+    set1.valueFormatter = [[SetValueFormatter alloc]initWithArr:yVals];
+    
+    set1.valueColors = @[[UIColor brownColor]];//折线拐点处显示数据的颜色
+    
+    [set1 setColor:color];//折线颜色
+    set1.highlightColor = [UIColor redColor];
+    set1.drawFilledEnabled = NO;//是否开启绘制阶梯样式的折线图
+    //折线拐点样式
+    set1.drawCirclesEnabled = NO;//是否绘制拐点
+    set1.fillAlpha = 0.2;
+    set1.fillColor = color;
+    set1.drawFilledEnabled = YES;//是否填充颜色
+    
+    return set1;
 }
 
-///先绘制线然后才调用该方法 展示 arrdatas[<GBLineChartData>];
--(void)showValue:(NSArray *)arrdatas
-{
-    /////////
-    _lineChart.lineChartDatas = arrdatas;
-    _lineChart.chartMarginLeft = 25;
-
-    _lineChart.yLabelBlockFormatter = ^NSString *(CGFloat value) {
-      
-        
-        return [NSString stringWithFormat:@"%0.0f", value];
-    };
+- (void)chartValueSelected:(ChartViewBase * _Nonnull)chartView entry:(ChartDataEntry * _Nonnull)entry highlight:(ChartHighlight * _Nonnull)highlight {
     
-    [_lineChart strokeChart];
-}
+    _markY.text = [NSString stringWithFormat:@"%ld%%",(NSInteger)entry.y];
+    //将点击的数据滑动到中间
+    [_lineView centerViewToAnimatedWithXValue:entry.x yValue:entry.y axis:[_lineView.data getDataSetByIndex:highlight.dataSetIndex].axisDependency duration:1.0];
 
+    
+}
+- (void)chartValueNothingSelected:(ChartViewBase * _Nonnull)chartView {
+    
+    
+}
 
 @end

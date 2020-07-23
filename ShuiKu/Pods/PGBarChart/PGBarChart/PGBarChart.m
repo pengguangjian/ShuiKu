@@ -299,10 +299,7 @@
         bar.backgroundColor = [UIColor clearColor];
         [bar grade:dataModel.value / maxValue animationType:self.animationType];
         bar.barChartDataModel = dataModel;
-//        bar.barColor = self.barNormalColor;
-        
-        bar.barColor = dataModel.zcolor;
-        
+        bar.barColor = self.barNormalColor;
         [bar setDelegate:self];
         [self addSubview:bar];
         [self.bars setObject:bar forKey:[NSNumber numberWithInteger:currentIndex]];

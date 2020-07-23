@@ -162,29 +162,29 @@
         [arrtemp3 addObject:model.W1];
         i++;
     }
-    [_xianview uploadxArr:arrxArr];
+//    [_xianview uploadxArr:arrxArr];
     ///添加线的信息
-    NSMutableArray *arrallline = [NSMutableArray new];
-    NSArray *arrvalue = @[arrtemp,arrtemp1,arrtemp2,arrtemp3];
-    for(int i = 0 ; i < arrvalue.count; i++)
-    {
-        if(i<ifirst)
-        {
-            [arrallline addObject:[self.xianview addLine:arrvalue[i] andlinecolor:RGB(254, 106, 55)]];
-        }
-        else
-        {
-            [arrallline addObject:[self.xianview addLine:arrvalue[i] andlinecolor:RGB(35, 78, 152)]];
-        }
-        
-    }
-    self.arrallline = arrallline;
-    [self.xianview showValue:arrallline];
+//    NSMutableArray *arrallline = [NSMutableArray new];
+//    NSArray *arrvalue = @[arrtemp,arrtemp1,arrtemp2,arrtemp3];
+//    for(int i = 0 ; i < arrvalue.count; i++)
+//    {
+//        if(i<ifirst)
+//        {
+//            [arrallline addObject:[self.xianview addLine:arrvalue[i] andlinecolor:RGB(254, 106, 55)]];
+//        }
+//        else
+//        {
+//            [arrallline addObject:[self.xianview addLine:arrvalue[i] andlinecolor:RGB(35, 78, 152)]];
+//        }
+//        
+//    }
+//    self.arrallline = arrallline;
+//    [self.xianview showValue:arrallline];
 }
 
 -(void)drawTuView:(UIView *)viewself
 {
-    LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenW, kMainScreenH-kTopHeight-120) andXArr:self.arrX];
+    LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenW, kMainScreenH-kTopHeight-120)];
     [view setBackgroundColor:[UIColor whiteColor]];
     [viewself addSubview:view];
     _xianview  = view;
@@ -292,12 +292,10 @@
     [self.view.window addSubview:viewback];
     _viewquanping = viewback;
     
-    LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60) andXArr:self.arrX];
+    LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60)];
     [view setBackgroundColor:[UIColor whiteColor]];
     [viewback addSubview:view];
 
-    [view showValue:self.arrallline];
-    
     
     UIView *viewtop = [[UIView alloc] init];
     [viewback addSubview:viewtop];

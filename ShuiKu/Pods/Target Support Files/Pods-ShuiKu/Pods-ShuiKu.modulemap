@@ -1,0 +1,6 @@
+module Pods_ShuiKu {
+  umbrella header "Pods-ShuiKu-umbrella.h"
+
+  export *
+  module * { export * }
+}

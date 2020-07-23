@@ -13,9 +13,6 @@
 @property (nonatomic, assign) CGFloat value;
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, copy) NSString *unit;
-///柱状图颜色
 @property (nonatomic, copy) UIColor *zcolor;
-
-
 - (instancetype)initWithLabel:(NSString *)label value:(CGFloat)vaule index:(NSInteger)index unit:(NSString *)unit;
 @end

@@ -25,7 +25,7 @@
 {
     if(self = [super initWithFrame:frame])
     {
-        LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) andXArr:self.arrXArr];
+        LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         [view setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:view];
         _xianview  = view;
@@ -83,15 +83,15 @@
 
 -(void)addLine;
 {
-    NSMutableArray *arrallline = [NSMutableArray new];
-    int i = 0;
-    for(NSMutableArray *arritem in self.arrLineData)
-    {
-        [arrallline addObject:[_xianview addLine:arritem andlinecolor:self.arrLineColor[i]]];
-        i++;
-    }
-    _arrallline = arrallline;
-    [_xianview showValue:arrallline];
+//    NSMutableArray *arrallline = [NSMutableArray new];
+//    int i = 0;
+//    for(NSMutableArray *arritem in self.arrLineData)
+//    {
+//        [arrallline addObject:[_xianview addLine:arritem andlinecolor:self.arrLineColor[i]]];
+//        i++;
+//    }
+//    _arrallline = arrallline;
+//    [_xianview showValue:arrallline];
 }
 
 -(void)setStrYValue:(NSString *)strYValue
@@ -173,11 +173,10 @@
     [self.viewController.view.window addSubview:viewback];
     _viewquanping = viewback;
     
-    LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60) andXArr:self.arrXArr];
+    LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60)];
     [view setBackgroundColor:[UIColor whiteColor]];
     [viewback addSubview:view];
     
-    [view showValue:_arrallline];
     
     
     UIView *viewtop = [[UIView alloc] init];

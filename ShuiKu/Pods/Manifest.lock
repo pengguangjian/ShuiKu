@@ -24,6 +24,9 @@ PODS:
     - AMapFoundation-NO-IDFA (~> 1.5)
   - AMapSearch-NO-IDFA (6.9.0):
     - AMapFoundation-NO-IDFA (~> 1.4)
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
   - CYLTabBarController (1.17.23)
   - IQKeyboardManager (6.5.5)
   - Masonry (1.1.0)
@@ -46,6 +49,7 @@ DEPENDENCIES:
   - AMapLocation-NO-IDFA (~> 2.6.3)
   - AMapNavi-NO-IDFA (~> 7.0.0)
   - AMapSearch-NO-IDFA (~> 6.9.0)
+  - Charts
   - CYLTabBarController (~> 1.17.4)
   - IQKeyboardManager
   - Masonry (~> 1.1.0)
@@ -66,6 +70,7 @@ SPEC REPOS:
     - AMapLocation-NO-IDFA
     - AMapNavi-NO-IDFA
     - AMapSearch-NO-IDFA
+    - Charts
     - CYLTabBarController
     - IQKeyboardManager
     - Masonry
@@ -85,6 +90,7 @@ SPEC CHECKSUMS:
   AMapLocation-NO-IDFA: 681a55b09638a0a5838c7c260f8825a1dbc7d98d
   AMapNavi-NO-IDFA: ca5e12484c6c3284a9e4161c2ff771efcfcf5741
   AMapSearch-NO-IDFA: 264999e6c149383a8f164c2fe49b51513e93d674
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   CYLTabBarController: 73889c1ccc7685221d85ac2dbf188900543f17d0
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -97,6 +103,6 @@ SPEC CHECKSUMS:
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: f1dd31a5e8e41e2f8faa429045cd71e5a75b96b8
+PODFILE CHECKSUM: f0701d0cfef91d7c7c2ba16441b53fcc77988286
 
 COCOAPODS: 1.9.3

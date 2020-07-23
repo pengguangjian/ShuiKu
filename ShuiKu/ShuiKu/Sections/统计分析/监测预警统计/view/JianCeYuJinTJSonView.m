@@ -23,17 +23,17 @@
 {
     if(self = [super initWithFrame:frame])
     {
-        LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) andXArr:@[@"1日",@"2日",@"3日",@"4日"]];
+        LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         [view setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:view];
         _xianview  = view;
         
-        NSMutableArray *arrallline = [NSMutableArray new];
-        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor greenColor]]];
-        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor brownColor]]];
-        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor blueColor]]];
-
-        [view showValue:arrallline];
+//        NSMutableArray *arrallline = [NSMutableArray new];
+//        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor greenColor]]];
+//        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor brownColor]]];
+//        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor blueColor]]];
+//
+//        [view showValue:arrallline];
         
         
         UIView *viewtop = [[UIView alloc] init];
@@ -164,16 +164,16 @@
     [self.viewController.view.window addSubview:viewback];
     _viewquanping = viewback;
     
-    LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60) andXArr:@[@"1日",@"2日",@"3日",@"4日"]];
+    LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60) ];
     [view setBackgroundColor:[UIColor whiteColor]];
     [viewback addSubview:view];
     
-    NSMutableArray *arrallline = [NSMutableArray new];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor greenColor]]];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor brownColor]]];
-    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor blueColor]]];
-
-    [view showValue:arrallline];
+//    NSMutableArray *arrallline = [NSMutableArray new];
+//    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor greenColor]]];
+//    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor brownColor]]];
+//    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor blueColor]]];
+//
+//    [view showValue:arrallline];
     
     
     UIView *viewtop = [[UIView alloc] init];

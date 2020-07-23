@@ -23,5 +23,6 @@ pod 'AMapLocation-NO-IDFA', '~> 2.6.3'
 pod 'AMap3DMap-NO-IDFA', '~> 7.0.0'
 
 pod 'PGBarChart'
+pod 'Charts'
 
 end
