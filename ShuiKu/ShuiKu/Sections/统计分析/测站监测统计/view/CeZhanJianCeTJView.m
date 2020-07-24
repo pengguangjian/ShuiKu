@@ -350,7 +350,7 @@
     
     for (int i = 0; i < 10; i++) {
         int value = 10 + arc4random() % 30;
-        PGBarChartDataModel *dataModel = [[PGBarChartDataModel alloc] initWithLabel:data[i] value:value index:i unit:@"台次"];
+        PGBarChartDataModel *dataModel = [[PGBarChartDataModel alloc] initWithLabel:data[i] value:value index:i unit:@""];
         dataModel.zcolor = RGB(255, arc4random()%255, arc4random()%255);///设置柱状图颜色
         [self.data addObject:dataModel];
     }
@@ -376,7 +376,7 @@
         [barChart addSubview:_box];
     }
     else {
-        _box = [[PGBox alloc] initWithPosition:CGPointMake(eFloatBoxX, eFloatBoxY) value:bar.barChartDataModel.value unit:@"台次" title:nil];
+        _box = [[PGBox alloc] initWithPosition:CGPointMake(eFloatBoxX, eFloatBoxY) value:bar.barChartDataModel.value unit:@"" title:nil];
         _box.alpha = 0.0;
         [barChart addSubview:_box];
     }

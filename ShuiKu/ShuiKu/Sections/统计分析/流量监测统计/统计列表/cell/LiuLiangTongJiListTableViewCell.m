@@ -63,30 +63,13 @@
     return self;
 }
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setArrvalue:(NSArray *)arrvalue
 {
-    UILabel *lb0 = _arrallLB[0];
-    [lb0 setText:@"2020-07-18"];
-    
-    UILabel *lb1 = _arrallLB[1];
-    [lb1 setText:@"7433.0"];
-    
-    UILabel *lb2 = _arrallLB[2];
-    [lb2 setText:@"7433.0"];
-    
-    UILabel *lb3 = _arrallLB[3];
-    [lb3 setText:@"7433.0"];
-    
-    UILabel *lb4 = _arrallLB[4];
-    [lb4 setText:@"7433.0"];
-    
-    UILabel *lb5 = _arrallLB[5];
-    [lb5 setText:@"7433.0"];
-    
-    
-    UILabel *lb6 = _arrallLB[6];
-    [lb6 setText:@"7433.0"];
-    
+    for(int i = 0 ; i < arrvalue.count; i++)
+    {
+        UILabel *lb = _arrallLB[i];
+        [lb setText:arrvalue[i]];
+    }
 }
 
 - (void)awakeFromNib {

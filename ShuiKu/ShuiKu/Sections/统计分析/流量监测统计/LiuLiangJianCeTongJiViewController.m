@@ -97,7 +97,7 @@
     if (!viewController) {
         viewController = [[LiuLiangJCTJViewController alloc] init];
     }
-    
+    viewController.strtype = [menuList[pageIndex] objectForKey:@"type"];
     return viewController;
 }
 

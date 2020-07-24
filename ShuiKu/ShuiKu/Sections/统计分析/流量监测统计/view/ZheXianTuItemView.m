@@ -81,19 +81,6 @@
     return self;
 }
 
--(void)addLine;
-{
-//    NSMutableArray *arrallline = [NSMutableArray new];
-//    int i = 0;
-//    for(NSMutableArray *arritem in self.arrLineData)
-//    {
-//        [arrallline addObject:[_xianview addLine:arritem andlinecolor:self.arrLineColor[i]]];
-//        i++;
-//    }
-//    _arrallline = arrallline;
-//    [_xianview showValue:arrallline];
-}
-
 -(void)setStrYValue:(NSString *)strYValue
 {
     _strYValue = strYValue;
@@ -176,6 +163,7 @@
     LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60)];
     [view setBackgroundColor:[UIColor whiteColor]];
     [viewback addSubview:view];
+    [view setXzhouValue:self.arrtime andKeyValue:self.arrlinedata];
     
     
     

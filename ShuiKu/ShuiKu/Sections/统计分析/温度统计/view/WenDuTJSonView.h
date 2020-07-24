@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *strtitle;
 ///PH值统计
 @property (nonatomic , strong) NSString *strtitle1;
+
+@property (nonatomic , strong) NSMutableArray *arrtime;
+@property (nonatomic , strong) NSMutableArray *arrlinedata;
 @end
 
 NS_ASSUME_NONNULL_END

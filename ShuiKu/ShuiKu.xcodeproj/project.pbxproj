@@ -126,6 +126,13 @@
 		046DB9D024BC972E0086142B /* PHZhiJCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9CF24BC972E0086142B /* PHZhiJCTableViewCell.m */; };
 		046DB9D324BC97390086142B /* ShuiZhiJCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9D224BC97390086142B /* ShuiZhiJCTableViewCell.m */; };
 		046DB9D624BC97440086142B /* ZhongHeJCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB9D524BC97440086142B /* ZhongHeJCTableViewCell.m */; };
+		047C548924CB3F21005CFB51 /* ZhuoDuFenXiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C548824CB3F21005CFB51 /* ZhuoDuFenXiModel.m */; };
+		047C548C24CB43C8005CFB51 /* YuLvFenXiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C548B24CB43C8005CFB51 /* YuLvFenXiModel.m */; };
+		047C548F24CB4827005CFB51 /* PHZhiFenXiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C548E24CB4827005CFB51 /* PHZhiFenXiModel.m */; };
+		047C549224CB4B14005CFB51 /* WenDuFenXiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C549124CB4B14005CFB51 /* WenDuFenXiModel.m */; };
+		047C549524CB4B8D005CFB51 /* YuJingFenXiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C549424CB4B8D005CFB51 /* YuJingFenXiModel.m */; };
+		047C549824CB4C11005CFB51 /* CeDianFenXiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C549724CB4C11005CFB51 /* CeDianFenXiModel.m */; };
+		047C549B24CB584F005CFB51 /* CeZhanJianCeTJViewtwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C549A24CB584F005CFB51 /* CeZhanJianCeTJViewtwo.m */; };
 		0493935B24C08ACA006BB5B4 /* ZhiBanXinXiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0493935A24C08ACA006BB5B4 /* ZhiBanXinXiViewController.m */; };
 		0493935F24C08D8B006BB5B4 /* ShuiChangXinXiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0493935E24C08D8B006BB5B4 /* ShuiChangXinXiTableViewController.m */; };
 		0493936324C08E4D006BB5B4 /* ShuiChangXinXiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0493936224C08E4D006BB5B4 /* ShuiChangXinXiTableViewCell.m */; };
@@ -461,6 +468,20 @@
 		046DB9D224BC97390086142B /* ShuiZhiJCTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShuiZhiJCTableViewCell.m; sourceTree = "<group>"; };
 		046DB9D424BC97440086142B /* ZhongHeJCTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhongHeJCTableViewCell.h; sourceTree = "<group>"; };
 		046DB9D524BC97440086142B /* ZhongHeJCTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhongHeJCTableViewCell.m; sourceTree = "<group>"; };
+		047C548724CB3F21005CFB51 /* ZhuoDuFenXiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhuoDuFenXiModel.h; sourceTree = "<group>"; };
+		047C548824CB3F21005CFB51 /* ZhuoDuFenXiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhuoDuFenXiModel.m; sourceTree = "<group>"; };
+		047C548A24CB43C8005CFB51 /* YuLvFenXiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YuLvFenXiModel.h; sourceTree = "<group>"; };
+		047C548B24CB43C8005CFB51 /* YuLvFenXiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuLvFenXiModel.m; sourceTree = "<group>"; };
+		047C548D24CB4827005CFB51 /* PHZhiFenXiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHZhiFenXiModel.h; sourceTree = "<group>"; };
+		047C548E24CB4827005CFB51 /* PHZhiFenXiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHZhiFenXiModel.m; sourceTree = "<group>"; };
+		047C549024CB4B14005CFB51 /* WenDuFenXiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WenDuFenXiModel.h; sourceTree = "<group>"; };
+		047C549124CB4B14005CFB51 /* WenDuFenXiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WenDuFenXiModel.m; sourceTree = "<group>"; };
+		047C549324CB4B8D005CFB51 /* YuJingFenXiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YuJingFenXiModel.h; sourceTree = "<group>"; };
+		047C549424CB4B8D005CFB51 /* YuJingFenXiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuJingFenXiModel.m; sourceTree = "<group>"; };
+		047C549624CB4C11005CFB51 /* CeDianFenXiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CeDianFenXiModel.h; sourceTree = "<group>"; };
+		047C549724CB4C11005CFB51 /* CeDianFenXiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CeDianFenXiModel.m; sourceTree = "<group>"; };
+		047C549924CB584F005CFB51 /* CeZhanJianCeTJViewtwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CeZhanJianCeTJViewtwo.h; sourceTree = "<group>"; };
+		047C549A24CB584F005CFB51 /* CeZhanJianCeTJViewtwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CeZhanJianCeTJViewtwo.m; sourceTree = "<group>"; };
 		0493935924C08ACA006BB5B4 /* ZhiBanXinXiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhiBanXinXiViewController.h; sourceTree = "<group>"; };
 		0493935A24C08ACA006BB5B4 /* ZhiBanXinXiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhiBanXinXiViewController.m; sourceTree = "<group>"; };
 		0493935D24C08D8B006BB5B4 /* ShuiChangXinXiTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShuiChangXinXiTableViewController.h; sourceTree = "<group>"; };
@@ -667,12 +688,12 @@
 		041CDF9324C9BA5900C3E4DC /* vc */ = {
 			isa = PBXGroup;
 			children = (
-				041CDF9424C9BA5900C3E4DC /* SetValueFormatter.m */,
-				041CDF9524C9BA5900C3E4DC /* DateValueFormatter.m */,
-				041CDF9624C9BA5900C3E4DC /* SymbolsValueFormatter.h */,
-				041CDF9724C9BA5900C3E4DC /* SetValueFormatter.h */,
-				041CDF9824C9BA5900C3E4DC /* SymbolsValueFormatter.m */,
 				041CDF9924C9BA5900C3E4DC /* DateValueFormatter.h */,
+				041CDF9524C9BA5900C3E4DC /* DateValueFormatter.m */,
+				041CDF9724C9BA5900C3E4DC /* SetValueFormatter.h */,
+				041CDF9424C9BA5900C3E4DC /* SetValueFormatter.m */,
+				041CDF9624C9BA5900C3E4DC /* SymbolsValueFormatter.h */,
+				041CDF9824C9BA5900C3E4DC /* SymbolsValueFormatter.m */,
 			);
 			name = vc;
 			path = ../../../../../../../ceshiTu/ceshiTu/vc;
@@ -1339,6 +1360,18 @@
 			children = (
 				04665AAF24C8769300C496BE /* LiuLiangFenXiModel.h */,
 				04665AB024C8769300C496BE /* LiuLiangFenXiModel.m */,
+				047C548724CB3F21005CFB51 /* ZhuoDuFenXiModel.h */,
+				047C548824CB3F21005CFB51 /* ZhuoDuFenXiModel.m */,
+				047C548A24CB43C8005CFB51 /* YuLvFenXiModel.h */,
+				047C548B24CB43C8005CFB51 /* YuLvFenXiModel.m */,
+				047C548D24CB4827005CFB51 /* PHZhiFenXiModel.h */,
+				047C548E24CB4827005CFB51 /* PHZhiFenXiModel.m */,
+				047C549024CB4B14005CFB51 /* WenDuFenXiModel.h */,
+				047C549124CB4B14005CFB51 /* WenDuFenXiModel.m */,
+				047C549324CB4B8D005CFB51 /* YuJingFenXiModel.h */,
+				047C549424CB4B8D005CFB51 /* YuJingFenXiModel.m */,
+				047C549624CB4C11005CFB51 /* CeDianFenXiModel.h */,
+				047C549724CB4C11005CFB51 /* CeDianFenXiModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1633,6 +1666,8 @@
 			children = (
 				049F27E824BB0F8300D06C52 /* CeZhanJianCeTJView.h */,
 				049F27E924BB0F8300D06C52 /* CeZhanJianCeTJView.m */,
+				047C549924CB584F005CFB51 /* CeZhanJianCeTJViewtwo.h */,
+				047C549A24CB584F005CFB51 /* CeZhanJianCeTJViewtwo.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2420,10 +2455,12 @@
 				049F27EA24BB0F8300D06C52 /* CeZhanJianCeTJView.m in Sources */,
 				04FECF2024C32DE4007DC478 /* YuLvJCDetailDetailTableViewCell.m in Sources */,
 				04FECEF124C313CA007DC478 /* YuLvTJListViewController.m in Sources */,
+				047C549224CB4B14005CFB51 /* WenDuFenXiModel.m in Sources */,
 				04FECE9624C285DF007DC478 /* PHZhiYJTableViewCell.m in Sources */,
 				0493935F24C08D8B006BB5B4 /* ShuiChangXinXiTableViewController.m in Sources */,
 				04FECECE24C2FAAF007DC478 /* ChongSheMiMaViewController.m in Sources */,
 				043A44D824C5CF7B00063F1B /* XiaoXiGongGaoDataController.m in Sources */,
+				047C548C24CB43C8005CFB51 /* YuLvFenXiModel.m in Sources */,
 				04FECF0924C3171E007DC478 /* JianCeYuJinTJListTableViewCell.m in Sources */,
 				046DB9B824BC95DE0086142B /* PHZhiJCViewController.m in Sources */,
 				043A44D424C5CC6C00063F1B /* MainHomeDataController.m in Sources */,
@@ -2459,6 +2496,7 @@
 				046DB9CD24BC97230086142B /* WenDuJCTableViewCell.m in Sources */,
 				0447AE6624C3ED5900E93DBE /* PGGMoviePlayer.m in Sources */,
 				046049F324B9B8560079B78B /* ZiDingYiPeiZhiHeaderView.m in Sources */,
+				047C548F24CB4827005CFB51 /* PHZhiFenXiModel.m in Sources */,
 				046049E724B99ABC0079B78B /* RiLiZhouCollectionViewCell.m in Sources */,
 				046049B724B980940079B78B /* MainHomeViewController.m in Sources */,
 				04665AA924C860E500C496BE /* LiuLiangJCXiangQingModel.m in Sources */,
@@ -2493,6 +2531,7 @@
 				041CDF9C24C9BA5900C3E4DC /* SymbolsValueFormatter.m in Sources */,
 				04613E4D24B89A5E009CD89D /* TabBarControllerConfig.m in Sources */,
 				0447AE7624C3F58D00E93DBE /* TimeClectAlterView.m in Sources */,
+				047C549B24CB584F005CFB51 /* CeZhanJianCeTJViewtwo.m in Sources */,
 				04FECF1924C32DBA007DC478 /* YuLvJCDetailViewController.m in Sources */,
 				0447AE7324C3F58D00E93DBE /* AddressListAlterViewTableViewCell.m in Sources */,
 				04FECF0D24C31933007DC478 /* ZhuoDuJianCeDetailViewController.m in Sources */,
@@ -2510,6 +2549,7 @@
 				045E40F124BAB06F00FA0B97 /* GaoDeMapView.m in Sources */,
 				046DB9CA24BC97170086142B /* YuLvJCTableViewCell.m in Sources */,
 				0447AE3724C3C95200E93DBE /* LiuLiangYJChuZhiDetailTableViewCell.m in Sources */,
+				047C549524CB4B8D005CFB51 /* YuJingFenXiModel.m in Sources */,
 				04613DDE24B8964D009CD89D /* AppDelegate.m in Sources */,
 				04FECEB924C2E7E5007DC478 /* LiuLiangTongJiListTableViewCell.m in Sources */,
 				04FECE7024C28128007DC478 /* ShuiChangDetailTableViewCell.m in Sources */,
@@ -2524,6 +2564,7 @@
 				0493936724C090F1006BB5B4 /* CeZhanXinXiViewController.m in Sources */,
 				046DB9D324BC97390086142B /* ShuiZhiJCTableViewCell.m in Sources */,
 				04FECF3624C330F4007DC478 /* PHZhiJCDetailDetailTableViewCell.m in Sources */,
+				047C549824CB4C11005CFB51 /* CeDianFenXiModel.m in Sources */,
 				04FECE6C24C27E2B007DC478 /* ShuiChangDetailViewController.m in Sources */,
 				04FECED524C30B13007DC478 /* SetViewController.m in Sources */,
 				04D625EA24C7201100B900E8 /* LiuLiangJCDataController.m in Sources */,
@@ -2557,6 +2598,7 @@
 				046DB9D624BC97440086142B /* ZhongHeJCTableViewCell.m in Sources */,
 				0447AE2B24C3C78800E93DBE /* LiuLiangYJChuZhiViewController.m in Sources */,
 				04FECF4124C33306007DC478 /* ShuiZhiJCDetailDetailTableViewCell.m in Sources */,
+				047C548924CB3F21005CFB51 /* ZhuoDuFenXiModel.m in Sources */,
 				0447AE4524C3D55D00E93DBE /* XiaoXiGongGaoTableViewController.m in Sources */,
 				041CDF9224C9B9B300C3E4DC /* LineZuoBiaoView.m in Sources */,
 				046049AC24B965E70079B78B /* LoginView.m in Sources */,

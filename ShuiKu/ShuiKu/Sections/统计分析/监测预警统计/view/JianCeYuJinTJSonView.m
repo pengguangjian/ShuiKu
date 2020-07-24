@@ -28,12 +28,6 @@
         [self addSubview:view];
         _xianview  = view;
         
-//        NSMutableArray *arrallline = [NSMutableArray new];
-//        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor greenColor]]];
-//        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor brownColor]]];
-//        [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor blueColor]]];
-//
-//        [view showValue:arrallline];
         
         
         UIView *viewtop = [[UIView alloc] init];
@@ -115,7 +109,7 @@
     for(int i = 0 ; i < arrtitle.count; i++)
     {
         UIView *viewline = [[UIView alloc] init];
-        [viewline setBackgroundColor:RGB(254, 106, 55)];
+        [viewline setBackgroundColor:MenuColor];
         [view addSubview:viewline];
         [viewline mas_makeConstraints:^(MASConstraintMaker *make) {
             if(viewlsat == nil)
@@ -142,9 +136,9 @@
             
         }];
         viewlsat = lbtext;
-        if(i>=arrtitle.count/2)
+        if(i>=2)
         {
-            [viewline setBackgroundColor:RGB(35, 78, 152)];
+            [viewline setBackgroundColor:MenuColor1];
         }
     }
     
@@ -167,13 +161,7 @@
     LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60) ];
     [view setBackgroundColor:[UIColor whiteColor]];
     [viewback addSubview:view];
-    
-//    NSMutableArray *arrallline = [NSMutableArray new];
-//    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor greenColor]]];
-//    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor brownColor]]];
-//    [arrallline addObject:[view addLine:[self backSuiJiShu] andlinecolor:[UIColor blueColor]]];
-//
-//    [view showValue:arrallline];
+    [view setXzhouValue:self.arrtime andKeyValue:self.arrlinedata];
     
     
     UIView *viewtop = [[UIView alloc] init];

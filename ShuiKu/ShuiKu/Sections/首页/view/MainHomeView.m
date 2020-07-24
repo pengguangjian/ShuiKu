@@ -204,7 +204,11 @@
         {
             [arrtitlegg addObject:[NSString nullToString:[dicitem objectForKey:@"NISUMMARY"]]];
         }
-        [_ccpHotPointView setTitleArray:arrtitlegg];
+        if(arrtitlegg.count>0)
+        {
+            [self.ccpHotPointView setTitleArray:arrtitlegg];
+        }
+        
     }];
 }
 

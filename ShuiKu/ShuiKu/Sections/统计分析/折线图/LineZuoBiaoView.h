@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LineZuoBiaoView : UIView
+///设置arrX x轴数据 arrKeyValue:value y轴数据 color:
+-(void)setXzhouValue:(NSMutableArray *)arrX andKeyValue:(NSMutableArray *)arrKeyValue;
+
+
 
 @end
 

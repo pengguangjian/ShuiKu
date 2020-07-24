@@ -9,11 +9,25 @@
 #import "JianCeYuJinTJListViewController.h"
 #import "JianCeYuJinTJListTableViewCell.h"
 
+#import "TongJiFenXiDataController.h"
+#import "YuJingFenXiModel.h"
+
 @interface JianCeYuJinTJListViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,AlterListViewDelegate,AddressListAlterViewDelegate>
 
 @property (nonatomic , strong) UITableView *tabview;
 
 @property (nonatomic , strong) UIButton *btselecttopitem;
+
+@property (nonatomic , assign) NSInteger type;
+
+///从时间~最小出水
+@property (nonatomic , strong) NSMutableArray *arr0;
+@property (nonatomic , strong) NSMutableArray *arr1;
+@property (nonatomic , strong) NSMutableArray *arr2;
+@property (nonatomic , strong) NSMutableArray *arr3;
+@property (nonatomic , strong) NSMutableArray *arr4;
+@property (nonatomic , strong) NSMutableArray *arr5;
+
 @end
 
 @implementation JianCeYuJinTJListViewController
@@ -22,7 +36,9 @@
     [super viewDidLoad];
     self.title = @"预警统计";
     
+    self.type = 0;
     [self drawUI];
+    [self getdata];
 }
 
 -(void)drawUI
@@ -120,7 +136,17 @@
 ///日统计数据返回
 -(void)ListAlterViewItemSelect:(id)value andviewtag:(NSInteger)tag
 {
+    NSArray *arrtitle = @[@"日统计",@"月统计",@"年统计"];
+    for(int i = 0 ; i < arrtitle.count; i++)
+    {
+        if([value isEqualToString:arrtitle[i]])
+        {
+            self.type = i;
+        }
+    }
+    
     [_btselecttopitem setTitle:value forState:UIControlStateNormal];
+    [self getdata];
 }
 
 ///水厂地址返回选中的数组
@@ -133,7 +159,7 @@
 #pragma mark -
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arr0.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,7 +171,12 @@
         cell = [[JianCeYuJinTJListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setStrvalue:@""];
+    cell.arrvalue = @[self.arr0[indexPath.row],
+    self.arr1[indexPath.row],
+    self.arr2[indexPath.row],
+    self.arr3[indexPath.row],
+    self.arr4[indexPath.row],
+    self.arr5[indexPath.row]];
     
     return cell;
 }
@@ -189,7 +220,86 @@
     
 }
 
+-(void)getdata
+{
+    
+    NSString *strdate = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM"];
+    if(self.type == 1)
+    {
+        strdate = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy"];
+    }
+    
+    [TongJiFenXiDataController requestYuJingFenXiData:self.view date:strdate type:(int)self.type stcd:@"" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            NSMutableArray *arrtime = [NSMutableArray new];
+            
+            NSMutableArray *arr0 = [NSMutableArray new];
+            NSMutableArray *arr1 = [NSMutableArray new];
+            NSMutableArray *arr2 = [NSMutableArray new];
+            NSMutableArray *arr3 = [NSMutableArray new];
+            NSMutableArray *arr4 = [NSMutableArray new];
+            
+            for(YuJingFenXiModel *model in value)
+            {
+                if([model.s_type isEqualToString:@"1"])
+                {
+                    
+                    [arr0 addObject:model.total];
+                }
+                else if([model.s_type isEqualToString:@"2"])
+                {
+                    [arrtime addObject:model.s_time];
+                    [arr1 addObject:model.total];
+                }
+                else if([model.s_type isEqualToString:@"3"])
+                {
+                    [arr2 addObject:model.total];
+                }
+                else if([model.s_type isEqualToString:@"4"])
+                {
+                    [arr3 addObject:model.total];
+                }
+                else if([model.s_type isEqualToString:@"5"])
+                {
+                    [arr4 addObject:model.total];
+                }
+                
+            }
+            
+            self.arr0 = arrtime;
+            self.arr1 = [self arrCountInputZeo:arrtime andarrvalue:arr0];
+            self.arr2 = [self arrCountInputZeo:arrtime andarrvalue:arr1];
+            self.arr3 = [self arrCountInputZeo:arrtime andarrvalue:arr2];
+            self.arr4 = [self arrCountInputZeo:arrtime andarrvalue:arr3];
+            self.arr5 = [self arrCountInputZeo:arrtime andarrvalue:arr4];
+            
+            [self.tabview reloadData];
+        }
+    }];
+}
 
+///将数据和时间对比
+-(NSMutableArray *)arrCountInputZeo:(NSMutableArray *)arrtime andarrvalue:(NSMutableArray *)arrvalue
+{
+    
+    if(arrvalue.count<arrtime.count)
+    {
+        NSMutableArray *arrtemp = [NSMutableArray new];
+        for(int i = 0 ; i < arrtime.count-arrvalue.count; i++)
+        {
+            [arrtemp addObject:@"0"];
+            
+        }
+        NSMutableArray *arrtempvalue = [[NSMutableArray alloc] initWithArray:arrtemp];
+        [arrtempvalue addObjectsFromArray:arrvalue];
+        return arrtempvalue;
+    }
+    else
+    {
+        return arrvalue;
+    }
+}
 
 
 

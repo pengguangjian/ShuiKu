@@ -9,7 +9,7 @@
 #import "CeZhanJianCeTJViewController.h"
 #import "CeZhanJianCeTJView.h"
 #import "CeZhanJianCeTongJiListViewController.h"
-
+#import "CeZhanJianCeTJViewtwo.h"
 
 @interface CeZhanJianCeTJViewController ()<AlterListViewDelegate,AddressListAlterViewDelegate>
 @property (nonatomic , strong) UIButton *btselecttopitem;
@@ -36,16 +36,16 @@
     [self drawHeaderView:viewheader];
     
     
-    CeZhanJianCeTJView *view = [[CeZhanJianCeTJView alloc] initWithFrame:CGRectMake(0, 70, kMainScreenW, kMainScreenH-kTopHeight-120)];
+    CeZhanJianCeTJViewtwo *view = [[CeZhanJianCeTJViewtwo alloc] initWithFrame:CGRectMake(0, 70, kMainScreenW, kMainScreenH-kTopHeight-120)];
     [self.view addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
         make.top.equalTo(viewheader.mas_bottom).offset(10);
     }];
-    view.strYValue = @"百分百%";
-    view.strXValue = @"水厂";
-    view.strtitle = @"日统计 所有水厂";
-    view.strtitle1 = @"测点统计";
+//    view.strYValue = @"百分百%";
+//    view.strXValue = @"水厂";
+//    view.strtitle = @"日统计 所有水厂";
+//    view.strtitle1 = @"测点统计";
     
     
 }

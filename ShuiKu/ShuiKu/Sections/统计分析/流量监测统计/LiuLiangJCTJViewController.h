@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LiuLiangJCTJViewController : UIViewController
+///0瞬时流量统计 1 累计流量统计
+@property (nonatomic , strong) NSString *strtype;
 
 @end
 

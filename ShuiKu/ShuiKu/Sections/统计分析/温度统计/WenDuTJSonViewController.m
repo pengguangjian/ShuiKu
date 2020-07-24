@@ -9,9 +9,15 @@
 #import "WenDuTJSonViewController.h"
 #import "WenDuTJSonView.h"
 #import "WenDuTJListViewController.h"
+#import "WenDuFenXiModel.h"
+#import "TongJiFenXiDataController.h"
+
 
 @interface WenDuTJSonViewController ()<AlterListViewDelegate,AddressListAlterViewDelegate>
 @property (nonatomic , strong) UIButton *btselecttopitem;
+
+@property (nonatomic , strong) WenDuTJSonView *zview;
+@property (nonatomic , assign) NSInteger type;
 
 @end
 
@@ -22,6 +28,8 @@
     
     
     [self drawUI];
+    [self getdata];
+    
 }
 
 -(void)drawUI
@@ -46,7 +54,7 @@
     view.strXValue = @"时间";
     view.strtitle = @"日统计 所有水厂";
     view.strtitle1 = @"温度统计";
-    
+    _zview = view;
     
 }
 
@@ -126,7 +134,17 @@
 ///日统计数据返回
 -(void)ListAlterViewItemSelect:(id)value andviewtag:(NSInteger)tag
 {
+    NSArray *arrtitle = @[@"日统计",@"月统计",@"年统计"];
+    for(int i = 0 ; i < arrtitle.count; i++)
+    {
+        if([value isEqualToString:arrtitle[i]])
+        {
+            self.type = i;
+        }
+    }
+    
     [_btselecttopitem setTitle:value forState:UIControlStateNormal];
+    [self getdata];
 }
 
 ///水厂地址返回选中的数组
@@ -134,5 +152,59 @@
 {
     [_btselecttopitem setTitle:arrvalue.lastObject forState:UIControlStateNormal];
 }
+
+-(void)getdata
+{
+    
+    NSString *strdate = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM"];
+    if(self.type == 1)
+    {
+        strdate = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy"];
+    }
+    
+    [TongJiFenXiDataController requestWenDuFenXiData:self.view date:strdate type:(int)self.type stcd:@"" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            NSMutableArray *arrtime = [NSMutableArray new];
+            ///进水
+            NSMutableArray *arrzuidajs = [NSMutableArray new];
+            NSMutableArray *arrzuixiaojs = [NSMutableArray new];
+            ///出水
+            NSMutableArray *arrzuidacs = [NSMutableArray new];
+            NSMutableArray *arrzuixiaocs = [NSMutableArray new];
+            
+            for(WenDuFenXiModel *model in value)
+            {
+                if([model.s_type isEqualToString:@"04"])
+                {///进水
+                    [arrtime addObject:model.s_time];
+                    [arrzuidajs addObject:model.max_WT];
+                    [arrzuixiaojs addObject:model.min_WT];
+                    
+                }
+                else if([model.s_type isEqualToString:@"14"])
+                {///出水
+                    
+                    [arrzuidacs addObject:model.max_WT];
+                    [arrzuixiaocs addObject:model.min_WT];
+                }
+                
+            }
+            
+            NSMutableArray *arrlinedata = [NSMutableArray new];
+            [arrlinedata addObject:@{@"value":[[arrzuidajs reverseObjectEnumerator] allObjects],@"color":MenuColor1}];
+            [arrlinedata addObject:@{@"value":[[arrzuixiaojs reverseObjectEnumerator] allObjects],@"color":MenuColor1}];
+            [arrlinedata addObject:@{@"value":[[arrzuidacs reverseObjectEnumerator] allObjects],@"color":MenuColor}];
+            [arrlinedata addObject:@{@"value":[[arrzuixiaocs reverseObjectEnumerator] allObjects],@"color":MenuColor}];
+            
+            NSMutableArray *arrtemptime = (NSMutableArray *)[[arrtime reverseObjectEnumerator] allObjects];
+            arrtime = arrtemptime;
+            self.zview.arrtime = arrtime;
+            self.zview.arrlinedata = arrlinedata;
+            [self.zview.xianview setXzhouValue:arrtime andKeyValue:arrlinedata];
+        }
+    }];
+}
+
 
 @end

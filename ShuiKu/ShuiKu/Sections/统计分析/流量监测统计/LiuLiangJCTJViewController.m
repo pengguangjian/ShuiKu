@@ -15,13 +15,14 @@
 
 @property (nonatomic , strong) UIButton *btselecttopitem;
 @property (nonatomic , strong) ZheXianTuItemView *zview;
+@property (nonatomic , assign) NSInteger type;
 @end
 
 @implementation LiuLiangJCTJViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.type = 0;
     
     [self drawUI];
     
@@ -132,7 +133,18 @@
 ///日统计数据返回
 -(void)ListAlterViewItemSelect:(id)value andviewtag:(NSInteger)tag
 {
+    NSArray *arrtitle = @[@"日统计",@"月统计",@"年统计"];
+    for(int i = 0 ; i < arrtitle.count; i++)
+    {
+        if([value isEqualToString:arrtitle[i]])
+        {
+            self.type = i;
+        }
+    }
+    
     [_btselecttopitem setTitle:value forState:UIControlStateNormal];
+    [self getdata];
+    
 }
 
 ///水厂地址返回选中的数组
@@ -143,37 +155,69 @@
 
 -(void)getdata
 {
-    [TongJiFenXiDataController requestLiuLiangFenXiData:self.view date:@"2020-07" type:0 Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+    
+    NSString *strdate = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM"];
+    if(self.type == 1)
+    {
+        strdate = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy"];
+    }
+    
+    [TongJiFenXiDataController requestLiuLiangFenXiData:self.view date:strdate type:(int)self.type stcd:@"" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
         if(state)
         {
-            NSMutableArray *arrlinedata = [NSMutableArray new];
-            NSMutableArray *arrtemp0 = [NSMutableArray new];
-            NSMutableArray *arrtemp1 = [NSMutableArray new];
+            NSMutableArray *arrtime = [NSMutableArray new];
+            ///进水
+            NSMutableArray *arrzuidajs = [NSMutableArray new];
+            NSMutableArray *arrzuixiaojs = [NSMutableArray new];
+            ///出水
+            NSMutableArray *arrzuidacs = [NSMutableArray new];
+            NSMutableArray *arrzuixiaocs = [NSMutableArray new];
+            ///累计
+            NSMutableArray *arrleijijs = [NSMutableArray new];
+            NSMutableArray *arrleijics = [NSMutableArray new];
             
-            NSMutableArray *arrxArr = [NSMutableArray new];
-            int i = 0;
             for(LiuLiangFenXiModel *model in value)
             {
-                if(i==0 || i==value.count/2 || i==value.count-1)
-                {
-                    [arrxArr addObject:model.s_time];
+                if([model.s_type isEqualToString:@"06"])
+                {///进水
+                    [arrtime addObject:model.s_time];
+                    [arrzuidajs addObject:model.max_Q];
+                    [arrzuixiaojs addObject:model.min_Q];
+                    [arrleijijs addObject:model.total];
                 }
-                else
-                {
-                    [arrxArr addObject:@""];
+                else if([model.s_type isEqualToString:@"16"])
+                {///出水
+                    [arrzuidacs addObject:model.max_Q];
+                    [arrzuixiaocs addObject:model.min_Q];
+                    [arrleijics addObject:model.total];
                 }
-                [arrtemp0 addObject:[NSString nullToString:model.max_Q]];
-                [arrtemp1 addObject:[NSString nullToString:model.min_Q]];
-                i++;
+                
             }
-            [arrlinedata addObject:arrtemp0];
-            [arrlinedata addObject:arrtemp1];
             
-            NSMutableArray *arrlinecolor = [[NSMutableArray alloc] initWithObjects:[UIColor redColor],[UIColor blueColor], nil];
-            self.zview.arrXArr = arrxArr;
-            self.zview.arrLineData = arrlinedata;
-            self.zview.arrLineColor = arrlinecolor;
-            [self.zview addLine];
+            
+            
+            NSMutableArray *arrlinedata = [NSMutableArray new];
+            if([self.strtype isEqualToString:@"0"])
+            {
+                
+                [arrlinedata addObject:@{@"value":[[arrzuidajs reverseObjectEnumerator] allObjects],@"color":MenuColor1}];
+                [arrlinedata addObject:@{@"value":[[arrzuixiaojs reverseObjectEnumerator] allObjects],@"color":MenuColor1}];
+                [arrlinedata addObject:@{@"value":[[arrzuidacs reverseObjectEnumerator] allObjects],@"color":MenuColor}];
+                [arrlinedata addObject:@{@"value":[[arrzuixiaocs reverseObjectEnumerator] allObjects],@"color":MenuColor}];
+                
+            }
+            else
+            {
+                
+                [arrlinedata addObject:@{@"value":[[arrleijijs reverseObjectEnumerator] allObjects],@"color":MenuColor1}];
+                [arrlinedata addObject:@{@"value":[[arrleijics reverseObjectEnumerator] allObjects],@"color":MenuColor}];
+            }
+            
+            NSMutableArray *arrtemptime = (NSMutableArray *)[[arrtime reverseObjectEnumerator] allObjects];
+            arrtime = arrtemptime;
+            self.zview.arrtime = arrtime;
+            self.zview.arrlinedata = arrlinedata;
+            [self.zview.xianview setXzhouValue:arrtime andKeyValue:arrlinedata];
         }
     }];
 }
