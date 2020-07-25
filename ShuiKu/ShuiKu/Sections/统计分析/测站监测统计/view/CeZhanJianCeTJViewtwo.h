@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CeZhanJianCeTJViewtwo : UIView
 
+///设置arrX x轴数据     arrYValue y轴数据
+-(void)setXzhouValue:(NSMutableArray *)arrX andKeyValue:(NSMutableArray *)arrYValue;
+
 @end
 
 NS_ASSUME_NONNULL_END

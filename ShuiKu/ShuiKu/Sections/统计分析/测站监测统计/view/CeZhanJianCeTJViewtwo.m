@@ -15,11 +15,23 @@
 @interface CeZhanJianCeTJViewtwo () <ChartViewDelegate>
 @property (nonatomic , strong) BarChartView *barChartView;
 
-
+@property (nonatomic,strong) UILabel * markY;
 @end
 
 
 @implementation CeZhanJianCeTJViewtwo
+
+- (UILabel *)markY{
+    if (!_markY) {
+        _markY = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 25)];
+        _markY.font = [UIFont systemFontOfSize:15.0];
+        _markY.textAlignment = NSTextAlignmentCenter;
+        _markY.text =@"";
+        _markY.textColor = [UIColor whiteColor];
+        _markY.backgroundColor = [UIColor grayColor];
+    }
+    return _markY;
+}
 
 -(id)initWithFrame:(CGRect)frame
 {
@@ -32,17 +44,22 @@
             make.edges.equalTo(self);
         }];
         
-        self.barChartView.backgroundColor = [UIColor colorWithRed:230/255.0f green:253/255.0f blue:253/255.0f alpha:1];
-        self.barChartView.noDataText = @"暂无数据";//没有数据时的文字提示
-        self.barChartView.drawValueAboveBarEnabled = YES;//数值显示在柱形的上面还是下面
-//        self.barChartView.drawHighlightArrowEnabled = NO;//点击柱形图是否显示箭头
-        self.barChartView.drawBarShadowEnabled = NO;//是否绘制柱形的阴影背景
-        
+        self.barChartView.backgroundColor = [UIColor whiteColor];
+        self.barChartView.noDataText = @"暂无数据";
+        self.barChartView.chartDescription.enabled = YES;
         self.barChartView.scaleYEnabled = NO;//取消Y轴缩放
         self.barChartView.doubleTapToZoomEnabled = NO;//取消双击缩放
-        self.barChartView.dragEnabled = YES;//启用拖拽图表
+        self.barChartView.dragEnabled = YES;//启用拖拽图标
         self.barChartView.dragDecelerationEnabled = YES;//拖拽后是否有惯性效果
         self.barChartView.dragDecelerationFrictionCoef = 0.9;//拖拽后惯性效果的摩擦系数(0~1)，数值越小，惯性越不明显
+        
+        //设置滑动时候标签
+        ChartMarkerView *markerY = [[ChartMarkerView alloc] init];
+        markerY.offset = CGPointMake(-999, -8);
+        markerY.chartView = self.barChartView;
+        self.barChartView.marker = markerY;
+        [markerY addSubview:self.markY];
+        
         
         ChartXAxis *xAxis = self.barChartView.xAxis;
         xAxis.axisLineWidth = 1;//设置X轴线宽
@@ -82,65 +99,67 @@
         
         self.barChartView.legend.enabled = NO;//不显示图例说明
         
-         //为柱形图提供数据
-         self.barChartView.data = [self setData];
-        //设置动画效果，可以设置X轴和Y轴的动画效果
-        [self.barChartView animateWithYAxisDuration:1.0f];
+        self.barChartView.maxVisibleCount = 999;//
+        //描述及图例样式
+        self.barChartView.legend.enabled = NO;
+        
+        [self.barChartView animateWithXAxisDuration:1.0f];
         
     }
     return self;
 }
 
-//为柱形图设置数据
-- (BarChartData *)setData{
-    
-    int xVals_count = 12;//X轴上要显示多少条数据
-    double maxYVal = 100;//Y轴的最大值
-    
-    //X轴上面需要显示的数据
-    NSMutableArray *xVals = [[NSMutableArray alloc] init];
-    for (int i = 0; i < xVals_count; i++) {
-        [xVals addObject:[NSString stringWithFormat:@"%d", i+1]];
+-(void)setXzhouValue:(NSMutableArray *)arrX andKeyValue:(NSMutableArray *)arrYValue
+{
+    NSMutableArray *arrcolor = [NSMutableArray new];
+    NSInteger iline = arrYValue.count/3;
+    for(int i = 0 ; i < iline; i++)
+    {
+        NSArray *arrtempco = @[MenuColor1,MenuColor1,MenuColor1];
+        NSArray *arrtempco1 = @[MenuColor,MenuColor,MenuColor];
+        if(i%2==0)
+        {
+            [arrcolor addObjectsFromArray:arrtempco1];
+        }
+        else
+        {
+            [arrcolor addObjectsFromArray:arrtempco];
+        }
     }
-    
-    //对应Y轴上面需要显示的数据
-    NSMutableArray *yVals = [[NSMutableArray alloc] init];
-    for (int i = 0; i < xVals_count; i++) {
-        double mult = maxYVal + 1;
-        double val = (double)(arc4random_uniform(mult));
-//        BarChartDataEntry *entry = [[BarChartDataEntry alloc] initWithValue:val xIndex:i];
-        BarChartDataEntry *entry = [[BarChartDataEntry alloc] initWithX:val y:i];
-        [yVals addObject:entry];
+    NSMutableArray *arrchardata = [NSMutableArray new];
+    for(int i = 0 ; i < arrYValue.count; i++)
+    {
+        double dtemp = [arrYValue[i] doubleValue];
+        BarChartDataEntry *entry = [[BarChartDataEntry alloc] initWithX:i y:dtemp];
+        [arrchardata addObject:entry];
     }
     
     //创建BarChartDataSet对象，其中包含有Y轴数据信息，以及可以设置柱形样式
-//    BarChartDataSet *set1 = [[BarChartDataSet alloc] initWithYVals:yVals label:nil];
-    BarChartDataSet *set1 = [[BarChartDataSet alloc] initWithEntries:yVals label:nil];
-//    set1.barSpace = 0.2;//柱形之间的间隙占整个柱形(柱形+间隙)的比例
+    BarChartDataSet *set1 = [[BarChartDataSet alloc] initWithEntries:arrchardata label:nil];
     set1.drawValuesEnabled = YES;//是否在柱形图上面显示数值
     set1.highlightEnabled = NO;//点击选中柱形图是否有高亮效果，（双击空白处取消选中）
-    [set1 setColors:ChartColorTemplates.material];//设置柱形图颜色
-    //将BarChartDataSet对象放入数组中
+    [set1 setColors:arrcolor];//设置柱形图颜色
+    
     NSMutableArray *dataSets = [[NSMutableArray alloc] init];
     [dataSets addObject:set1];
     
     //创建BarChartData对象, 此对象就是barChartView需要最终数据对象
-//    BarChartData *data = [[BarChartData alloc] initWithXVals:xVals dataSets:dataSets];
     BarChartData *data = [[BarChartData alloc] initWithDataSets:dataSets];
     [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:10.f]];//文字字体
-    [data setValueTextColor:[UIColor orangeColor]];//文字颜色
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    //自定义数据显示格式
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    [formatter setPositiveFormat:@"#0.0"];
-//    [data setValueFormatter:formatter];
+    [data setValueTextColor:[UIColor blackColor]];
     
-    return data;
+    //为柱形图提供数据
+     self.barChartView.data = data;
+    //设置动画效果，可以设置X轴和Y轴的动画效果
+    [self.barChartView animateWithYAxisDuration:1.0f];
 }
 
-
+#pragma mark - 代理
 - (void)chartValueSelected:(ChartViewBase * _Nonnull)chartView entry:(ChartDataEntry * _Nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * _Nonnull)highlight{
 //    NSLog(@"---chartValueSelected---value: %g", entry);
+    _markY.text = [NSString stringWithFormat:@"%.2lf",entry.y];
+    //将点击的数据滑动到中间
+    [self.barChartView centerViewToAnimatedWithXValue:entry.x yValue:entry.y axis:[self.barChartView.data getDataSetByIndex:highlight.dataSetIndex].axisDependency duration:1.0];
 }
 
 - (void)chartValueNothingSelected:(ChartViewBase * _Nonnull)chartView{

@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///PH值统计
 @property (nonatomic , strong) NSString *strtitle1;
 
+///设置arrX x轴数据     arrYValue y轴数据
+-(void)setXzhouValue:(NSMutableArray *)arrX andKeyValue:(NSMutableArray *)arrYValue;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

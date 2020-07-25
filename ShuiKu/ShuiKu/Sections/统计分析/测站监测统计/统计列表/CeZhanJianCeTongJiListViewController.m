@@ -8,11 +8,25 @@
 
 #import "CeZhanJianCeTongJiListViewController.h"
 #import "CeZhanJianCeTongJiListTableViewCell.h"
+#import "TongJiFenXiDataController.h"
+#import "CeDianFenXiModel.h"
+
 @interface CeZhanJianCeTongJiListViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,AlterListViewDelegate,AddressListAlterViewDelegate>
 
 @property (nonatomic , strong) UITableView *tabview;
 
 @property (nonatomic , strong) UIButton *btselecttopitem;
+
+@property (nonatomic , assign) NSInteger type;
+
+///从时间~最小出水
+@property (nonatomic , strong) NSMutableArray *arr0;
+@property (nonatomic , strong) NSMutableArray *arr1;
+@property (nonatomic , strong) NSMutableArray *arr2;
+@property (nonatomic , strong) NSMutableArray *arr3;
+@property (nonatomic , strong) NSMutableArray *arr4;
+@property (nonatomic , strong) NSMutableArray *arr5;
+@property (nonatomic , strong) NSMutableArray *arr6;
 
 @end
 
@@ -22,7 +36,10 @@
     [super viewDidLoad];
     self.title = @"测点统计";
     
+    self.type = 0;
     [self drawUI];
+    [self getdata];
+    
 }
 -(void)drawUI
 {
@@ -119,7 +136,17 @@
 ///日统计数据返回
 -(void)ListAlterViewItemSelect:(id)value andviewtag:(NSInteger)tag
 {
+    NSArray *arrtitle = @[@"日统计",@"月统计",@"年统计"];
+    for(int i = 0 ; i < arrtitle.count; i++)
+    {
+        if([value isEqualToString:arrtitle[i]])
+        {
+            self.type = i;
+        }
+    }
+    
     [_btselecttopitem setTitle:value forState:UIControlStateNormal];
+    [self getdata];
 }
 
 ///水厂地址返回选中的数组
@@ -132,7 +159,7 @@
 #pragma mark -
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arr0.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -144,7 +171,13 @@
         cell = [[CeZhanJianCeTongJiListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setStrvalue:@""];
+    cell.arrvalue = @[self.arr0[indexPath.row],
+    self.arr1[indexPath.row],
+    self.arr2[indexPath.row],
+    self.arr3[indexPath.row],
+    self.arr4[indexPath.row],
+    self.arr5[indexPath.row],
+    self.arr6[indexPath.row]];
     
     return cell;
 }
@@ -186,6 +219,51 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+-(void)getdata
+{
+    
+    NSString *strdate = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM"];
+    if(self.type == 1)
+    {
+        strdate = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy"];
+    }
+    
+    [TongJiFenXiDataController requestCeDianFenXiData:self.view date:strdate type:(int)self.type stcd:@"" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            
+            NSMutableArray *arr0 = [NSMutableArray new];
+            NSMutableArray *arr1 = [NSMutableArray new];
+            NSMutableArray *arr2 = [NSMutableArray new];
+            NSMutableArray *arr3 = [NSMutableArray new];
+            NSMutableArray *arr4 = [NSMutableArray new];
+            NSMutableArray *arr5 = [NSMutableArray new];
+            NSMutableArray *arr6 = [NSMutableArray new];
+            
+            for(CeDianFenXiModel *model in value)
+            {
+                [arr0 addObject:model.NAME];
+                [arr1 addObject:model.flow_zxl];
+                [arr2 addObject:model.flow_ctl];
+                [arr3 addObject:model.flow_ycl];
+                [arr4 addObject:model.wq_zxl];
+                [arr5 addObject:model.wq_ctl];
+                [arr6 addObject:model.wq_ycl];
+                
+            }
+            self.arr0 = arr0;
+            self.arr1 = arr1;
+            self.arr2 = arr2;
+            self.arr3 = arr3;
+            self.arr4 = arr4;
+            self.arr5 = arr5;
+            self.arr6 = arr6;
+            [self.tabview reloadData];
+            
+        }
+    }];
 }
 
 @end
