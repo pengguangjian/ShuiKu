@@ -12,6 +12,9 @@
 		0412304124CC281B0018DE61 /* ShiPinJCDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0412304024CC281B0018DE61 /* ShiPinJCDataController.m */; };
 		0412304424CC2B010018DE61 /* ShiPinJcShuiChangListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0412304324CC2B010018DE61 /* ShiPinJcShuiChangListModel.m */; };
 		0412304724CC2D130018DE61 /* ShiPinJcShuiChangCamaListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0412304624CC2D130018DE61 /* ShiPinJcShuiChangCamaListModel.m */; };
+		0412304B24CC79810018DE61 /* ZhiBanInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0412304A24CC79810018DE61 /* ZhiBanInfoModel.m */; };
+		0412304E24CC83180018DE61 /* ZhiBanXiangQingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0412304D24CC83180018DE61 /* ZhiBanXiangQingModel.m */; };
+		0412305124CC8BC70018DE61 /* GetAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0412305024CC8BC70018DE61 /* GetAreaModel.m */; };
 		041CDF9224C9B9B300C3E4DC /* LineZuoBiaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CDF9124C9B9B300C3E4DC /* LineZuoBiaoView.m */; };
 		041CDF9A24C9BA5900C3E4DC /* SetValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CDF9424C9BA5900C3E4DC /* SetValueFormatter.m */; };
 		041CDF9B24C9BA5900C3E4DC /* DateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CDF9524C9BA5900C3E4DC /* DateValueFormatter.m */; };
@@ -248,6 +251,12 @@
 		0412304324CC2B010018DE61 /* ShiPinJcShuiChangListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShiPinJcShuiChangListModel.m; sourceTree = "<group>"; };
 		0412304524CC2D130018DE61 /* ShiPinJcShuiChangCamaListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShiPinJcShuiChangCamaListModel.h; sourceTree = "<group>"; };
 		0412304624CC2D130018DE61 /* ShiPinJcShuiChangCamaListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShiPinJcShuiChangCamaListModel.m; sourceTree = "<group>"; };
+		0412304924CC79810018DE61 /* ZhiBanInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhiBanInfoModel.h; sourceTree = "<group>"; };
+		0412304A24CC79810018DE61 /* ZhiBanInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhiBanInfoModel.m; sourceTree = "<group>"; };
+		0412304C24CC83180018DE61 /* ZhiBanXiangQingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhiBanXiangQingModel.h; sourceTree = "<group>"; };
+		0412304D24CC83180018DE61 /* ZhiBanXiangQingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhiBanXiangQingModel.m; sourceTree = "<group>"; };
+		0412304F24CC8BC70018DE61 /* GetAreaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAreaModel.h; sourceTree = "<group>"; };
+		0412305024CC8BC70018DE61 /* GetAreaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAreaModel.m; sourceTree = "<group>"; };
 		041CDF9024C9B9B200C3E4DC /* LineZuoBiaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineZuoBiaoView.h; sourceTree = "<group>"; };
 		041CDF9124C9B9B300C3E4DC /* LineZuoBiaoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineZuoBiaoView.m; sourceTree = "<group>"; };
 		041CDF9424C9BA5900C3E4DC /* SetValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetValueFormatter.m; sourceTree = "<group>"; };
@@ -729,6 +738,19 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		0412304824CC794A0018DE61 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0412304924CC79810018DE61 /* ZhiBanInfoModel.h */,
+				0412304A24CC79810018DE61 /* ZhiBanInfoModel.m */,
+				0412304C24CC83180018DE61 /* ZhiBanXiangQingModel.h */,
+				0412304D24CC83180018DE61 /* ZhiBanXiangQingModel.m */,
+				0412304F24CC8BC70018DE61 /* GetAreaModel.h */,
+				0412305024CC8BC70018DE61 /* GetAreaModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		041CDF9324C9BA5900C3E4DC /* vc */ = {
 			isa = PBXGroup;
 			children = (
@@ -1094,6 +1116,7 @@
 		046049B424B9807F0079B78B /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				0412304824CC794A0018DE61 /* model */,
 				043A44D124C5CC5B00063F1B /* DataController */,
 				0447AE4E24C3D87A00E93DBE /* 扫码 */,
 				0447AE3F24C3D3D800E93DBE /* 消息公告 */,
@@ -2577,6 +2600,7 @@
 				04613E1224B89A3F009CD89D /* VTMagicView.m in Sources */,
 				04613E4224B89A5E009CD89D /* UIButton+HQCustomIcon.m in Sources */,
 				04FECEDD24C310E5007DC478 /* CeZhanJianCeTongJiListViewController.m in Sources */,
+				0412304E24CC83180018DE61 /* ZhiBanXiangQingModel.m in Sources */,
 				04B47CFE24BDEB7400CAAECF /* WenDuTJSonViewController.m in Sources */,
 				04665AB124C8769300C496BE /* LiuLiangFenXiModel.m in Sources */,
 				04B47D0924BDED8000CAAECF /* ZhuoDuTJSonView.m in Sources */,
@@ -2622,6 +2646,7 @@
 				045E40F124BAB06F00FA0B97 /* GaoDeMapView.m in Sources */,
 				046DB9CA24BC97170086142B /* YuLvJCTableViewCell.m in Sources */,
 				0447AE3724C3C95200E93DBE /* LiuLiangYJChuZhiDetailTableViewCell.m in Sources */,
+				0412304B24CC79810018DE61 /* ZhiBanInfoModel.m in Sources */,
 				047C549524CB4B8D005CFB51 /* YuJingFenXiModel.m in Sources */,
 				04613DDE24B8964D009CD89D /* AppDelegate.m in Sources */,
 				04FECEB924C2E7E5007DC478 /* LiuLiangTongJiListTableViewCell.m in Sources */,
@@ -2696,6 +2721,7 @@
 				04FECF5024C33A6B007DC478 /* LiuLiangYJDetailViewController.m in Sources */,
 				0493936F24C09274006BB5B4 /* RenYuanXinXiViewController.m in Sources */,
 				04B47CF824BDEB5800CAAECF /* YuLvTJVSonViewController.m in Sources */,
+				0412305124CC8BC70018DE61 /* GetAreaModel.m in Sources */,
 				046049B024B970160079B78B /* PeiZhiViewController.m in Sources */,
 				0447AE3B24C3CC3E00E93DBE /* LiuLiangYJChuZhiDetailCZViewController.m in Sources */,
 				04FECF4524C3353A007DC478 /* ZhongHeJCDetailViewController.m in Sources */,

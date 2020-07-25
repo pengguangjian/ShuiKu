@@ -11,7 +11,7 @@
 #import "JianCeYuJinTJListViewController.h"
 #import "YuJingFenXiModel.h"
 #import "TongJiFenXiDataController.h"
-
+#import "GetAreaModel.h"
 
 @interface JianCeYuJinTJSonViewController ()<AlterListViewDelegate,AddressListAlterViewDelegate>
 
@@ -19,6 +19,7 @@
 
 @property (nonatomic , strong) JianCeYuJinTJSonView *zview;
 @property (nonatomic , assign) NSInteger type;
+@property (nonatomic , assign) NSString *strstcid;
 
 @end
 
@@ -27,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.strstcid = @"";
     [self drawUI];
     [self getdata];
 }
@@ -151,7 +152,10 @@
 ///水厂地址返回选中的数组
 -(void)backAddressListAlterViewArr:(NSMutableArray *)arrvalue
 {
-    [_btselecttopitem setTitle:arrvalue.lastObject forState:UIControlStateNormal];
+    GetAreaModel *model = arrvalue[0];
+    [_btselecttopitem setTitle:model.NAME forState:UIControlStateNormal];
+    self.strstcid = model.ID;
+    [self getdata];
 }
 
 -(void)getdata
@@ -163,7 +167,7 @@
         strdate = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy"];
     }
     
-    [TongJiFenXiDataController requestYuJingFenXiData:self.view date:strdate type:(int)self.type stcd:@"" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+    [TongJiFenXiDataController requestYuJingFenXiData:self.view date:strdate type:(int)self.type stcd:self.strstcid Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
         if(state)
         {
             NSMutableArray *arrtime = [NSMutableArray new];

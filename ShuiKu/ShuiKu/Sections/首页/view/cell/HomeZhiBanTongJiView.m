@@ -11,6 +11,7 @@
 #import "RiLiZhouCollectionViewCell.h"
 #import "RiLiDayCollectionViewCell.h"
 #import "MainHomeDataController.h"
+#import "ZhiBanInfoModel.h"
 
 @interface HomeZhiBanTongJiView () <UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -25,6 +26,11 @@
 ///当前选中的日
 @property (nonatomic , assign) NSInteger inowdate;
 @property (nonatomic , assign) NSInteger inowTodaydate;
+///值班信息model
+@property (nonatomic , strong) NSMutableArray *arrZhiBanInfoModel;
+@property (nonatomic , strong) NSString *strstartday;
+@property (nonatomic , strong) NSString *strendday;
+
 @end
 
 @implementation HomeZhiBanTongJiView
@@ -33,7 +39,9 @@
 {
     if(self = [super initWithFrame:frame])
     {
-        
+        self.strstartday = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM"];
+        self.strstartday = [NSString stringWithFormat:@"%@-01",self.strstartday];
+        self.strendday = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM-dd"];
         _date = [NSDate date];
         _todayDate = [NSDate date];
         _inowdate = [self day:_date];
@@ -202,7 +210,15 @@
 #pragma mark - 回到今日
 -(void)moreActon
 {
-    
+    if(self.delegate)
+    {
+        [self.delegate selectZhiBanInfoModel:nil];
+    }
+    self.strstartday = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM"];
+    self.strstartday = [NSString stringWithFormat:@"%@-01",self.strstartday];
+    self.strendday = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM-dd"];
+    [self.arrZhiBanInfoModel removeAllObjects];
+    [self getdata];
     
     _date = [NSDate date];
     NSString *strtime = [self strTimefromDatas:_date dataFormat:@"yyyy年MM月"];
@@ -227,6 +243,10 @@
 #pragma mark - 上一步 下一步
 -(void)timeMouthAction:(UIButton *)sender
 {
+    if(self.delegate)
+    {
+        [self.delegate selectZhiBanInfoModel:nil];
+    }
     NSString *strtime = _lbtime.text;
     strtime = [strtime stringByReplacingOccurrencesOfString:@"年" withString:@"-"];
     strtime = [strtime stringByReplacingOccurrencesOfString:@"月" withString:@""];
@@ -287,6 +307,15 @@
     }];
     [_colleView reloadData];
     
+    self.strstartday = [WYTools dateChangeStringWith:_date andformat:@"yyyy-MM"];
+    self.strstartday = [NSString stringWithFormat:@"%@-01",self.strstartday];
+    self.strendday = [WYTools dateChangeStringWith:_date andformat:@"yyyy-MM"];
+    NSInteger strallday = [self totaldaysInMonth:_date];
+    self.strendday = [NSString stringWithFormat:@"%@-%ld",self.strendday,strallday];
+    
+    [self.arrZhiBanInfoModel removeAllObjects];
+    [self getdata];
+    
     
 }
 
@@ -324,7 +353,7 @@
         
         RiLiDayCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RiLiDayCollectionViewCell" forIndexPath:indexPath];
         [cell setBackgroundColor:[UIColor whiteColor]];
-        
+        cell.NoDuty = @"";
         if (i < firstWeekday) {
             cell.valueday = @"";
             cell.isselect = NO;
@@ -333,6 +362,19 @@
             cell.isselect = NO;
         }else{
             day = i - firstWeekday + 1;
+            
+            
+            for(ZhiBanInfoModel *model in self.arrZhiBanInfoModel)
+            {
+                NSArray *arrtime = [model.DUTYTIME componentsSeparatedByString:@" "];
+                NSArray *arrday = [arrtime[0] componentsSeparatedByString:@"-"];
+                NSString *strday = arrday.lastObject;
+                if(day==strday.intValue)
+                {
+                    cell.NoDuty = model.NoDuty;
+                }
+            }
+            
             cell.valueday = [NSString stringWithFormat:@"%li",(long)day];
             
             if(day == _inowdate)
@@ -378,6 +420,38 @@
        day = i - firstWeekday + 1;
        _inowdate = day;
    }
+    
+    BOOL isyou = NO;
+    for(ZhiBanInfoModel *model in self.arrZhiBanInfoModel)
+    {
+        NSArray *arrtime = [model.DUTYTIME componentsSeparatedByString:@" "];
+        NSArray *arrday = [arrtime[0] componentsSeparatedByString:@"-"];
+        NSString *strday = arrday.lastObject;
+        if(day==strday.intValue)
+        {
+            if(self.delegate)
+            {
+                isyou = YES;
+                [self.delegate selectZhiBanInfoModel:model];
+            }
+            else
+            {
+                NSArray *arrtime = [model.DUTYTIME componentsSeparatedByString:@" "];
+                [WYTools showNotifyHUDwithtext:[NSString stringWithFormat:@"日    期：%@\n值    班：%@\n未值班：%@",arrtime[0],model.OnDuty,model.NoDuty] inView:self.viewController.view];
+            }
+            
+        }
+    }
+    
+    if(isyou == NO)
+    {
+        if(self.delegate)
+        {
+            [self.delegate selectZhiBanInfoModel:nil];
+        }
+        
+    }
+    
     [collectionView reloadData];
     
     
@@ -385,8 +459,12 @@
 
 -(void)getdata
 {
-    [MainHomeDataController requestZhiBanTongJiData:self.viewController.view enddate:@"2020-04-01" startdate:@"2020-04-30" Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
-        
+    [MainHomeDataController requestZhiBanTongJiData:self.viewController.view enddate:self.strendday startdate:self.strstartday Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            self.arrZhiBanInfoModel = value;
+        }
+        [self.colleView reloadData];
     }];
     
 }

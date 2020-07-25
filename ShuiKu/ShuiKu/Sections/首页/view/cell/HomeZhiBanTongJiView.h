@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol HomeZhiBanTongJiViewDelegate <NSObject>
+///返回值班信息model
+-(void)selectZhiBanInfoModel:(id)model;
+
+@end
 @interface HomeZhiBanTongJiView : UIView
+
+@property (nonatomic , weak) id<HomeZhiBanTongJiViewDelegate>delegate;
 
 @end
 

@@ -10,7 +10,58 @@
 #import "MainHomeDataController.h"
 #import "HTTPManager.h"
 #import "RenYuanXinXiModel.h"
+#import "ZhiBanInfoModel.h"
+#import "ZhiBanXiangQingModel.h"
+#import "GetAreaModel.h"
+
+
+
+
 @implementation MainHomeDataController
+///水厂的弹窗
++ (void)requestShuiChangAlterData:(UIView *)view
+                         parentId:(NSString *)parentId
+                         Callback:(completeCallback)callback
+{
+    
+    NSMutableDictionary  *dicpush = [NSMutableDictionary new];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
+    [dicpush setObject:parentId forKey:@"parentId"];
+    [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/DataManagement/GetArea?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
+        BOOL state = NO;
+        NSString *describle = @"";
+        if (responceObjct==nil) {
+            describle = @"网络错误";
+        }else{
+            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+            NSDictionary *dicAll=[str JSONValue];
+            describle = dicAll[@"message"];
+            if ([[NSString nullToString:dicAll[@"errcode"]] intValue] == 0) {
+                if([[dicAll objectForKey:@"data"] isKindOfClass:[NSArray class]])
+                {
+                    state = YES;
+                }
+                else
+                {
+                    state = NO;
+                }
+            }
+            else
+            {
+                state = NO;
+            }
+            if(state==YES)
+            {
+                callback(error,state,describle,[GetAreaModel initDataValue:[dicAll objectForKey:@"data"]]);
+            }
+        }
+        if(state==NO)
+        {
+            callback(error,state,describle,nil);
+        }
+    }];
+}
+
 
 /*
  首页通知公告
@@ -138,7 +189,7 @@ Callback:(completeCallback)callback
             }
             if(state==YES)
             {
-                callback(error,state,describle,nil);
+                callback(error,state,describle,[ZhiBanInfoModel initDataValue:[[dicAll objectForKey:@"data"] objectForKey:@"rows"]]);
             }
         }
         if(state==NO)
@@ -147,6 +198,50 @@ Callback:(completeCallback)callback
         }
     }];
     
+}
+
+///值班详情
++ (void)requestZhiBanXiangqingData:(UIView *)view
+DUTYTIME:(NSString *)DUTYTIME
+Callback:(completeCallback)callback
+{
+    NSMutableDictionary  *dicpush = [NSMutableDictionary new];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
+    [dicpush setObject:DUTYTIME forKey:@"DUTYTIME"];
+    
+    [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/DutyManage/GetRecord?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
+        BOOL state = NO;
+        NSString *describle = @"";
+        if (responceObjct==nil) {
+            describle = @"网络错误";
+        }else{
+            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+            NSDictionary *dicAll=[str JSONValue];
+            describle = dicAll[@"message"];
+            if ([[NSString nullToString:dicAll[@"errcode"]] intValue] == 0) {
+                if([[dicAll objectForKey:@"data"] isKindOfClass:[NSDictionary class]])
+                {
+                    state = YES;
+                }
+                else
+                {
+                    state = NO;
+                }
+            }
+            else
+            {
+                state = NO;
+            }
+            if(state==YES)
+            {
+                callback(error,state,describle,[ZhiBanXiangQingModel initDataValue:[[dicAll objectForKey:@"data"] objectForKey:@"rows"]]);
+            }
+        }
+        if(state==NO)
+        {
+            callback(error,state,describle,nil);
+        }
+    }];
 }
 
 @end

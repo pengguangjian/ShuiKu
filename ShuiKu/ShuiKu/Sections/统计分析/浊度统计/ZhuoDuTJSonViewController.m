@@ -12,12 +12,14 @@
 #import "TongJiFenXiDataController.h"
 
 #import "ZhuoDuFenXiModel.h"
-
+#import "GetAreaModel.h"
 @interface ZhuoDuTJSonViewController ()<AlterListViewDelegate,AddressListAlterViewDelegate>
 @property (nonatomic , strong) UIButton *btselecttopitem;
 
 @property (nonatomic , strong) ZhuoDuTJSonView *zview;
 @property (nonatomic , assign) NSInteger type;
+@property (nonatomic , assign) NSString *strstcid;
+
 @end
 
 @implementation ZhuoDuTJSonViewController
@@ -25,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.strstcid = @"";
     [self drawUI];
     
     [self getdata];
@@ -149,7 +151,10 @@
 ///水厂地址返回选中的数组
 -(void)backAddressListAlterViewArr:(NSMutableArray *)arrvalue
 {
-    [_btselecttopitem setTitle:arrvalue.lastObject forState:UIControlStateNormal];
+    GetAreaModel *model = arrvalue[0];
+    [_btselecttopitem setTitle:model.NAME forState:UIControlStateNormal];
+    self.strstcid = model.ID;
+    [self getdata];
 }
 
 
@@ -162,7 +167,7 @@
         strdate = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy"];
     }
     
-    [TongJiFenXiDataController requestZhuoDuFenXiData:self.view date:strdate type:(int)self.type stcd:@"" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+    [TongJiFenXiDataController requestZhuoDuFenXiData:self.view date:strdate type:(int)self.type stcd:self.strstcid Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
         if(state)
         {
             NSMutableArray *arrtime = [NSMutableArray new];

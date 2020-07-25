@@ -11,6 +11,17 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MainHomeDataController : NSObject
+
+/*
+ 水厂的弹窗
+ http://183.230.114.158:8678/ccbt_zhgs/api/DataManagement/GetArea?parentId=500230&SessionId=6eQ6Waq3QSMc-QaizkdWSg%3D%3D
+ */
+///水厂的弹窗
++ (void)requestShuiChangAlterData:(UIView *)view
+                         parentId:(NSString *)parentId
+                         Callback:(completeCallback)callback;
+
+
 /*
  首页通知公告
  */
@@ -31,6 +42,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)requestZhiBanTongJiData:(UIView *)view
 enddate:(NSString *)enddate
 startdate:(NSString *)startdate
+Callback:(completeCallback)callback;
+
+/*
+  值班详情
+ http://183.230.114.158:8678/ccbt_zhgs/api/DutyManage/GetRecord?SessionId=6eQ6Waq3QSMc-QaizkdWSg%3D%3D&DUTYTIME=2020-06-29
+ */
+///值班详情
++ (void)requestZhiBanXiangqingData:(UIView *)view
+DUTYTIME:(NSString *)DUTYTIME
 Callback:(completeCallback)callback;
 
 

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RiLiDayCollectionViewCell : UICollectionViewCell
 @property (nonatomic , retain) NSString *valueday;
+///未值班信息
+@property (nonatomic , retain) NSString *NoDuty;
 ///0无 1正常 2不正常
 //@property (nonatomic , assign) NSInteger type;
 ///是否选中

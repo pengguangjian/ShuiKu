@@ -8,7 +8,8 @@
 
 #import "AddressListAlterView.h"
 #import "AddressListAlterViewTableViewCell.h"
-
+#import "MainHomeDataController.h"
+#import "GetAreaModel.h"
 
 @interface AddressListAlterView ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong) UITableView *tabview;
@@ -30,13 +31,13 @@
     if(self = [super initWithFrame:frame])
     {
         [self arrSelectItems];
-        [self nomoData];
+        [self getdata];
         
         _viewheader = [self drawHeaderView];
         
         _tabview = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         [self addSubview:_tabview];
-        [_tabview setBackgroundColor:[UIColor clearColor]];
+        [_tabview setBackgroundColor:[UIColor whiteColor]];
         [_tabview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [_tabview setDelegate:self];
         [_tabview setDataSource:self];
@@ -117,8 +118,9 @@
     [_viewtopitem removeAllSubviews];
     for(int i = 0 ; i < _arrSelectItems.count; i++)
     {
+        GetAreaModel *model = _arrSelectItems[i];
         UIButton *btitem = [[UIButton alloc] init];
-        [btitem setTitle:_arrSelectItems[i] forState:UIControlStateNormal];
+        [btitem setTitle:model.NAME forState:UIControlStateNormal];
         [btitem setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [btitem.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [_viewtopitem addSubview:btitem];
@@ -175,6 +177,7 @@
     
     [self drawselectBt];
     [self.tabview reloadData];
+    [self getdata];
 }
 
 -(void)layoutSubviews
@@ -185,14 +188,6 @@
     
 }
 
--(void)nomoData
-{
-    self.arrdata = [NSMutableArray new];
-    for(int i = 0 ; i < 10; i++)
-    {
-        [self.arrdata addObject:[NSString stringWithFormat:@"地址%d",i]];
-    }
-}
 
 -(void)dismiaAction
 {
@@ -219,11 +214,12 @@
         cell = [[AddressListAlterViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
+    GetAreaModel *modelcell = self.arrdata[indexPath.row];
     cell.isselect = NO;
-    cell.strvalue = self.arrdata[indexPath.row];
-    for(NSString *strtmep in _arrSelectItems)
+    cell.strvalue = modelcell.NAME;
+    for(GetAreaModel *model in _arrSelectItems)
     {
-        if([_arrdata[indexPath.row] isEqualToString:strtmep])
+        if([modelcell.ID isEqualToString:model.ID])
         {
             cell.isselect = YES;
         }
@@ -262,13 +258,18 @@
     [tableView reloadData];
     
     ////如果选择完成就返回数据
-    if(_arrSelectItems.count>=3)
+    if(_arrSelectItems.count==2)
     {
         if(self.delegate)
         {
-            [self.delegate backAddressListAlterViewArr:self.arrSelectItems];
+            GetAreaModel *model = self.arrSelectItems.lastObject;
+            [self.delegate backAddressListAlterViewArr:[NSMutableArray arrayWithObject:model]];
         }
         [self dismiaAction];
+    }
+    else
+    {
+        [self getdata];
     }
     
 }
@@ -282,5 +283,23 @@
     return _arrSelectItems;
 }
 
+
+-(void)getdata
+{
+    NSString *strpid = @"500230";
+    if(self.arrSelectItems.count > 0)
+    {
+        GetAreaModel *model = self.arrSelectItems[0];
+        strpid = model.ID;
+    }
+    
+    [MainHomeDataController requestShuiChangAlterData:self parentId:strpid Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            self.arrdata = value;
+        }
+        [self.tabview reloadData];
+    }];
+}
 
 @end

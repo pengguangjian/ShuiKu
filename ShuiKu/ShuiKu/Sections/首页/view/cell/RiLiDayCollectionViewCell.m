@@ -13,6 +13,8 @@
 @property (nonatomic , retain) UILabel *lbValue;
 
 @property (nonatomic , retain) UIView *viewpoint;
+
+@property (nonatomic , retain) UILabel *lbnumber;
 @end
 
 @implementation RiLiDayCollectionViewCell
@@ -49,6 +51,7 @@
         }];
         [lbnumber setText:@"99"];
         [lbnumber setHidden:YES];
+        _lbnumber = lbnumber;
         
 //        _viewpoint = [[UIView alloc] init];
 //        [_viewpoint.layer setMasksToBounds:YES];
@@ -108,6 +111,16 @@
     {
         [_lbValue setBackgroundColor:[UIColor clearColor]];
         [_lbValue setTextColor:RGB(50, 50, 50)];
+    }
+    
+    if(self.NoDuty.intValue>0)
+    {
+        [self.lbnumber setHidden:NO];
+        [self.lbnumber setText:self.NoDuty];
+    }
+    else
+    {
+        [self.lbnumber setHidden:YES];
     }
     
 }

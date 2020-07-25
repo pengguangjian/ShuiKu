@@ -13,13 +13,14 @@
 
 #import "CeDianFenXiModel.h"
 #import "TongJiFenXiDataController.h"
-
+#import "GetAreaModel.h"
 
 @interface CeZhanJianCeTJViewController ()<AlterListViewDelegate,AddressListAlterViewDelegate>
 @property (nonatomic , strong) UIButton *btselecttopitem;
 
 @property (nonatomic , strong) CeZhanJianCeTJView *zview;
 @property (nonatomic , assign) NSInteger type;
+@property (nonatomic , assign) NSString *strstcid;
 
 @end
 
@@ -27,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.strstcid = @"";
     [self drawUI];
     [self getdata];
 }
@@ -150,7 +151,10 @@
 ///水厂地址返回选中的数组
 -(void)backAddressListAlterViewArr:(NSMutableArray *)arrvalue
 {
-    [_btselecttopitem setTitle:arrvalue.lastObject forState:UIControlStateNormal];
+    GetAreaModel *model = arrvalue[0];
+    [_btselecttopitem setTitle:model.NAME forState:UIControlStateNormal];
+    self.strstcid = model.ID;
+    [self getdata];
 }
 
 -(void)getdata
@@ -162,7 +166,7 @@
         strdate = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy"];
     }
     
-    [TongJiFenXiDataController requestCeDianFenXiData:self.view date:strdate type:(int)self.type stcd:@"" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+    [TongJiFenXiDataController requestCeDianFenXiData:self.view date:strdate type:(int)self.type stcd:self.strstcid Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
         if(state)
         {
             NSMutableArray *arrname = [NSMutableArray new];
