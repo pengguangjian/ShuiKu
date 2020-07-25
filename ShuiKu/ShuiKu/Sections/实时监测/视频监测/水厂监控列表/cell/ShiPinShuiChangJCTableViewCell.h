@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ShiPinJcShuiChangCamaListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShiPinShuiChangJCTableViewCell : UITableViewCell
-@property (nonatomic , strong) NSString *strvalue;
+@property (nonatomic , strong) ShiPinJcShuiChangCamaListModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -10,7 +10,7 @@
 #import "HomeZhiBanTongJiView.h"
 #import "RiLiZhouCollectionViewCell.h"
 #import "RiLiDayCollectionViewCell.h"
-
+#import "MainHomeDataController.h"
 
 @interface HomeZhiBanTongJiView () <UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -136,7 +136,7 @@
             make.bottom.equalTo(colleView.mas_bottom);
         }];
         
-        
+        [self getdata];
     }
     return self;
 }
@@ -380,6 +380,14 @@
    }
     [collectionView reloadData];
     
+    
+}
+
+-(void)getdata
+{
+    [MainHomeDataController requestZhiBanTongJiData:self.viewController.view enddate:@"2020-04-01" startdate:@"2020-04-30" Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
+        
+    }];
     
 }
 

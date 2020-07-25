@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShiPinShowView : UIView
-
+///视频地址
+@property (nonatomic , strong) NSString *urlshipin;
+@property (nonatomic , strong) NSString *strtitle;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -88,10 +88,18 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(ShiPinJcShuiChangCamaListModel *)model
 {
-    [_lbname setText:@"标题标题标题标题标题标题"];
-    [_lbtime setText:@"2020-07-18 15:53:00"];
+    [_lbname setText:model.cameraName];
+    [_lbtime setText:model.updateTime];
+    
+    
+    UILabel *lb0 = self.arrallLB[0];
+    [lb0 setText:model.channelTypeName];
+    
+    UILabel *lb1 = self.arrallLB[1];
+    [lb1 setText:model.cameraTypeName];
+    
 }
 
 

@@ -15,7 +15,7 @@
 @property (nonatomic , strong) UIImageView *imgvback;
 @property (nonatomic , strong) UILabel *lbtitle;
 @property (nonatomic , strong) PGGMoviePlayer *playerview;
-
+@property (nonatomic , strong) NSString *strplayerurl;
 @end
 
 @implementation ShiPinShowView
@@ -79,12 +79,13 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    [_lbtitle setText:@"标题标题标题标题标题标题标题"];
+    [_lbtitle setText:self.strtitle];
     
 }
 
 -(void)bofangAction
 {
+    if(self.strplayerurl==nil)return;
     PGGMoviePlayer *pplayer = [[PGGMoviePlayer alloc] init];
     [pplayer setDelegate:self];
     [self.window addSubview:pplayer];
@@ -94,13 +95,13 @@
         make.height.offset(kMainScreenW);
     }];
     self.playerview = pplayer;
-    NSString *strfile = [[NSBundle mainBundle] pathForResource:@"trailer" ofType:@"mp4"];
+//    NSString *strfile = [[NSBundle mainBundle] pathForResource:@"trailer" ofType:@"mp4"];
 //    [pplayer playUrl:@"http://vjs.zencdn.net/v/oceans.mp4"];
-    [pplayer playUrl:strfile];
+    [pplayer playUrl:self.strplayerurl];
     pplayer.playerViewOriginalRect = pplayer.frame;
     pplayer.playerSuperView = self;
     pplayer.playerpoint = pplayer.center;
-    pplayer.strtitle = @"视频标题";
+    pplayer.strtitle = @"";
     
     
     AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -155,5 +156,34 @@
     
 }
 
+-(void)setUrlshipin:(NSString *)urlshipin
+{
+    UIImage *image = [self getThumbnailImage:urlshipin];
+    [_imgvback setImage:image];
+    self.strplayerurl = urlshipin;
+    
+}
+
+- (UIImage*)getThumbnailImage:(NSString*)videoURL{
+    
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL URLWithString:videoURL] options:nil];
+    NSParameterAssert(asset);
+    AVAssetImageGenerator *assetImageGenerator =[[AVAssetImageGenerator alloc] initWithAsset:asset];
+    assetImageGenerator.appliesPreferredTrackTransform = YES;
+    assetImageGenerator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+   
+    CGImageRef thumbnailImageRef = NULL;
+    CFTimeInterval thumbnailImageTime = 0.01;
+    NSError *thumbnailImageGenerationError = nil;
+    thumbnailImageRef = [assetImageGenerator copyCGImageAtTime:CMTimeMake(thumbnailImageTime, 60)actualTime:NULL error:&thumbnailImageGenerationError];
+    
+    if(!thumbnailImageRef)
+        NSLog(@"thumbnailImageGenerationError %@",thumbnailImageGenerationError);
+    
+    UIImage*thumbnailImage = thumbnailImageRef ? [[UIImage alloc]initWithCGImage: thumbnailImageRef] : nil;
+    
+    return thumbnailImage;
+    
+}
 
 @end

@@ -10,9 +10,20 @@
 #import "ShiPinJCTableViewCell.h"
 #import "ShiPinShuiChangJCViewController.h"
 
+#import "ShiPinJCDataController.h"
+#import "ShiPinJcShuiChangListModel.h"
+
 @interface ShiPinJCViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
+
+@property (nonatomic , strong) NSMutableArray *arrdata;
+
+@property (nonatomic , assign) int ipage;
+
+@property (nonatomic , strong) UITextField *fieldSearch;
+
+@property (nonatomic , strong) UILabel *lbbcnum;
 
 @end
 
@@ -23,6 +34,8 @@
     self.title = @"视频监测";
     
     [self drawUI];
+    self.ipage = 1;
+    [self getdata];
 }
 
 -(void)drawUI
@@ -67,7 +80,7 @@
     [fieldSearch setReturnKeyType:UIReturnKeySearch];
     [fieldSearch setDelegate:self];
     [viewsearch addSubview:fieldSearch];
-    
+    _fieldSearch = fieldSearch;
     
     UIButton *btsearch = [[UIButton alloc] initWithFrame:CGRectMake(viewsearch.width-viewsearch.height, 0, viewsearch.height, viewsearch.height)];
     [btsearch setImage:[UIImage imageNamed:@"ic_query_blue"] forState:UIControlStateNormal];
@@ -80,7 +93,7 @@
     [lbbcnum setFont:[UIFont systemFontOfSize:13]];
     [lbbcnum setText:@"本次共查询出22条数据！"];
     [viewtop addSubview:lbbcnum];
-    
+    _lbbcnum = lbbcnum;
     [viewtop setHeight:lbbcnum.bottom+20];
     
     [_tabview setTableHeaderView:viewtop];
@@ -91,16 +104,16 @@
     {
         //搜索
         [textField resignFirstResponder];
-        
+        [self getdata];
         return NO;
     }
     return YES;
 }
 
-#pragma mark -
+#pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrdata.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,7 +125,7 @@
         cell = [[ShiPinJCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setStrvalue:@""];
+    [cell setModel:self.arrdata[indexPath.row]];
     
     return cell;
 }
@@ -123,8 +136,27 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ShiPinJcShuiChangListModel *model = self.arrdata[indexPath.row];
     ShiPinShuiChangJCViewController *vc = [[ShiPinShuiChangJCViewController alloc] init];
+    vc.indexCode = model.indexCode;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)getdata
+{
+    
+    [ShiPinJCDataController requestShuiChangListData:self.view name:self.fieldSearch.text pageNumber:self.ipage Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
+        if(state)
+        {
+            self.arrdata = value;
+        }
+        else
+        {
+            [WYTools showNotifyHUDwithtext:describle inView:self.view];
+        }
+        [self.lbbcnum setText:[NSString stringWithFormat: @"本次共查询出%ld条数据！",self.arrdata.count]];
+        [self.tabview reloadData];
+    }];
 }
 
 @end

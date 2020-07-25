@@ -79,10 +79,10 @@
     NSURL *urlplay = [NSURL URLWithString:strurl];
     
     
-    NSURL *movieUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"trailer" ofType:@"mp4"]];
+//    NSURL *movieUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"trailer" ofType:@"mp4"]];
     
     //确定视频资源 一个视频用一个item
-    self.playItem=[AVPlayerItem playerItemWithURL:movieUrl];
+    self.playItem=[AVPlayerItem playerItemWithURL:urlplay];
     //确定视频视频框架
     player = [AVPlayer playerWithPlayerItem: self.playItem];
     

@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShiPinShuiChangJCViewController : RootViewController
-
+///设备编码
+@property (nonatomic , strong) NSString *indexCode;
 @end
 
 NS_ASSUME_NONNULL_END

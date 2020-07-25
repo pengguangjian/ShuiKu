@@ -23,6 +23,16 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)requestUserListData:(UIView *)view
                         Callback:(completeCallback)callback;
 
+/*
+ 值班统计
+ http://222.180.173.75:7118/ccbt_zhgs/api/DutyManage/DutyStatistic?SessionId=6TuG_lCdmi4bhloIZRCv2A%3D%3D&enddate=2020-06-30&startdate=2020-06-01
+ */
+/// 值班统计
++ (void)requestZhiBanTongJiData:(UIView *)view
+enddate:(NSString *)enddate
+startdate:(NSString *)startdate
+Callback:(completeCallback)callback;
+
 
 @end
 

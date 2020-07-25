@@ -9,8 +9,11 @@
 
 #import "ShiPinShowViewController.h"
 #import "ShiPinShowView.h"
+#import "ShiPinJCDataController.h"
 @interface ShiPinShowViewController ()
-
+{
+    ShiPinShowView *sview;
+}
 @end
 
 @implementation ShiPinShowViewController
@@ -21,6 +24,7 @@
     
     
     ShiPinShowView *view = [[ShiPinShowView alloc] init];
+    view.strtitle = self.strinfotitle;
     [self.view addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
@@ -32,7 +36,23 @@
             make.edges.equalTo(self.view).insets(kPaddingNav);
         }
     }];
+    sview = view;
+    [self getdata];
     
+}
+
+-(void)getdata
+{
+    [ShiPinJCDataController requestShuiChangMoveUrlData:self.view indexCode:self.cameraIndexCode streamType:@"0" Callback:^(NSError *error, BOOL state, NSString *describle, NSString *value) {
+        if(state)
+        {
+            self->sview.urlshipin = value;
+        }
+        else
+        {
+            [WYTools showNotifyHUDwithtext:describle inView:self.view];
+        }
+    }];
 }
 
 @end

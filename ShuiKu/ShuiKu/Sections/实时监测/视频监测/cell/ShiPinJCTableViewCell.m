@@ -71,10 +71,10 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(ShiPinJcShuiChangListModel *)model
 {
-    [_lbname setText:@"标题标题标题标题标题标题"];
-    [_lbtime setText:@"2020-07-18 15:53:00"];
+    [_lbname setText:model.name];
+    [_lbtime setText:model.updateTime];
 }
 
 

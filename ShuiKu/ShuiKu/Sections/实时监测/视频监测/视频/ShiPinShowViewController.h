@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShiPinShowViewController : RootViewController
+///设备编码
+@property (nonatomic , strong) NSString *cameraIndexCode;
+@property (nonatomic , strong) NSString *strinfotitle;
 
 @end
 

@@ -55,6 +55,7 @@
         _viewbottom = [[UIView alloc] init];
         [_viewbottom setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5]];
         [self addSubview:_viewbottom];
+        [_viewbottom setHidden:YES];
         [_viewbottom mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self);
             make.height.offset(50);
@@ -157,6 +158,7 @@
             
         }];
         
+        
 //        _btallplay.updateLayout;///重新更改布局后调用该方法
         UITapGestureRecognizer *gesview = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapViewAction)];
         [self addGestureRecognizer:gesview];
@@ -190,12 +192,12 @@
     if(_viewbottom.hidden == YES)
     {
         [_viewtop setHidden:NO];
-        [_viewbottom setHidden:NO];
+//        [_viewbottom setHidden:NO];
     }
     else
     {
         [_viewtop setHidden:YES];
-        [_viewbottom setHidden:YES];
+//        [_viewbottom setHidden:YES];
     }
     
     [self tophiden];
@@ -314,13 +316,13 @@
     if(_slider.value == _slider.maximumValue)
     {///
         [_viewtop setHidden:NO];
-        [_viewbottom setHidden:NO];
-        [_btallplay setHidden:NO];
+//        [_viewbottom setHidden:NO];
+//        [_btallplay setHidden:NO];
         [_btplay setImage:[UIImage imageNamed:@"vedio_play_list"] forState:UIControlStateNormal];
     }
     else
     {
-        [_btallplay setHidden:YES];
+//        [_btallplay setHidden:YES];
 //        [_btplay setImage:[UIImage imageNamed:@"vedio_puse"] forState:UIControlStateNormal];
     }
 }
