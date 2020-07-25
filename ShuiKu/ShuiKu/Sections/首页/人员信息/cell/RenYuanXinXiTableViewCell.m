@@ -100,9 +100,9 @@
     {
         [_imgvselect setImage:[UIImage imageNamed:@"选择"]];
     }
-    [_lbname setText:@"系统管理员"];
+    [_lbname setText:self.model.USER_NAME];
     
-    [_lbphone setText:@"18733742384"];
+    [_lbphone setText:self.model.CELLPHONE];
 }
 
 - (void)awakeFromNib {

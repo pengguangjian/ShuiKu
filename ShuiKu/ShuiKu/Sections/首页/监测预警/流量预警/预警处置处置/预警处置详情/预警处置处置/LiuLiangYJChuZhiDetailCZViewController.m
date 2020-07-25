@@ -26,6 +26,7 @@
 -(void)drawUI
 {
     LiuLiangYJChuZhiDetailCZView *view = [[LiuLiangYJChuZhiDetailCZView alloc] init];
+    view.ID = self.ID;
     [self.view addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {

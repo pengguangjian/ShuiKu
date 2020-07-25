@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LiShiYuJingViewController : RootViewController
+///水厂ID
+@property (nonatomic , strong) NSString *strSWSTCD;
 
 @end
 

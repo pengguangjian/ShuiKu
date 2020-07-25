@@ -10,10 +10,12 @@
 #import "LiuLiangYJChuZhiDetailViewController.h"
 #import "LiuLiangYJChuZhiDetailTableViewCell.h"
 #import "LiuLiangYJChuZhiDetailCZViewController.h"
-
+#import "LiuLiangYJDataController.h"
+#import "LiuLiangYJDataController.h"
 @interface LiuLiangYJChuZhiDetailViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
+@property (nonatomic , strong) NSMutableArray *arrdata;
 
 @end
 
@@ -24,7 +26,7 @@
     self.title = @"查看任务流程";
     
     [self drawUI];
-    
+    [self getdata];
 }
 
 -(void)drawUI
@@ -79,10 +81,34 @@
     if(sender.tag==0)
     {///关闭预警
         
+        UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否要办结此任务吗？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [LiuLiangYJDataController requestYuJingRengWuChuZhiBanJieData:self.view ID:self.ID Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
+                if(state)
+                {
+                    [WYTools showNotifyHUDwithtext:@"办结成功" inView:self.view.window];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    [WYTools showNotifyHUDwithtext:describle inView:self.view];
+                }
+            }];
+        }];
+        
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alter addAction:action];
+        [alter addAction:action1];
+        
+        [self presentViewController:alter animated:YES completion:nil];
+        
     }
     else
     {//预警处置
         LiuLiangYJChuZhiDetailCZViewController *vc = [[LiuLiangYJChuZhiDetailCZViewController alloc] init];
+        vc.ID = self.ID;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -90,7 +116,7 @@
 #pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrdata.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,7 +128,7 @@
         cell = [[LiuLiangYJChuZhiDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setStrvalue:@""];
+    [cell setModel:self.arrdata[indexPath.row]];
     
     return cell;
 }
@@ -113,9 +139,24 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LiuLiangYJChuZhiDetailCZViewController *vc = [[LiuLiangYJChuZhiDetailCZViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
+
+-(void)getdata
+{
+    [LiuLiangYJDataController requestYuJingRengWuChuZhiJiLuData:self.view ID:self.ID Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            self.arrdata = value;
+        }
+        else
+        {
+            [WYTools showNotifyHUDwithtext:describle inView:self.view];
+        }
+        [self.tabview reloadData];
+    }];
+    
+}
 
 @end

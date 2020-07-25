@@ -1,15 +1,17 @@
+
+
 //
-//  LiuLiangYJChuZhiDetailTableViewCell.m
+//  LiuLiangYJChuZhiTableViewCell.m
 //  ShuiKu
 //
 //  Created by Mac on 2020/7/19.
 //  Copyright © 2020 Mac. All rights reserved.
 //
 
-#import "LiuLiangYJChuZhiDetailTableViewCell.h"
+#import "LiuLiangYJChuZhiTableViewCell.h"
 
 
-@interface LiuLiangYJChuZhiDetailTableViewCell ()
+@interface LiuLiangYJChuZhiTableViewCell ()
 
 @property (nonatomic , strong) UILabel *lbname;
 @property (nonatomic , strong) UILabel *lbaddress;
@@ -17,7 +19,9 @@
 
 @end
 
-@implementation LiuLiangYJChuZhiDetailTableViewCell
+
+@implementation LiuLiangYJChuZhiTableViewCell
+
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -70,7 +74,7 @@
         _lbaddress = lbaddress;
         
         _arrallLB = [NSMutableArray new];
-        NSArray *arrzhuang = @[@"任务类型",@"任务状态",@"任务描述",@"任务结果",@"备注"];
+        NSArray *arrzhuang = @[@"任务等级",@"任务描述",@"处理建议",@"处理人",@"任务创建时间",@"任务状态"];
         for(int i = 0; i < arrzhuang.count; i++)
         {
             UIView *viewitem = [[UIView alloc] init];
@@ -91,15 +95,78 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(YuJingRengWuListModel *)model
 {
+    ///1 一般任务，2  事件处置，3 预警处置
+    if(model.TASK_TYPE.intValue == 1)
+    {
+        [_lbname setText:[NSString stringWithFormat:@"一般任务(%@)",model.ID]];
+    }
+    else if(model.TASK_TYPE.intValue == 2)
+    {
+        [_lbname setText:[NSString stringWithFormat:@"事件处置(%@)",model.ID]];
+    }
+    else if(model.TASK_TYPE.intValue == 3)
+    {
+        [_lbname setText:[NSString stringWithFormat:@"预警处置(%@)",model.ID]];
+    }
+    
+    [_lbaddress setText:model.CREATOR];
+    
+    
+    
     UILabel *lb0 = _arrallLB[0];
-    [lb0 setTextColor:[UIColor whiteColor]];
     UIView *view0 = lb0.superview;
     [view0 setBackgroundColor:RGB(21, 81, 211)];
-    [_lbname setText:@"标题标题标题标题标题标题"];
-    [_lbaddress setText:@"寨上公园"];
+    ///TASK_LEVEL  1 一般; 2 较急; 3 紧急; 4 特急
+    if(model.TASK_TYPE.intValue==1)
+    {
+        [lb0 setText:@"一般"];
+        [view0 setBackgroundColor:MenuColor];
+    }
+    else if(model.TASK_TYPE.intValue==2)
+    {
+        [lb0 setText:@"较急"];
+        [view0 setBackgroundColor:[UIColor brownColor]];
+    }
+    else if(model.TASK_TYPE.intValue==3)
+    {
+        [lb0 setText:@"紧急"];
+        [view0 setBackgroundColor:[UIColor yellowColor]];
+    }
+    else if(model.TASK_TYPE.intValue==4)
+    {
+        [lb0 setText:@"特急"];
+        [view0 setBackgroundColor:[UIColor redColor]];
+    }
+    
+    UILabel *lb1 = _arrallLB[1];
+    [lb1 setText:model.DESCRIPTION];
+    
+    UILabel *lb2 = _arrallLB[2];
+    [lb2 setText:model.SUGGEST];
+    
+    
+    UILabel *lb3 = _arrallLB[3];
+    [lb3 setText:model.HANDLER];
+    
+    UILabel *lb4 = _arrallLB[4];
+    [lb4 setText:model.CREATEDTIME];
+    
+    UILabel *lb5 = _arrallLB[5];
+    ///0正在处置 1：处置完成
+    if(model.STATUS.intValue == 1)
+    {
+        [lb5 setText:@"处置完成"];
+    }
+    else
+    {
+        [lb5 setText:@"正在处置"];
+    }
+    
+    
 }
+
 
 
 

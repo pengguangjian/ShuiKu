@@ -9,6 +9,12 @@
 #import "LiuLiangYJDetailView.h"
 #import "LiuLiangYJChuZhiDetailCZViewController.h"
 #import "LiShiYuJingViewController.h"
+
+#import "YuJingNewListModel.h"
+#import "LiuLiangYJDataController.h"
+#import "YuJingXiangQingYuJingChuZhiViewController.h"
+
+
 @interface LiuLiangYJDetailView ()
 @property (nonatomic , strong) UILabel *lbname;
 @property (nonatomic , strong) UILabel *lbaddress;
@@ -128,7 +134,6 @@
             make.height.offset(45);
         }];
         _viewbottom = viewbottom;
-        [self drawbottom];
         
         
         
@@ -138,55 +143,88 @@
 
 -(void)drawbottom
 {
-    ///处置中
-//    UIButton *btguanbi = [[UIButton alloc] init];
-//    [btguanbi setTitle:@"关闭预警" forState:UIControlStateNormal];
-//    [btguanbi setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [btguanbi.titleLabel setFont:[UIFont systemFontOfSize:14]];
-//    [btguanbi setBackgroundColor:RGB(255, 30, 30)];
-//    [_viewbottom addSubview:btguanbi];
-//    [btguanbi mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(self.viewbottom);
-//    }];
-//    [btguanbi addTarget:self action:@selector(guanbiAction) forControlEvents:UIControlEventTouchUpInside];
-    ///新增
-    NSArray *arrtitle = @[@"预警处置",@"短信通知"];
-    for(int i = 0; i < 2; i++)
+    ///1：新产生；2：已发布；3：响应中；4：已关闭； 5 已忽略；
+    if(self.model.FLAG.intValue == 1)
     {
-        UIButton *btitem = [[UIButton alloc] init];
-        [btitem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btitem setTitle:arrtitle[i] forState:UIControlStateNormal];
-        [btitem.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [btitem setBackgroundColor:MenuColor];
-        if (i==1) {
-            [btitem setBackgroundColor:RGB(35, 190, 255)];
+        ///新增
+        NSArray *arrtitle = @[@"预警处置",@"短信通知"];
+        for(int i = 0; i < 2; i++)
+        {
+            UIButton *btitem = [[UIButton alloc] init];
+            [btitem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [btitem setTitle:arrtitle[i] forState:UIControlStateNormal];
+            [btitem.titleLabel setFont:[UIFont systemFontOfSize:15]];
+            [btitem setBackgroundColor:MenuColor];
+            if (i==1) {
+                [btitem setBackgroundColor:RGB(35, 190, 255)];
+            }
+            [self.viewbottom addSubview:btitem];
+            [btitem mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.bottom.equalTo(self.viewbottom);
+                make.width.equalTo(self.viewbottom).multipliedBy(0.5);
+                make.left.offset((kMainScreenW-30)/2*i);
+            }];
+            [btitem setTag:i];
+            [btitem addTarget:self action:@selector(bottomAction:) forControlEvents:UIControlEventTouchUpInside];
         }
-        [self.viewbottom addSubview:btitem];
-        [btitem mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.equalTo(self.viewbottom);
-            make.width.equalTo(self.viewbottom).multipliedBy(0.5);
-            make.left.offset((kMainScreenW-30)/2*i);
-        }];
-        [btitem setTag:i];
-        [btitem addTarget:self action:@selector(bottomAction:) forControlEvents:UIControlEventTouchUpInside];
     }
+    else if(self.model.FLAG.intValue == 3)
+    {
+        ///处置中
+        UIButton *btguanbi = [[UIButton alloc] init];
+        [btguanbi setTitle:@"关闭预警" forState:UIControlStateNormal];
+        [btguanbi setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btguanbi.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [btguanbi setBackgroundColor:RGB(255, 30, 30)];
+        [_viewbottom addSubview:btguanbi];
+        [btguanbi mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.viewbottom);
+        }];
+        [btguanbi addTarget:self action:@selector(guanbiAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    
 }
 ///@"预警处置",@"短信通知"
 -(void)bottomAction:(UIButton *)sender
 {
     if(sender.tag==0)
     {
-        LiuLiangYJChuZhiDetailCZViewController *vc = [[LiuLiangYJChuZhiDetailCZViewController alloc] init];
+        YuJingXiangQingYuJingChuZhiViewController *vc = [[YuJingXiangQingYuJingChuZhiViewController alloc] init];
+        vc.WARNING_ID = self.model.ID;
         [self.viewController.navigationController pushViewController:vc animated:YES];
     }
     else
     {
-        
+        [WYTools showNotifyHUDwithtext:@"开发中" inView:self];
     }
 }
 ///关闭预警
 -(void)guanbiAction
 {
+    UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否关闭该预警" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [LiuLiangYJDataController requestGuanBiYuJinGGData:self.viewController.view did:self.model.ID Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
+            if(state)
+            {
+                [WYTools showNotifyHUDwithtext:@"关闭成功" inView:self.viewController.view.window];
+                [self.viewController.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                [WYTools showNotifyHUDwithtext:describle inView:self.viewController.view];
+            }
+        }];
+    }];
+    
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alter addAction:action];
+    [alter addAction:action1];
+    
+    [self.viewController presentViewController:alter animated:YES completion:nil];
+    
     
 }
 
@@ -194,7 +232,151 @@
 -(void)lishiAction
 {
     LiShiYuJingViewController *vc = [[LiShiYuJingViewController alloc] init];
+    vc.title = [NSString stringWithFormat:@"%@历史预警",self.model.SWSTNM];
+    vc.strSWSTCD = self.model.SWSTCD;
     [self.viewController.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)setModel:(YuJingNewListModel *)model
+{
+    _model = model;
+    [self drawbottom];
+    [_lbname setText:[NSString stringWithFormat:@"%@(%@)",model.SWSTNM,model.SWSTCD]];
+    [_lbaddress setText:model.NAME];
+    
+    
+    UILabel *lb5 = _arrallLB[5];
+    [lb5 setTextColor:[UIColor whiteColor]];
+    UIView *view5 = lb5.superview;
+    
+    
+    NSString *strtype = @"";
+    NSString *strchaobiao = @"";
+    NSString *stryujinfz = @"";
+    NSString *stryujintime = @"";
+    NSString *stryujindengji = @"";
+    NSString *strzhuangtai = @"";
+    
+    if(model.SWLEVEL.intValue == 1)
+    {
+        stryujindengji = @"蓝色预警";
+        [view5 setBackgroundColor:[UIColor blueColor]];
+    }
+    else if(model.SWLEVEL.intValue == 2)
+    {
+        stryujindengji = @"黄色预警";
+        [view5 setBackgroundColor:[UIColor yellowColor]];
+    }
+    else if(model.SWLEVEL.intValue == 3)
+    {
+        stryujindengji = @"橙色预警";
+        [view5 setBackgroundColor:[UIColor orangeColor]];
+    }
+    else if(model.SWLEVEL.intValue == 4)
+    {
+        stryujindengji = @"红色预警";
+        [view5 setBackgroundColor:[UIColor redColor]];
+    }
+    
+    stryujintime = model.SWTM;
+    
+    ///1:流量 2:浊度 3:温度 4:pH值 5:余氯
+    if([model.SWTYPE intValue] == 1)
+    {
+        strtype = @"流量";
+        strchaobiao = [NSString stringWithFormat:@"%@m³/s",model.SWVALUE];
+        stryujinfz = [NSString stringWithFormat:@"%@m³/s",model.SWINDEX];
+        
+        
+    }
+    else if([model.SWTYPE intValue] == 2)
+    {
+        strtype = @"浊度";
+        strchaobiao = [NSString stringWithFormat:@"%@NTU",model.SWVALUE];
+        stryujinfz = [NSString stringWithFormat:@"%@NTU",model.SWINDEX];
+    }
+    else if([model.SWTYPE intValue] == 3)
+    {
+        strtype = @"温度";
+        strchaobiao = [NSString stringWithFormat:@"%@℃",model.SWVALUE];
+        stryujinfz = [NSString stringWithFormat:@"%@℃",model.SWINDEX];
+    }
+    else if([model.SWTYPE intValue] == 4)
+    {
+        strtype = @"pH值";
+        strchaobiao = [NSString stringWithFormat:@"%@ph",model.SWVALUE];
+        stryujinfz = [NSString stringWithFormat:@"%@ph",model.SWINDEX];
+    }
+    else if([model.SWTYPE intValue] == 5)
+    {
+        strtype = @"余氯";
+        strchaobiao = [NSString stringWithFormat:@"%@mg/L",model.SWVALUE];
+        stryujinfz = [NSString stringWithFormat:@"%@mg/L",model.SWINDEX];
+    }
+    //1：新产生；2：已发布；3：响应中；4：已关闭； 5 已忽略；
+    if(model.FLAG.intValue == 1)
+    {
+        strzhuangtai = @"新产生";
+    }
+    else if(model.FLAG.intValue == 2)
+    {
+        strzhuangtai = @"已发布";
+    }
+    else if(model.FLAG.intValue == 3)
+    {
+        strzhuangtai = @"响应中";
+    }
+    else if(model.FLAG.intValue == 4)
+    {
+        strzhuangtai = @"已关闭";
+    }
+    else if(model.FLAG.intValue == 5)
+    {
+        strzhuangtai = @"已忽略";
+    }
+    
+    NSMutableArray *arrvalue = [NSMutableArray new];
+    [arrvalue addObject:strtype];
+    [arrvalue addObject:strchaobiao];
+    [arrvalue addObject:stryujinfz];
+    if(model.AUTO.intValue == 1)
+    {
+        [arrvalue addObject:@"是"];
+    }
+    else
+    {
+        [arrvalue addObject:@"否"];
+    }
+    [arrvalue addObject:stryujintime];
+    [arrvalue addObject:stryujindengji];
+    [arrvalue addObject:[NSString nullToString:model.FZR]];
+    [arrvalue addObject:[NSString nullToString:model.LXDH]];
+    [arrvalue addObject:strzhuangtai];
+    if(model.SYMBOL.intValue==1)
+    {
+        [arrvalue addObject:@"超最大值"];
+    }
+    else
+    {
+        [arrvalue addObject:@"低最小值"];
+    }
+    [arrvalue addObject:[NSString nullToString:model.CREATEDBY]];
+    [arrvalue addObject:[NSString nullToString:model.CREATEDTIME]];
+    
+    int i = 0;
+    for(UILabel *lb in self.arrallLB)
+    {
+        if([arrvalue[i] length]==0)
+        {
+            [lb setText:@"-"];
+        }
+        else
+        {
+            [lb setText:arrvalue[i]];
+        }
+        
+        i++;
+    }
 }
 
 @end

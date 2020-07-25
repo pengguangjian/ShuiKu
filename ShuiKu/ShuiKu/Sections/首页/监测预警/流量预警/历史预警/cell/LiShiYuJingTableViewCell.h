@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YuJingNewListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LiShiYuJingTableViewCell : UITableViewCell
 
-@property (nonatomic , strong) NSString *strvalue;
+@property (nonatomic , strong) YuJingNewListModel *model;
 
 @end
 

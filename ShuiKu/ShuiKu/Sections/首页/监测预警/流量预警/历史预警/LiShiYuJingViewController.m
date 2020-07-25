@@ -8,10 +8,19 @@
 
 #import "LiShiYuJingViewController.h"
 #import "LiShiYuJingTableViewCell.h"
+#import "LiuLiangYJDataController.h"
+
+
 @interface LiShiYuJingViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,TimeClectAlterViewDelegate>
 
 @property (nonatomic , strong) UITableView *tabview;
 @property (nonatomic , strong) UIButton *bttime;
+
+@property (nonatomic , strong) NSString *strstarttime;
+@property (nonatomic , strong) NSString *strendtime;
+
+
+@property (nonatomic , strong) NSMutableArray *arrdata;
 
 @end
 
@@ -20,8 +29,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"水厂历史预警信息";
+    self.strstarttime = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM-dd"];
+    self.strendtime = self.strstarttime;
     
     [self drawUI];
+    
+    [self getdata];
     
 }
 -(void)drawUI
@@ -103,6 +116,8 @@
 {
     @try {
         NSArray *arrtime = [strvalue componentsSeparatedByString:@"-"];
+        self.strstarttime = arrtime[0];
+        self.strendtime = arrtime[1];
         NSString *strtemp = [NSString stringWithFormat:@"%@至%@",arrtime[0],arrtime[1]];
         strtemp = [strtemp stringByReplacingOccurrencesOfString:@"." withString:@"-"];
         [_bttime setTitle:strtemp forState:UIControlStateNormal];
@@ -118,13 +133,13 @@
 -(void)searchAction
 {
     
-    
+    [self getdata];
 }
 
 #pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrdata.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -137,7 +152,7 @@
         [cell setBackgroundColor:[UIColor clearColor]];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setStrvalue:@""];
+    [cell setModel:self.arrdata[indexPath.row]];
     
     return cell;
 }
@@ -150,6 +165,17 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+-(void)getdata
+{
+    [LiuLiangYJDataController requestLiShiYuJinGGData:self.view sTime:self.strstarttime eTime:self.strendtime stcd:self.strSWSTCD Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            self.arrdata = value;
+        }
+        [self.tabview reloadData];
+    }];
 }
 
 

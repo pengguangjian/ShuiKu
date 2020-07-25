@@ -1,17 +1,15 @@
-
-
 //
-//  LiuLiangYJChuZhiTableViewCell.m
+//  LiuLiangYJChuZhiDetailTableViewCell.m
 //  ShuiKu
 //
 //  Created by Mac on 2020/7/19.
 //  Copyright © 2020 Mac. All rights reserved.
 //
 
-#import "LiuLiangYJChuZhiTableViewCell.h"
+#import "LiuLiangYJChuZhiDetailTableViewCell.h"
 
 
-@interface LiuLiangYJChuZhiTableViewCell ()
+@interface LiuLiangYJChuZhiDetailTableViewCell ()
 
 @property (nonatomic , strong) UILabel *lbname;
 @property (nonatomic , strong) UILabel *lbaddress;
@@ -19,9 +17,7 @@
 
 @end
 
-
-@implementation LiuLiangYJChuZhiTableViewCell
-
+@implementation LiuLiangYJChuZhiDetailTableViewCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -74,7 +70,7 @@
         _lbaddress = lbaddress;
         
         _arrallLB = [NSMutableArray new];
-        NSArray *arrzhuang = @[@"任务等级",@"任务描述",@"处理建议",@"处理人",@"任务创建时间",@"任务状态"];
+        NSArray *arrzhuang = @[@"任务类型",@"任务状态",@"任务描述",@"任务结果",@"备注"];
         for(int i = 0; i < arrzhuang.count; i++)
         {
             UIView *viewitem = [[UIView alloc] init];
@@ -95,16 +91,61 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(YuJingRengWuChuZhiJiLuModel *)model
 {
+    [_lbname setText:[NSString stringWithFormat:@"处置人：%@",model.HANDLER_NM]];
+    [_lbaddress setText:model.CREATEDTIME];
     UILabel *lb0 = _arrallLB[0];
-    [lb0 setTextColor:[UIColor whiteColor]];
-    UIView *view0 = lb0.superview;
-    [view0 setBackgroundColor:RGB(21, 81, 211)];
-    [_lbname setText:@"标题标题标题标题标题标题"];
-    [_lbaddress setText:@"寨上公园"];
+    //0 新建，1 处置，2 通知，3 督办
+    if(model.TYPE.intValue == 0)
+    {
+        [lb0 setText:@"新建"];
+    }
+    else if(model.TYPE.intValue == 1)
+    {
+        [lb0 setText:@"处置"];
+    }
+    else if(model.TYPE.intValue == 2)
+    {
+        [lb0 setText:@"通知"];
+    }
+    else if(model.TYPE.intValue == 3)
+    {
+        [lb0 setText:@"督办"];
+    }
+    
+    UILabel *lb1 = _arrallLB[1];
+    ///0正在处置 1：处置完成
+    if(model.STATUS.intValue == 1)
+    {
+        [lb1 setText:@"处置完成"];
+    }
+    else
+    {
+        [lb1 setText:@"正在处置"];
+    }
+    
+    UILabel *lb2 = _arrallLB[2];
+    [lb2 setText:model.DESCRIPTION];
+    if(model.DESCRIPTION.length==0)
+    {
+        [lb2 setText:@"-"];
+    }
+    
+    UILabel *lb3 = _arrallLB[3];
+    [lb3 setText:model.DESCRIPTION];
+    if(model.DESCRIPTION.length==0)
+    {
+        [lb3 setText:@"-"];
+    }
+    
+    UILabel *lb4 = _arrallLB[4];
+    [lb4 setText:model.REMARK];
+    if(model.REMARK.length==0)
+    {
+        [lb4 setText:@"-"];
+    }
 }
-
 
 
 

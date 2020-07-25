@@ -10,6 +10,9 @@
 
 #import "RenYuanXinXiViewController.h"
 #import "RenYuanXinXiTableViewCell.h"
+
+#import "MainHomeDataController.h"
+
 @interface RenYuanXinXiViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
@@ -22,8 +25,6 @@
     [super viewDidLoad];
     self.title = @"预警处置";
     
-    ///测试
-//    self.isedit = NO;
     
     if(self.isedit)
     {
@@ -31,6 +32,7 @@
     }
     
     [self drawUI];
+    [self getdata];
 }
 
 -(void)setnavRight
@@ -82,15 +84,6 @@
     }];
     _tabview = tabview;
     [self drawHeaderView];
-    
-    
-    self.arrdata = [NSMutableArray new];
-    for(int i = 0 ; i < 10 ;i++)
-    {
-        RenYuanXinXiModel *model = [RenYuanXinXiModel new];
-        [self.arrdata addObject:model];
-    }
-    
     
 }
 -(void)drawHeaderView
@@ -148,15 +141,19 @@
     
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)getdata
+{
+    [MainHomeDataController requestUserListData:self.view Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            self.arrdata = value;
+        }
+        else
+        {
+            [WYTools showNotifyHUDwithtext:describle inView:self.view];
+        }
+        [self.tabview reloadData];
+    }];
 }
-*/
 
 @end

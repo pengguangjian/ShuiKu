@@ -11,4 +11,8 @@
 
 @implementation RenYuanXinXiModel
 
++(NSMutableArray *)initDataValue:(NSArray *)value
+{
+    return [WYTools initArrValue:value andclassname:@"RenYuanXinXiModel"];
+}
 @end

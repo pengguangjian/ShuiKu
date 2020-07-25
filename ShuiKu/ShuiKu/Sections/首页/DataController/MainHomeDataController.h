@@ -16,6 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)requestTongZhiGongGGData:(UIView *)view
                        Callback:(completeCallback)callback;
+
+/*
+获取联系人用户信息
+ */
++ (void)requestUserListData:(UIView *)view
+                        Callback:(completeCallback)callback;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

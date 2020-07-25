@@ -9,9 +9,9 @@
 #import "RootViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class YuJingNewListModel;
 @interface LiuLiangYJDetailViewController : RootViewController
-@property (nonatomic , strong) NSString *strtitle;
+@property (nonatomic , strong) YuJingNewListModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

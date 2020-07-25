@@ -11,10 +11,17 @@
 #import "UITextView+Placeholder.h"
 
 #import "RenYuanXinXiViewController.h"
+#import "RenYuanXinXiModel.h"
+#import "LiuLiangYJDataController.h"
 
 @interface LiuLiangYJChuZhiDetailCZView ()<RenYuanXinXiViewControllerDelegate>
 
 @property (nonatomic , strong) UILabel *lbreyuan;
+
+@property (nonatomic , strong) UITextView *textview;
+
+@property (nonatomic , strong) NSString *strpeopleid;
+
 
 @end
 
@@ -54,6 +61,7 @@
             make.top.equalTo(btqingc.mas_bottom).offset(10);
             make.height.offset(100);
         }];
+        _textview = textview;
         
         UIButton *btxinz = [[UIButton alloc] init];
         [btxinz setTitle:@"新增" forState:UIControlStateNormal];
@@ -110,11 +118,50 @@
 ///编辑时选中的人员
 -(void)backSelecePeopleArr:(NSMutableArray *)arrvalue
 {
-    
+    self.strpeopleid = @"";
+    NSString *strtemp = @"";
+    for(RenYuanXinXiModel *model in arrvalue)
+    {
+        if(strtemp.length==0)
+        {
+            strtemp = model.USER_NAME;
+            self.strpeopleid = model.ID;
+        }
+        else
+        {
+            strtemp = [NSString stringWithFormat:@"%@,%@",strtemp,model.USER_NAME];
+            self.strpeopleid = [NSString stringWithFormat:@"%@,%@",self.strpeopleid,model.ID];
+        }
+    }
+    [self.lbreyuan setText:strtemp];
 }
 ///新增
 -(void)xinzenAction
 {
+    if(self.strpeopleid.length==0)
+    {
+        [WYTools showNotifyHUDwithtext:@"请选择人员" inView:self];
+        return;
+    }
+    
+    
+    if(self.textview.text.length<3)
+    {
+        [WYTools showNotifyHUDwithtext:@"请输入描述" inView:self];
+        return;
+    }
+    
+    [LiuLiangYJDataController requestYuJingRengWuChuZhiXinZengData:self ID:self.ID handler:self.strpeopleid des:self.textview.text Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
+        if(state)
+        {
+            [WYTools showNotifyHUDwithtext:@"新增成功" inView:self.window];
+            [self.viewController.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            [WYTools showNotifyHUDwithtext:describle inView:self];
+        }
+    }];;
     
     
 }

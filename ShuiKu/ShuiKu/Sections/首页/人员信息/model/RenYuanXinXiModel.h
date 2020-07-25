@@ -13,6 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RenYuanXinXiModel : NSObject
 
 @property (nonatomic , assign) BOOL isselect;
+@property (nonatomic , strong) NSString *ID;
+@property (nonatomic , strong) NSString *USER_NAME;
+@property (nonatomic , strong) NSString *CELLPHONE;
+
++(NSMutableArray *)initDataValue:(NSArray *)value;
+
 
 @end
 

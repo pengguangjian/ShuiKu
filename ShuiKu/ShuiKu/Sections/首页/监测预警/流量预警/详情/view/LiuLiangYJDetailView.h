@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class YuJingNewListModel;
 @interface LiuLiangYJDetailView : UIView
+@property (nonatomic , strong) YuJingNewListModel *model;
 
 @end
 

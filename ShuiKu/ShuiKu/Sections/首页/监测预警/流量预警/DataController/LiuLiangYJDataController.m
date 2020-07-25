@@ -8,6 +8,10 @@
 
 #import "LiuLiangYJDataController.h"
 #import "HTTPManager.h"
+#import "YuJingNewListModel.h"
+#import "YuJingRengWuListModel.h"
+#import "YuJingRengWuChuZhiJiLuModel.h"
+
 @implementation LiuLiangYJDataController
 ///最新预警
 + (void)requestZuiXinYuJinGGData:(UIView *)view
@@ -18,7 +22,7 @@ pageNumber:(int)pageNumber
     NSMutableDictionary  *dicpush = [NSMutableDictionary new];
     [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
     [dicpush setObject:[NSString nullToString:key] forKey:@"key"];
-    [dicpush setObject:@"10" forKey:@"pageSize"];
+    [dicpush setObject:@"100" forKey:@"pageSize"];
     [dicpush setObject:@(pageNumber) forKey:@"pageNumber"];
     [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/newwarning/GetPage?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
         BOOL state = NO;
@@ -45,7 +49,8 @@ pageNumber:(int)pageNumber
             }
             if(state==YES)
             {
-                callback(error,state,describle,[dicAll objectForKey:@"data"]);
+                
+                callback(error,state,describle,[YuJingNewListModel initDataValue:[[dicAll objectForKey:@"data"] objectForKey:@"rows"]]);
             }
         }
         if(state==NO)
@@ -54,6 +59,54 @@ pageNumber:(int)pageNumber
         }
     }];
     
+}
+///历史预警
++ (void)requestLiShiYuJinGGData:(UIView *)view
+      sTime:(NSString *)sTime
+     eTime:(NSString *)eTime
+     stcd:(NSString *)stcd
+Callback:(completeCallback)callback
+{
+    
+    NSMutableDictionary  *dicpush = [NSMutableDictionary new];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
+    [dicpush setObject:[NSString nullToString:sTime] forKey:@"sTime"];
+    [dicpush setObject:stcd forKey:@"stcd"];
+    [dicpush setObject:eTime forKey:@"eTime"];
+    [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/newwarning/GetItems?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
+        BOOL state = NO;
+        NSString *describle = @"";
+        if (responceObjct==nil) {
+            describle = @"网络错误";
+        }else{
+            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+            NSDictionary *dicAll=[str JSONValue];
+            describle = dicAll[@"message"];
+            if ([[NSString nullToString:dicAll[@"errcode"]] intValue] == 0) {
+                if([[dicAll objectForKey:@"data"] isKindOfClass:[NSDictionary class]])
+                {
+                    state = YES;
+                }
+                else
+                {
+                    state = NO;
+                }
+            }
+            else
+            {
+                state = NO;
+            }
+            if(state==YES)
+            {
+                
+                callback(error,state,describle,[YuJingNewListModel initDataValue:[[dicAll objectForKey:@"data"] objectForKey:@"rows"]]);
+            }
+        }
+        if(state==NO)
+        {
+            callback(error,state,describle,nil);
+        }
+    }];
 }
 
 ////关闭预警
@@ -141,6 +194,185 @@ pageNumber:(int)pageNumber
         }
     }];
     
+}
+
+/// 获取预警任务分页列表
++ (void)requestYuJingRengWuListData:(UIView *)view
+      key:(NSString *)key
+     pageNumber:(NSString *)pageNumber
+     pageSize:(NSString *)pageSize
+Callback:(completeCallback)callback
+{
+    
+    NSMutableDictionary  *dicpush = [NSMutableDictionary new];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
+    [dicpush setObject:[NSString nullToString:key] forKey:@"key"];
+    [dicpush setObject:@"100" forKey:@"pageSize"];
+    [dicpush setObject:pageNumber forKey:@"pageNumber"];
+    
+    [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/WarningArrangement/GetPage?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
+        BOOL state = NO;
+        NSString *describle = @"";
+        if (responceObjct==nil) {
+            describle = @"网络错误";
+        }else{
+            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+            NSDictionary *dicAll=[str JSONValue];
+            describle = dicAll[@"message"];
+            if ([[NSString nullToString:dicAll[@"errcode"]] intValue] == 0) {
+                if([[dicAll objectForKey:@"data"] isKindOfClass:[NSDictionary class]])
+                {
+                    state = YES;
+                }
+                else
+                {
+                    state = NO;
+                }
+            }
+            else
+            {
+                state = NO;
+            }
+            if(state==YES)
+            {
+                
+                callback(error,state,describle,[YuJingRengWuListModel initDataValue:[[dicAll objectForKey:@"data"] objectForKey:@"rows"]]);
+            }
+        }
+        if(state==NO)
+        {
+            callback(error,state,describle,nil);
+        }
+    }];
+    
+}
+
+///任务详情（处置记录）
++ (void)requestYuJingRengWuChuZhiJiLuData:(UIView *)view
+      ID:(NSString *)ID
+Callback:(completeCallback)callback
+{
+    NSMutableDictionary  *dicpush = [NSMutableDictionary new];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
+    [dicpush setObject:[NSString nullToString:ID] forKey:@"id"];
+    
+    [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/WarningArrangement/GetTrans?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
+        BOOL state = NO;
+        NSString *describle = @"";
+        if (responceObjct==nil) {
+            describle = @"网络错误";
+        }else{
+            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+            NSDictionary *dicAll=[str JSONValue];
+            describle = dicAll[@"message"];
+            if ([[NSString nullToString:dicAll[@"errcode"]] intValue] == 0) {
+                if([[dicAll objectForKey:@"data"] isKindOfClass:[NSArray class]])
+                {
+                    state = YES;
+                }
+                else
+                {
+                    state = NO;
+                }
+            }
+            else
+            {
+                state = NO;
+            }
+            if(state==YES)
+            {
+                
+                callback(error,state,describle,[YuJingRengWuChuZhiJiLuModel initDataValue:[dicAll objectForKey:@"data"]]);
+            }
+        }
+        if(state==NO)
+        {
+            callback(error,state,describle,nil);
+        }
+    }];
+    
+}
+
+/// 新增任务处置
++ (void)requestYuJingRengWuChuZhiXinZengData:(UIView *)view
+      ID:(NSString *)ID
+handler:(NSString *)handler
+des:(NSString *)des
+Callback:(completeCallback)callback
+{
+    NSMutableDictionary  *dicpush = [NSMutableDictionary new];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
+    [dicpush setObject:[NSString nullToString:ID] forKey:@"id"];
+    [dicpush setObject:[NSString nullToString:handler] forKey:@"handler"];
+    [dicpush setObject:[[NSString nullToString:des] stringByURLEncode] forKey:@"des"];
+    
+    [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/WarningArrangement/HandlerTrans?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
+        BOOL state = NO;
+        NSString *describle = @"";
+        if (responceObjct==nil) {
+            describle = @"网络错误";
+        }else{
+            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+            NSDictionary *dicAll=[str JSONValue];
+            describle = dicAll[@"message"];
+            if ([[NSString nullToString:dicAll[@"errcode"]] intValue] == 0) {
+                state = YES;
+            }
+            else
+            {
+                state = NO;
+            }
+            if(state==YES)
+            {
+                
+                callback(error,state,describle,nil);
+            }
+        }
+        if(state==NO)
+        {
+            callback(error,state,describle,nil);
+        }
+    }];
+    
+}
+/// 关闭预警（办结）
++ (void)requestYuJingRengWuChuZhiBanJieData:(UIView *)view
+      ID:(NSString *)ID
+Callback:(completeCallback)callback
+{
+    
+    
+    NSMutableDictionary  *dicpush = [NSMutableDictionary new];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
+    [dicpush setObject:[NSString nullToString:ID] forKey:@"id"];
+
+    [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/WarningArrangement/CloseTask?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
+        BOOL state = NO;
+        NSString *describle = @"";
+        if (responceObjct==nil) {
+            describle = @"网络错误";
+        }else{
+            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+            NSDictionary *dicAll=[str JSONValue];
+            describle = dicAll[@"message"];
+            if ([[NSString nullToString:dicAll[@"errcode"]] intValue] == 0) {
+                state = YES;
+            }
+            else
+            {
+                state = NO;
+            }
+            if(state==YES)
+            {
+                
+                callback(error,state,describle,nil);
+            }
+        }
+        if(state==NO)
+        {
+            callback(error,state,describle,nil);
+        }
+    }];
 }
 
 @end

@@ -1,34 +1,33 @@
-
 //
-//  LiuLiangYJDetailViewController.m
+//  YuJingXiangQingYuJingChuZhiViewController.m
 //  ShuiKu
 //
-//  Created by Mac on 2020/7/18.
+//  Created by Mac on 2020/7/25.
 //  Copyright © 2020 Mac. All rights reserved.
 //
 
-#import "LiuLiangYJDetailViewController.h"
-#import "LiuLiangYJDetailView.h"
-#import "YuJingNewListModel.h"
-@interface LiuLiangYJDetailViewController ()
+#import "YuJingXiangQingYuJingChuZhiViewController.h"
+#import "YuJingXiangQingYuJingChuZhiView.h"
+
+@interface YuJingXiangQingYuJingChuZhiViewController ()
 
 @end
 
-@implementation LiuLiangYJDetailViewController
+@implementation YuJingXiangQingYuJingChuZhiViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = [NSString stringWithFormat:@"%@预警详情",self.model.SWSTNM];
+    self.title = @"预警处置";
     
     [self drawUI];
-    
 }
+
 
 -(void)drawUI
 {
-    LiuLiangYJDetailView *view = [[LiuLiangYJDetailView alloc] init];
-    view.model = self.model;
+    YuJingXiangQingYuJingChuZhiView *view = [[YuJingXiangQingYuJingChuZhiView alloc] init];
     [self.view addSubview:view];
+    view.WARNING_ID = self.WARNING_ID;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
@@ -41,5 +40,7 @@
     }];
     
 }
+
+
 
 @end

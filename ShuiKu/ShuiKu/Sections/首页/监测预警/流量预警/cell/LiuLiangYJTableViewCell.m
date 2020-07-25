@@ -71,7 +71,7 @@
         _lbaddress = lbaddress;
         
         _arrallLB = [NSMutableArray new];
-        NSArray *arrzhuang = @[@"任务等级",@"任务描述",@"处理建议",@"处理人",@"任务创建时间",@"任务状态"];
+        NSArray *arrzhuang = @[@"预警类型",@"超标值",@"预警阀值",@"预警时间",@"预警等级",@"数据状态"];
         for(int i = 0; i < arrzhuang.count; i++)
         {
             UIView *viewitem = [[UIView alloc] init];
@@ -92,14 +92,108 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(YuJingNewListModel *)model
 {
-    UILabel *lb0 = _arrallLB[0];
-    [lb0 setTextColor:[UIColor whiteColor]];
-    UIView *view0 = lb0.superview;
-    [view0 setBackgroundColor:RGB(21, 81, 211)];
-    [_lbname setText:@"标题标题标题标题标题标题"];
-    [_lbaddress setText:@"寨上公园"];
+    UILabel *lb4 = _arrallLB[4];
+    [lb4 setTextColor:[UIColor whiteColor]];
+    UIView *view4 = lb4.superview;
+    
+    
+    NSString *strtype = @"";
+    NSString *strchaobiao = @"";
+    NSString *stryujinfz = @"";
+    NSString *stryujintime = @"";
+    NSString *stryujindengji = @"";
+    NSString *strzhuangtai = @"";
+    
+    if(model.SWLEVEL.intValue == 1)
+    {
+        stryujindengji = @"蓝色预警";
+        [view4 setBackgroundColor:[UIColor blueColor]];
+    }
+    else if(model.SWLEVEL.intValue == 2)
+    {
+        stryujindengji = @"黄色预警";
+        [view4 setBackgroundColor:[UIColor yellowColor]];
+    }
+    else if(model.SWLEVEL.intValue == 3)
+    {
+        stryujindengji = @"橙色预警";
+        [view4 setBackgroundColor:[UIColor orangeColor]];
+    }
+    else if(model.SWLEVEL.intValue == 4)
+    {
+        stryujindengji = @"红色预警";
+        [view4 setBackgroundColor:[UIColor redColor]];
+    }
+    
+    stryujintime = model.SWTM;
+    
+    ///1:流量 2:浊度 3:温度 4:pH值 5:余氯
+    if([model.SWTYPE intValue] == 1)
+    {
+        strtype = @"流量";
+        strchaobiao = [NSString stringWithFormat:@"%@m³/s",model.SWVALUE];
+        stryujinfz = [NSString stringWithFormat:@"%@m³/s",model.SWINDEX];
+        
+        
+    }
+    else if([model.SWTYPE intValue] == 2)
+    {
+        strtype = @"浊度";
+        strchaobiao = [NSString stringWithFormat:@"%@NTU",model.SWVALUE];
+        stryujinfz = [NSString stringWithFormat:@"%@NTU",model.SWINDEX];
+    }
+    else if([model.SWTYPE intValue] == 3)
+    {
+        strtype = @"温度";
+        strchaobiao = [NSString stringWithFormat:@"%@℃",model.SWVALUE];
+        stryujinfz = [NSString stringWithFormat:@"%@℃",model.SWINDEX];
+    }
+    else if([model.SWTYPE intValue] == 4)
+    {
+        strtype = @"pH值";
+        strchaobiao = [NSString stringWithFormat:@"%@ph",model.SWVALUE];
+        stryujinfz = [NSString stringWithFormat:@"%@ph",model.SWINDEX];
+    }
+    else if([model.SWTYPE intValue] == 5)
+    {
+        strtype = @"余氯";
+        strchaobiao = [NSString stringWithFormat:@"%@mg/L",model.SWVALUE];
+        stryujinfz = [NSString stringWithFormat:@"%@mg/L",model.SWINDEX];
+    }
+    //1：新产生；2：已发布；3：响应中；4：已关闭； 5 已忽略；
+    if(model.FLAG.intValue == 1)
+    {
+        strzhuangtai = @"新产生";
+    }
+    else if(model.FLAG.intValue == 2)
+    {
+        strzhuangtai = @"已发布";
+    }
+    else if(model.FLAG.intValue == 3)
+    {
+        strzhuangtai = @"响应中";
+    }
+    else if(model.FLAG.intValue == 4)
+    {
+        strzhuangtai = @"已关闭";
+    }
+    else if(model.FLAG.intValue == 5)
+    {
+        strzhuangtai = @"已忽略";
+    }
+    
+    NSArray *arrrvalue = @[strtype,strchaobiao,stryujinfz,stryujintime,stryujindengji,strzhuangtai];
+    int i = 0;
+    for(UILabel *lb in self.arrallLB)
+    {
+        [lb setText:arrrvalue[i]];
+        i++;
+    }
+    
+    [_lbname setText:[NSString stringWithFormat:@"%@(%@)",model.SWSTNM,model.SWSTCD]];
+    [_lbaddress setText:model.NAME];
 }
 
 

@@ -10,9 +10,19 @@
 #import "LiuLiangYJChuZhiViewController.h"
 #import "LiuLiangYJChuZhiTableViewCell.h"
 #import "LiuLiangYJChuZhiDetailViewController.h"
+
+#import "LiuLiangYJDataController.h"
+
 @interface LiuLiangYJChuZhiViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
+@property (nonatomic , strong) NSMutableArray *arrdata;
+
+@property (nonatomic , assign) int ipage;
+
+@property (nonatomic , strong) UITextField *fieldSearch;
+
+@property (nonatomic , strong) UILabel *lbbcnum;
 
 @end
 
@@ -23,6 +33,13 @@
     self.title = @"预警处置";
     
     [self drawUI];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.ipage = 1;
+    [self getdata];
+    
 }
 
 -(void)drawUI
@@ -67,7 +84,7 @@
     [fieldSearch setReturnKeyType:UIReturnKeySearch];
     [fieldSearch setDelegate:self];
     [viewsearch addSubview:fieldSearch];
-    
+    _fieldSearch = fieldSearch;
     
     UIButton *btsearch = [[UIButton alloc] initWithFrame:CGRectMake(viewsearch.width-viewsearch.height, 0, viewsearch.height, viewsearch.height)];
     [btsearch setImage:[UIImage imageNamed:@"ic_query_blue"] forState:UIControlStateNormal];
@@ -78,8 +95,9 @@
     [lbbcnum setTextColor:RGB(30, 30, 30)];
     [lbbcnum setTextAlignment:NSTextAlignmentLeft];
     [lbbcnum setFont:[UIFont systemFontOfSize:13]];
-    [lbbcnum setText:@"本次共查询出22条数据！"];
+    [lbbcnum setText:@"本次共查询出0条数据！"];
     [viewtop addSubview:lbbcnum];
+    _lbbcnum = lbbcnum;
     
     [viewtop setHeight:lbbcnum.bottom+20];
     
@@ -91,16 +109,16 @@
     {
         //搜索
         [textField resignFirstResponder];
-        
+        [self getdata];
         return NO;
     }
     return YES;
 }
 
-#pragma mark -
+#pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrdata.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,7 +130,7 @@
         cell = [[LiuLiangYJChuZhiTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setStrvalue:@""];
+    [cell setModel:self.arrdata[indexPath.row]];
     
     return cell;
 }
@@ -123,9 +141,26 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    YuJingRengWuListModel *model = self.arrdata[indexPath.row];
     LiuLiangYJChuZhiDetailViewController *vc = [[LiuLiangYJChuZhiDetailViewController alloc] init];
+    vc.ID = model.ID;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(void)getdata
+{
+    [LiuLiangYJDataController requestYuJingRengWuListData:self.view key:self.fieldSearch.text pageNumber:[NSString stringWithFormat:@"%d",self.ipage] pageSize:@"100" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            self.arrdata = value;
+        }
+        else
+        {
+            [WYTools showNotifyHUDwithtext:describle inView:self.view];
+        }
+        [self.lbbcnum setText:[NSString stringWithFormat:@"本次共查询出%ld条数据！",self.arrdata.count]];
+        [self.tabview reloadData];
+    }];
+}
 
 @end
