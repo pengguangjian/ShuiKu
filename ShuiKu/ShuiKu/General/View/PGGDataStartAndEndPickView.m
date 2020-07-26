@@ -420,8 +420,9 @@
 //
 //        [self.degelate changetimeValue:[NSString stringWithFormat:@"%@-%@-%@ %@:%@",stryear,strmouth,strday,strhouar,strmintes]];
 //    }
-    
-    [self.degelate changetimeValue:[NSString stringWithFormat:@"%@-%@",self.lbstarttime.text,self.lbendtime.text]];
+    NSString *strback = [NSString stringWithFormat:@"%@&%@",self.lbstarttime.text,self.lbendtime.text];
+    strback = [strback stringByReplacingOccurrencesOfString:@"." withString:@"-"];
+    [self.degelate changetimeValue:strback];
     
     [UIView animateWithDuration:0.5 animations:^{
         [self->viewselect setTop:M_HEIGHT];

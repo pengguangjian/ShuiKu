@@ -40,7 +40,11 @@
     {
         if(_strcontnt.length>5)
         {
-            [webview loadHTMLString:_strcontnt baseURL:nil];
+            NSString *headerString = @"<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></header>";
+            
+            NSString *description_bigfont=[NSString stringWithFormat:@"<html>%@</html>",_strcontnt];
+            description_bigfont = [headerString stringByAppendingString:description_bigfont];
+            [webview loadHTMLString:description_bigfont baseURL:nil];
         }
     }
     

@@ -11,9 +11,15 @@
 #import "UIButton+HQCustomIcon.h"
 #import "MapShaiXuanView.h"
 
+#import "MainHomeDataController.h"
+
 @interface MainMapViewController ()
 
 @property (nonatomic , strong) MapShaiXuanView *shaixuanView;
+
+@property (nonatomic , strong) UILabel *lbsubtitle;
+
+@property (nonatomic , strong) GaoDeMapView *mapview;
 
 @end
 
@@ -27,6 +33,8 @@
     [self drawtitleview];
     
     [self drawUI];
+    
+    [self getdata];
     
 }
 
@@ -43,50 +51,14 @@
     
     UILabel *lbsubtitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 200, 20)];
     [lbsubtitle setTextColor:[UIColor whiteColor]];
-    [lbsubtitle setText:@"水厂总数：33座"];
+    [lbsubtitle setText:@"水厂总数：0座"];
     [lbsubtitle setTextAlignment:NSTextAlignmentCenter];
     [lbsubtitle setFont:[UIFont systemFontOfSize:13]];
     [viewtitle addSubview:lbsubtitle];
     
-    
+    _lbsubtitle = lbsubtitle;
     
 }
-
-//-(void)setnavbt
-//{
-//    UIButton* btnright = [[UIButton alloc] init];//btnLeft.backgroundColor=[UIColor redColor]
-//    [btnright setImage:[UIImage imageNamed:@"地图筛选"] forState:UIControlStateNormal];
-//    UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnright];
-//    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-//    [btnright addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
-//
-//}
-//
-//-(void)rightAction
-//{
-//    if(_shaixuanView==nil)
-//    {
-//        MapShaiXuanView *view = [[MapShaiXuanView alloc] init];
-//        [self.view addSubview:view];
-//        [view mas_makeConstraints:^(MASConstraintMaker *make) {
-//            if (@available(iOS 11.0, *)) {
-//                make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
-//                make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
-//                make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
-//                make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-//            }else{
-//                make.edges.equalTo(self.view).insets(kPaddingNav);
-//            }
-//        }];
-//        _shaixuanView  = view;
-//    }
-//
-//    [_shaixuanView setHidden:NO];
-//
-//    [_shaixuanView showView];
-//
-//}
-
 
 -(void)drawUI
 {
@@ -102,7 +74,7 @@
             make.edges.equalTo(self.view).insets(kPaddingNav);
         }
     }];
-    
+    _mapview = view;
     [self drawInfo];
     
 }
@@ -139,17 +111,23 @@
     [btguzhang setIconInLeftWithSpacing:5];
 }
 
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)getdata
+{
+    
+    [MainHomeDataController requestShuiChangListData:self.view xzqhbm:@"" key:@"" pageNumber:1 Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            [self.lbsubtitle setText:[NSString stringWithFormat:@"水厂总数：%ld座",value.count]];
+            
+            
+            [self.mapview addMapPoint:value];
+            
+        }
+        else
+        {
+            [WYTools showNotifyHUDwithtext:describle inView:self.view];
+        }
+    }];
 }
-*/
 
 @end

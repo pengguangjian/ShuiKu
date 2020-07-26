@@ -8,7 +8,7 @@
 
 #import "CeZhanXinXiDetailViewController.h"
 #import "ShuiChangDetailTableViewCell.h"
-
+#import "CeZhanListModel.h"
 @interface CeZhanXinXiDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
@@ -16,13 +16,14 @@
 
 @property (nonatomic , strong) NSMutableArray *arrTitles;
 
+@property (nonatomic , strong) NSMutableArray *arrValues;
+
 @end
 
 @implementation CeZhanXinXiDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = _strtitle;
     [self gettitleData];
     
     [self drawUI];
@@ -35,16 +36,66 @@
     NSDictionary *dicitem0 = @{@"基本信息":arritem0};
     [arrtitle addObject:dicitem0];
     
+    NSArray *arrtype = @[@"河道水位站",@"水库水位站",@"雨量站",@"水质站",@"生态流量站",@"取用水量站",@"图像站",@"视频站"];
+    NSString *strtype = @"";
+    @try {
+        strtype = arrtype[self.model.STTYPE.intValue-1];
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
+    NSArray *arrvalue0 = @[[NSString stringWithFormat:@"%@",self.model.NAME],
+                           [NSString stringWithFormat:@"%@",self.model.STCD],
+                           strtype,
+                           [NSString stringWithFormat:@"%@",self.model.STLC]];
     
     NSArray *arritem1 = @[@"经度",@"纬度",@"行政区划代码",@"行政区划名称"];
     NSDictionary *dicitem1 = @{@"位置信息":arritem1};
     [arrtitle addObject:dicitem1];
     
+    NSArray *arrvalue1 = @[[NSString stringWithFormat:@"%@",self.model.LGTD],
+                           [NSString stringWithFormat:@"%@",self.model.LTTD],
+                           [NSString stringWithFormat:@"%@",self.model.ADDVCD],
+                           [NSString stringWithFormat:@"%@",self.model.ADDVNM]];
+    
     NSArray *arritem2 = @[@"自动/人工",@"原水出水",@"建站年月",@"始报年月",@"数据来源",@"所属对象",@"状态",@"备注信息"];
     NSDictionary *dicitem2 = @{@"测站信息":arritem2};
     [arrtitle addObject:dicitem2];
     
+    NSString *strzidong = @"自动";
+    if(self.model.AUTO.intValue != 1)
+    {
+        strzidong = @"手动";
+    }
+    
+    NSString *stryscs = @"进水";
+    if(self.model.WSTYPE.intValue == 1)
+    {
+        stryscs = @"出水";
+    }
+    
+    NSString *strsczt = @"离线";
+    ///
+    if([self.model.STATUS isEqualToString:@"1"])
+    {
+        strsczt = @"在线";
+    }
+    
+    NSArray *arrvalue2 = @[strzidong,
+                           stryscs,
+    [NSString stringWithFormat:@"%@",self.model.ESSTYM],
+    [NSString stringWithFormat:@"%@",self.model.BGFRYM],
+    [NSString stringWithFormat:@"%@",self.model.SOURCE],
+    [NSString stringWithFormat:@"%@",self.model.OWNER_NM],
+                           strsczt,
+    [NSString stringWithFormat:@"%@",self.model.REMARK]];
+    
     self.arrTitles = arrtitle;
+    self.arrValues = [NSMutableArray new];
+    [self.arrValues addObject:arrvalue0];
+    [self.arrValues addObject:arrvalue1];
+    [self.arrValues addObject:arrvalue2];
 }
 
 -(void)drawUI
@@ -94,7 +145,17 @@
     NSArray *arrtemp = [dicitem allValues];
     NSArray *arritem = arrtemp[0];
     [cell.lbname setText:arritem[indexPath.row]];
-    [cell.lbvalue setText:arritem[indexPath.row]];
+    
+    NSArray *arrvalue = self.arrValues[indexPath.section];
+    if([arrvalue[indexPath.row] isEqualToString:@"(null)"])
+    {
+        [cell.lbvalue setText:[NSString stringWithFormat:@"-"]];
+    }
+    else
+    {
+        [cell.lbvalue setText:[NSString stringWithFormat:@"%@",arrvalue[indexPath.row]]];
+    }
+    
     
     return cell;
 }

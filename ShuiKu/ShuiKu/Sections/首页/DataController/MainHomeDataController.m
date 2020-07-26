@@ -13,7 +13,8 @@
 #import "ZhiBanInfoModel.h"
 #import "ZhiBanXiangQingModel.h"
 #import "GetAreaModel.h"
-
+#import "ShuiChangListModel.h"
+#import "CeZhanListModel.h"
 
 
 
@@ -243,5 +244,107 @@ Callback:(completeCallback)callback
         }
     }];
 }
+
+///水厂列表
++ (void)requestShuiChangListData:(UIView *)view
+xzqhbm:(NSString *)xzqhbm
+key:(NSString *)key
+pageNumber:(int)pageNumber
+Callback:(completeCallback)callback
+{
+    
+    NSMutableDictionary  *dicpush = [NSMutableDictionary new];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
+    [dicpush setObject:xzqhbm forKey:@"xzqhbm"];
+    [dicpush setObject:key forKey:@"key"];
+    [dicpush setObject:@(pageNumber) forKey:@"pageNumber"];
+    [dicpush setObject:@"200" forKey:@"pageSize"];
+    
+    [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/waterwork/GetPage?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
+        BOOL state = NO;
+        NSString *describle = @"";
+        if (responceObjct==nil) {
+            describle = @"网络错误";
+        }else{
+            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+            NSDictionary *dicAll=[str JSONValue];
+            describle = dicAll[@"message"];
+            if ([[NSString nullToString:dicAll[@"errcode"]] intValue] == 0) {
+                if([[dicAll objectForKey:@"data"] isKindOfClass:[NSDictionary class]])
+                {
+                    state = YES;
+                }
+                else
+                {
+                    state = NO;
+                }
+            }
+            else
+            {
+                state = NO;
+            }
+            if(state==YES)
+            {
+                callback(error,state,describle,[ShuiChangListModel initDataValue:[[dicAll objectForKey:@"data"] objectForKey:@"rows"]]);
+            }
+        }
+        if(state==NO)
+        {
+            callback(error,state,describle,nil);
+        }
+    }];
+}
+/// 监测点列表
++ (void)requestCeDianListData:(UIView *)view
+xzqhbm:(NSString *)xzqhbm
+key:(NSString *)key
+pageNumber:(int)pageNumber
+Callback:(completeCallback)callback
+{
+    NSMutableDictionary  *dicpush = [NSMutableDictionary new];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
+    [dicpush setObject:xzqhbm forKey:@"xzqhbm"];
+    [dicpush setObject:key forKey:@"key"];
+    [dicpush setObject:@(pageNumber) forKey:@"pageNumber"];
+    [dicpush setObject:@"200" forKey:@"pageSize"];
+    
+    [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/StationManage/GetPage?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
+        BOOL state = NO;
+        NSString *describle = @"";
+        if (responceObjct==nil) {
+            describle = @"网络错误";
+        }else{
+            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+            NSDictionary *dicAll=[str JSONValue];
+            describle = dicAll[@"message"];
+            if ([[NSString nullToString:dicAll[@"errcode"]] intValue] == 0) {
+                if([[dicAll objectForKey:@"data"] isKindOfClass:[NSDictionary class]])
+                {
+                    state = YES;
+                }
+                else
+                {
+                    state = NO;
+                }
+            }
+            else
+            {
+                state = NO;
+            }
+            if(state==YES)
+            {
+                callback(error,state,describle,[CeZhanListModel initDataValue:[[dicAll objectForKey:@"data"] objectForKey:@"rows"]]);
+            }
+        }
+        if(state==NO)
+        {
+            callback(error,state,describle,nil);
+        }
+    }];
+    
+}
+
+
+
 
 @end

@@ -92,10 +92,44 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(ZongHeJianCeMainListModel *)model
 {
-    [_lbname setText:@"标题标题标题标题标题标题"];
-    [_lbaddress setText:@"寨上公园"];
+    [_lbname setText:[NSString stringWithFormat:@"%@(%@)",model.NAME,model.CODE]];
+    [_lbaddress setText:model.ADDR];
+    
+    UILabel *lb0 = self.arrallLB[0];
+    [lb0 setText:@"离线"];
+    if(model.STATUS.intValue == 1)
+    {
+        [lb0 setText:@"在线"];
+    }
+    
+    UILabel *lb1 = self.arrallLB[1];
+    [lb1 setText:[NSString stringWithFormat:@"%.2lf NTU",model.YSZD.floatValue]];
+    
+    UILabel *lb2 = self.arrallLB[2];
+    [lb2 setText:[NSString stringWithFormat:@"%.2lf NTU",model.CSZD.floatValue]];
+    
+    UILabel *lb3 = self.arrallLB[3];
+    [lb3 setText:[NSString stringWithFormat:@"%@ ℃",model.YSWD]];
+    
+    UILabel *lb4 = self.arrallLB[4];
+    [lb4 setText:[NSString stringWithFormat:@"%@ ℃",model.CSWD]];
+    
+    UILabel *lb5 = self.arrallLB[5];
+    [lb5 setText:[NSString stringWithFormat:@"%.2lf",model.YSPH.floatValue]];
+    
+    UILabel *lb6 = self.arrallLB[6];
+    [lb6 setText:[NSString stringWithFormat:@"%.2lf",model.CSPH.floatValue]];
+    
+    UILabel *lb7 = self.arrallLB[7];
+    [lb7 setText:[NSString stringWithFormat:@"%.2lf mg/L",model.CSYL.floatValue]];
+    
+    UILabel *lb8 = self.arrallLB[8];
+    [lb8 setText:[NSString stringWithFormat:@"%.2lf m³/s",model.YSQ.floatValue]];
+    
+    UILabel *lb9 = self.arrallLB[9];
+    [lb9 setText:[NSString stringWithFormat:@"%.2lf m³/s",model.CSQ.floatValue]];
 }
 
 

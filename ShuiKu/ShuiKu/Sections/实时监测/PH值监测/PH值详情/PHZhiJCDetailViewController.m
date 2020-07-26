@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = _strtitle;
+    
     
     
     [self drawUI];
@@ -34,15 +34,18 @@
 {
     arrallvc = [NSMutableArray new];
     PHZhiJCDetailDetailViewController *vc0 = [[PHZhiJCDetailDetailViewController alloc] init];
+    vc0.strSTCD = self.strSTCD;
     [arrallvc addObject:vc0];
     
     JianCeAllZheXianTuTuViewController *vc1 = [[JianCeAllZheXianTuTuViewController alloc] init];
     vc1.strYValue = @"PH";
     vc1.strXValue = @"时间";
-    vc1.strtitle = @"时统计";
-    vc1.strtitle1 = @"流量统计";
-    vc1.arrX = @[@"1日",@"2日",@"3日",@"4日"];
-    vc1.arrinfo = @[@"最大进水PH",@"最小进水PH",@"最大出水PH",@"最小出水PH"];
+    vc1.strtitle = @"日统计";
+    vc1.strtitle1 = @"PH统计";
+    vc1.stcd = self.strSTCD;
+    vc1.type = 5;
+    vc1.typeson = 4;
+    vc1.arrinfo = @[@"进水PH",@"出水PH"];
     [arrallvc addObject:vc1];
     
     menuList = @[@{@"name":@"数据详情",

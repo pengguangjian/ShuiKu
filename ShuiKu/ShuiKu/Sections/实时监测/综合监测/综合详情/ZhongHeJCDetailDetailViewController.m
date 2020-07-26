@@ -8,7 +8,7 @@
 //
 
 #import "ZhongHeJCDetailDetailViewController.h"
-
+#import "ZongHeJianCeMainListModel.h"
 @interface ZhongHeJCDetailDetailViewController ()
 
 @property (nonatomic , strong) UILabel *lbname;
@@ -60,6 +60,7 @@
         make.top.offset(15);
     }];
     _lbname = lbname;
+    [_lbname setText:[NSString stringWithFormat:@"%@(%@)",self.model.NAME,self.model.CODE]];
     
     UILabel *lbaddress = [[UILabel alloc] init];
     [lbaddress setTextColor:RGB(130, 130, 130)];
@@ -71,6 +72,7 @@
         make.top.equalTo(lbname.mas_bottom).offset(5);
     }];
     _lbaddress = lbaddress;
+    [_lbaddress setText:self.model.ADDR];
     
     _arrallLB = [NSMutableArray new];
     NSArray *arrzhuang = @[@"状态",@"进水浊度",@"出水浊度",@"进水温度",@"出水温度",@"进水PH值",@"出水PH值",@"出水余氯",@"进水瞬时流量",@"出水瞬时流量",@"负责人",@"联系电话"];
@@ -90,10 +92,57 @@
         viewlast = viewitem;
     }
     
+    
+    [self setallLbValue];
+    
+    
+    
     [viewback mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(viewlast.mas_bottom).offset(5);
     }];
 }
 
+-(void)setallLbValue
+{
+    UILabel *lb0 = self.arrallLB[0];
+    [lb0 setText:@"离线"];
+    if(self.model.STATUS.intValue == 1)
+    {
+        [lb0 setText:@"在线"];
+    }
+    
+    UILabel *lb1 = self.arrallLB[1];
+    [lb1 setText:[NSString stringWithFormat:@"%.2lf NTU",self.model.YSZD.floatValue]];
+    
+    UILabel *lb2 = self.arrallLB[2];
+    [lb2 setText:[NSString stringWithFormat:@"%.2lf NTU",self.model.CSZD.floatValue]];
+    
+    UILabel *lb3 = self.arrallLB[3];
+    [lb3 setText:[NSString stringWithFormat:@"%@ ℃",self.model.YSWD]];
+    
+    UILabel *lb4 = self.arrallLB[4];
+    [lb4 setText:[NSString stringWithFormat:@"%@ ℃",self.model.CSWD]];
+    
+    UILabel *lb5 = self.arrallLB[5];
+    [lb5 setText:[NSString stringWithFormat:@"%.2lf",self.model.YSPH.floatValue]];
+    
+    UILabel *lb6 = self.arrallLB[6];
+    [lb6 setText:[NSString stringWithFormat:@"%.2lf",self.model.CSPH.floatValue]];
+    
+    UILabel *lb7 = self.arrallLB[7];
+    [lb7 setText:[NSString stringWithFormat:@"%.2lf mg/L",self.model.CSYL.floatValue]];
+    
+    UILabel *lb8 = self.arrallLB[8];
+    [lb8 setText:[NSString stringWithFormat:@"%.2lf m³/s",self.model.YSQ.floatValue]];
+    
+    UILabel *lb9 = self.arrallLB[9];
+    [lb9 setText:[NSString stringWithFormat:@"%.2lf m³/s",self.model.CSQ.floatValue]];
+    
+    UILabel *lb10 = self.arrallLB[10];
+    [lb10 setText:[NSString stringWithFormat:@"%@",[NSString nullToString:self.model.FZR]]];
+    
+    UILabel *lb11 = self.arrallLB[11];
+    [lb11 setText:[NSString stringWithFormat:@"%@",[NSString nullToString:self.model.LXDH]]];
+}
 
 @end

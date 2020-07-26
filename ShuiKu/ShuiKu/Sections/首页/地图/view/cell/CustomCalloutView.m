@@ -60,7 +60,7 @@
 //    self.subTitleLabel.text = @"subtitleLabelsubtitleLabelsubtitleLabel";
 //    [self addSubview:self.subTitleLabel];
     self.imgvitem = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
-    [self.imgvitem setBackgroundColor:[UIColor grayColor]];
+    [self.imgvitem setImage:[UIImage imageNamed:@"dingweidianji"]];
     [self addSubview:self.imgvitem];
     
     

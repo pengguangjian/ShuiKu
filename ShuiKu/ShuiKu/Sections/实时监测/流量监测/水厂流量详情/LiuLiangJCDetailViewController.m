@@ -41,10 +41,11 @@
     JianCeAllZheXianTuTuViewController *vc1 = [[JianCeAllZheXianTuTuViewController alloc] init];
     vc1.strYValue = @"流量";
     vc1.strXValue = @"时间";
-    vc1.strtitle = @"时统计";
+    vc1.strtitle = @"日统计";
     vc1.strtitle1 = @"流量统计";
-    vc1.arrX = @[@"1日",@"2日",@"3日",@"4日"];
-    vc1.arrinfo = @[@"进水瞬时流量",@"进水累计水量",@"出水瞬时流量",@"出水累计水量"];
+    vc1.arrinfo = @[@"进水瞬时流量",@"出水瞬时流量"];
+    vc1.type = 1;
+    vc1.typeson = 5;
     vc1.stcd = self.stcd;
     [arrallvc addObject:vc1];
     
@@ -53,8 +54,11 @@
     vc2.strXValue = @"时间";
     vc2.strtitle = @"日统计";
     vc2.strtitle1 = @"流量统计";
-    vc2.arrX = @[@"1日",@"2日",@"3日",@"4日"];
-    vc2.arrinfo = @[@"进水瞬时流量",@"进水累计水量",@"出水瞬时流量",@"出水累计水量"];
+    vc2.type = 1;
+    vc2.typeson = 6;
+    vc2.arrinfo = @[@"进水累计水量",@"出水累计水量"];
+    
+    
     vc2.stcd = self.stcd;
     [arrallvc addObject:vc2];
     

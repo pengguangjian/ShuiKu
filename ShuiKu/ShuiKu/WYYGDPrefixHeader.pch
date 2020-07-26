@@ -26,6 +26,7 @@
 #import <MJRefresh.h>
 #import <MJExtension.h>
 #import <YYKit.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #import "UserInfoModel.h"
 

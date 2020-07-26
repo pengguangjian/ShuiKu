@@ -7,11 +7,11 @@
 //
 
 #import "RootViewController.h"
-
+@class CeZhanListModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CeZhanXinXiDetailViewController : RootViewController
-@property (nonatomic , strong) NSString *strtitle;
+@property (nonatomic , strong) CeZhanListModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

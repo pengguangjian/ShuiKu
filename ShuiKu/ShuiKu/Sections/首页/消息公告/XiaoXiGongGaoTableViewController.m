@@ -26,11 +26,11 @@
     [super viewDidLoad];
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self->ipage=1;
         [self getData];
     }];
-    self.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
         self->ipage+=1;
         [self getData];
     }];

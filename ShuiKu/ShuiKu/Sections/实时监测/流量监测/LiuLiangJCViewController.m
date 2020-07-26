@@ -21,6 +21,8 @@
 
 @property (nonatomic , strong) UITextField *fieldSearch;
 
+@property (nonatomic , strong) UILabel *lbbcnum;
+
 @end
 
 @implementation LiuLiangJCViewController
@@ -88,9 +90,9 @@
     [lbbcnum setTextColor:RGB(30, 30, 30)];
     [lbbcnum setTextAlignment:NSTextAlignmentLeft];
     [lbbcnum setFont:[UIFont systemFontOfSize:13]];
-    [lbbcnum setText:@"本次共查询出22条数据！"];
+    [lbbcnum setText:@"本次共查询出0条数据！"];
     [viewtop addSubview:lbbcnum];
-    
+    _lbbcnum = lbbcnum;
     [viewtop setHeight:lbbcnum.bottom+20];
     
     [_tabview setTableHeaderView:viewtop];
@@ -110,16 +112,16 @@
 
 -(void)getdata
 {
-    [LiuLiangJCDataController requestLiuLiangJianCheListData:self.view key:_fieldSearch.text pageNumber:ipage Callback:^(NSError *error, BOOL state, NSString *describle, LiuLiangJCListModel *value) {
+    [LiuLiangJCDataController requestLiuLiangJianCheListData:self.view key:_fieldSearch.text pageNumber:ipage Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
         if(state)
         {
             if(self->ipage == 1)
             {
                 [self.arrData removeAllObjects];
             }
-            [self.arrData addObjectsFromArray:value.rows];
+            [self.arrData addObjectsFromArray:value];
         }
-        
+        [self.lbbcnum setText:[NSString stringWithFormat:@"本次共查询出%ld条数据！",self.arrData.count]];
         [self.tabview reloadData];
     }];
 }
@@ -150,9 +152,9 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LiuLiangJCListRowModel *model = self.arrData[indexPath.row];
+    LiuLiangJCListModel *model = self.arrData[indexPath.row];
     LiuLiangJCDetailViewController *vc = [[LiuLiangJCDetailViewController alloc] init];
-    vc.strtitle = @"许明寺水厂";
+    vc.strtitle = model.NAME;
     vc.stcd = model.STCD;
     [self.navigationController pushViewController:vc animated:YES];
 }

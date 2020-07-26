@@ -7,7 +7,8 @@
 //
 
 #import "SetView.h"
-
+#import "LoginDataController.h"
+#import "LoginViewController.h"
 @interface SetView ()
 
 @property (nonatomic , strong) UILabel *lbhuancun ;
@@ -41,6 +42,7 @@
             make.height.offset(50);
         }];
         [self drawItemBt:btqingc andtitle:@"清除缓存"];
+        [btqingc addTarget:self action:@selector(huancunAction) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *lbhuancun = [[UILabel alloc] init];
         [lbhuancun setTextColor:RGB(30,30, 30)];
@@ -53,6 +55,12 @@
             make.right.equalTo(btqingc).offset(-20);
         }];
         _lbhuancun = lbhuancun;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            float tmpSize=[self checkTmpSize];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                lbhuancun.text=[NSString stringWithFormat:@"%.2f M",tmpSize];
+            });
+        });
         
         
         UIButton *btlianxi = [[UIButton alloc] init];
@@ -117,9 +125,38 @@
     
 }
 
+//缓存大小
+- (float)checkTmpSize{
+    NSInteger intSize = [[SDImageCache sharedImageCache]getSize];
+    float totalSize=intSize/1024.0/1024.0;
+    return totalSize;
+}
+
+-(void)huancunAction
+{
+    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+        
+    }];
+    [WYTools showNotifyHUDwithtext:@"已清空缓存" inView:self];
+}
+
 
 -(void)loginoutAction
 {
+    [LoginDataController requestLoginOutData:self Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
+        if(state)
+        {
+            [[UserInfoModel sharedUserInfo] loginOut];
+            
+            LoginViewController *config = [[LoginViewController alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:config];
+            [self.viewController.view.window setRootViewController:nav];
+        }
+        else
+        {
+            [WYTools showNotifyHUDwithtext:describle inView:self];
+        }
+    }];
     
     
 }

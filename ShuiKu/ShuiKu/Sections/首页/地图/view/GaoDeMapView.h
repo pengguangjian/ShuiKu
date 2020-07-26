@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GaoDeMapView : UIView
 ///添加点
--(void)addMapPoint;
+-(void)addMapPoint:(NSMutableArray *)arrpoint;
 
 @end
 

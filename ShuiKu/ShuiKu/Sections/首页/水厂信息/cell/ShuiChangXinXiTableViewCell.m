@@ -91,10 +91,27 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(ShuiChangListModel *)model
 {
-    [_lbname setText:@"标题标题标题标题标题标题"];
-    [_lbaddress setText:@"寨上公园"];
+    [_lbname setText:[NSString stringWithFormat:@"%@(%@)",model.NAME,model.CODE]];
+    [_lbaddress setText:[NSString stringWithFormat:@"%@ %@",model.ADDVNM,model.ADDR]];
+    
+    UILabel *lb0 = self.arrallLB[0];
+    [lb0 setText:@"离线"];
+    if(model.STATUS.intValue == 1)
+    {
+        [lb0 setText:@"在线"];
+    }
+    UILabel *lb1 = self.arrallLB[1];
+    [lb1 setText:[NSString stringWithFormat:@"%@m³/d",model.GSNL]];
+    
+    
+    UILabel *lb2 = self.arrallLB[2];
+    [lb2 setText:[NSString stringWithFormat:@"%@m³/d",model.SYD]];
+    
+    UILabel *lb3 = self.arrallLB[3];
+    [lb3 setText:[NSString stringWithFormat:@"%@m³/d",model.FUPQ]];
+    
 }
 
 

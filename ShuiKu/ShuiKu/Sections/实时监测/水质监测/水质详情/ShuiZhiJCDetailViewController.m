@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = _strtitle;
+    
     
     
     [self drawUI];
@@ -37,42 +37,51 @@
 {
     arrallvc = [NSMutableArray new];
     ShuiZhiJCDetailDetailViewController *vc0 = [[ShuiZhiJCDetailDetailViewController alloc] init];
+    vc0.strSTCD = self.strSTCD;
     [arrallvc addObject:vc0];
     
     JianCeAllZheXianTuTuViewController *vc1 = [[JianCeAllZheXianTuTuViewController alloc] init];
-    vc1.strYValue = @"浊度";
+    vc1.strYValue = @"浊度NTU";
     vc1.strXValue = @"时间";
-    vc1.strtitle = @"时统计";
+    vc1.strtitle = @"日统计";
     vc1.strtitle1 = @"浊度统计";
-    vc1.arrX = @[@"1日",@"2日",@"3日",@"4日"];
-    vc1.arrinfo = @[@"最大进水浊度",@"最小进水浊度",@"最大出水浊度",@"最小出水浊度"];
+    vc1.stcd = self.strSTCD;
+    vc1.type = 6;
+    vc1.typeson = 1;
+    vc1.arrinfo = @[@"进水浊度",@"出水浊度"];
     [arrallvc addObject:vc1];
     
     JianCeAllZheXianTuTuViewController *vc2 = [[JianCeAllZheXianTuTuViewController alloc] init];
-    vc2.strYValue = @"余氯";
+    vc2.strYValue = @"余氯mg/L";
     vc2.strXValue = @"时间";
-    vc2.strtitle = @"时统计";
+    vc2.strtitle = @"日统计";
     vc2.strtitle1 = @"余氯统计";
-    vc2.arrX = @[@"1日",@"2日",@"3日",@"4日"];
-    vc2.arrinfo = @[@"最大进水余氯",@"最小进水余氯",@"最大出水余氯",@"最小出水余氯"];
+    vc2.stcd = self.strSTCD;
+    vc2.type = 6;
+    vc2.typeson = 2;
+    vc2.arrinfo = @[@"出水余氯"];
     [arrallvc addObject:vc2];
     
     JianCeAllZheXianTuTuViewController *vc3 = [[JianCeAllZheXianTuTuViewController alloc] init];
-    vc3.strYValue = @"温度";
+    vc3.strYValue = @"温度℃";
     vc3.strXValue = @"时间";
-    vc3.strtitle = @"时统计";
+    vc3.strtitle = @"日统计";
     vc3.strtitle1 = @"温度统计";
-    vc3.arrX = @[@"1日",@"2日",@"3日",@"4日"];
-    vc3.arrinfo = @[@"最大进水温度",@"最小进水温度",@"最大出水温度",@"最小出水温度"];
+    vc3.stcd = self.strSTCD;
+    vc3.type = 6;
+    vc3.typeson = 3;
+    vc3.arrinfo = @[@"进水温度",@"出水温度"];
     [arrallvc addObject:vc3];
     
     JianCeAllZheXianTuTuViewController *vc4 = [[JianCeAllZheXianTuTuViewController alloc] init];
-    vc4.strYValue = @"PH值";
+    vc4.strYValue = @"PH";
     vc4.strXValue = @"时间";
-    vc4.strtitle = @"时统计";
+    vc4.strtitle = @"日统计";
     vc4.strtitle1 = @"PH值统计";
-    vc4.arrX = @[@"1日",@"2日",@"3日",@"4日"];
-    vc4.arrinfo = @[@"最大进水PH值",@"最小进水PH值",@"最大出水PH值",@"最小出水PH值"];
+    vc4.type = 6;
+    vc4.typeson = 4;
+    vc4.stcd = self.strSTCD;
+    vc4.arrinfo = @[@"进水PH值",@"出水PH值"];
     [arrallvc addObject:vc4];
     
     menuList = @[@{@"name":@"数据详情",

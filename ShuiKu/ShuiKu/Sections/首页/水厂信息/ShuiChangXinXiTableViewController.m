@@ -10,6 +10,7 @@
 #import "ShuiChangXinXiTableViewCell.h"
 #import "RightBtnSXView.h"
 #import "ShuiChangDetailViewController.h"
+#import "MainHomeDataController.h"
 
 @interface ShuiChangXinXiTableViewController ()<UITableViewDelegate,UITableViewDataSource,RightBtnSXViewDelegate>
 
@@ -17,12 +18,27 @@
 
 @property (nonatomic , strong) RightBtnSXView *rightview;
 
+@property (nonatomic , strong) UILabel *lbbcnum;
+
+@property (nonatomic , assign) int ipage;
+
+@property (nonatomic , strong) NSString *strkey;
+
+@property (nonatomic , strong) NSString *xzqhbm;
+
+@property (nonatomic , strong) NSMutableArray *arrdata;
+
 @end
 
 @implementation ShuiChangXinXiTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.ipage = 1;
+    self.strkey = @"";
+    self.xzqhbm = @"";
+    
+    
     self.title = @"水厂信息";
     [self setnavbt];
     UITableView *tabview = [[UITableView alloc] init];
@@ -44,6 +60,8 @@
     _tabview = tabview;
     
     [self drawHeaderView];
+    
+    [self getdata];
 }
 -(void)setnavbt
 {
@@ -83,6 +101,9 @@
 ///搜索
 -(void)serachValueText:(NSString *)strzi andaddress:(NSString *)address
 {
+    self.strkey = strzi;
+    self.xzqhbm = address;
+    [self getdata];
     
 }
 ///页面消失
@@ -101,15 +122,16 @@
     [lbbcnum setTextColor:RGB(30, 30, 30)];
     [lbbcnum setTextAlignment:NSTextAlignmentLeft];
     [lbbcnum setFont:[UIFont systemFontOfSize:13]];
-    [lbbcnum setText:@"本次共查询出22条数据！"];
+    [lbbcnum setText:@"本次共查询出0条数据！"];
     [viewtop addSubview:lbbcnum];
     [_tabview setTableHeaderView:viewtop];
+    _lbbcnum = lbbcnum;
 }
 
 #pragma mark -
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrdata.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,7 +143,7 @@
         cell = [[ShuiChangXinXiTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setStrvalue:@""];
+    [cell setModel:self.arrdata[indexPath.row]];
     
     return cell;
 }
@@ -133,8 +155,22 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ShuiChangDetailViewController *vc = [[ShuiChangDetailViewController alloc] init];
-    vc.strtitle = @"水厂详情";
+    vc.title = @"水厂详情";
+    vc.model = self.arrdata[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)getdata
+{
+    
+    [MainHomeDataController requestShuiChangListData:self.view xzqhbm:self.xzqhbm key:self.strkey pageNumber:self.ipage Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            self.arrdata = value;
+        }
+        [self.lbbcnum setText:[NSString stringWithFormat:@"本次共查询出%lu条数据！",(unsigned long)self.arrdata.count]];
+        [self.tabview reloadData];
+    }];
 }
 
 @end

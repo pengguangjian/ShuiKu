@@ -73,9 +73,10 @@
         make.centerX.equalTo(viewback);
         make.top.offset(20);
     }];
+//    [imgvhd sd_setImageWithURL:[UserInfoModel sharedUserInfo].uPhone placeholderImage:[UIImage imageNamed:@"ic_icon"]];
     
     UILabel *lbname = [[UILabel alloc] init];
-    [lbname setText:@"系统管理员"];
+    [lbname setText:[UserInfoModel sharedUserInfo].uName];
     [lbname setTextColor:[UIColor whiteColor]];
     [lbname setTextAlignment:NSTextAlignmentCenter];
     [lbname setFont:[UIFont systemFontOfSize:15]];
@@ -85,8 +86,9 @@
         make.top.equalTo(imgvhd.mas_bottom).offset(15);
     }];
     
+    
     UILabel *lbzhiwei = [[UILabel alloc] init];
-    [lbzhiwei setText:@"管理员"];
+    [lbzhiwei setText:@""];
     [lbzhiwei setTextColor:[UIColor whiteColor]];
     [lbzhiwei setTextAlignment:NSTextAlignmentCenter];
     [lbzhiwei setFont:[UIFont systemFontOfSize:13]];

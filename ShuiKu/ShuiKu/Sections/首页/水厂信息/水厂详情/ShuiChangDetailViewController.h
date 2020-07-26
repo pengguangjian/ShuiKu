@@ -8,11 +8,12 @@
 
 #import "RootViewController.h"
 
+@class ShuiChangListModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShuiChangDetailViewController : RootViewController
 
-@property (nonatomic , strong) NSString *strtitle;
+@property (nonatomic , strong) ShuiChangListModel *model;
 
 @end
 

@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JianCeMainListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PHZhiJCTableViewCell : UITableViewCell
-@property (nonatomic , strong) NSString *strvalue;
+@property (nonatomic , strong) JianCeMainListModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

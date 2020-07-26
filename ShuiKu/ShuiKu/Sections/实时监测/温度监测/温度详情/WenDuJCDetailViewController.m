@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = _strtitle;
+    
     
     
     [self drawUI];
@@ -37,15 +37,18 @@
     
     arrallvc = [NSMutableArray new];
     WenDuJCDetailDetailViewController *vc0 = [[WenDuJCDetailDetailViewController alloc] init];
+    vc0.strSTCD = self.strSTCD;
     [arrallvc addObject:vc0];
     
     JianCeAllZheXianTuTuViewController *vc1 = [[JianCeAllZheXianTuTuViewController alloc] init];
-    vc1.strYValue = @"余氯";
+    vc1.strYValue = @"温度℃";
     vc1.strXValue = @"时间";
-    vc1.strtitle = @"时统计";
-    vc1.strtitle1 = @"流量统计";
-    vc1.arrX = @[@"1日",@"2日",@"3日",@"4日"];
-    vc1.arrinfo = @[@"最大进水余氯",@"最小进水余氯",@"最大出水余氯",@"最小出水余氯"];
+    vc1.strtitle = @"日统计";
+    vc1.strtitle1 = @"温度统计";
+    vc1.stcd = self.strSTCD;
+    vc1.type = 4;
+    vc1.typeson = 3;
+    vc1.arrinfo = @[@"进水温度",@"出水温度"];
     [arrallvc addObject:vc1];
     
     menuList = @[@{@"name":@"数据详情",

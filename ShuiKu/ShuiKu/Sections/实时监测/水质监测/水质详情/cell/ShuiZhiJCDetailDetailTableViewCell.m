@@ -158,9 +158,30 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(JianCeMainListModel *)model
 {
-    [_lbtime setText:@"2020-07-18 21:16:00"];
+    [_lbtime setText:model.TM];
+    
+    UILabel *lb0 = self.arrallLB[0];
+    [lb0 setText:[NSString stringWithFormat:@"%@", model.PH0]];
+    
+    UILabel *lb1 = self.arrallLB[1];
+    [lb1 setText:[NSString stringWithFormat:@"%@ NTU", model.TURB0]];
+    
+    UILabel *lb2 = self.arrallLB[2];
+    [lb2 setText:[NSString stringWithFormat:@"%@ ℃", model.WT0]];
+    
+    
+    
+    UILabel *lb3 = self.arrallLB[3];
+    [lb3 setText:[NSString stringWithFormat:@"%@", model.PH1]];
+    
+    UILabel *lb4 = self.arrallLB[4];
+    [lb4 setText:[NSString stringWithFormat:@"%@ NTU", model.TURB1]];
+    
+    UILabel *lb5 = self.arrallLB[5];
+    [lb5 setText:[NSString stringWithFormat:@"%@ ℃", model.WT1]];
+    
 }
 
 

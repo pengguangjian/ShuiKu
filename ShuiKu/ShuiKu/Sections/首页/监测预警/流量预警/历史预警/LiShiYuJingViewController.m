@@ -115,7 +115,7 @@
 -(void)changetimeValue:(NSString *)strvalue
 {
     @try {
-        NSArray *arrtime = [strvalue componentsSeparatedByString:@"-"];
+        NSArray *arrtime = [strvalue componentsSeparatedByString:@"&"];
         self.strstarttime = arrtime[0];
         self.strendtime = arrtime[1];
         NSString *strtemp = [NSString stringWithFormat:@"%@至%@",arrtime[0],arrtime[1]];

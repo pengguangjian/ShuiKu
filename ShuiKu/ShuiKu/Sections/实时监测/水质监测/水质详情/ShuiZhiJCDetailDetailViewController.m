@@ -8,11 +8,20 @@
 
 #import "ShuiZhiJCDetailDetailViewController.h"
 #import "ShuiZhiJCDetailDetailTableViewCell.h"
+#import "LiuLiangJCDataController.h"
+
+
 @interface ShuiZhiJCDetailDetailViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,TimeClectAlterViewDelegate>
 
 @property (nonatomic , strong) UITableView *tabview;
 
 @property (nonatomic , strong) UIButton *bttime;
+
+@property (nonatomic , strong) NSMutableArray *arrdata;
+
+@property (nonatomic , strong) NSString *sTime;
+
+@property (nonatomic , strong) NSString *eTime;
 
 @end
 
@@ -23,6 +32,11 @@
     
     
     [self drawUI];
+    
+    self.sTime = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM-dd"];
+    self.eTime = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM-dd"];
+    
+    [self getdata];
     
 }
 
@@ -105,7 +119,9 @@
 -(void)changetimeValue:(NSString *)strvalue
 {
     @try {
-        NSArray *arrtime = [strvalue componentsSeparatedByString:@"-"];
+        NSArray *arrtime = [strvalue componentsSeparatedByString:@"&"];
+        self.sTime = arrtime[0];
+        self.eTime = arrtime[1];
         NSString *strtemp = [NSString stringWithFormat:@"%@至%@",arrtime[0],arrtime[1]];
         strtemp = [strtemp stringByReplacingOccurrencesOfString:@"." withString:@"-"];
         [_bttime setTitle:strtemp forState:UIControlStateNormal];
@@ -116,18 +132,34 @@
     }
     
 }
-
 ///搜索
 -(void)searchAction
 {
     
-    
+    [self getdata];
 }
+
+-(void)getdata
+{
+    
+    [LiuLiangJCDataController requestMainJianCeDetailData:self.view sTime:self.sTime eTime:self.eTime stcd:self.strSTCD Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            self.arrdata = value;
+        }
+        else
+        {
+            [WYTools showNotifyHUDwithtext:describle inView:self.view];
+        }
+        [self.tabview reloadData];
+    }];
+}
+
 
 #pragma mark -
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrdata.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -140,7 +172,7 @@
         [cell setBackgroundColor:[UIColor clearColor]];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setStrvalue:@""];
+    [cell setModel:self.arrdata[indexPath.row]];
     
     return cell;
 }

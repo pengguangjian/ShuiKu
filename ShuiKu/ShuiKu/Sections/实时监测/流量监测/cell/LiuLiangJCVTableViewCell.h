@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LiuLiangJCVTableViewCell : UITableViewCell
-@property (nonatomic , strong) LiuLiangJCListRowModel *model;
+@property (nonatomic , strong) LiuLiangJCListModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

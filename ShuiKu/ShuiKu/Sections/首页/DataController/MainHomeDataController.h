@@ -53,6 +53,29 @@ Callback:(completeCallback)callback;
 DUTYTIME:(NSString *)DUTYTIME
 Callback:(completeCallback)callback;
 
+/*
+水厂列表
+ xzqhbm 地区
+ http://222.180.173.75:7118/ccbt_zhgs/api/waterwork/GetPage?SessionId=6TuG_lCdmi4bhloIZRCv2A%3D%3D&xzqhbm=&key=&pageNumber=1&pageSize=10
+ */
+///水厂列表
++ (void)requestShuiChangListData:(UIView *)view
+xzqhbm:(NSString *)xzqhbm
+key:(NSString *)key
+pageNumber:(int)pageNumber
+Callback:(completeCallback)callback;
+
+
+/*
+ 监测点列表
+ http://222.180.173.75:7118/ccbt_zhgs/api/StationManage/GetPage?SessionId=6TuG_lCdmi4bhloIZRCv2A%3D%3D&xzqhbm=50&key=&pageNumber=1&pageSize=10
+ */
+/// 监测点列表
++ (void)requestCeDianListData:(UIView *)view
+xzqhbm:(NSString *)xzqhbm
+key:(NSString *)key
+pageNumber:(int)pageNumber
+Callback:(completeCallback)callback;
 
 @end
 

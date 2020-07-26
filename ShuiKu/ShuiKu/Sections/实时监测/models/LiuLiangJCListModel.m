@@ -10,22 +10,13 @@
 
 @implementation LiuLiangJCListModel
 
-+ (NSDictionary *)mj_objectClassInArray{
-    
-    return @{@"rows": [LiuLiangJCListRowModel class]};
-    
-}
-+(LiuLiangJCListModel *)initDataValue:(NSDictionary *)value
++(NSMutableArray *)initDataValue:(NSArray *)value
 {
-    
-    return [WYTools initDicValue:value andclassname:@"LiuLiangJCListModel"];
+    return [WYTools initArrValue:value andclassname:@"LiuLiangJCListModel"];
 }
 @end
 
-@implementation LiuLiangJCListRowModel
 
-
-@end
 
 
 

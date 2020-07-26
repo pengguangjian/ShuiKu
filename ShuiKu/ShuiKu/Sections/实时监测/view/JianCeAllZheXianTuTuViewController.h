@@ -18,19 +18,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *strtitle;
 ///PH值统计
 @property (nonatomic , strong) NSString *strtitle1;
-///x轴数据
-@property (nonatomic , strong) NSArray *arrX;
-///线条信息（最大进水流量，最小进水流量……）
+///顶部信息
 @property (nonatomic , strong) NSArray *arrinfo;
 
-///1234567 流量监测、浊度监测、余氯监测、温度监测、ph监测、水质监测 综合监测
+///1流量监测、2浊度监测、3余氯监测、4温度监测、5ph监测、6水质监测 7综合监测
 @property (nonatomic , assign) NSInteger type;
-///流量监测、浊度监测、余氯监测、温度监测、ph监测、水质监测
+///1浊度图  2余氯图    3温度图   4ph图   5瞬时流量图   6累计流量图
+@property (nonatomic , assign) NSInteger typeson;
+
+///流量监测、浊度监测、余氯监测、温度监测、ph监测、水质监测 、综合监测瞬时和累计
 @property (nonatomic , strong) NSString *stcd;
-///综合监测瞬时和累计
-@property (nonatomic , strong) NSString *stcd1;
-///其他
-@property (nonatomic , strong) NSString *stcd2;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

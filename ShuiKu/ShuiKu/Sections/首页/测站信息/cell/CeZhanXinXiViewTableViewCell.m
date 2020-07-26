@@ -91,10 +91,31 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(CeZhanListModel *)model
 {
-    [_lbname setText:@"标题标题标题标题标题标题"];
-    [_lbaddress setText:@"寨上公园"];
+    [_lbname setText:[NSString stringWithFormat:@"%@(%@)",model.NAME,model.STCD]];
+    [_lbaddress setText:[NSString stringWithFormat:@"%@ %@",model.ADDVNM,model.ADDR]];
+    
+    UILabel *lb0 = self.arrallLB[0];
+    [lb0 setText:@"离线"];
+    if(model.STATUS.intValue == 1)
+    {
+        [lb0 setText:@"在线"];
+    }
+    
+    UILabel *lb1 = self.arrallLB[1];
+    NSArray *arrtype = @[@"河道水位站",@"水库水位站",@"雨量站",@"水质站",@"生态流量站",@"取用水量站",@"图像站",@"视频站"];
+    @try {
+        [lb1 setText:arrtype[model.STTYPE.intValue-1]];
+    } @catch (NSException *exception) {
+        [lb1 setText:@"-"];
+    } @finally {
+        
+    }
+    
+    UILabel *lb2 = self.arrallLB[2];
+    [lb2 setText:model.OWNER_NM];
+    
 }
 
 

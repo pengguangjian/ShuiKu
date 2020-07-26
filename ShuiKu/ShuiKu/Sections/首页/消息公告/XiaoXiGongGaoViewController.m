@@ -35,7 +35,7 @@
     [XiaoXiGongGaoDataController requestTongZhiGongFenLeiData:self.view Callback:^(NSError *error, BOOL state, NSString *describle, NSArray *value) {
         if(state)
         {
-            menuList = value;
+            self->menuList = value;
             [self drawUI];
         }
         else

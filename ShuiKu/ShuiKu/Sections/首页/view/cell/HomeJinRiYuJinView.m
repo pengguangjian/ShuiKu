@@ -65,7 +65,7 @@
                     make.width.offset((kMainScreenW-1)/2);
                 }];
                 UILabel *lbitem = [[UILabel alloc] init];
-                [lbitem setText:@"今日预警"];
+                [lbitem setText:arrtille[j+i*2]];
                 [lbitem setTextAlignment:NSTextAlignmentLeft];
                 [lbitem setFont:[UIFont systemFontOfSize:14]];
                 [lbitem setTextColor:RGB(51, 51, 51)];
@@ -87,7 +87,7 @@
                 }];
                 
                 UILabel *lbnumber = [[UILabel alloc] init];
-                [lbnumber setText:@"4"];
+                [lbnumber setText:@"0"];
                 [lbnumber setTextAlignment:NSTextAlignmentRight];
                 [lbnumber setFont:[UIFont systemFontOfSize:18]];
                 [lbnumber setTextColor:RGB(31, 31, 31)];

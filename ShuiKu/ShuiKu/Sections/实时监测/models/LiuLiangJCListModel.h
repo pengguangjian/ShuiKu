@@ -12,14 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LiuLiangJCListModel : NSObject
 
-@property (nonatomic , strong) NSString *total;
-@property (nonatomic , strong) NSArray *rows;
-
-+(LiuLiangJCListModel *)initDataValue:(NSDictionary *)value;
-
-@end
-
-@interface LiuLiangJCListRowModel : NSObject
 ///测站编码
 @property (nonatomic , strong) NSString *STCD;
 ///监测时间
@@ -36,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *NAME;
 ///测站状态 0：离线；1:在线
 @property (nonatomic , strong) NSString *STATUS;
+
++(NSMutableArray *)initDataValue:(NSArray *)value;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,9 +9,20 @@
 #import "ShuiZhiJCViewController.h"
 #import "ShuiZhiJCTableViewCell.h"
 #import "ShuiZhiJCDetailViewController.h"
+#import "LiuLiangJCDataController.h"
+
 @interface ShuiZhiJCViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabview;
+
+@property (nonatomic , strong) NSMutableArray *arrData;
+
+@property (nonatomic , strong) UITextField *fieldSearch;
+
+@property (nonatomic , strong) UILabel *lbbcnum;
+
+@property (nonatomic , assign)   int ipage;
+
 
 @end
 
@@ -23,6 +34,11 @@
     
     
     [self drawUI];
+    
+    self.arrData = [NSMutableArray new];
+    self.ipage = 1;
+    [self getdata];
+    
 }
 
 -(void)drawUI
@@ -67,7 +83,7 @@
     [fieldSearch setReturnKeyType:UIReturnKeySearch];
     [fieldSearch setDelegate:self];
     [viewsearch addSubview:fieldSearch];
-    
+    _fieldSearch = fieldSearch;
     
     UIButton *btsearch = [[UIButton alloc] initWithFrame:CGRectMake(viewsearch.width-viewsearch.height, 0, viewsearch.height, viewsearch.height)];
     [btsearch setImage:[UIImage imageNamed:@"ic_query_blue"] forState:UIControlStateNormal];
@@ -78,9 +94,9 @@
     [lbbcnum setTextColor:RGB(30, 30, 30)];
     [lbbcnum setTextAlignment:NSTextAlignmentLeft];
     [lbbcnum setFont:[UIFont systemFontOfSize:13]];
-    [lbbcnum setText:@"本次共查询出22条数据！"];
+    [lbbcnum setText:@"本次共查询出0条数据！"];
     [viewtop addSubview:lbbcnum];
-    
+    _lbbcnum = lbbcnum;
     [viewtop setHeight:lbbcnum.bottom+20];
     
     [_tabview setTableHeaderView:viewtop];
@@ -91,16 +107,31 @@
     {
         //搜索
         [textField resignFirstResponder];
-        
+        [self getdata];
         return NO;
     }
     return YES;
 }
-
-#pragma mark -
+-(void)getdata
+{
+    
+    [LiuLiangJCDataController requestZhuoDuJianCheListData:self.view key:self.fieldSearch.text pageNumber:self.ipage Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            if(self.ipage == 1)
+            {
+                [self.arrData removeAllObjects];
+            }
+            [self.arrData addObjectsFromArray:value];
+        }
+        [self.lbbcnum setText:[NSString stringWithFormat:@"本次共查询出%ld条数据！",self.arrData.count]];
+        [self.tabview reloadData];
+    }];
+}
+#pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,7 +143,7 @@
         cell = [[ShuiZhiJCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setStrvalue:@""];
+    [cell setModel:self.arrData[indexPath.row]];
     
     return cell;
 }
@@ -123,20 +154,13 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    JianCeMainListModel *model = self.arrData[indexPath.row];
     ShuiZhiJCDetailViewController *vc = [[ShuiZhiJCDetailViewController alloc] init];
+    vc.title = [NSString stringWithFormat:@"%@",[NSString nullToString:model.NAME]];
+    vc.strSTCD = model.STCD;
+     
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

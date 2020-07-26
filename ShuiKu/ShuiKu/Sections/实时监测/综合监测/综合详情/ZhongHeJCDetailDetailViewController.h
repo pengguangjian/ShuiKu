@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class ZongHeJianCeMainListModel;
 @interface ZhongHeJCDetailDetailViewController : UIViewController
-
+@property (nonatomic , strong) NSString *strSTCD;
+@property (nonatomic , strong) ZongHeJianCeMainListModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

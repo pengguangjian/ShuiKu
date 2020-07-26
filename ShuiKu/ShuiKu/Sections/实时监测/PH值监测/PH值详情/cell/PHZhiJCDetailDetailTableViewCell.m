@@ -159,11 +159,17 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(JianCeMainListModel *)model
 {
-    [_lbtime setText:@"2020-07-18 21:16:00"];
+    [_lbtime setText:model.TM];
+    
+    UILabel *lb0 = self.arrallLB[0];
+    [lb0 setText:[NSString stringWithFormat:@"%@", model.PH0]];
+    
+    UILabel *lb1 = self.arrallLB[1];
+    [lb1 setText:[NSString stringWithFormat:@"%@", model.PH1]];
+    
 }
-
 
 - (void)awakeFromNib {
     [super awakeFromNib];

@@ -18,6 +18,8 @@
 
 #import "MapPointShowAlterView.h"
 
+#import "ShuiChangListModel.h"
+
 @interface GaoDeMapView ()<MAMapViewDelegate,AMapSearchDelegate>
 
 @property (nonatomic ,strong) MAMapView *mapView;
@@ -26,6 +28,8 @@
 @property (nonatomic ,strong) MAAnnotationView *pointMove;
 ///点点击后的提示页面
 @property (nonatomic ,strong) MapPointShowAlterView *pointAlterview;
+
+@property (nonatomic ,strong) NSMutableArray *arrpoint;
 
 @end
 
@@ -67,9 +71,9 @@
 //        mapView.showsUserLocation = YES;
 //        mapView.userTrackingMode = MAUserTrackingModeFollow;
     
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self addMapPoint];
-        });
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self addMapPoint];
+//        });
         
         
 //    self.mapView.showsIndoorMap = YES; //YES：显示室内地图；NO：不显示；
@@ -209,15 +213,21 @@
 }
 
 ///添加点
--(void)addMapPoint
+-(void)addMapPoint:(NSMutableArray *)arrpoint
 {
-    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-    pointAnnotation.coordinate = CLLocationCoordinate2DMake(29.472845, 106.520699);
-    pointAnnotation.title = @"方恒国际";
-    pointAnnotation.subtitle = @"阜通东大街6号";
-    [_mapView addAnnotation:pointAnnotation];
-    
-    
+    self.arrpoint = arrpoint;
+    int i = 0;
+    for(ShuiChangListModel *model in arrpoint)
+    {
+        
+        MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+        pointAnnotation.coordinate = CLLocationCoordinate2DMake(model.LTTD.floatValue, model.LGTD.floatValue);
+        pointAnnotation.title = model.CODE;
+        pointAnnotation.subtitle = [NSString stringWithFormat:@"%d",i];
+        [_mapView addAnnotation:pointAnnotation];
+        i++;
+        
+    }
     
 }
 ///地图截屏功能
@@ -346,8 +356,20 @@
         {
             poiAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
         }
+
+        int itag = annotation.subtitle.intValue;
         
-        poiAnnotationView.image = [UIImage imageNamed:@"ic_loc_red"];
+        ShuiChangListModel *model = self.arrpoint[itag];
+        if([model.RUNSTATE isEqualToString:@"00"])
+        {
+            poiAnnotationView.image = [UIImage imageNamed:@"ic_loc_blue"];
+        }
+        else
+        {
+            poiAnnotationView.image = [UIImage imageNamed:@"ic_loc_red"];
+        }
+        
+        
         
         return poiAnnotationView;
         
@@ -361,8 +383,11 @@
     {
         [self.pointAlterview removeFromSuperview];
     }
+    int itag = view.annotation.subtitle.intValue;
     
+    ShuiChangListModel *model = self.arrpoint[itag];
     self.pointAlterview = [[MapPointShowAlterView alloc] init];
+    self.pointAlterview.model = model;
     [self addSubview:self.pointAlterview];
     [self.pointAlterview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self);

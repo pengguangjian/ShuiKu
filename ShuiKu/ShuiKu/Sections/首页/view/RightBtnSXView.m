@@ -7,8 +7,11 @@
 //
 
 #import "RightBtnSXView.h"
+#import "AddressListAlterView.h"
+#import "GetAreaModel.h"
 
-@interface RightBtnSXView ()
+
+@interface RightBtnSXView ()<AddressListAlterViewDelegate>
 
 @property (nonatomic , strong) UIView *viewback;
 
@@ -16,7 +19,7 @@
 
 
 @property (nonatomic , strong) UITextField *fieldsearch;
-
+@property (nonatomic , strong) NSString *strstcid;
 
 @end
 
@@ -26,6 +29,7 @@
 {
     if(self = [super initWithFrame:frame])
     {
+        self.strstcid = @"";
         [self setBackgroundColor:RGBAlpha(0, 0, 0, 0.4)];
         
         UIView *viewback = [[UIView alloc] init];
@@ -123,6 +127,7 @@
             make.height.offset(40);
             make.right.equalTo(viewline);
         }];
+        _fieldsearch = fieldsearch;
         
         
         UIView *viewline1 =  [[UIView alloc] init];
@@ -187,8 +192,27 @@
 {
     [self endEditing:YES];
     
+    AddressListAlterView *view = [[AddressListAlterView alloc] init];
+    [view setDelegate:self];
+    [self.window addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.offset(0);
+        make.width.offset(kMainScreenW);
+        make.height.offset(kMainScreenH);
+    }];
+    
     
 }
+///水厂地址返回选中的数组
+-(void)backAddressListAlterViewArr:(NSMutableArray *)arrvalue
+{
+    GetAreaModel *model = arrvalue[0];
+    self.strstcid = model.ID;
+    [_lbaddress setText:model.NAME];
+    
+}
+
+
 
 ///0重置 1确定
 -(void)bottomAction:(UIButton *)sender
@@ -196,7 +220,15 @@
     [self endEditing:YES];
     if(self.delegate)
     {
-        [self.delegate serachValueText:self.fieldsearch.text andaddress:@""];
+        if(sender.tag==0)
+        {
+            [self.delegate serachValueText:@"" andaddress:@""];
+        }
+        else
+        {
+            [self.delegate serachValueText:self.fieldsearch.text andaddress:self.strstcid];
+        }
+        
     }
     
     [UIView animateWithDuration:0.5 animations:^{

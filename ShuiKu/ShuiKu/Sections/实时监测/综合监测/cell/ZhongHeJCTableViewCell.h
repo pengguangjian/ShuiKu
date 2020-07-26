@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZongHeJianCeMainListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZhongHeJCTableViewCell : UITableViewCell
-@property (nonatomic , strong) NSString *strvalue;
+@property (nonatomic , strong) ZongHeJianCeMainListModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

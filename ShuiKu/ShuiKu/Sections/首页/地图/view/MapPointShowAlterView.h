@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class ShuiChangListModel;
 @interface MapPointShowAlterView : UIView
+
+@property (nonatomic , strong) ShuiChangListModel *model;
 
 @end
 

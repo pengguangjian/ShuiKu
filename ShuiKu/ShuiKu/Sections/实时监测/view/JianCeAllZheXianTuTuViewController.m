@@ -15,6 +15,10 @@
 
 #import "LiuLiangJCXiangQingModel.h"
 
+#import "JianCeMainListModel.h"
+
+#import "ZongHeJianCeLiuLiangModel.h"
+
 @interface JianCeAllZheXianTuTuViewController ()<TimeClectAlterViewDelegate>
 @property (nonatomic , strong) UIButton *bttime;
 
@@ -28,15 +32,20 @@
 
 @property (nonatomic , strong) NSString *strstarttime;
 @property (nonatomic , strong) NSString *strendtime;
+
 @property (nonatomic , strong) NSMutableArray *arrdata;
-@property (nonatomic , strong) NSMutableArray *arrallline;
+
+@property (nonatomic , strong) NSMutableArray *arrDataTime;
+
+@property (nonatomic , strong) NSMutableArray *arrDataData;
+
 @end
 
 @implementation JianCeAllZheXianTuTuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.view setClipsToBounds:YES];
     self.strstarttime = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM-dd"];
     self.strendtime = [WYTools dateChangeStringWith:[NSDate date] andformat:@"yyyy-MM-dd"];
     
@@ -117,12 +126,14 @@
 -(void)changetimeValue:(NSString *)strvalue
 {
     @try {
-        NSArray *arrtime = [strvalue componentsSeparatedByString:@"-"];
+        self.strtitle = strvalue;
+        NSArray *arrtime = [strvalue componentsSeparatedByString:@"&"];
         self.strstarttime = arrtime[0];
         self.strendtime = arrtime[1];
         NSString *strtemp = [NSString stringWithFormat:@"%@至%@",arrtime[0],arrtime[1]];
         strtemp = [strtemp stringByReplacingOccurrencesOfString:@"." withString:@"-"];
         [_bttime setTitle:strtemp forState:UIControlStateNormal];
+        
     } @catch (NSException *exception) {
         
     } @finally {
@@ -134,52 +145,7 @@
 ///搜索
 -(void)searchAction
 {
-    
     [self getdata];
-}
-
--(void)drawLine
-{
-    NSMutableArray *arrxArr = [NSMutableArray new];
-    NSInteger ifirst = self.arrinfo.count/2;
-    NSMutableArray *arrtemp = [NSMutableArray new];
-    NSMutableArray *arrtemp1 = [NSMutableArray new];
-    NSMutableArray *arrtemp2 = [NSMutableArray new];
-    NSMutableArray *arrtemp3 = [NSMutableArray new];
-    
-    
-    
-    int i = 0;
-    for(LiuLiangJCXiangQingModel *model in self.arrdata)
-    {
-        if(i==0 || i==self.arrdata.count/2 || i==self.arrdata.count-1)
-        {
-            [arrxArr addObject:model.TM];
-        }
-        [arrtemp addObject:model.Q0];
-        [arrtemp1 addObject:model.W0];
-        [arrtemp2 addObject:model.Q1];
-        [arrtemp3 addObject:model.W1];
-        i++;
-    }
-//    [_xianview uploadxArr:arrxArr];
-    ///添加线的信息
-//    NSMutableArray *arrallline = [NSMutableArray new];
-//    NSArray *arrvalue = @[arrtemp,arrtemp1,arrtemp2,arrtemp3];
-//    for(int i = 0 ; i < arrvalue.count; i++)
-//    {
-//        if(i<ifirst)
-//        {
-//            [arrallline addObject:[self.xianview addLine:arrvalue[i] andlinecolor:RGB(254, 106, 55)]];
-//        }
-//        else
-//        {
-//            [arrallline addObject:[self.xianview addLine:arrvalue[i] andlinecolor:RGB(35, 78, 152)]];
-//        }
-//        
-//    }
-//    self.arrallline = arrallline;
-//    [self.xianview showValue:arrallline];
 }
 
 -(void)drawTuView:(UIView *)viewself
@@ -295,7 +261,7 @@
     LineZuoBiaoView *view = [[LineZuoBiaoView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenH, kMainScreenW-60)];
     [view setBackgroundColor:[UIColor whiteColor]];
     [viewback addSubview:view];
-
+    [view setXzhouValue:self.arrDataTime andKeyValue:self.arrDataData];
     
     UIView *viewtop = [[UIView alloc] init];
     [viewback addSubview:viewtop];
@@ -420,14 +386,214 @@
 
 -(void)getdata
 {
-    
-    [LiuLiangJCDataController requestLiuLiangJianCheXiangQingData:self.view sTime:self.strstarttime eTime:self.strendtime stcd:self.stcd Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
-        if(state)
+    if(self.type>=2 && self.type<=6)
+    {
+        [LiuLiangJCDataController requestMainJianCeDetailData:self.view sTime:self.strstarttime eTime:self.strendtime stcd:self.stcd Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+            if(state)
+            {
+                self.arrdata = value;
+                
+                NSMutableArray *arrtime = [NSMutableArray new];
+                ///
+                NSMutableArray *arrvalue0 = [NSMutableArray new];
+                NSMutableArray *arrvalue1 = [NSMutableArray new];
+                
+                for(JianCeMainListModel *model in value)
+                {
+                    ///type 1流量监测、2浊度监测、3余氯监测、4温度监测、5ph监测、6水质监测 7综合监测
+                    ///typeson  1浊度图  2余氯图    3温度图   4ph图   5瞬时流量图   6累计流量图
+                    if(arrtime.count>0)
+                    {
+                        NSArray *arrtimetemp = [model.TM componentsSeparatedByString:@" "];
+                        
+                        [arrtime addObject:arrtimetemp[0]];
+                    }
+                    else
+                    {
+                        [arrtime addObject:@""];
+                    }
+                    
+                    if(self.typeson==1)
+                    {
+                        [arrvalue0 addObject:model.TURB0];
+                        [arrvalue1 addObject:model.TURB1];
+                    }
+                    else if (self.typeson == 2)
+                    {
+                        [arrvalue0 addObject:model.CL];
+                    }
+                    else if (self.typeson == 3)
+                    {
+                        [arrvalue0 addObject:model.WT0];
+                        [arrvalue1 addObject:model.WT1];
+                    }
+                    else if (self.typeson == 4)
+                    {
+                        [arrvalue0 addObject:model.PH0];
+                        [arrvalue1 addObject:model.PH1];
+                    }
+                    
+                }
+                
+                
+                
+                NSMutableArray *arrlinedata = [NSMutableArray new];
+                if (self.typeson == 2)
+                {
+                    [arrlinedata addObject:@{@"value":arrvalue0,@"color":MenuColor1}];
+                }
+                else
+                {
+                    [arrlinedata addObject:@{@"value":arrvalue0,@"color":MenuColor1}];
+                    [arrlinedata addObject:@{@"value":arrvalue1,@"color":MenuColor}];
+                
+                }
+                self.arrDataTime = arrtime;
+                self.arrDataData = arrlinedata;
+                [self.xianview setXzhouValue:arrtime andKeyValue:arrlinedata];
+                
+            }
+            else
+            {
+                [WYTools showNotifyHUDwithtext:describle inView:self.view];
+            }
+        }];
+    }
+    else if(self.type == 1)
+    {///1流量监测
+        ///typeson  1浊度图  2余氯图    3温度图   4ph图   5瞬时流量图   6累计流量图
+        [WYTools showNotifyHUDwithtext:@"后台有问题，未处理数据" inView:self.view];
+        
+    }
+    else if (self.type == 7)
+    {///7综合监测
+        ///typeson  1浊度图  2余氯图    3温度图   4ph图   5瞬时流量图   6累计流量图
+        if(self.typeson<=4)
         {
-            self.arrdata = value;
+            [LiuLiangJCDataController requestMainZongHeJianCeDetailData:self.view sTime:self.strstarttime eTime:self.strendtime code:self.stcd Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
+                if(state)
+                {
+                    self.arrdata = value;
+                    
+                    NSMutableArray *arrtime = [NSMutableArray new];
+                    ///
+                    NSMutableArray *arrvalue0 = [NSMutableArray new];
+                    NSMutableArray *arrvalue1 = [NSMutableArray new];
+                    
+                    for(JianCeMainListModel *model in value)
+                    {
+                        ///type 1流量监测、2浊度监测、3余氯监测、4温度监测、5ph监测、6水质监测 7综合监测
+                        ///typeson  1浊度图  2余氯图    3温度图   4ph图   5瞬时流量图   6累计流量图
+                        if(arrtime.count>0)
+                        {
+                            NSArray *arrtimetemp = [model.TM componentsSeparatedByString:@" "];
+                            
+                            [arrtime addObject:arrtimetemp[0]];
+                        }
+                        else
+                        {
+                            [arrtime addObject:@""];
+                        }
+                        
+                        if(self.typeson==1)
+                        {
+                            [arrvalue0 addObject:model.TURB0];
+                            [arrvalue1 addObject:model.TURB1];
+                        }
+                        else if (self.typeson == 2)
+                        {
+                            [arrvalue0 addObject:model.CL];
+                        }
+                        else if (self.typeson == 3)
+                        {
+                            [arrvalue0 addObject:model.WT0];
+                            [arrvalue1 addObject:model.WT1];
+                        }
+                        else if (self.typeson == 4)
+                        {
+                            [arrvalue0 addObject:model.PH0];
+                            [arrvalue1 addObject:model.PH1];
+                        }
+                        
+                    }
+                    
+                    
+                    
+                    NSMutableArray *arrlinedata = [NSMutableArray new];
+                    if (self.typeson == 2)
+                    {
+                        [arrlinedata addObject:@{@"value":arrvalue0,@"color":MenuColor}];
+                    }
+                    else
+                    {
+                        [arrlinedata addObject:@{@"value":arrvalue0,@"color":MenuColor1}];
+                        [arrlinedata addObject:@{@"value":arrvalue1,@"color":MenuColor}];
+                    
+                    }
+                    self.arrDataTime = arrtime;
+                    self.arrDataData = arrlinedata;
+                    [self.xianview setXzhouValue:arrtime andKeyValue:arrlinedata];
+                    
+                }
+                else
+                {
+                    [WYTools showNotifyHUDwithtext:describle inView:self.view];
+                }
+            }];
         }
-//        [self drawLine];
-    }];
+        else if (self.typeson==5||self.typeson == 6)
+        {///5瞬时流量图   6累计流量图
+            
+            [LiuLiangJCDataController requestMainZongHeLiuLiangJianCeDetailData:self.view sTime:self.strstarttime eTime:self.strendtime code:self.stcd Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
+                if(state)
+                {
+                    NSMutableArray *arrtime = [NSMutableArray new];
+                    ///
+                    NSMutableArray *arrvalue0 = [NSMutableArray new];
+                    NSMutableArray *arrvalue1 = [NSMutableArray new];
+                    
+                    for(ZongHeJianCeLiuLiangModel *model in value)
+                    {
+                        ///type 1流量监测、2浊度监测、3余氯监测、4温度监测、5ph监测、6水质监测 7综合监测
+                        ///typeson  1浊度图  2余氯图    3温度图   4ph图   5瞬时流量图   6累计流量图
+                        if(arrtime.count>0)
+                        {
+                            NSArray *arrtimetemp = [model.TM componentsSeparatedByString:@" "];
+                            
+                            [arrtime addObject:arrtimetemp[0]];
+                        }
+                        else
+                        {
+                            [arrtime addObject:@""];
+                        }
+                        if(self.typeson == 5)
+                        {
+                            [arrvalue0 addObject:model.Q0];
+                            [arrvalue1 addObject:model.Q1];
+                        }
+                        else
+                        {
+                            [arrvalue0 addObject:model.W0];
+                            [arrvalue1 addObject:model.W1];
+                        }
+                         
+                    }
+                    
+                    NSMutableArray *arrlinedata = [NSMutableArray new];
+                    [arrlinedata addObject:@{@"value":arrvalue0,@"color":MenuColor1}];
+                    [arrlinedata addObject:@{@"value":arrvalue1,@"color":MenuColor}];
+                    self.arrDataTime = arrtime;
+                    self.arrDataData = arrlinedata;
+                    [self.xianview setXzhouValue:arrtime andKeyValue:arrlinedata];
+                }
+                else
+                {
+                    [WYTools showNotifyHUDwithtext:describle inView:self.view];
+                }
+            }];
+        }
+        
+    }
 }
 
 @end

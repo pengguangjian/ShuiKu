@@ -11,6 +11,14 @@
 #import "ZhongHeJCDetailViewController.h"
 #import "ShiPinShuiChangJCViewController.h"
 
+#import "ShuiChangListModel.h"
+#import "LiuLiangJCDataController.h"
+
+#import "MainHomeDataController.h"
+#import "ZongHeJianCeMainListModel.h"
+#import "ShuiChangListModel.h"
+#import "ShiPinJCDataController.h"
+#import "ShiPinJcShuiChangListModel.h"
 @interface MapPointShowAlterView ()
 
 @property (nonatomic , strong) NSMutableArray *arrlbvalue;
@@ -23,7 +31,7 @@
 {
     if(self = [super initWithFrame:frame])
     {
-        [self setBackgroundColor:RGBAlpha(0, 0, 0, 0.4)];
+        [self setBackgroundColor:RGBAlpha(0, 0, 0, 0.5)];
         self.arrlbvalue = [NSMutableArray new];
         NSArray *arrtitle = @[@"",@"测站地址：",@"状        态：",@"供水能力：",@"水  源  地：",@"服务片区：",@"水厂状态："];
         UIView *viewlast = nil;
@@ -115,27 +123,46 @@
 {
     [super layoutSubviews];
     UILabel *lbvalue0 = self.arrlbvalue[0];
-    [lbvalue0 setText:@"水厂名"];
+    [lbvalue0 setText:self.model.NAME];
     
     UILabel *lbvalue1 = self.arrlbvalue[1];
-    [lbvalue1 setText:@"水厂地址"];
+    [lbvalue1 setText:self.model.ADDR];
     
     
     UILabel *lbvalue2 = self.arrlbvalue[2];
     [lbvalue2 setText:@"离线"];
+    if(self.model.STATUS.intValue == 1)
+    {
+        [lbvalue2 setText:@"在线"];
+    }
     
     UILabel *lbvalue3 = self.arrlbvalue[3];
-    [lbvalue3 setText:@"800m³/d"];
+    [lbvalue3 setText:[NSString stringWithFormat:@"%@m³/d",self.model.GSNL]];
     
     
     UILabel *lbvalue4 = self.arrlbvalue[4];
-    [lbvalue4 setText:@"水源地"];
+    [lbvalue4 setText:self.model.SYD];
     
     UILabel *lbvalue5 = self.arrlbvalue[5];
-    [lbvalue5 setText:@"服务片区"];
+    [lbvalue5 setText:self.model.FUPQ];
     
     UILabel *lbvalue6 = self.arrlbvalue[6];
-    [lbvalue6 setText:@"正常"];
+    if([self.model.RUNSTATE isEqualToString:@"00"])
+    {
+        [lbvalue6 setText:@"正常"];
+    }
+    else if([self.model.RUNSTATE isEqualToString:@"01"])
+    {
+        [lbvalue6 setText:@"预警"];
+    }
+    else if([self.model.RUNSTATE isEqualToString:@"02"])
+    {
+        [lbvalue6 setText:@"维修"];
+    }
+    else if([self.model.RUNSTATE isEqualToString:@"03"])
+    {
+        [lbvalue6 setText:@"异常"];
+    }
     
 }
 
@@ -150,17 +177,63 @@
     if(sender.tag==0)
     {
         ShuiChangDetailViewController *vc = [[ShuiChangDetailViewController alloc] init];
+        vc.model = self.model;
         [self.viewController.navigationController pushViewController:vc animated:YES];
     }
     else if(sender.tag==1)
     {
-        ZhongHeJCDetailViewController *vc = [[ZhongHeJCDetailViewController alloc] init];
-        [self.viewController.navigationController pushViewController:vc animated:YES];
+        ///获取数据
+        [LiuLiangJCDataController requestZongHeJianCheListData:self.viewController.view key:self.model.NAME pageNumber:1 Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+            if(state)
+            {
+                if(value.count>0)
+                {
+                    
+                    ZongHeJianCeMainListModel *model = value[0];
+                    ZhongHeJCDetailViewController *vc = [[ZhongHeJCDetailViewController alloc] init];
+                    vc.model = model;
+                    vc.strSTCD = model.CODE;
+                    [self.viewController.navigationController pushViewController:vc animated:YES];
+                }
+                else
+                {
+                    [WYTools showNotifyHUDwithtext:@"数据获取失败" inView:self.viewController.view];
+                }
+                               
+            }
+            else
+            {
+                [WYTools showNotifyHUDwithtext:describle inView:self.viewController.view];
+            }
+        }];
+        
+        
     }
     else if(sender.tag==2)
     {
-        ShiPinShuiChangJCViewController *vc = [[ShiPinShuiChangJCViewController alloc] init];
-        [self.viewController.navigationController pushViewController:vc animated:YES];
+        [ShiPinJCDataController requestShuiChangListData:self.viewController.view name:self.model.NAME pageNumber:1 Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+            if(state)
+            {
+                if(value.count>0)
+                {
+                    
+                    ShiPinJcShuiChangListModel *model = value[0];
+                    ShiPinShuiChangJCViewController *vc = [[ShiPinShuiChangJCViewController alloc] init];
+                    vc.indexCode = model.indexCode;
+                    [self.viewController.navigationController pushViewController:vc animated:YES];
+                }
+                else
+                {
+                    [WYTools showNotifyHUDwithtext:@"数据获取失败" inView:self.viewController.view];
+                }
+                               
+            }
+            else
+            {
+                [WYTools showNotifyHUDwithtext:describle inView:self.viewController.view];
+            }
+        }];
+        
     }
 }
 

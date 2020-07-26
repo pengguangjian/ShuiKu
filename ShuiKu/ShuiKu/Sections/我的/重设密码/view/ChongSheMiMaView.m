@@ -8,6 +8,8 @@
 //
 
 #import "ChongSheMiMaView.h"
+#import "LoginDataController.h"
+#import "LoginViewController.h"
 
 @interface ChongSheMiMaView ()
 
@@ -55,7 +57,7 @@
             make.top.equalTo(fieldoldpass.mas_bottom);
             make.height.offset(1);
         }];
-        
+        [fieldoldpass setSecureTextEntry:YES];
         
         UITextField *fieldnewpass = [[UITextField alloc] init];
         [fieldnewpass setTextColor:RGB(30,30, 30)];
@@ -76,7 +78,7 @@
             make.top.equalTo(fieldnewpass.mas_bottom);
             make.height.offset(1);
         }];
-        
+        [fieldnewpass setSecureTextEntry:YES];
         
         UITextField *fieldokpass = [[UITextField alloc] init];
         [fieldokpass setTextColor:RGB(30,30, 30)];
@@ -92,7 +94,7 @@
         [viewback mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(fieldokpass.mas_bottom);
         }];
-        
+        [fieldokpass setSecureTextEntry:YES];
         
         UIButton *btok = [[UIButton alloc] init];
         [btok setTitle:@"确认" forState:UIControlStateNormal];
@@ -116,7 +118,34 @@
 
 -(void)okAction
 {
+    if(self.fieldoldpass.text.length<1)
+    {
+        [WYTools showNotifyHUDwithtext:@"请输入原密码" inView:self];
+        return;
+    }
+    if(self.fieldnewpass.text.length<1)
+    {
+        [WYTools showNotifyHUDwithtext:@"请输入新密码" inView:self];
+        return;
+    }
+    if(![self.fieldnewpass.text isEqualToString:self.fieldokpass.text])
+    {
+        [WYTools showNotifyHUDwithtext:@"新密码和确认密码不一致" inView:self];
+        return;
+    }
     
+    
+    [LoginDataController requestChangePasswordData:self NEW_PASSWORD:self.fieldnewpass.text OLD_PASSWORD:self.fieldoldpass.text ID:[UserInfoModel sharedUserInfo].uID Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
+        if(state)
+        {
+            [WYTools showNotifyHUDwithtext:@"密码修改成功" inView:self];
+            [self.viewController.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            [WYTools showNotifyHUDwithtext:describle inView:self];
+        }
+    }];
     
 }
 

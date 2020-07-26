@@ -81,7 +81,7 @@
 }
 
 
--(void)setModel:(LiuLiangJCListRowModel *)model
+-(void)setModel:(LiuLiangJCListModel *)model
 {
     
     [_lbname setText:model.NAME];

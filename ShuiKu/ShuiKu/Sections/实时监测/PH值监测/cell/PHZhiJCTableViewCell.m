@@ -79,11 +79,31 @@
 }
 
 
--(void)setStrvalue:(NSString *)strvalue
+-(void)setModel:(JianCeMainListModel *)model
 {
-    [_lbname setText:@"标题标题标题标题标题标题"];
+    [_lbname setText:[NSString stringWithFormat:@"%@(%@)",model.NAME,model.STCD]];
+    
+    UILabel *lb0 = self.arrallLB[0];
+    [lb0 setText:@"离线"];
+    if(model.STATUS.intValue == 1)
+    {
+        [lb0 setText:@"在线"];
+    }
+    
+    UILabel *lb1 = self.arrallLB[1];
+    [lb1 setText:[NSString stringWithFormat:@"%@",model.PH0]];
+    
+    UILabel *lb2 = self.arrallLB[2];
+    [lb2 setText:[NSString stringWithFormat:@"%@",model.PH1]];
+    
+    UILabel *lb3 = self.arrallLB[3];
+    [lb3 setText:model.TM];
+    
+    UILabel *lb4 = self.arrallLB[4];
+    [lb4 setText:model.WTM];
+    
+    
 }
-
 
 
 - (void)awakeFromNib {

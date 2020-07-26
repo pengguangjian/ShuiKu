@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZhuoDuJianCeDetailViewController : RootViewController
-@property (nonatomic , strong) NSString *strtitle;
+@property (nonatomic , strong) NSString *strSTCD;
 @end
 
 NS_ASSUME_NONNULL_END

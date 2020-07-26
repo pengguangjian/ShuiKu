@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ShuiChangListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShuiChangXinXiTableViewCell : UITableViewCell
-@property (nonatomic , strong) NSString *strvalue;
+@property (nonatomic , strong) ShuiChangListModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

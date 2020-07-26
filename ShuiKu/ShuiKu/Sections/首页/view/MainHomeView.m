@@ -25,7 +25,7 @@
 @property (nonatomic , strong) NSMutableArray *arrTopTitle;
 @property (nonatomic , strong) ImagePlayerView *imgvheader;
 
-
+@property (nonatomic , strong) UIView *viewgonggao;
 ///通知公告
 @property (nonatomic , strong) CCPScrollView *ccpHotPointView;
 @property (nonatomic , strong) NSMutableArray *arrtongzhigonggao;
@@ -76,6 +76,7 @@
             make.height.offset(40);
         }];
         [self drawGongGaoView:viewgonggao];
+        _viewgonggao = viewgonggao;
         
         ///banner
         ///banner
@@ -141,6 +142,8 @@
         
         XiaoXiGongGaoViewController *vc = [[XiaoXiGongGaoViewController alloc] init];
         [self.viewController.navigationController pushViewController:vc animated:YES];
+        
+        
     }];
     _ccpHotPointView = ccpHotPointView;
     
@@ -207,6 +210,12 @@
         if(arrtitlegg.count>0)
         {
             [self.ccpHotPointView setTitleArray:arrtitlegg];
+        }
+        else
+        {
+            [self.viewgonggao mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.offset(0);
+            }];
         }
         
     }];
