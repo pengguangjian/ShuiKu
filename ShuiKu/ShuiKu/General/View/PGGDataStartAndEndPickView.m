@@ -420,6 +420,11 @@
 //
 //        [self.degelate changetimeValue:[NSString stringWithFormat:@"%@-%@-%@ %@:%@",stryear,strmouth,strday,strhouar,strmintes]];
 //    }
+    if([self compareDate:self.lbstarttime.text withDate:self.lbendtime.text] == NO)
+    {
+        [WYTools showNotifyHUDwithtext:@"结束时间需大于等于开始时间" inView:self.window];
+        return;
+    }
     NSString *strback = [NSString stringWithFormat:@"%@&%@",self.lbstarttime.text,self.lbendtime.text];
     strback = [strback stringByReplacingOccurrencesOfString:@"." withString:@"-"];
     [self.degelate changetimeValue:strback];
@@ -431,6 +436,26 @@
         [self removeFromSuperview];
     }];
 }
+
+///如果结束时间比开始时间小 返回NO
+-(BOOL)compareDate:(NSString*)startDate withDate:(NSString*)endDate
+
+{
+
+    NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
+    [dateformater setDateFormat:@"yyyy.MM.dd"];
+    NSDate*start = [[NSDate alloc]init];
+    NSDate*end = [[NSDate alloc]init];
+    start = [dateformater dateFromString:startDate];
+    end = [dateformater dateFromString:endDate];
+    NSComparisonResult result = [start compare:end];
+    if(result==NSOrderedDescending)
+    {///结束时间比开始时间小
+        return NO;
+    }
+    return YES;
+}
+
 
 -(void)dismisself
 {
@@ -447,7 +472,8 @@
 {
     if(sender.tag==1)
     {
-        [_imgvback setImage:[UIImage imageNamed:@"shijianxuanzhealterheader.jpg"]];
+        [_imgvback setImage:[UIImage imageNamed:@"riqijieshuback"]];
+        
         self.ischangeend = YES;
     }
     else

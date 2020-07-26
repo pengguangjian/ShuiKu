@@ -20,7 +20,7 @@
     [super viewDidLoad];
     self.title = @"用户统计";
     
-    
+    [WYTools showNotifyHUDwithtext:@"开发中" inView:self.view];
     
 }
 
