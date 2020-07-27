@@ -77,6 +77,45 @@ key:(NSString *)key
 pageNumber:(int)pageNumber
 Callback:(completeCallback)callback;
 
+
+/*
+ http://183.230.114.158:8678/ccbt_zhgs/api/home/GetFLowData?SessionId=EwmQtH4kxZklics9KyMePw%3D%3D
+ 首页
+ 流量超标及列表详情 1
+ 浊度超标及列表详情 2
+ 余氯超标及列表详情 3
+ PH值超标及列表详情 4
+ 温度超标及列表详情 5
+ */
+///首页超标数据及列表
++ (void)requestChaoBiaoListData:(UIView *)view
+type:(NSString *)type
+Callback:(completeCallback)callback;
+
+/*
+///扫码授权
+ http://183.230.114.158:8678/ccbt_zhgs/api/auth/ScanCode?sign=FD12B2163C4F5EEE22663E2D54F0937352CBAE6E&client=3F9A28B3B6F34E64A8C54F26EC7176B5&time=2020-07-14%2010%3A22%3A09&type=1001&SessionId=31eFcXupZCnZSraIOrRFYQ%3D%3D
+ 二维码规则
+
+ type字段 ：
+     1001：表示登录操作（展示当前扫码结果）
+     2001：表示业务处理（可直接跳转到实时监测等详情页面）
+     3001：表示信息查询（可直接跳转到webview页面）
+
+ time：时间，3分钟有效
+
+ clientid：二维码id
+
+ sign：加密指纹数据
+    sha1(type+time+clientid)
+ */
+///扫码授权
++ (void)requestScanCodeData:(UIView *)view
+sign:(NSString *)sign
+client:(NSString *)client
+time:(NSString *)time
+Callback:(completeCallback)callback;
+
 @end
 
 NS_ASSUME_NONNULL_END

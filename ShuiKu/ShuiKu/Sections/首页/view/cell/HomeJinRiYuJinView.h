@@ -11,6 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeJinRiYuJinView : UIView
+///超标数据
+@property (nonatomic , strong) NSMutableArray *arrliuliang;
+@property (nonatomic , strong) NSMutableArray *arrzhuodu;
+@property (nonatomic , strong) NSMutableArray *arryulv;
+@property (nonatomic , strong) NSMutableArray *arrPHZhi;
+@property (nonatomic , strong) NSMutableArray *arrwendu;
 
 @end
 

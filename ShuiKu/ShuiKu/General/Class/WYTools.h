@@ -31,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///数组形数据model
 +(NSMutableArray *)initArrValue:(NSArray *)value andclassname:(NSString *)classname;
 
+///字母小写转大写
++(NSString *)stringToUpper:(NSString *)str;
+
 @end
 
 NS_ASSUME_NONNULL_END

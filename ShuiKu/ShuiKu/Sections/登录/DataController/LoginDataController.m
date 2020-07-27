@@ -109,8 +109,8 @@ Callback:(completeCallback)callback
     NSMutableDictionary  *dicpush = [NSMutableDictionary new];
     [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
     [dicpush setObject:[NSString stringWithFormat:@"%@",ID] forKey:@"ID"];
-    [dicpush setObject:[NSString stringWithFormat:@"%@",[WYTools stringWithSha1Encode:@"123456"]] forKey:@"NEW_PASSWORD"];
-    [dicpush setObject:[NSString stringWithFormat:@"%@",[WYTools stringWithSha1Encode:@"8678"]] forKey:@"OLD_PASSWORD"];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[WYTools stringWithSha1Encode:NEW_PASSWORD]] forKey:@"NEW_PASSWORD"];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[WYTools stringWithSha1Encode:OLD_PASSWORD]] forKey:@"OLD_PASSWORD"];
     
     [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/user/ResetPassword?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
         BOOL state = NO;

@@ -8,6 +8,7 @@
 
 #import "HomeJinRiYuJinView.h"
 #import "LiuLiangYJViewController.h"
+#import "ChaoBiaoListViewController.h"
 @interface HomeJinRiYuJinView  ()
 
 @property (nonatomic , strong) NSMutableArray *arrnumberLB;
@@ -49,7 +50,7 @@
         [btmore addTarget:self action:@selector(moreAction) forControlEvents:UIControlEventTouchUpInside];
         
         _arrnumberLB = [NSMutableArray new];
-        NSArray *arrtille = @[@"流量超标",@"浊度超标",@"超标余氯",@"PH值超标",@"温度超标",];
+        NSArray *arrtille = @[@"流量超标",@"浊度超标",@"超标余氯",@"PH值超标",@"温度超标"];
         for(int i = 0; i < 3; i++)
         {
             for(int j = 0 ; j <2; j++)
@@ -117,8 +118,41 @@
 
 -(void)itemActioni:(UIGestureRecognizer *)gesture
 {
+    NSArray *arrtille = @[@"流量超标",@"浊度超标",@"超标余氯",@"PH值超标",@"温度超标"];
+    NSInteger tag = gesture.view.tag;
     
-    
+    ChaoBiaoListViewController *vc = [[ChaoBiaoListViewController alloc] init];
+    vc.title = arrtille[tag];
+    switch (tag) {
+        case 0:
+        {
+            vc.arrData = self.arrliuliang;
+        }
+            break;
+        case 1:
+        {
+            vc.arrData = self.arrzhuodu;
+        }
+            break;
+        case 2:
+        {
+            vc.arrData = self.arryulv;
+        }
+            break;
+        case 3:
+        {
+            vc.arrData = self.arrPHZhi;
+        }
+            break;
+        case 4:
+        {
+            vc.arrData = self.arrwendu;
+        }
+            break;
+        default:
+            break;
+    }
+    [self.viewController.navigationController pushViewController:vc animated:YES];
     
 }
 ///查看更多
@@ -128,6 +162,37 @@
     [self.viewController.navigationController pushViewController:vc animated:YES];
 }
 
+-(void)setArrliuliang:(NSMutableArray *)arrliuliang
+{
+    _arrliuliang = arrliuliang;
+    UILabel *lb = _arrnumberLB[0];
+    [lb setText:[NSString stringWithFormat:@"%ld",arrliuliang.count]];
+    
+}
+-(void)setArrzhuodu:(NSMutableArray *)arrzhuodu
+{
+    _arrzhuodu = arrzhuodu;
+    UILabel *lb = _arrnumberLB[1];
+    [lb setText:[NSString stringWithFormat:@"%ld",arrzhuodu.count]];
+}
+-(void)setArryulv:(NSMutableArray *)arryulv
+{
+    _arryulv = arryulv;
+    UILabel *lb = _arrnumberLB[2];
+    [lb setText:[NSString stringWithFormat:@"%ld",arryulv.count]];
+}
+-(void)setArrPHZhi:(NSMutableArray *)arrPHZhi
+{
+    _arrPHZhi = arrPHZhi;
+    UILabel *lb = _arrnumberLB[3];
+    [lb setText:[NSString stringWithFormat:@"%ld",arrPHZhi.count]];
+}
+-(void)setArrwendu:(NSMutableArray *)arrwendu
+{
+    _arrwendu = arrwendu;
+    UILabel *lb = _arrnumberLB[4];
+    [lb setText:[NSString stringWithFormat:@"%ld",arrwendu.count]];
+}
 
 
 @end

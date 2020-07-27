@@ -19,6 +19,7 @@
 #import "MainHomeDataController.h"
 
 
+
 @interface MainHomeView () <UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic , strong) UICollectionView *collect;
@@ -30,7 +31,14 @@
 @property (nonatomic , strong) CCPScrollView *ccpHotPointView;
 @property (nonatomic , strong) NSMutableArray *arrtongzhigonggao;
 
-
+///今日预警
+@property (nonatomic , strong) HomeJinRiYuJinView *jinriyjview;
+///超标数据
+@property (nonatomic , strong) NSMutableArray *arrliuliang;
+@property (nonatomic , strong) NSMutableArray *arrzhuodu;
+@property (nonatomic , strong) NSMutableArray *arryulv;
+@property (nonatomic , strong) NSMutableArray *arrPHZhi;
+@property (nonatomic , strong) NSMutableArray *arrwendu;
 
 @end
 
@@ -99,6 +107,7 @@
             make.top.equalTo(imgvheader.mas_bottom).offset(10);
             
         }];
+        _jinriyjview = jinriyjview;
         
         ///值班统计
         HomeZhiBanTongJiView *tongjiview = [[HomeZhiBanTongJiView alloc] init];
@@ -209,15 +218,56 @@
         }
         if(arrtitlegg.count>0)
         {
+            [self.viewgonggao setHidden:NO];
             [self.ccpHotPointView setTitleArray:arrtitlegg];
+            [self.viewgonggao mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.offset(40);
+            }];
         }
         else
         {
+            [self.viewgonggao setHidden:YES];
             [self.viewgonggao mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.offset(0);
             }];
         }
         
+    }];
+    
+    [MainHomeDataController requestChaoBiaoListData:nil type:@"1" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray * value) {
+        if(state)
+        {
+            self.arrliuliang = value;
+            self.jinriyjview.arrliuliang = value;
+        }
+    }];
+    [MainHomeDataController requestChaoBiaoListData:nil type:@"2" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray * value) {
+        if(state)
+        {
+            self.arrzhuodu = value;
+            self.jinriyjview.arrzhuodu = value;
+        }
+    }];
+    [MainHomeDataController requestChaoBiaoListData:nil type:@"3" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray * value) {
+        if(state)
+        {
+            self.arryulv = value;
+            self.jinriyjview.arryulv = value;
+        }
+    }];
+    [MainHomeDataController requestChaoBiaoListData:nil type:@"4" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray * value) {
+        if(state)
+        {
+            self.arrPHZhi = value;
+            self.jinriyjview.arrPHZhi = value;
+        }
+    }];
+    [MainHomeDataController requestChaoBiaoListData:nil type:@"5" Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        if(state)
+        {
+            self.arrwendu = value;
+            self.jinriyjview.arrwendu = value;
+        }
     }];
 }
 

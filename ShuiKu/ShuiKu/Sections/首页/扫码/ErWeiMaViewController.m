@@ -8,6 +8,7 @@
 
 #import "ErWeiMaViewController.h"
 #import <AVFoundation/AVFoundation.h>//原生二维码扫描必须导入这个框架
+#import "MainHomeDataController.h"
 
 #define QRCodeWidth 260.0 //正方形二维码的边长
 
@@ -18,7 +19,8 @@
 
 @interface ErWeiMaViewController ()<AVCaptureMetadataOutputObjectsDelegate>
 @property (nonatomic,strong)AVCaptureSession *session;
-
+///登录扫码信息
+@property (nonatomic,strong) NSDictionary *disdenglusaoma;
 
 @end
 
@@ -259,17 +261,18 @@
           AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex :0 ];
 
           NSString *str = metadataObject.stringValue;
+         NSDictionary *dicinfo = [str JSONValue];
+         NSLog(@"%@",dicinfo);
          
-         [self saomaYesAction];
-         
-//         UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"提示" message:str preferredStyle:UIAlertControllerStyleAlert];
-//
-//         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//             [self.navigationController popViewControllerAnimated:YES];
-//         }];
-//
-//         [alter addAction:action];
-//         [self presentViewController:alter animated:YES completion:nil];
+         if([[NSString nullToString:[dicinfo objectForKey:@"type"]] isEqualToString:@"1001"])
+         {
+             self.disdenglusaoma = dicinfo;
+             [self saomaYesAction];
+         }
+         else
+         {
+             [WYTools showNotifyHUDwithtext:str inView:self.view];
+         }
      }
 
 }
@@ -352,9 +355,27 @@
 
 -(void)bottomAction:(UIButton *)sender
 {
+    if(sender.tag==0)
+    {///登录
+        [MainHomeDataController requestScanCodeData:self.view sign:[self.disdenglusaoma objectForKey:@"sign"] client:[self.disdenglusaoma objectForKey:@"client"] time:[self.disdenglusaoma objectForKey:@"time"] Callback:^(NSError *error, BOOL state, NSString *describle, id value) {
+            if(state)
+            {
+                [WYTools showNotifyHUDwithtext:@"登录成功" inView:self.view];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+                
+            }
+            else
+            {
+                [WYTools showNotifyHUDwithtext:describle inView:self.view];
+            }
+        }];
+        
+        
+    }
     
     
-    [self.navigationController popViewControllerAnimated:YES];
     
 }
 

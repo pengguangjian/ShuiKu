@@ -15,7 +15,7 @@
 #import "GetAreaModel.h"
 #import "ShuiChangListModel.h"
 #import "CeZhanListModel.h"
-
+#import "MainHomeChaoBiaoInfoModel.h"
 
 
 @implementation MainHomeDataController
@@ -344,7 +344,113 @@ Callback:(completeCallback)callback
     
 }
 
+///首页超标数据及列表
++ (void)requestChaoBiaoListData:(UIView *)view
+type:(NSString *)type
+Callback:(completeCallback)callback
+{
+    NSMutableDictionary  *dicpush = [NSMutableDictionary new];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
+    NSString *strurl = @"";
+    if(type.intValue == 1)
+    {
+        strurl = @"ccbt_zhgs/api/home/GetFLowData?";
+    }
+    else if(type.intValue == 2)
+    {//http://183.230.114.158:8678/ccbt_zhgs/api/home/GetTurbData?SessionId=EwmQtH4kxZklics9KyMePw%3D%3D
+        strurl = @"ccbt_zhgs/api/home/GetTurbData?";
+    }
+    else if(type.intValue == 3)
+    {///http://183.230.114.158:8678/ccbt_zhgs/api/home/GetClData?SessionId=EwmQtH4kxZklics9KyMePw%3D%3D
+        strurl = @"ccbt_zhgs/api/home/GetClData?";
+    }
+    else if(type.intValue == 4)
+    {///http://183.230.114.158:8678/ccbt_zhgs/api/home/GetPhData?SessionId=EwmQtH4kxZklics9KyMePw%3D%3D
+        strurl = @"ccbt_zhgs/api/home/GetPhData?";
+    }
+    else if(type.intValue == 5)
+    {///http://183.230.114.158:8678/ccbt_zhgs/api/home/GetWtData?SessionId=EwmQtH4kxZklics9KyMePw%3D%3D
+        strurl = @"ccbt_zhgs/api/home/GetWtData?";
+    }
+    [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@%@",URL_HR,strurl] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
+        BOOL state = NO;
+        NSString *describle = @"";
+        if (responceObjct==nil) {
+            describle = @"网络错误";
+        }else{
+            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+            NSDictionary *dicAll=[str JSONValue];
+            describle = dicAll[@"message"];
+            NSLog(@"pgj=%@",dicAll);
+            if ([[NSString nullToString:dicAll[@"errcode"]] intValue] == 0) {
+                if([[dicAll objectForKey:@"data"] isKindOfClass:[NSDictionary class]])
+                {
+                    state = YES;
+                }
+                else
+                {
+                    state = NO;
+                }
+            }
+            else
+            {
+                state = NO;
+            }
+            if(state==YES)
+            {
+                callback(error,state,describle,[MainHomeChaoBiaoInfoModel initDataValue:[[dicAll objectForKey:@"data"] objectForKey:@"rows"]]);
+            }
+        }
+        if(state==NO)
+        {
+            callback(error,state,describle,nil);
+        }
+    }];
+    
+}
 
-
+///扫码授权
++ (void)requestScanCodeData:(UIView *)view
+sign:(NSString *)sign
+client:(NSString *)client
+time:(NSString *)time
+Callback:(completeCallback)callback
+{
+    NSMutableDictionary  *dicpush = [NSMutableDictionary new];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[UserInfoModel sharedUserInfo].SessionId] forKey:@"SessionId"];
+    [dicpush setObject:[NSString stringWithFormat:@"1001"] forKey:@"type"];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",sign] forKey:@"sign"];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",client] forKey:@"client"];
+    [dicpush setObject:[NSString stringWithFormat:@"%@",[time stringByURLEncode]] forKey:@"time"];
+     
+     
+    [HTTPManager sendRequestUrlToService:[NSString stringWithFormat:@"%@ccbt_zhgs/api/auth/ScanCode?",URL_HR] withParametersDictionry:dicpush view:view completeHandle:^(NSURLSessionTask *opration, id responceObjct, NSError *error) {
+        BOOL state = NO;
+        NSString *describle = @"";
+        if (responceObjct==nil) {
+            describle = @"网络错误";
+        }else{
+            NSString *str=[[NSString alloc]initWithData:responceObjct encoding:NSUTF8StringEncoding];
+            NSDictionary *dicAll=[str JSONValue];
+            describle = dicAll[@"message"];
+            NSLog(@"pgj=%@",dicAll);
+            if ([[NSString nullToString:dicAll[@"errcode"]] intValue] == 0) {
+                state = YES;
+            }
+            else
+            {
+                state = NO;
+            }
+            if(state==YES)
+            {
+                callback(error,state,describle,nil);
+            }
+        }
+        if(state==NO)
+        {
+            callback(error,state,describle,nil);
+        }
+    }];
+}
 
 @end

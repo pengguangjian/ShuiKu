@@ -111,7 +111,18 @@
     for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
         [output appendFormat:@"%02x", digest[i]];
 
-    return output;
+    return [WYTools stringToUpper:(NSString *)output];;
+}
+///字母小写转大写
++(NSString *)stringToUpper:(NSString *)str{
+    for (NSInteger i = 0; i < str.length; i++) {
+        if ([str characterAtIndex:i] >= 'a' & [str characterAtIndex:i] <= 'z') {
+            char temp = [str characterAtIndex:i] - 32;
+            NSRange range = NSMakeRange(i, 1);
+            str = [str stringByReplacingCharactersInRange:range withString:[NSString stringWithFormat:@"%c",temp]];
+        }
+    }
+    return str;
 }
 
 +(id)initDicValue:(NSDictionary *)value andclassname:(NSString *)classname
