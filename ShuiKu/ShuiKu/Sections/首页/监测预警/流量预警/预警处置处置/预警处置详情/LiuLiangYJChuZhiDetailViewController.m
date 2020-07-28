@@ -50,6 +50,10 @@
         
         make.bottom.equalTo(self.view).offset(-kTabBarHeight);
     }];
+    tabview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [self getdata];
+    }];
     _tabview = tabview;
     
     NSArray *arrtitle = @[@"关闭预警",@"预警处置"];
@@ -146,6 +150,7 @@
 -(void)getdata
 {
     [LiuLiangYJDataController requestYuJingRengWuChuZhiJiLuData:self.view ID:self.ID Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        [self.tabview.mj_header endRefreshing];
         if(state)
         {
             self.arrdata = value;

@@ -423,7 +423,7 @@
 		046049F924B9BCEF0079B78B /* ZiDingYiPeiZhiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZiDingYiPeiZhiModel.m; sourceTree = "<group>"; };
 		046049FB24B9BD730079B78B /* ZiDingYiPeiZhiCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZiDingYiPeiZhiCollectionViewCell.h; sourceTree = "<group>"; };
 		046049FC24B9BD730079B78B /* ZiDingYiPeiZhiCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZiDingYiPeiZhiCollectionViewCell.m; sourceTree = "<group>"; };
-		04613DD924B8964D009CD89D /* ShuiKu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShuiKu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04613DD924B8964D009CD89D /* 丰都智慧供水.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "丰都智慧供水.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04613DDC24B8964D009CD89D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04613DDD24B8964D009CD89D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04613DE224B8964D009CD89D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -1301,7 +1301,7 @@
 		04613DDA24B8964D009CD89D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04613DD924B8964D009CD89D /* ShuiKu.app */,
+				04613DD924B8964D009CD89D /* 丰都智慧供水.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2518,7 +2518,7 @@
 			);
 			name = ShuiKu;
 			productName = ShuiKu;
-			productReference = 04613DD924B8964D009CD89D /* ShuiKu.app */;
+			productReference = 04613DD924B8964D009CD89D /* 丰都智慧供水.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -3003,7 +3003,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yx.com.ShuiKu;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "丰都智慧供水";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShuiKu/Macro/ShuiKu-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -3027,7 +3027,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yx.com.ShuiKu;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "丰都智慧供水";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShuiKu/Macro/ShuiKu-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

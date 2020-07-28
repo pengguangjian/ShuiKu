@@ -121,7 +121,9 @@
             make.bottom.equalTo(tongjiview.mas_bottom).offset(10);
         }];
         
-        [self getData];
+        
+        [self newtworkJianting];
+        
     }
     return self;
 }
@@ -270,6 +272,51 @@
         }
     }];
 }
+
+-(void)newtworkJianting
+{
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+    switch (status) {
+    case AFNetworkReachabilityStatusUnknown:
+        {
+            NSLog(@"未识别的网络");
+            
+        }
+    break;
+
+    case AFNetworkReachabilityStatusNotReachable:
+        {
+           NSLog(@"不可达的网络(未连接)");
+            
+        }
+
+    break;
+
+    case AFNetworkReachabilityStatusReachableViaWWAN:
+        {
+            [self getData];
+            
+        }
+    break;
+
+    case AFNetworkReachabilityStatusReachableViaWiFi:
+        {
+           [self getData];
+        }
+
+    break;
+
+    default:
+
+    break;
+
+    }
+    }];
+    [manager startMonitoring];
+    
+}
+
 
 #pragma mark - UICollectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

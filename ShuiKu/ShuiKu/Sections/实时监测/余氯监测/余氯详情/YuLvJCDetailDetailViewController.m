@@ -69,6 +69,10 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.equalTo(viewheader.mas_bottom);
     }];
+    tabview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [self getdata];
+    }];
     _tabview = tabview;
     
 }
@@ -144,6 +148,7 @@
 {
     
     [LiuLiangJCDataController requestMainJianCeDetailData:self.view sTime:self.sTime eTime:self.eTime stcd:self.strSTCD Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        [self.tabview.mj_header endRefreshing];
         if(state)
         {
             self.arrdata = value;

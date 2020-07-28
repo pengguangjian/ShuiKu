@@ -38,11 +38,12 @@
 
 - (UILabel *)markY{
     if (!_markY) {
-        _markY = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 25)];
+        _markY = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 45)];
         _markY.font = [UIFont systemFontOfSize:15.0];
         _markY.textAlignment = NSTextAlignmentCenter;
         _markY.text =@"";
         _markY.textColor = [UIColor whiteColor];
+        [_markY setNumberOfLines:2];
         _markY.backgroundColor = [UIColor grayColor];
     }
     return _markY;
@@ -512,7 +513,9 @@
 -(void)chartValueSelected:(ChartViewBase *)chartView entry:(ChartDataEntry *)entry highlight:(ChartHighlight *)highlight
 {
     NSLog(@"---chartValueSelected---value: %.2lf", entry.y);
-    _markY.text = [NSString stringWithFormat:@"%.2lf",entry.y];
+    
+    
+    _markY.text = [NSString stringWithFormat:@"%@\n%.2lf",self.arrxZhouData[(int)entry.x],entry.y];
     //将点击的数据滑动到中间
     [self.barChartView centerViewToAnimatedWithXValue:entry.x yValue:entry.y axis:[self.barChartView.data getDataSetByIndex:highlight.dataSetIndex].axisDependency duration:1.0];
 }

@@ -83,6 +83,10 @@
             make.edges.equalTo(self.view).insets(kPaddingNav);
         }
     }];
+    tabview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.ipage = 1;
+        [self getdata];
+    }];
     _tabview = tabview;
     [self drawHeaderview];
 }
@@ -172,6 +176,7 @@
 -(void)getdata
 {
     [LiuLiangYJDataController requestZuiXinYuJinGGData:self.view key:self.fieldSearch.text pageNumber:self.ipage Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray * value) {
+        [self.tabview.mj_header endRefreshing];
         if(state)
         {
             if(self.ipage == 1)

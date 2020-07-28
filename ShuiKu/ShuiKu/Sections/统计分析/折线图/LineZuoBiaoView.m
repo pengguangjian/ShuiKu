@@ -17,18 +17,19 @@
 @interface LineZuoBiaoView ()<ChartViewDelegate>
 @property (nonatomic,strong) LineChartView * lineView;
 @property (nonatomic,strong) UILabel * markY;
-
+@property (nonatomic,strong) NSMutableArray *arrXvalue;
 @end
 
 @implementation LineZuoBiaoView
 
 - (UILabel *)markY{
     if (!_markY) {
-        _markY = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 25)];
+        _markY = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 45)];
         _markY.font = [UIFont systemFontOfSize:15.0];
         _markY.textAlignment = NSTextAlignmentCenter;
         _markY.text =@"";
         _markY.textColor = [UIColor whiteColor];
+        [_markY setNumberOfLines:2];
         _markY.backgroundColor = [UIColor grayColor];
     }
     return _markY;
@@ -52,6 +53,9 @@
         ChartMarkerView *markerY = [[ChartMarkerView alloc] init];
         markerY.offset = CGPointMake(-999, -8);
         markerY.chartView = _lineView;
+        
+        
+        
         _lineView.marker = markerY;
         [markerY addSubview:self.markY];
         
@@ -110,6 +114,7 @@
 ///设置arrX x轴数据 arrKeyValue:value y轴数据 color:
 -(void)setXzhouValue:(NSMutableArray *)arrX andKeyValue:(NSMutableArray *)arrKeyValue
 {
+    self.arrXvalue = arrX;
     ///未设置值
     _lineView.xAxis.valueFormatter = [[DateValueFormatter alloc]initWithArr:arrX];
     
@@ -230,13 +235,13 @@
 }
 
 - (void)chartValueSelected:(ChartViewBase * _Nonnull)chartView entry:(ChartDataEntry * _Nonnull)entry highlight:(ChartHighlight * _Nonnull)highlight {
-    
-    _markY.text = [NSString stringWithFormat:@"%.2lf",entry.y];
+    _markY.text = [NSString stringWithFormat:@"%@\n%.2lf",self.arrXvalue[(int)entry.x],entry.y];
     //将点击的数据滑动到中间
     [_lineView centerViewToAnimatedWithXValue:entry.x yValue:entry.y axis:[_lineView.data getDataSetByIndex:highlight.dataSetIndex].axisDependency duration:1.0];
 
     
 }
+
 - (void)chartValueNothingSelected:(ChartViewBase * _Nonnull)chartView {
     
     

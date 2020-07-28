@@ -34,8 +34,7 @@
     if(self = [super initWithFrame:frame])
     {
         UIImageView *imgvhd = [[UIImageView alloc] init];
-        [imgvhd setImage:[UIImage imageNamed:@""]];
-        [imgvhd setBackgroundColor:[UIColor grayColor]];
+        [imgvhd setImage:[UIImage imageNamed:@"applogtemp"]];
         [self addSubview:imgvhd];
         [imgvhd mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);

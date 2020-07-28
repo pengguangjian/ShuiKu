@@ -57,6 +57,12 @@
         }
     }];
     _tabview = tabview;
+    
+    tabview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self->ipage = 1;
+        [self getdata];
+    }];
+    
     [self drawHeaderview];
 }
 
@@ -114,6 +120,7 @@
 {
     
     [LiuLiangJCDataController requestZhuoDuJianCheListData:self.view key:_fieldSearch.text pageNumber:ipage Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        [self.tabview.mj_header endRefreshing];
         if(state)
         {
             if(self->ipage == 1)

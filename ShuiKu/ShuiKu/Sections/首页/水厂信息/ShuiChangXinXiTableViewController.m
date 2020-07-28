@@ -57,6 +57,10 @@
             make.edges.equalTo(self.view).insets(kPaddingNav);
         }
     }];
+    tabview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.ipage = 1;
+        [self getdata];
+    }];
     _tabview = tabview;
     
     [self drawHeaderView];
@@ -164,6 +168,7 @@
 {
     
     [MainHomeDataController requestShuiChangListData:self.view xzqhbm:self.xzqhbm key:self.strkey pageNumber:self.ipage Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        [self.tabview.mj_header endRefreshing];
         if(state)
         {
             self.arrdata = value;
