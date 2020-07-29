@@ -39,7 +39,7 @@
     [arrallvc addObject:vc0];
     
     JianCeAllZheXianTuTuViewController *vc1 = [[JianCeAllZheXianTuTuViewController alloc] init];
-    vc1.strYValue = @"流量";
+    vc1.strYValue = @"流量m³/s";
     vc1.strXValue = @"时间";
     vc1.strtitle = @"日统计";
     vc1.strtitle1 = @"流量统计";
@@ -50,7 +50,7 @@
     [arrallvc addObject:vc1];
     
     JianCeAllZheXianTuTuViewController *vc2 = [[JianCeAllZheXianTuTuViewController alloc] init];
-    vc2.strYValue = @"流量";
+    vc2.strYValue = @"流量t";
     vc2.strXValue = @"时间";
     vc2.strtitle = @"日统计";
     vc2.strtitle1 = @"流量统计";

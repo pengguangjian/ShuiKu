@@ -164,7 +164,10 @@
 -(void)setModel:(LiuLiangJCXiangQingModel *)model
 {
     [_lbtime setText:model.TM];
-    NSArray *arrvalue = @[model.Q0,model.W0,model.Q1,model.W1];
+    NSArray *arrvalue = @[[NSString stringWithFormat:@"%@m³/s",model.Q0],
+                          [NSString stringWithFormat:@"%@t",model.W0],
+                          [NSString stringWithFormat:@"%@m³/s",model.Q1],
+                          [NSString stringWithFormat:@"%@t",model.W1]];
     for(int i = 0; i < self.arrallLB.count; i++)
     {
         UILabel *lb = self.arrallLB[i];

@@ -55,6 +55,10 @@
             make.edges.equalTo(self.view).insets(kPaddingNav);
         }
     }];
+    tabview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self->ipage = 1;
+        [self getdata];
+    }];
     _tabview = tabview;
     [self drawHeaderview];
 }
@@ -113,6 +117,7 @@
 -(void)getdata
 {
     [LiuLiangJCDataController requestLiuLiangJianCheListData:self.view key:_fieldSearch.text pageNumber:ipage Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+        [self.tabview.mj_header endRefreshing];
         if(state)
         {
             if(self->ipage == 1)
@@ -121,7 +126,7 @@
             }
             [self.arrData addObjectsFromArray:value];
         }
-        [self.lbbcnum setText:[NSString stringWithFormat:@"本次共查询出%ld条数据！",self.arrData.count]];
+        [self.lbbcnum setText:[NSString stringWithFormat:@"本次共查询出%lu条数据！",(unsigned long)self.arrData.count]];
         [self.tabview reloadData];
     }];
 }

@@ -95,7 +95,7 @@
         [lb0 setText:@"离线"];
     }
     
-    NSArray *arrvalue = @[model.Q0,model.W0,model.Q1,model.W1,model.TM];
+    NSArray *arrvalue = @[[NSString stringWithFormat:@"%@m³/S", model.Q0],[NSString stringWithFormat:@"%@t",model.W0],[NSString stringWithFormat:@"%@m³/S",model.Q1],[NSString stringWithFormat:@"%@t",model.W1],model.TM];
     for(int i = 1; i < self.arrallLB.count; i++)
     {
         UILabel *lb = self.arrallLB[i];

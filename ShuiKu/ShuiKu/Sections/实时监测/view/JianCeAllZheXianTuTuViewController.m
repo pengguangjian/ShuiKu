@@ -462,7 +462,42 @@
     else if(self.type == 1)
     {///1流量监测
         ///typeson  1浊度图  2余氯图    3温度图   4ph图   5瞬时流量图   6累计流量图
-        [WYTools showNotifyHUDwithtext:@"后台有问题，未处理数据" inView:self.view];
+        [LiuLiangJCDataController requestLiuLiangJianCheXiangQingData:self.view sTime:self.strstarttime eTime:self.strendtime stcd:self.stcd Callback:^(NSError *error, BOOL state, NSString *describle, NSMutableArray *value) {
+            if(state)
+            {
+                self.arrdata = value;
+                NSMutableArray *arrtime = [NSMutableArray new];
+                ///
+                NSMutableArray *arrvalue0 = [NSMutableArray new];
+                NSMutableArray *arrvalue1 = [NSMutableArray new];
+                
+                for(LiuLiangJCXiangQingModel *model in value)
+                {
+                    [arrtime addObject:model.TM];
+                    if(self.typeson == 5)
+                    {
+                        [arrvalue0 addObject:[NSString nullToString:model.Q0]];
+                        [arrvalue1 addObject:[NSString nullToString:model.Q1]];
+                        
+                    }
+                    else if (self.typeson == 6)
+                    {
+                        [arrvalue0 addObject:[NSString nullToString:model.W0]];
+                        [arrvalue1 addObject:[NSString nullToString:model.W1]];
+                    }
+                }
+                NSMutableArray *arrlinedata = [NSMutableArray new];
+                [arrlinedata addObject:@{@"value":arrvalue0,@"color":MenuColor1}];
+                [arrlinedata addObject:@{@"value":arrvalue1,@"color":MenuColor}];
+                self.arrDataTime = arrtime;
+                self.arrDataData = arrlinedata;
+                [self.xianview setXzhouValue:arrtime andKeyValue:arrlinedata];
+            }
+            else
+            {
+                [WYTools showNotifyHUDwithtext:describle inView:self.view];
+            }
+        }];
         
     }
     else if (self.type == 7)
