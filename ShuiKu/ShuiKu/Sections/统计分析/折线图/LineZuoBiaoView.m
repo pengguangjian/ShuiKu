@@ -10,7 +10,7 @@
 
 #import "SymbolsValueFormatter.h"
 #import "DateValueFormatter.h"
-#import "SetValueFormatter.h"
+//#import "SetValueFormatter.h"
 
 @import Charts;
 

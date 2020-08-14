@@ -16,9 +16,6 @@
 		0412304E24CC83180018DE61 /* ZhiBanXiangQingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0412304D24CC83180018DE61 /* ZhiBanXiangQingModel.m */; };
 		0412305124CC8BC70018DE61 /* GetAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0412305024CC8BC70018DE61 /* GetAreaModel.m */; };
 		041CDF9224C9B9B300C3E4DC /* LineZuoBiaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CDF9124C9B9B300C3E4DC /* LineZuoBiaoView.m */; };
-		041CDF9A24C9BA5900C3E4DC /* SetValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CDF9424C9BA5900C3E4DC /* SetValueFormatter.m */; };
-		041CDF9B24C9BA5900C3E4DC /* DateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CDF9524C9BA5900C3E4DC /* DateValueFormatter.m */; };
-		041CDF9C24C9BA5900C3E4DC /* SymbolsValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CDF9824C9BA5900C3E4DC /* SymbolsValueFormatter.m */; };
 		041CDF9F24C9BB1500C3E4DC /* testswift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CDF9E24C9BB1500C3E4DC /* testswift.swift */; };
 		0430DD7C24CD11AB0084E571 /* ShuiChangListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0430DD7B24CD11AB0084E571 /* ShuiChangListModel.m */; };
 		0430DD7F24CD13FA0084E571 /* CeZhanListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0430DD7E24CD13FA0084E571 /* CeZhanListModel.m */; };
@@ -184,6 +181,8 @@
 		04B47D0F24BDEDA200CAAECF /* PHZhiTJSonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B47D0E24BDEDA200CAAECF /* PHZhiTJSonView.m */; };
 		04B47D1224BDEDAC00CAAECF /* WenDuTJSonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B47D1124BDEDAC00CAAECF /* WenDuTJSonView.m */; };
 		04B47D1524BDEDB800CAAECF /* JianCeYuJinTJSonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B47D1424BDEDB800CAAECF /* JianCeYuJinTJSonView.m */; };
+		04C4A48524E6BB74007D3CE0 /* DateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4A48424E6BB73007D3CE0 /* DateValueFormatter.m */; };
+		04C4A48824E6BBBF007D3CE0 /* SymbolsValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4A48724E6BBBF007D3CE0 /* SymbolsValueFormatter.m */; };
 		04D625E624C7164D00B900E8 /* LiuLiangYJDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D625E524C7164D00B900E8 /* LiuLiangYJDataController.m */; };
 		04D625EA24C7201100B900E8 /* LiuLiangJCDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D625E924C7201100B900E8 /* LiuLiangJCDataController.m */; };
 		04D625F124C7284C00B900E8 /* LiuLiangJCListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D625F024C7284C00B900E8 /* LiuLiangJCListModel.m */; };
@@ -270,12 +269,6 @@
 		0412305024CC8BC70018DE61 /* GetAreaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAreaModel.m; sourceTree = "<group>"; };
 		041CDF9024C9B9B200C3E4DC /* LineZuoBiaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineZuoBiaoView.h; sourceTree = "<group>"; };
 		041CDF9124C9B9B300C3E4DC /* LineZuoBiaoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineZuoBiaoView.m; sourceTree = "<group>"; };
-		041CDF9424C9BA5900C3E4DC /* SetValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetValueFormatter.m; sourceTree = "<group>"; };
-		041CDF9524C9BA5900C3E4DC /* DateValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateValueFormatter.m; sourceTree = "<group>"; };
-		041CDF9624C9BA5900C3E4DC /* SymbolsValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymbolsValueFormatter.h; sourceTree = "<group>"; };
-		041CDF9724C9BA5900C3E4DC /* SetValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetValueFormatter.h; sourceTree = "<group>"; };
-		041CDF9824C9BA5900C3E4DC /* SymbolsValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolsValueFormatter.m; sourceTree = "<group>"; };
-		041CDF9924C9BA5900C3E4DC /* DateValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateValueFormatter.h; sourceTree = "<group>"; };
 		041CDF9D24C9BB1400C3E4DC /* ShuiKu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShuiKu-Bridging-Header.h"; sourceTree = "<group>"; };
 		041CDF9E24C9BB1500C3E4DC /* testswift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testswift.swift; sourceTree = "<group>"; };
 		0430DD7A24CD11AB0084E571 /* ShuiChangListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShuiChangListModel.h; sourceTree = "<group>"; };
@@ -606,6 +599,10 @@
 		04B47D1124BDEDAC00CAAECF /* WenDuTJSonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WenDuTJSonView.m; sourceTree = "<group>"; };
 		04B47D1324BDEDB800CAAECF /* JianCeYuJinTJSonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JianCeYuJinTJSonView.h; sourceTree = "<group>"; };
 		04B47D1424BDEDB800CAAECF /* JianCeYuJinTJSonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JianCeYuJinTJSonView.m; sourceTree = "<group>"; };
+		04C4A48324E6BB73007D3CE0 /* DateValueFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateValueFormatter.h; sourceTree = "<group>"; };
+		04C4A48424E6BB73007D3CE0 /* DateValueFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateValueFormatter.m; sourceTree = "<group>"; };
+		04C4A48624E6BBBF007D3CE0 /* SymbolsValueFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SymbolsValueFormatter.h; sourceTree = "<group>"; };
+		04C4A48724E6BBBF007D3CE0 /* SymbolsValueFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SymbolsValueFormatter.m; sourceTree = "<group>"; };
 		04D625E424C7164D00B900E8 /* LiuLiangYJDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangYJDataController.h; sourceTree = "<group>"; };
 		04D625E524C7164D00B900E8 /* LiuLiangYJDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuLiangYJDataController.m; sourceTree = "<group>"; };
 		04D625E824C7201100B900E8 /* LiuLiangJCDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiuLiangJCDataController.h; sourceTree = "<group>"; };
@@ -788,20 +785,6 @@
 				047B90F824CF12B100D6D710 /* MainHomeChaoBiaoInfoModel.m */,
 			);
 			path = model;
-			sourceTree = "<group>";
-		};
-		041CDF9324C9BA5900C3E4DC /* vc */ = {
-			isa = PBXGroup;
-			children = (
-				041CDF9924C9BA5900C3E4DC /* DateValueFormatter.h */,
-				041CDF9524C9BA5900C3E4DC /* DateValueFormatter.m */,
-				041CDF9724C9BA5900C3E4DC /* SetValueFormatter.h */,
-				041CDF9424C9BA5900C3E4DC /* SetValueFormatter.m */,
-				041CDF9624C9BA5900C3E4DC /* SymbolsValueFormatter.h */,
-				041CDF9824C9BA5900C3E4DC /* SymbolsValueFormatter.m */,
-			);
-			name = vc;
-			path = ../../../../../../../ceshiTu/ceshiTu/vc;
 			sourceTree = "<group>";
 		};
 		0430DD8924CD7CDC0084E571 /* DataController */ = {
@@ -1057,7 +1040,7 @@
 		045E414524BAE61700FA0B97 /* 折线图 */ = {
 			isa = PBXGroup;
 			children = (
-				041CDF9324C9BA5900C3E4DC /* vc */,
+				04C4A48224E6BB66007D3CE0 /* vcs */,
 				041CDF9024C9B9B200C3E4DC /* LineZuoBiaoView.h */,
 				041CDF9124C9B9B300C3E4DC /* LineZuoBiaoView.m */,
 			);
@@ -1897,6 +1880,17 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		04C4A48224E6BB66007D3CE0 /* vcs */ = {
+			isa = PBXGroup;
+			children = (
+				04C4A48324E6BB73007D3CE0 /* DateValueFormatter.h */,
+				04C4A48424E6BB73007D3CE0 /* DateValueFormatter.m */,
+				04C4A48624E6BBBF007D3CE0 /* SymbolsValueFormatter.h */,
+				04C4A48724E6BBBF007D3CE0 /* SymbolsValueFormatter.m */,
+			);
+			path = vcs;
+			sourceTree = "<group>";
+		};
 		04D625E324C7163100B900E8 /* DataController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2645,7 +2639,6 @@
 				046049D424B990ED0079B78B /* CCPScrollView.m in Sources */,
 				04613E4824B89A5E009CD89D /* RootViewController.m in Sources */,
 				04FECEE124C31169007DC478 /* CeZhanJianCeTongJiListTableViewCell.m in Sources */,
-				041CDF9A24C9BA5900C3E4DC /* SetValueFormatter.m in Sources */,
 				04613E4B24B89A5E009CD89D /* PGGTabBarViewControllerConfig.m in Sources */,
 				04613E1124B89A3F009CD89D /* UIColor+VTMagic.m in Sources */,
 				04613E4624B89A5E009CD89D /* UIView+Extension.m in Sources */,
@@ -2706,11 +2699,10 @@
 				04FECF2424C32F9D007DC478 /* WenDuJCDetailViewController.m in Sources */,
 				046049EF24B9B7060079B78B /* ZiDingYiPeiZhiViewController.m in Sources */,
 				04FECF0524C316D5007DC478 /* JianCeYuJinTJListViewController.m in Sources */,
-				041CDF9B24C9BA5900C3E4DC /* DateValueFormatter.m in Sources */,
 				04FECEC824C2F713007DC478 /* RenYuanXinXiModel.m in Sources */,
 				0447AE3324C3C92D00E93DBE /* LiuLiangYJChuZhiDetailViewController.m in Sources */,
+				04C4A48524E6BB74007D3CE0 /* DateValueFormatter.m in Sources */,
 				041CDF9F24C9BB1500C3E4DC /* testswift.swift in Sources */,
-				041CDF9C24C9BA5900C3E4DC /* SymbolsValueFormatter.m in Sources */,
 				04613E4D24B89A5E009CD89D /* TabBarControllerConfig.m in Sources */,
 				0447AE7624C3F58D00E93DBE /* TimeClectAlterView.m in Sources */,
 				047C549B24CB584F005CFB51 /* CeZhanJianCeTJViewtwo.m in Sources */,
@@ -2763,6 +2755,7 @@
 				046049E124B99A2A0079B78B /* HomeZhiBanTongJiView.m in Sources */,
 				0447AE3E24C3CF4B00E93DBE /* LiuLiangYJChuZhiDetailCZView.m in Sources */,
 				0447AE4924C3D5BA00E93DBE /* XiaoXiGongGaoTableViewCell.m in Sources */,
+				04C4A48824E6BBBF007D3CE0 /* SymbolsValueFormatter.m in Sources */,
 				046049BA24B980A30079B78B /* MainShiShiJianCeViewController.m in Sources */,
 				0412303924CC131B0018DE61 /* YuJingRengWuListModel.m in Sources */,
 				0447AE5124C3D88A00E93DBE /* ErWeiMaViewController.m in Sources */,

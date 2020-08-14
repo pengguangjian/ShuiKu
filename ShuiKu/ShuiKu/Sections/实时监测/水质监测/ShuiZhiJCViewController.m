@@ -27,7 +27,18 @@
 @end
 
 @implementation ShuiZhiJCViewController
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"xuanzhuandonghuaxinxi"];
+    [self.tabview reloadData];
+}
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSUserDefaults standardUserDefaults] setObject:@"-1" forKey:@"xuanzhuandonghuaxinxi"];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"水质监测";

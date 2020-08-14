@@ -14,7 +14,9 @@
 @property (nonatomic , strong) UILabel *lbname;
 @property (nonatomic , strong) UILabel *lbaddress;
 @property (nonatomic , strong) NSMutableArray *arrallLB;
+@property (nonatomic , strong) UIImageView *imgvset;
 
+@property (nonatomic , assign) float fsing;
 @end
 
 @implementation ZhongHeJCTableViewCell
@@ -59,6 +61,16 @@
         }];
         _lbname = lbname;
         
+        UIImageView *imgvset = [[UIImageView alloc] init];
+        [imgvset setImage:[UIImage imageNamed:@"ic_state_blue"]];
+        [viewback addSubview:imgvset];
+        [imgvset mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.offset(20);
+            make.top.offset(10);
+            make.right.equalTo(viewback).offset(-10);
+        }];
+        _imgvset = imgvset;
+        
         UILabel *lbaddress = [[UILabel alloc] init];
         [lbaddress setTextColor:RGB(130, 130, 130)];
         [lbaddress setTextAlignment:NSTextAlignmentLeft];
@@ -91,7 +103,21 @@
     return self;
 }
 
-
+-(void)startAnimation0
+{
+    NSString *strtemp = [[NSUserDefaults standardUserDefaults] objectForKey:@"xuanzhuandonghuaxinxi"];
+    if(strtemp.intValue>0)
+    {
+        CGAffineTransform endAngle = CGAffineTransformMakeRotation(self.fsing * (M_PI / 180.0f));
+        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.imgvset.transform = endAngle;
+        } completion:^(BOOL finished) {
+            self.fsing+=10;
+            [self startAnimation0];
+        }];
+    }
+    
+}
 -(void)setModel:(ZongHeJianCeMainListModel *)model
 {
     [_lbname setText:[NSString stringWithFormat:@"%@(%@)",model.NAME,model.CODE]];
@@ -130,6 +156,17 @@
     
     UILabel *lb9 = self.arrallLB[9];
     [lb9 setText:[NSString stringWithFormat:@"%.2lf m³/s",model.CSQ.floatValue]];
+    
+    if(model.STATUS.intValue == 1)
+    {
+        [self.imgvset setImage:[UIImage imageNamed:@"ic_state_blue"]];
+        [self startAnimation0];
+    }
+    else
+    {
+        [self.imgvset setImage:[UIImage imageNamed:@"ic_state_gray"]];
+    }
+    
 }
 
 

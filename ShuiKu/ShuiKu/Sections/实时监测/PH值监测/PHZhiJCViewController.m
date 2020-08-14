@@ -28,7 +28,18 @@
 @end
 
 @implementation PHZhiJCViewController
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"xuanzhuandonghuaxinxi"];
+    [self.tabview reloadData];
+}
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSUserDefaults standardUserDefaults] setObject:@"-1" forKey:@"xuanzhuandonghuaxinxi"];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"PH值监测";
